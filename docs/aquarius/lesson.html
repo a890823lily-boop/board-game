@@ -1,0 +1,786 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>水瓶座出牌小妙招</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@700;900&display=swap">
+<style>
+/* Layout: classroom slideshow — one lesson step on screen at a time, step chips on top, big prev/next at the bottom; same warm poster look as the 水瓶座 app (deliberately light-only, every colour explicit) */
+:root {
+  color-scheme: light;
+  --paper: #FFF8EA;
+  --card: #FFFFFF;
+  --line: #EFE4CF;
+  --ink: #3B322C;
+  --muted: #7C6F64;
+  --blue: #2D5FA8;
+  --blue-deep: #1D4482;
+  --blue-soft: #E6EFFB;
+  --red: #D93A2B;
+  --felt: #E5EFE2;
+  --felt-line: #C6DBC1;
+  --good: #2E8B4E;
+  --good-soft: #E1F3E6;
+  --bad: #C2452F;
+  --bad-soft: #FBE6E1;
+  --warn: #B7791F;
+  --warn-soft: #FDF1D8;
+  --sun: #F7C948;
+  --bean: #8A5A2B;
+  --f-kid: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB", "BiauKai", "Noto Sans TC", serif;
+  --f-head: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-kid); font-size: 20px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 40px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; display: grid; gap: 20px; }
+button { font: inherit; }
+button:focus-visible, input:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
+
+/* zhuyin (same construction as the app) */
+.z { display: inline-flex; align-items: center; vertical-align: middle; margin-right: .08em; }
+.z .h { line-height: 1.15; }
+.z .b { display: inline-grid; grid-template-columns: auto .42em; align-items: center; font-size: .42em; line-height: 1; margin-left: .1em; font-weight: 400; }
+.z .b i { grid-column: 1; font-style: normal; display: block; text-align: center; height: .9em; line-height: .9em; }
+.z .b i.nt { height: .6em; line-height: .3em; }
+.z .t { grid-column: 2; align-self: start; font-size: .8em; line-height: 1; transform: translateY(-.25em); }
+.p { display: inline-block; }
+.zt { display: inline; line-height: 1.8; }
+
+/* header + step chips */
+header { padding-block: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+header h1 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(28px, 5vw, 44px); }
+header h1 .z .sy, header h1 .z .t { font-family: var(--f-head); }
+.sub { color: var(--muted); font-size: 18px; margin: 0; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  font-family: var(--f-head); font-weight: 700; font-size: 16px; cursor: pointer;
+  border: 2px solid var(--line); background: var(--card); color: var(--muted);
+  border-radius: 999px; padding: 4px 12px 6px; min-width: 40px;
+}
+.chip[aria-current="step"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.chip.done { border-color: #BCD0EC; color: var(--blue); }
+
+/* step panel */
+.step {
+  background: var(--card); border: 3px solid var(--line); border-radius: 28px;
+  padding: clamp(16px, 3.5vw, 34px); display: grid; gap: 20px; min-width: 0;
+}
+.step-top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.num {
+  flex: none; width: 64px; height: 64px; border-radius: 50%; background: var(--blue); color: #fff;
+  font-family: var(--f-head); font-weight: 900; font-size: 36px; display: grid; place-items: center;
+  box-shadow: 0 5px 0 var(--blue-deep);
+}
+.step h2 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(30px, 5vw, 46px); text-wrap: balance; }
+.step h2 .z .sy, .step h2 .z .t { font-family: var(--f-head); }
+.lead { margin: 0; font-size: clamp(24px, 3.6vw, 34px); color: var(--red); font-weight: 700; }
+.teacher { font-family: var(--f-head); font-size: 15px; color: var(--muted); background: var(--paper); border-radius: 12px; padding: 10px 14px; margin: 0; }
+.teacher b { color: var(--blue); }
+
+.speak {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-size: 18px; font-weight: 700; color: var(--blue); background: var(--card);
+  border: 2px solid #BCD0EC; border-radius: 999px; padding: 4px 14px 4px 10px; vertical-align: middle;
+}
+.speak svg { width: 22px; height: 22px; }
+
+.nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--f-head); font-weight: 900; font-size: 22px; cursor: pointer;
+  color: #fff; background: var(--blue); border: 0; border-radius: 999px; padding: 10px 28px 12px;
+  box-shadow: 0 5px 0 var(--blue-deep);
+}
+.btn .z .sy, .btn .z .t { font-family: var(--f-head); }
+.btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--blue-deep); }
+.btn.ghost { background: var(--card); color: var(--blue); border: 2px solid #BCD0EC; box-shadow: 0 5px 0 #BCD0EC; }
+.btn:disabled { opacity: .35; cursor: default; }
+
+/* intro problems */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.box { border-radius: 22px; padding: 18px 20px; display: grid; gap: 8px; min-width: 0; }
+.box.bad { background: var(--bad-soft); }
+.box.good { background: var(--good-soft); }
+.box h3 { margin: 0; font-family: var(--f-head); font-size: 24px; }
+.box.bad h3 { color: var(--bad); }
+.box.good h3 { color: var(--good); }
+.box p { margin: 0; font-size: 24px; }
+
+/* felt table + cards */
+.felt { background: var(--felt); border: 3px solid var(--felt-line); border-radius: 22px; padding: 16px; display: grid; gap: 14px; min-width: 0; }
+.board { position: relative; margin: 0 auto; }
+.ecard { position: absolute; border-radius: 9%/7%; background: #1F1F24; padding: 5%; box-shadow: 0 4px 10px rgba(40,50,30,.28); transition: transform .2s ease; }
+.ecard .in { width: 100%; height: 100%; display: grid; gap: 2px; border-radius: 6px; overflow: hidden; }
+.ecard .s { position: relative; border-radius: 4px; overflow: hidden; }
+.ecard .s svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.ecard.mark { box-shadow: 0 0 0 5px var(--bad), 0 4px 10px rgba(40,50,30,.28); }
+.ecard.new { box-shadow: 0 0 0 5px var(--sun), 0 4px 10px rgba(40,50,30,.28); }
+.ecard.lit { box-shadow: 0 0 0 4px #FFE066, 0 4px 10px rgba(40,50,30,.28); }
+.slot {
+  position: absolute; border: 3px dashed #8FB4E3; border-radius: 9%/7%; background: rgba(255,255,255,.35);
+  cursor: pointer; padding: 0;
+}
+.slot:hover, .slot:focus-visible { background: rgba(45,95,168,.15); border-color: var(--blue); }
+.slot:disabled { cursor: default; opacity: .25; }
+.hand { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; }
+.hcard { position: relative; border: 0; background: none; padding: 0; cursor: pointer; border-radius: 10px; }
+.hcard .ecard { position: relative; }
+.hcard[aria-pressed="true"] .ecard { transform: translateY(-14px); box-shadow: 0 0 0 5px var(--blue), 0 10px 16px rgba(40,50,30,.3); }
+.hcard:disabled { cursor: default; }
+.hand-label { font-family: var(--f-head); font-weight: 700; color: var(--muted); font-size: 16px; }
+.goalbar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.goal { display: flex; align-items: center; gap: 12px; background: var(--card); border-radius: 16px; padding: 8px 16px 8px 8px; }
+.goal .gc { width: 56px; height: 74px; border-radius: 8px; background: #1F1F24; display: grid; place-items: center; flex: none; }
+.goal .gc span { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.7); }
+.goal b { color: var(--red); font-size: 24px; }
+.count { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 22px; background: var(--card); border-radius: 999px; padding: 6px 16px; }
+.count.danger { color: var(--bad); }
+
+.feedback { border-radius: 18px; padding: 14px 18px; font-size: clamp(21px, 3.2vw, 26px); font-weight: 700; display: grid; gap: 6px; }
+.feedback.ok { background: var(--good-soft); color: var(--good); }
+.feedback.no { background: var(--bad-soft); color: var(--bad); }
+.feedback.mid { background: var(--warn-soft); color: var(--warn); }
+.feedback .ex { color: var(--ink); font-weight: 400; font-size: .9em; }
+
+.tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.tab { cursor: pointer; font-family: var(--f-head); font-weight: 700; font-size: 18px; border-radius: 999px; padding: 6px 18px 8px; border: 2px solid #BCD0EC; background: var(--card); color: var(--blue); }
+.tab[aria-selected="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.tab .z .sy, .tab .z .t { font-family: var(--f-head); }
+
+/* flowchart */
+.flow { display: grid; gap: 0; justify-items: stretch; max-width: 820px; margin: 0 auto; width: 100%; }
+.fstep { display: grid; grid-template-columns: 64px 1fr; gap: 16px; align-items: center; background: var(--card); border: 3px solid var(--line); border-radius: 22px; padding: 14px 18px; cursor: pointer; text-align: left; color: var(--ink); }
+.fstep .n { width: 56px; height: 56px; border-radius: 50%; background: var(--blue-soft); color: var(--blue); font-family: var(--f-head); font-weight: 900; font-size: 30px; display: grid; place-items: center; }
+.fstep .q { font-size: clamp(24px, 3.6vw, 32px); font-weight: 700; }
+.fstep .a { font-size: clamp(19px, 2.8vw, 23px); color: var(--muted); }
+.fstep.on { border-color: var(--blue); background: var(--blue-soft); }
+.fstep.on .n { background: var(--blue); color: #fff; }
+.arrow { display: flex; align-items: center; gap: 12px; padding: 6px 0 6px 40px; font-size: 21px; font-weight: 700; }
+.arrow svg { width: 26px; height: 34px; flex: none; }
+.yes { color: var(--good); }
+.no-t { color: var(--bad); }
+.mantra { text-align: center; font-family: var(--f-head); font-weight: 900; font-size: clamp(28px, 5vw, 44px); color: var(--red); margin: 0; }
+.mantra .z .sy, .mantra .z .t { font-family: var(--f-head); }
+
+/* action cards */
+.acards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.acard { background: var(--card); border: 3px solid var(--line); border-radius: 22px; padding: 14px; display: grid; grid-template-columns: 76px 1fr; gap: 14px; align-items: start; min-width: 0; }
+.acard img { width: 76px; border-radius: 8px; box-shadow: 0 3px 8px rgba(40,50,30,.2); }
+.acard .nm { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 22px; }
+.acard .nm .z .sy, .acard .nm .z .t { font-family: var(--f-head); }
+.acard .ask { font-size: 22px; font-weight: 700; color: var(--red); }
+.acard .why { font-size: 18px; color: var(--muted); }
+.acard .tx { display: grid; gap: 6px; min-width: 0; }
+.acard.today { border-color: var(--sun); }
+.badge { justify-self: start; font-family: var(--f-head); font-size: 14px; font-weight: 700; border-radius: 999px; padding: 2px 10px 3px; background: var(--sun); color: var(--ink); }
+.badge.adv { background: var(--blue-soft); color: var(--blue); }
+.keep { background: var(--warn-soft); border-radius: 22px; padding: 16px 20px; font-size: clamp(24px, 3.6vw, 30px); font-weight: 700; color: var(--warn); }
+
+/* doctor quiz */
+.qtop { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.qno { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 20px; }
+.dots { display: flex; gap: 7px; flex-wrap: wrap; }
+.dot { width: 16px; height: 16px; border-radius: 50%; background: #EDE6DA; border: 2px solid #E0D6C6; }
+.dot.now { background: var(--sun); border-color: #E3AE1B; }
+.dot.ok { background: var(--good); border-color: var(--good); }
+.dot.no { background: var(--bad); border-color: var(--bad); }
+.situ { font-size: clamp(25px, 4vw, 34px); font-weight: 700; }
+.opts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 700px) { .opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.opt {
+  cursor: pointer; background: var(--card); border: 3px solid #DCD2C0; border-radius: 18px; padding: 12px;
+  display: grid; justify-items: center; gap: 8px; text-align: center; color: var(--ink);
+  font-size: 22px; font-weight: 700; box-shadow: 0 4px 0 #DCD2C0; min-width: 0;
+}
+.opt img { width: 100%; max-width: 110px; border-radius: 8px; }
+.opt .hold { width: 100%; max-width: 110px; aspect-ratio: 5 / 7; border-radius: 8px; background: var(--warn-soft); border: 3px dashed var(--warn); display: grid; place-items: center; }
+.opt .hold svg { width: 52px; height: 52px; }
+.opt:disabled { cursor: default; }
+.opt.right { border-color: var(--good); background: var(--good-soft); box-shadow: 0 4px 0 var(--good); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); box-shadow: 0 4px 0 var(--bad); }
+.opt.fade { opacity: .45; }
+
+/* sentence frames */
+.frames { display: grid; gap: 14px; }
+.frame { background: var(--blue-soft); border-radius: 20px; padding: 16px 20px; font-size: clamp(25px, 4vw, 34px); font-weight: 700; color: var(--blue); }
+.frame u { text-decoration: none; display: inline-block; min-width: 3.2em; border-bottom: 4px solid var(--blue); margin: 0 .2em; }
+.helper { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.helper div { background: var(--paper); border: 3px solid var(--line); border-radius: 18px; padding: 14px 16px; font-size: 24px; font-weight: 700; }
+
+/* beans */
+.beans { overflow-x: auto; }
+.beans table { border-collapse: separate; border-spacing: 0 10px; width: 100%; min-width: 560px; }
+.beans th { font-family: var(--f-head); font-size: 17px; color: var(--muted); text-align: left; padding: 0 10px; }
+.beans td { background: var(--paper); padding: 10px; vertical-align: middle; }
+.beans td:first-child { border-radius: 16px 0 0 16px; }
+.beans td:last-child { border-radius: 0 16px 16px 0; }
+.beans input { font: inherit; font-size: 22px; width: 100%; min-width: 0; border: 2px solid var(--line); border-radius: 12px; padding: 6px 10px; background: var(--card); color: var(--ink); }
+.counter { display: flex; align-items: center; gap: 10px; }
+.counter button { width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; font-family: var(--f-head); font-weight: 900; font-size: 26px; line-height: 1; }
+.counter .plus { background: var(--blue); color: #fff; }
+.counter .minus { background: var(--card); color: var(--muted); border: 2px solid var(--line); }
+.counter output { font-family: var(--f-head); font-weight: 900; font-size: 30px; min-width: 1.6em; text-align: center; font-variant-numeric: tabular-nums; color: var(--bean); }
+.pile { display: flex; flex-wrap: wrap; gap: 3px; max-width: 160px; }
+.pile i { width: 12px; height: 9px; border-radius: 50%; background: var(--bean); display: block; }
+.pile i.act { background: var(--blue); }
+.reset { font-family: var(--f-head); font-weight: 700; font-size: 15px; cursor: pointer; background: none; border: 2px solid var(--line); color: var(--muted); border-radius: 999px; padding: 4px 14px; }
+.confirm { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-family: var(--f-head); font-size: 15px; }
+
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.sum { background: var(--paper); border-radius: 20px; padding: 16px; display: grid; gap: 4px; text-align: center; }
+.sum .big { font-family: var(--f-head); font-weight: 900; font-size: 44px; color: var(--bean); font-variant-numeric: tabular-nums; }
+.sum .big.act { color: var(--blue); }
+.sum .lb { font-size: 20px; }
+.star-list { display: grid; gap: 10px; }
+.star-list div { font-size: 22px; background: var(--paper); border-radius: 16px; padding: 10px 16px; }
+
+footer { text-align: center; color: var(--muted); font-size: 15px; font-family: var(--f-head); }
+@keyframes pop { 0% { transform: scale(.6); opacity: .3 } 70% { transform: scale(1.08) } 100% { transform: scale(1); opacity: 1 } }
+.pop { animation: pop .3s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } .ecard { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1 data-zh="水瓶座出牌小妙招"></h1>
+      <p class="sub" data-zh="二年級資源班｜水瓶座總結課"></p>
+    </div>
+    <nav class="chips" id="chips" aria-label="上課步驟"></nav>
+  </header>
+  <main id="main"></main>
+  <div class="nav">
+    <button class="btn ghost" type="button" id="prev"></button>
+    <button class="btn" type="button" id="next"></button>
+  </div>
+  <footer>水瓶座 Aquarius｜二年級資源班桌遊教學｜鍵盤左右鍵可以換頁</footer>
+</div>
+
+<script>
+const ZY = {"行": "ㄒㄧㄥˊ", "動": "ㄉㄨㄥˋ", "牌": "ㄆㄞˊ", "登": "ㄉㄥ", "場": "ㄔㄤˇ", "學": "ㄒㄩㄝˊ", "會": "ㄏㄨㄟˋ", "基": "ㄐㄧ", "本": "ㄅㄣˇ", "玩": "ㄨㄢˊ", "法": "ㄈㄚˇ", "後": "ㄏㄡˋ", "再": "ㄗㄞˋ", "加": "ㄐㄧㄚ", "入": "ㄖㄨˋ", "特": "ㄊㄜˋ", "殊": "ㄕㄨ", "能": "ㄋㄥˊ", "力": "ㄌㄧˋ", "交": "ㄐㄧㄠ", "換": "ㄏㄨㄢˋ", "任": "ㄖㄣˋ", "務": "ㄨˋ", "大": "ㄉㄚˋ", "風": "ㄈㄥ", "吹": "ㄔㄨㄟ", "重": "ㄔㄨㄥˊ", "洗": "ㄒㄧˇ", "手": "ㄕㄡˇ", "移": "ㄧˊ", "一": "ㄧ", "張": "ㄓㄤ", "拿": "ㄋㄚˊ", "回": "ㄏㄨㄟˊ", "元": "ㄩㄢˊ", "素": "ㄙㄨˋ", "你": "ㄋㄧˇ", "和": "ㄏㄜˊ", "位": "ㄨㄟˋ", "家": "ㄐㄧㄚ", "所": "ㄙㄨㄛˇ", "有": "ㄧㄡˇ", "的": "˙ㄉㄜ", "起": "ㄑㄧˇ", "往": "ㄨㄤˇ", "同": "ㄊㄨㄥˊ", "個": "ㄍㄜˋ", "方": "ㄈㄤ", "向": "ㄒㄧㄤˋ", "傳": "ㄔㄨㄢˊ", "把": "ㄅㄚˇ", "收": "ㄕㄡ", "來": "ㄌㄞˊ", "發": "ㄈㄚ", "去": "ㄑㄩˋ", "桌": "ㄓㄨㄛ", "上": "ㄕㄤˋ", "到": "ㄉㄠˋ", "別": "ㄅㄧㄝˊ", "地": "ㄉㄧˋ", "也": "ㄧㄝˇ", "可": "ㄎㄜˇ", "以": "ㄧˇ", "轉": "ㄓㄨㄢˇ", "全": "ㄑㄩㄢˊ", "部": "ㄅㄨˋ", "自": "ㄗˋ", "己": "ㄐㄧˇ", "選": "ㄒㄩㄢˇ", "兩": "ㄌㄧㄤˇ", "人": "ㄖㄣˊ", "互": "ㄏㄨˋ", "左": "ㄗㄨㄛˇ", "或": "ㄏㄨㄛˋ", "右": "ㄧㄡˋ", "都": "ㄉㄡ", "從": "ㄘㄨㄥˊ", "出": "ㄔㄨ", "開": "ㄎㄞ", "始": "ㄕˇ", "在": "ㄗㄞˋ", "原": "ㄩㄢˊ", "半": "ㄅㄢˋ", "圈": "ㄑㄩㄢ", "比": "ㄅㄧˇ", "較": "ㄐㄧㄠˋ", "多": "ㄉㄨㄛ", "過": "ㄍㄨㄛˋ", "就": "ㄐㄧㄡˋ", "賺": "ㄓㄨㄢˋ", "了": "˙ㄌㄜ", "些": "ㄒㄧㄝ", "變": "ㄅㄧㄢˋ", "記": "ㄐㄧˋ", "住": "ㄓㄨˋ", "這": "ㄓㄜˋ", "六": "ㄌㄧㄡˋ", "吧": "˙ㄅㄚ", "給": "ㄍㄟˇ", "另": "ㄌㄧㄥˋ", "接": "ㄐㄧㄝ", "得": "˙ㄉㄜ", "下": "ㄒㄧㄚˋ", "不": "ㄅㄨˋ", "五": "ㄨˇ", "什": "ㄕㄣˊ", "係": "˙ㄒㄧ", "候": "˙ㄏㄡ", "做": "ㄗㄨㄛˋ", "先": "ㄒㄧㄢ", "只": "ㄓˇ", "叫": "ㄐㄧㄠˋ", "名": "ㄇㄧㄥˊ", "哪": "ㄋㄚˇ", "喔": "ㄛ", "嗎": "˙ㄇㄚ", "堂": "ㄊㄤˊ", "好": "ㄏㄠˇ", "字": "˙ㄗ", "完": "ㄨㄢˊ", "對": "ㄉㄨㄟˋ", "小": "ㄒㄧㄠˇ", "年": "ㄋㄧㄢˊ", "影": "ㄧㄥˇ", "很": "ㄏㄣˇ", "怎": "ㄗㄣˇ", "想": "ㄒㄧㄤˇ", "成": "ㄔㄥˊ", "才": "ㄘㄞˊ", "放": "ㄈㄤˋ", "是": "ㄕˋ", "時": "ㄕˊ", "最": "ㄗㄨㄟˋ", "案": "ㄢˋ", "棒": "ㄅㄤˋ", "楚": "˙ㄔㄨ", "樣": "ㄧㄤˋ", "次": "ㄘˋ", "正": "ㄓㄥˋ", "沒": "ㄇㄟˊ", "清": "ㄑㄧㄥ", "測": "ㄘㄜˋ", "片": "ㄆㄧㄢˋ", "用": "ㄩㄥˋ", "目": "ㄇㄨˋ", "看": "ㄎㄢˋ", "確": "ㄑㄩㄝˋ", "答": "ㄉㄚˊ", "紀": "ㄐㄧˋ", "績": "ㄐㄧ", "習": "ㄒㄧˊ", "考": "ㄎㄠˇ", "聽": "ㄊㄧㄥ", "裡": "ㄌㄧˇ", "複": "ㄈㄨˋ", "要": "ㄧㄠˋ", "誰": "ㄕㄟˊ", "送": "ㄙㄨㄥˋ", "還": "ㄏㄞˊ", "關": "ㄍㄨㄢ", "面": "ㄇㄧㄢˋ", "題": "ㄊㄧˊ", "驗": "ㄧㄢˋ", "高": "ㄍㄠ", "麼": "˙ㄇㄜ", "水": "ㄕㄨㄟˇ", "瓶": "ㄆㄧㄥˊ", "座": "ㄗㄨㄛˋ", "認": "ㄖㄣˋ", "識": "ㄕˊ", "準": "ㄓㄨㄣˇ", "備": "ㄅㄟˋ", "輪": "ㄌㄨㄣˊ", "贏": "ㄧㄥˊ", "種": "ㄓㄨㄥˇ", "顏": "ㄧㄢˊ", "色": "ㄙㄜˋ", "格": "ㄍㄜˊ", "四": "ㄙˋ", "子": "˙ㄗ", "中": "ㄓㄨㄥ", "間": "ㄐㄧㄢ", "每": "ㄇㄟˇ", "偷": "ㄊㄡ", "三": "ㄙㄢ", "堆": "ㄉㄨㄟ", "連": "ㄌㄧㄢˊ", "那": "ㄋㄚˋ", "保": "ㄅㄠˇ", "密": "ㄇㄧˋ", "綠": "ㄌㄩˋ", "抽": "ㄔㄡ", "碰": "ㄆㄥˋ", "七": "ㄑㄧ", "算": "ㄙㄨㄢˋ", "樂": "ㄌㄜˋ", "機": "ㄐㄧ", "天": "ㄊㄧㄢ", "空": "ㄎㄨㄥ", "草": "ㄘㄠˇ", "火": "ㄏㄨㄛˇ", "焰": "ㄧㄢˋ", "太": "ㄊㄞˋ", "卡": "ㄎㄚˇ", "秘": "ㄇㄧˋ", "標": "ㄅㄧㄠ", "讓": "ㄖㄤˋ", "萬": "ㄨㄢˋ", "當": "ㄉㄤ", "作": "ㄗㄨㄛˋ", "何": "ㄏㄜˊ", "遊": "ㄧㄡˊ", "戲": "ㄒㄧˋ", "翻": "ㄈㄢ", "前": "ㄑㄧㄢˊ", "件": "ㄐㄧㄢˋ", "事": "ㄕˋ", "我": "ㄨㄛˇ", "跳": "ㄊㄧㄠˋ", "至": "ㄓˋ", "少": "ㄕㄠˇ", "相": "ㄒㄧㄤ", "新": "ㄒㄧㄣ", "直": "ㄓˊ", "齊": "ㄑㄧˊ", "之": "ㄓ", "邊": "ㄅㄧㄢ", "橫": "ㄏㄥˊ", "整": "ㄓㄥˇ", "角": "ㄐㄧㄠˇ", "獲": "ㄏㄨㄛˋ", "勝": "ㄕㄥˋ", "立": "ㄌㄧˋ", "刻": "ㄎㄜˋ", "錯": "ㄘㄨㄛˋ", "誤": "ㄨˋ", "妙": "ㄇㄧㄠˋ", "招": "ㄓㄠ", "二": "ㄦˋ", "級": "ㄐㄧˊ", "資": "ㄗ", "源": "ㄩㄢˊ", "班": "ㄅㄢ", "總": "ㄗㄨㄥˇ", "結": "ㄐㄧㄝˊ", "課": "ㄎㄜˋ", "步": "ㄅㄨˋ", "驟": "ㄓㄡˋ", "教": "ㄐㄧㄠˋ", "鍵": "ㄐㄧㄢˋ", "盤": "ㄆㄢˊ", "頁": "ㄧㄝˋ", "快": "ㄎㄨㄞˋ", "走": "ㄗㄡˇ", "他": "ㄊㄚ", "幫": "ㄅㄤ", "難": "ㄋㄢˊ", "容": "ㄖㄨㄥˊ", "易": "ㄧˋ", "找": "ㄓㄠˇ", "美": "ㄇㄟˇ", "已": "ㄧˇ", "經": "ㄐㄧㄥ", "剩": "ㄕㄥˋ", "華": "ㄏㄨㄚˊ", "她": "ㄊㄚ", "留": "ㄌㄧㄡˊ", "著": "˙ㄓㄜ", "幾": "ㄐㄧˇ", "乎": "ㄏㄨ", "明": "ㄇㄧㄥˊ", "流": "ㄌㄧㄡˊ", "程": "ㄔㄥˊ", "圖": "ㄊㄨˊ", "練": "ㄌㄧㄢˋ", "實": "ㄕˊ", "戰": "ㄓㄢˋ", "豆": "ㄉㄡˋ", "今": "ㄐㄧㄣ", "厲": "ㄌㄧˋ", "害": "ㄏㄞˋ", "問": "ㄨㄣˋ", "知": "ㄓ", "道": "ㄉㄠˋ", "卻": "ㄑㄩㄝˋ", "老": "ㄌㄠˇ", "師": "ㄕ", "提": "ㄊㄧˊ", "示": "ㄕˋ", "投": "ㄊㄡˊ", "圓": "ㄩㄢˊ", "點": "ㄉㄧㄢˇ", "生": "ㄕㄥ", "請": "ㄑㄧㄥˇ", "句": "ㄐㄩˋ", "說": "ㄕㄨㄛ", "理": "ㄌㄧˇ", "由": "ㄧㄡˊ", "紅": "ㄏㄨㄥˊ", "框": "ㄎㄨㄤ", "項": "ㄒㄧㄤˋ", "零": "ㄌㄧㄥˊ", "其": "ㄑㄧˊ", "應": "ㄧㄥ", "該": "ㄍㄞ", "等": "ㄉㄥˇ", "們": "˙ㄇㄣ", "它": "ㄊㄚ", "指": "ㄓˇ", "適": "ㄕˋ", "合": "ㄏㄜˊ", "照": "ㄓㄠˋ", "順": "ㄕㄨㄣˋ", "序": "ㄒㄩˋ", "範": "ㄈㄢˋ", "亮": "ㄌㄧㄤˋ", "例": "ㄌㄧˋ", "如": "ㄖㄨˊ", "虛": "ㄒㄩ", "線": "ㄒㄧㄢˋ", "按": "ㄢˋ", "試": "ㄕˋ", "八": "ㄅㄚ", "九": "ㄐㄧㄡˇ", "十": "ㄕˊ", "更": "ㄍㄥˋ", "糟": "ㄗㄠ", "糕": "ㄍㄠ", "進": "ㄐㄧㄣˋ", "階": "ㄐㄧㄝ", "現": "ㄒㄧㄢˋ", "建": "ㄐㄧㄢˋ", "議": "ㄧˋ", "黃": "ㄏㄨㄤˊ", "度": "ㄉㄨˋ", "醫": "ㄧ", "因": "ㄧㄣ", "為": "ㄨㄟˋ", "第": "ㄉㄧˋ", "話": "ㄏㄨㄚˋ", "忙": "ㄇㄤˊ", "顆": "ㄎㄜ", "錄": "ㄌㄨˋ", "號": "ㄏㄠˋ", "減": "ㄐㄧㄢˇ", "定": "ㄉㄧㄥˋ", "歸": "ㄍㄨㄟ", "取": "ㄑㄩˇ", "消": "ㄒㄧㄠ", "存": "ㄘㄨㄣˊ", "台": "ㄊㄞˊ", "電": "ㄉㄧㄢˋ", "腦": "ㄋㄠˇ", "瀏": "ㄌㄧㄡˊ", "覽": "ㄌㄢˇ", "器": "ㄑㄧˋ", "數": "ㄕㄨˇ"};
+const PUNCT = /[，。！？、：；「」（）\s0-9A-Za-z\/+①②③④⑤＿…→]/;
+function zh(text) {
+  let out = '';
+  for (const ch of text) {
+    const z = ZY[ch];
+    if (!z || PUNCT.test(ch)) { out += `<span class="p">${ch}</span>`; continue; }
+    const neutral = z.startsWith('˙');
+    let sy = [...z.replace('˙', '')];
+    let tone = '';
+    if ('ˊˇˋ'.includes(sy.at(-1))) tone = sy.pop();
+    const n = sy.length + (neutral ? 1 : 0);
+    const col = (neutral ? '<i class="nt">˙</i>' : '') + sy.map(c => `<i>${c}</i>`).join('');
+    out += `<span class="z"><span class="h">${ch}</span><span class="b" aria-hidden="true">${col}` +
+      (tone ? `<span class="t" style="grid-row:${n}">${tone}</span>` : '') + `</span></span>`;
+  }
+  return `<span class="zt" aria-label="${text}">${out}</span>`;
+}
+const zhAll = root => root.querySelectorAll('[data-zh]').forEach(el => el.innerHTML = zh(el.dataset.zh));
+
+const SPEAKER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.3 5.7a9 9 0 0 1 0 12.6"/></svg>';
+function say(text) {
+  try {
+    const s = window.speechSynthesis; if (!s) return;
+    s.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[「」＿]/g, ''));
+    u.lang = 'zh-TW'; u.rate = 0.85;
+    const v = s.getVoices().find(v => /zh[-_]TW/i.test(v.lang)) || s.getVoices().find(v => /^zh/i.test(v.lang));
+    if (v) u.voice = v;
+    s.speak(u);
+  } catch (e) {}
+}
+const speakBtn = text => `<button class="speak" type="button" data-say="${text}">${SPEAKER}${zh('聽')}</button>`;
+
+/* ---------- element cards ---------- */
+const EL = {
+  s: { name: '天空', bg: '#5BB8F0', icon: '<path d="M5 31 A15 15 0 0 1 35 31" stroke="#E2453C" stroke-width="3.2" fill="none"/><path d="M8.6 31 A11.4 11.4 0 0 1 31.4 31" stroke="#F4C430" stroke-width="3.2" fill="none"/><path d="M12.2 31 A7.8 7.8 0 0 1 27.8 31" stroke="#3FAE4A" stroke-width="3.2" fill="none"/><g fill="#fff"><circle cx="12" cy="30" r="5"/><circle cx="19" cy="27" r="6.5"/><circle cx="26" cy="30" r="5"/><rect x="12" y="29" width="14" height="6"/></g>' },
+  w: { name: '水', bg: '#14A3A0', icon: '<g fill="#fff" opacity=".85"><circle cx="9" cy="9" r="1.8"/><circle cx="31" cy="12" r="1.5"/><circle cx="28" cy="31" r="1.8"/></g><ellipse cx="18" cy="21" rx="9" ry="5.5" fill="#E8327A"/><path d="M26 21 L34 15 L34 27 Z" fill="#E8327A"/><circle cx="14" cy="20" r="1.4" fill="#fff"/>' },
+  g: { name: '草地', bg: '#7BC043', icon: '<path d="M0 30 Q20 22 40 30 L40 40 L0 40 Z" fill="#4E9A2B"/><g fill="#EC4FA0"><circle cx="20" cy="13" r="4.4"/><circle cx="26.5" cy="18" r="4.4"/><circle cx="24" cy="25.5" r="4.4"/><circle cx="16" cy="25.5" r="4.4"/><circle cx="13.5" cy="18" r="4.4"/></g><circle cx="20" cy="19.5" r="3.6" fill="#F7D25A"/>' },
+  f: { name: '火焰', bg: '#F2711C', icon: '<path d="M20 4 C24 12 32 16 30 26 C29 33 24 37 20 37 C14 37 9 32 10 25 C11 19 15 17 15 11 C18 14 18 17 18 19 C21 15 21 9 20 4 Z" fill="#FFD23F"/><path d="M20 20 C23 24 25 27 24 31 C23 34 21 35 20 35 C17 35 15 32 16 29 C17 26 19 25 20 20 Z" fill="#FFF3B0"/>' },
+  p: { name: '太空', bg: '#6B36B0', icon: '<path d="M20 7 l3.6 7.6 8.3 1 -6.1 5.7 1.6 8.2 -7.4-4.1 -7.4 4.1 1.6-8.2 -6.1-5.7 8.3-1z" fill="#fff"/><g fill="#fff"><circle cx="7" cy="8" r="1.4"/><circle cx="33" cy="33" r="1.6"/><circle cx="8" cy="32" r="1.1"/><circle cx="34" cy="7" r="1.1"/></g>' },
+};
+const icon = (k, px) => `<svg viewBox="0 0 40 40" width="${px}" height="${px}" aria-hidden="true">${EL[k].icon}</svg>`;
+const sec = (k, px) => `<div class="s" style="background:${EL[k].bg}">${icon(k, px)}</div>`;
+const cardName = cs => [...new Set(cs)].map(k => EL[k].name).join('、');
+// cs = [TL, TR, BL, BR]
+function ecard(cs, w, style = '', cls = '') {
+  const [a, b, c, d] = cs;
+  let inner;
+  if (a === b && b === c && c === d) inner = `<div class="in">${sec(a, w * .52)}</div>`;
+  else if (a === b && c === d) inner = `<div class="in" style="grid-template-rows:1fr 1fr">${sec(a, w * .38)}${sec(c, w * .38)}</div>`;
+  else if (a === c && b === d) inner = `<div class="in" style="grid-template-columns:1fr 1fr">${sec(a, w * .34)}${sec(b, w * .34)}</div>`;
+  else inner = `<div class="in" style="grid-template:1fr 1fr/1fr 1fr">${cs.map(k => sec(k, w * .3)).join('')}</div>`;
+  return `<div class="ecard ${cls}" role="img" aria-label="元素牌：${cardName(cs)}" style="width:${w}px;height:${w * 4 / 3}px;${style}">${inner}</div>`;
+}
+const goalChip = k => `<span class="gc"><span style="background:${EL[k].bg}">${icon(k, 30)}</span></span>`;
+
+/* ---------- board logic ---------- */
+const key = (x, y) => x + ',' + y;
+const DIRS = [[1, 0, [1, 3], [0, 2]], [-1, 0, [0, 2], [1, 3]], [0, 1, [2, 3], [0, 1]], [0, -1, [0, 1], [2, 3]]];
+// [dx, dy, my edge indexes, their edge indexes], aligned pairwise
+function neighbours(map, x, y) {
+  const out = [];
+  for (const [dx, dy, mine, theirs] of DIRS) {
+    const n = map.get(key(x + dx, y + dy));
+    if (n) out.push({ n, mine, theirs });
+  }
+  return out;
+}
+function legal(map, x, y, cs) {
+  if (map.has(key(x, y))) return false;
+  const ns = neighbours(map, x, y);
+  if (!ns.length) return false;
+  return ns.every(({ n, mine, theirs }) => cs[mine[0]] === n.cs[theirs[0]] || cs[mine[1]] === n.cs[theirs[1]]);
+}
+// biggest group of cards joined by the element touching itself
+function group(map, el) {
+  const cards = [...map.values()].filter(c => c.cs.includes(el));
+  const seen = new Set(); let best = [];
+  for (const c of cards) {
+    if (seen.has(c)) continue;
+    const comp = [c]; seen.add(c);
+    for (let i = 0; i < comp.length; i++) {
+      const cur = comp[i];
+      for (const { n, mine, theirs } of neighbours(map, cur.x, cur.y)) {
+        if (seen.has(n)) continue;
+        if ((cur.cs[mine[0]] === el && n.cs[theirs[0]] === el) || (cur.cs[mine[1]] === el && n.cs[theirs[1]] === el)) { seen.add(n); comp.push(n); }
+      }
+    }
+    if (comp.length > best.length) best = comp;
+  }
+  return best;
+}
+const toMap = cards => new Map(cards.map(([x, y, cs]) => [key(x, y), { x, y, cs }]));
+function slotsOf(map) {
+  const s = new Map();
+  for (const c of map.values()) for (const [dx, dy] of DIRS) {
+    const k = key(c.x + dx, c.y + dy);
+    if (!map.has(k)) s.set(k, { x: c.x + dx, y: c.y + dy });
+  }
+  return [...s.values()];
+}
+function drawBoard(el, map, opts = {}) {
+  const slots = opts.slots ? slotsOf(map) : [];
+  const all = [...map.values(), ...slots];
+  const xs = all.map(c => c.x), ys = all.map(c => c.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const cols = maxX - minX + 1, rows = maxY - minY + 1;
+  const avail = Math.max(240, el.parentElement.clientWidth - 40);
+  const w = Math.max(44, Math.min(opts.max || 96, Math.floor(avail / cols)));
+  const h = w * 4 / 3;
+  el.style.width = cols * w + 'px'; el.style.height = rows * h + 'px';
+  const pos = (x, y) => `left:${(x - minX) * w}px;top:${(y - minY) * h}px;`;
+  let html = '';
+  for (const c of map.values()) html += ecard(c.cs, w, pos(c.x, c.y), (opts.cls && opts.cls(c)) || '');
+  for (const s of slots) html += `<button class="slot" type="button" data-x="${s.x}" data-y="${s.y}" aria-label="放在這裡" style="${pos(s.x, s.y)}width:${w}px;height:${h}px"></button>`;
+  el.innerHTML = html;
+  return w;
+}
+
+/* ---------- lesson data ---------- */
+const ACTIONS = {
+  shuffle:      { name: '重洗手牌',   ask: '我的手牌都沒有我的元素嗎？', why: '洗一洗，換一手新牌。', today: true },
+  trade_hands:  { name: '交換手牌',   ask: '我的牌很少，別人的牌很多嗎？', why: '換過來就賺到了！', today: true },
+  zap:          { name: '拿回元素牌', ask: '有人快連成七張了嗎？', why: '拿走他的一張牌，讓他連不起來。', today: true },
+  move:         { name: '移動一張牌', ask: '有一張牌移過去或轉半圈，我的元素就能碰在一起嗎？', why: '不用新牌也能幫自己。' },
+  trade_goals:  { name: '交換任務牌', ask: '我的元素在桌上很少，很難完成嗎？', why: '換一個比較容易完成的任務。' },
+  rotate_goals: { name: '大風吹',     ask: '我的任務很難完成，想讓大家一起換嗎？', why: '大家的任務一起換。' },
+};
+const HOLD = 'hold';
+
+const PUZZLES = [
+  { level: '★', tab: '找元素', type: 'build', goal: 'f',
+    q: '你的任務是火焰。手牌裡哪一張有火焰？放在哪裡，火焰會碰在一起？',
+    board: [[0, 0, ['s','s','s','s']], [1, 0, ['s','f','s','w']], [0, 1, ['s','s','g','g']], [1, 1, ['s','w','g','w']]],
+    hand: [['g','g','g','g'], ['f','f','f','f'], ['w','w','w','w']] },
+  { level: '★★', tab: '比一比', type: 'build', goal: 'w',
+    q: '你的任務是水。比一比：哪一張牌放哪裡，水連得最多？',
+    board: [[0, 0, ['w','w','w','w']], [1, 0, ['w','w','g','g']], [3, 0, ['w','w','p','p']], [4, 0, ['w','w','w','w']], [1, 1, ['g','g','s','s']], [2, 1, ['g','p','s','p']], [3, 1, ['p','p','p','p']]],
+    hand: [['w','w','w','w'], ['w','w','g','p'], ['s','s','s','s']] },
+  { level: '★★★', tab: '沒有我的元素', type: 'block', goal: 'p', danger: 'g', rival: '小美',
+    q: '你的任務是太空，可是手牌沒有太空。小美的草地已經連了五張！要放在哪裡，才不會幫到小美？',
+    board: [[0, 0, ['g','g','g','g']], [1, 0, ['g','g','w','w']], [2, 0, ['g','g','g','g']], [3, 0, ['g','f','g','f']], [2, -1, ['s','s','g','g']], [1, 1, ['w','w','f','f']], [3, 1, ['s','f','s','f']]],
+    hand: [['g','g','s','s'], ['w','w','w','w'], ['f','f','f','f']] },
+];
+
+const DOCTOR = [
+  { q: '你的手牌都沒有你的元素。', a: 'shuffle', opts: ['shuffle', 'zap', 'move', HOLD], ex: '用重洗手牌，換一手新牌！' },
+  { q: '你只剩一張手牌，小華有五張。', a: 'trade_hands', opts: ['trade_hands', 'shuffle', 'zap', HOLD], ex: '用交換手牌，換過來就賺到了！' },
+  { q: '小美的草地已經連了六張，她快贏了！', a: 'zap', opts: ['zap', 'trade_hands', 'shuffle', HOLD], ex: '用拿回元素牌，拿走她的一張牌，讓她連不起來！' },
+  { q: '你的手牌有一張你的元素，可以接上。', a: HOLD, opts: ['zap', 'shuffle', 'trade_hands', HOLD], ex: '先出元素牌幫自己，行動牌先留著！' },
+  { q: '只要把一張牌轉半圈，你的火焰就能碰在一起。', a: 'move', opts: ['move', 'zap', 'shuffle', HOLD], ex: '用移動一張牌，轉半圈就好了！' },
+  { q: '桌上幾乎沒有你的元素，你的任務很難完成。', a: 'trade_goals', opts: ['trade_goals', 'zap', 'trade_hands', HOLD], ex: '用交換任務牌，換一個比較容易的任務！' },
+];
+
+/* ---------- steps ---------- */
+const STEPS = [
+  { id: 'start', label: '開始', render: stepStart },
+  { id: 'xiaoming', label: '小明', render: stepXiaoming },
+  { id: 'flow', label: '流程圖', render: stepFlow },
+  { id: 'practice', label: '練習一', render: stepPractice },
+  { id: 'actions', label: '行動牌', render: stepActions },
+  { id: 'doctor', label: '練習二', render: stepDoctor },
+  { id: 'play', label: '實戰', render: stepPlay },
+  { id: 'beans', label: '豆子', render: stepBeans },
+  { id: 'wrapup', label: '總結', render: stepWrap },
+];
+let cur = 0;
+const main = document.getElementById('main');
+const chips = document.getElementById('chips');
+
+function head(n, title, lead) {
+  return `<div class="step-top"><div class="num">${n}</div><h2>${zh(title)}</h2></div>` +
+    (lead ? `<p class="lead">${zh(lead)} ${speakBtn(lead)}</p>` : '');
+}
+
+function stepStart() {
+  return `<section class="step">
+    ${head(1, '今天要學：出牌小妙招', '你已經會玩水瓶座了！今天要學怎麼出牌最厲害。')}
+    <div class="two">
+      <div class="box bad"><h3>${zh('問題一')}</h3><p>${zh('知道自己的任務，卻一直幫到別人。')}</p></div>
+      <div class="box bad"><h3>${zh('問題二')}</h3><p>${zh('拿到行動牌，不知道什麼時候用。')}</p></div>
+    </div>
+    <div class="two">
+      <div class="box good"><h3>${zh('今天學會一')}</h3><p>${zh('出牌流程圖：看任務、找元素、碰一起。')}</p></div>
+      <div class="box good"><h3>${zh('今天學會二')}</h3><p>${zh('行動牌問自己：什麼時候用？')}</p></div>
+    </div>
+    <p class="teacher"><b>老師提示</b>：這頁可以投影。上方圓點可以直接跳到任何一步；學生回答時，請他用完整句子說出理由。</p>
+  </section>`;
+}
+
+/* 小明 */
+const XM_BOARD = [[0, 0, ['g','g','g','g']], [1, 0, ['g','g','f','f']], [2, 0, ['g','g','g','g']], [1, 1, ['f','f','f','f']], [2, 1, ['g','g','f','f']]];
+const XM_NEW = [3, 0, ['g','g','g','g']];
+let xm = { picked: null };
+function stepXiaoming() {
+  const choices = [['小明自己', false], ['小美（任務是草地）', true], ['沒有人', false]];
+  return `<section class="step">
+    ${head(2, '小明出錯了', '小明的任務是火焰。他放了紅框這張草地牌。')}
+    <div class="felt">
+      <div class="goalbar">
+        <div class="goal">${goalChip('f')}<div>${zh('小明的任務：')}<b>${zh('火焰')}</b></div></div>
+        <div class="goal">${goalChip('g')}<div>${zh('小美的任務：')}<b>${zh('草地')}</b></div></div>
+      </div>
+      <div><div class="board" id="xmBoard"></div></div>
+    </div>
+    <p class="lead">${zh('小明幫到了誰？')} ${speakBtn('小明幫到了誰？')}</p>
+    <div class="tabs" role="group" aria-label="選項">${choices.map(([t, r], i) => `<button class="tab" type="button" data-xm="${i}" aria-selected="${xm.picked === i}">${zh(t)}</button>`).join('')}</div>
+    <div id="xmFb"></div>
+  </section>`;
+}
+function mountXiaoming() {
+  const map = toMap([...XM_BOARD, XM_NEW]);
+  const shown = xm.picked === 1;
+  drawBoard(document.getElementById('xmBoard'), map, { max: 110, cls: c => (c.x === XM_NEW[0] && c.y === XM_NEW[1]) ? 'mark' : (shown && group(map, 'g').includes(c) ? 'lit' : '') });
+  main.querySelectorAll('[data-xm]').forEach(b => b.onclick = () => { xm.picked = +b.dataset.xm; render(); });
+  const fb = document.getElementById('xmFb');
+  if (xm.picked === null) return;
+  const n = group(map, 'g').length;
+  fb.innerHTML = xm.picked === 1
+    ? `<div class="feedback ok pop"><div>${zh(`對！小美的草地變成${'零一二三四五六七'[n]}張了。`)}</div><div class="ex">${zh('小明的手牌其實有火焰牌，他應該先找自己的元素！等一下我們來學怎麼出。')}</div></div>`
+    : `<div class="feedback no pop"><div>${zh('再看看！')}</div><div class="ex">${zh('這張是草地牌，它碰到的也是草地。誰的任務是草地？')}</div></div>`;
+}
+
+/* flow */
+let flowOn = 0;
+const FLOW = [
+  { q: '看任務', a: '我的元素是什麼？（指著任務牌說出來）' },
+  { q: '我的手牌有我的元素嗎？', a: '用手指找一找。' },
+  { q: '我有行動牌嗎？', a: '看行動牌「問自己」，有適合的就用。' },
+  { q: '放在不會幫到別人的地方', a: '不要碰到別人快完成的元素。' },
+];
+const DOWN = '<svg viewBox="0 0 26 34" aria-hidden="true"><path d="M13 2 V28 M4 20 L13 30 L22 20" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function stepFlow() {
+  const fs = i => `<button class="fstep ${flowOn === i ? 'on' : ''}" type="button" data-flow="${i}"><span class="n">${'①②③④'[i]}</span><span><div class="q">${zh(FLOW[i].q)}</div><div class="a">${zh(FLOW[i].a)}</div></span></button>`;
+  return `<section class="step">
+    ${head(3, '出牌流程圖', '每一次出牌，都照這個順序想一想。')}
+    <div class="flow">
+      ${fs(0)}
+      <div class="arrow">${DOWN}</div>
+      ${fs(1)}
+      <div class="arrow yes">${DOWN}<span>${zh('有 → 找元素、碰一起，出元素牌！')}</span></div>
+      <div class="arrow no-t">${DOWN}<span>${zh('沒有 → 往下看')}</span></div>
+      ${fs(2)}
+      <div class="arrow yes">${DOWN}<span>${zh('有適合的 → 用行動牌！')}</span></div>
+      <div class="arrow no-t">${DOWN}<span>${zh('沒有 → 往下看')}</span></div>
+      ${fs(3)}
+    </div>
+    <p class="mantra">${zh('看任務、找元素、碰一起')}</p>
+    <p class="teacher"><b>老師示範</b>：點一下每個步驟會變亮。請把想法說出來，例如「我的任務是水（指任務牌）。桌上的水在這裡。我的手牌這張有水，我要放在碰到水的地方。」</p>
+  </section>`;
+}
+function mountFlow() {
+  main.querySelectorAll('[data-flow]').forEach(b => b.onclick = () => { flowOn = +b.dataset.flow; say(FLOW[flowOn].q + '。' + FLOW[flowOn].a); render(); });
+}
+
+/* practice */
+let pz = { i: 0, sel: null, placed: null };
+function stepPractice() {
+  const P = PUZZLES[pz.i];
+  const tabs = PUZZLES.map((p, i) => `<button class="tab" role="tab" type="button" data-pz="${i}" aria-selected="${i === pz.i}">${p.level} ${zh(p.tab)}</button>`).join('');
+  const handHtml = P.hand.map((cs, i) => {
+    const used = pz.placed && pz.placed.h === i;
+    return used ? '' : `<button class="hcard" type="button" data-h="${i}" aria-pressed="${pz.sel === i}" aria-label="手牌：${cardName(cs)}" ${pz.placed ? 'disabled' : ''}>${ecard(cs, 84)}</button>`;
+  }).join('');
+  return `<section class="step">
+    ${head(4, '練習一：我會出元素牌', '')}
+    <div class="tabs" role="tablist">${tabs}</div>
+    <p class="lead">${zh(P.q)} ${speakBtn(P.q)}</p>
+    <div class="felt">
+      <div class="goalbar">
+        <div class="goal">${goalChip(P.goal)}<div>${zh('你的任務：')}<b>${zh(EL[P.goal].name)}</b></div></div>
+        ${P.type === 'block' ? `<div class="goal">${goalChip(P.danger)}<div>${zh(P.rival + '的任務：')}<b>${zh(EL[P.danger].name)}</b></div></div>` : ''}
+        <div class="count ${P.type === 'block' ? 'danger' : ''}" id="pzCount"></div>
+      </div>
+      <div><div class="board" id="pzBoard"></div></div>
+      <div class="hand-label">${zh(pz.placed ? '你的手牌' : (pz.sel === null ? '先點一張手牌，再點桌上的虛線格子' : '再點桌上的虛線格子'))}</div>
+      <div class="hand">${handHtml}</div>
+    </div>
+    <div id="pzFb"></div>
+    <p class="teacher"><b>老師提示</b>：請學生先照流程圖說出「我的元素是＿＿，手牌這張有＿＿，我要放在＿＿」，再讓他點。答錯沒關係，按「再試一次」重來。</p>
+  </section>`;
+}
+const CN = '零一二三四五六七八九十';
+function mountPractice() {
+  const P = PUZZLES[pz.i];
+  const map = toMap(P.board);
+  const watch = P.type === 'block' ? P.danger : P.goal;
+  const before = group(map, watch).length;
+  if (pz.placed) map.set(key(pz.placed.x, pz.placed.y), { x: pz.placed.x, y: pz.placed.y, cs: P.hand[pz.placed.h] });
+  const g = group(map, watch);
+  drawBoard(document.getElementById('pzBoard'), map, {
+    slots: !pz.placed, max: 96,
+    cls: c => pz.placed && c.x === pz.placed.x && c.y === pz.placed.y ? 'new' : (g.includes(c) && g.length > 1 ? 'lit' : ''),
+  });
+  document.getElementById('pzCount').innerHTML = P.type === 'block'
+    ? zh(`${P.rival}的草地：${CN[g.length]}張`)
+    : zh(`${EL[P.goal].name}連了：${CN[g.length]}張`);
+  main.querySelectorAll('[data-pz]').forEach(b => b.onclick = () => { pz = { i: +b.dataset.pz, sel: null, placed: null }; render(); });
+  main.querySelectorAll('[data-h]').forEach(b => b.onclick = () => { pz.sel = pz.sel === +b.dataset.h ? null : +b.dataset.h; render(); });
+  main.querySelectorAll('.slot').forEach(b => {
+    b.disabled = pz.sel === null;
+    b.onclick = () => tryPlace(+b.dataset.x, +b.dataset.y);
+  });
+  const fb = document.getElementById('pzFb');
+  if (pz.result) fb.innerHTML = pz.result;
+  else fb.innerHTML = '';
+}
+function tryPlace(x, y) {
+  const P = PUZZLES[pz.i];
+  const map = toMap(P.board);
+  const cs = P.hand[pz.sel];
+  const again = `<div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px"><button class="btn ghost" type="button" id="pzAgain">${zh('再試一次')}</button>${pz.i < PUZZLES.length - 1 ? `<button class="btn" type="button" id="pzNext">${zh('下一題')}</button>` : ''}</div>`;
+  if (!legal(map, x, y, cs)) {
+    pz.result = `<div class="feedback no pop"><div>${zh('接不上喔！')}</div><div class="ex">${zh('碰到的地方，要有相同的元素才能接。')}</div></div>`;
+    say('接不上喔！碰到的地方，要有相同的元素才能接。');
+    render(); return;
+  }
+  const watch = P.type === 'block' ? P.danger : P.goal;
+  const before = group(map, watch).length;
+  const after = (() => { const m = new Map(map); m.set(key(x, y), { x, y, cs }); return group(m, watch).length; })();
+  let cls, msg, ex;
+  if (P.type === 'build') {
+    let best = 0;
+    P.hand.forEach(h => slotsOf(map).forEach(s => { if (legal(map, s.x, s.y, h)) { const m = new Map(map); m.set(key(s.x, s.y), { x: s.x, y: s.y, cs: h }); best = Math.max(best, group(m, watch).length); } }));
+    if (after === best) { cls = 'ok'; msg = `答對了！${EL[watch].name}連成${CN[after]}張！`; ex = '你先找到自己的元素，再讓它們碰在一起。'; }
+    else if (after > before) { cls = 'mid'; msg = `有幫到自己，${EL[watch].name}連成${CN[after]}張。`; ex = '還有更好的地方嗎？比一比，哪裡連得最多？'; }
+    else { cls = 'no'; msg = `${EL[watch].name}沒有變多喔。`; ex = '想一想：①看任務 ②找元素 ③碰一起。你的元素有碰在一起嗎？'; }
+  } else {
+    if (after > before) { cls = 'no'; msg = `糟糕！${P.rival}的草地變成${CN[after]}張了。`; ex = '這張牌碰到小美的草地了，換一個地方試試看。'; }
+    else { cls = 'ok'; msg = '答對了！沒有幫到小美。'; ex = '手牌沒有我的元素時，就放在不會幫到別人的地方。'; }
+  }
+  pz.placed = { x, y, h: pz.sel }; pz.sel = null;
+  pz.result = `<div class="feedback ${cls} pop" role="status"><div>${zh(msg)}</div><div class="ex">${zh(ex)}</div></div>${again}`;
+  say(msg + ex);
+  render();
+}
+
+/* actions */
+function stepActions() {
+  const card = (k, a) => `<div class="acard ${a.today ? 'today' : ''}"><img src="${k}.png" alt="${a.name}的牌"><div class="tx">
+    <span class="badge ${a.today ? '' : 'adv'}">${zh(a.today ? '今天先學' : '進階')}</span>
+    <div class="nm">${zh(a.name)}</div><div class="ask">${zh(a.ask)}</div><div class="why">${zh(a.why)}</div>
+    <div>${speakBtn(a.name + '。' + a.ask + a.why)}</div></div></div>`;
+  return `<section class="step">
+    ${head(5, '行動牌：問自己', '答案是「是」，就用這張牌！')}
+    <div class="acards">${Object.entries(ACTIONS).map(([k, a]) => card(k, a)).join('')}</div>
+    <div class="keep">${zh('現在用不到，可以先留著！手牌有我的元素，先出元素牌。')}</div>
+    <p class="teacher"><b>老師提示</b>：最後一堂課建議只放黃框的三張行動牌，程度較好的學生再加入「進階」的牌。</p>
+  </section>`;
+}
+
+/* doctor */
+let dq = { i: 0, picked: null, results: [] };
+const HOLD_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11V7a6 6 0 0 1 12 0v4"/><rect x="4" y="11" width="16" height="10" rx="2.5"/></svg>';
+function optLabel(k) { return k === HOLD ? '先留著' : ACTIONS[k].name; }
+function stepDoctor() {
+  if (dq.i >= DOCTOR.length) {
+    const n = dq.results.filter(Boolean).length;
+    return `<section class="step">
+      ${head(6, '練習二：行動牌醫生', '')}
+      <div class="summary"><div class="sum"><div class="big">${n} / ${DOCTOR.length}</div><div class="lb">${zh('答對了幾題')}</div></div></div>
+      <p class="lead">${zh(n === DOCTOR.length ? '全部答對，你是行動牌醫生！' : '很棒！再玩一次會更厲害。')}</p>
+      <div class="nav" style="justify-content:flex-start"><button class="btn" type="button" id="dqAgain">${zh('再玩一次')}</button></div>
+    </section>`;
+  }
+  const Q = DOCTOR[dq.i];
+  const dots = DOCTOR.map((_, i) => `<span class="dot ${i < dq.i ? (dq.results[i] ? 'ok' : 'no') : i === dq.i ? 'now' : ''}"></span>`).join('');
+  const opts = Q.opts.map(k => {
+    let cls = '';
+    if (dq.picked !== null) cls = k === Q.a ? 'right pop' : (k === dq.picked ? 'wrong' : 'fade');
+    const pic = k === HOLD ? `<span class="hold">${HOLD_ICON}</span>` : `<img src="${k}.png" alt="">`;
+    return `<button class="opt ${cls}" type="button" data-opt="${k}" ${dq.picked !== null ? 'disabled' : ''}>${pic}${zh(optLabel(k))}</button>`;
+  }).join('');
+  let fb = '';
+  if (dq.picked !== null) {
+    const ok = dq.picked === Q.a;
+    fb = `<div class="feedback ${ok ? 'ok' : 'no'} pop" role="status"><div>${zh(ok ? '答對了，好棒！' : '再想想！')}</div><div class="ex">${zh(Q.ex)}</div></div>
+      <div class="nav" style="justify-content:flex-end"><button class="btn" type="button" id="dqNext">${zh(dq.i === DOCTOR.length - 1 ? '看成績' : '下一題')}</button></div>`;
+  }
+  return `<section class="step">
+    ${head(6, '練習二：行動牌醫生', '')}
+    <div class="qtop"><div class="qno">${dq.i + 1} / ${DOCTOR.length}</div><div class="dots" aria-hidden="true">${dots}</div></div>
+    <div class="felt">
+      <p class="situ" style="margin:0">${zh(Q.q)} ${speakBtn(Q.q + '你要用哪一張牌？')}</p>
+      <p class="lead" style="margin:0">${zh('你要用哪一張牌？')}</p>
+      <div class="opts" role="group" aria-label="選項">${opts}</div>
+    </div>
+    ${fb}
+    <p class="teacher"><b>老師提示</b>：請學生先說「我選＿＿，因為＿＿」，再點選。第四題的答案是「先留著」。</p>
+  </section>`;
+}
+function mountDoctor() {
+  main.querySelectorAll('[data-opt]').forEach(b => b.onclick = () => {
+    const Q = DOCTOR[dq.i];
+    dq.picked = b.dataset.opt;
+    dq.results[dq.i] = dq.picked === Q.a;
+    say((dq.picked === Q.a ? '答對了，好棒！' : '再想想！') + Q.ex);
+    render();
+  });
+  const nx = document.getElementById('dqNext');
+  if (nx) nx.onclick = () => { dq.i++; dq.picked = null; render(); };
+  const ag = document.getElementById('dqAgain');
+  if (ag) ag.onclick = () => { dq = { i: 0, picked: null, results: [] }; render(); };
+}
+
+/* play */
+function stepPlay() {
+  return `<section class="step">
+    ${head(7, '實戰：先說，再出牌', '出牌前，先說一句話！')}
+    <div class="frames">
+      <div class="frame">${zh('我的元素是')}<u></u>${zh('，我放這裡，因為')}<u></u>${zh('。')}</div>
+      <div class="frame">${zh('我用')}<u></u>${zh('，因為')}<u></u>${zh('。')}</div>
+      <div class="frame">${zh('我先留著，因為')}<u></u>${zh('。')}</div>
+    </div>
+    <p class="lead">${zh('小幫手只問問題，不幫忙出牌：')}</p>
+    <div class="helper">
+      <div>${zh('① 你的元素是什麼？')}</div>
+      <div>${zh('② 在哪裡？')}</div>
+      <div>${zh('③ 有碰在一起嗎？')}</div>
+    </div>
+    <p class="teacher"><b>老師提示</b>：出牌幫到自己的元素拿一顆豆子；用對行動牌（或該留著時有留著）再拿一顆。下一頁可以直接記錄。</p>
+  </section>`;
+}
+
+/* beans */
+const STORE = 'aquarius-beans-v1';
+let beans = (() => {
+  try { const d = JSON.parse(localStorage.getItem(STORE)); if (d && d.length === 7) return d; } catch (e) {}
+  return Array.from({ length: 7 }, (_, i) => ({ name: `${i + 1}號`, self: 0, act: 0 }));
+})();
+const saveBeans = () => { try { localStorage.setItem(STORE, JSON.stringify(beans)); } catch (e) {} };
+let askReset = false;
+function pile(n, act) { return `<span class="pile" aria-hidden="true">${`<i class="${act ? 'act' : ''}"></i>`.repeat(Math.min(n, 30))}</span>`; }
+function stepBeans() {
+  const rows = beans.map((b, i) => `<tr>
+    <td style="width:24%"><input id="bn${i}" data-name="${i}" value="${b.name.replace(/"/g, '&quot;')}" aria-label="學生名字"></td>
+    <td><div class="counter"><button class="minus" type="button" data-b="${i}" data-k="self" data-d="-1" aria-label="減一顆">−</button><output>${b.self}</output><button class="plus" type="button" data-b="${i}" data-k="self" data-d="1" aria-label="加一顆">+</button>${pile(b.self)}</div></td>
+    <td><div class="counter"><button class="minus" type="button" data-b="${i}" data-k="act" data-d="-1" aria-label="減一顆">−</button><output>${b.act}</output><button class="plus" type="button" data-b="${i}" data-k="act" data-d="1" aria-label="加一顆">+</button>${pile(b.act, true)}</div></td>
+  </tr>`).join('');
+  return `<section class="step">
+    ${head(8, '豆子紀錄', '幫到自己，就拿一顆豆子！')}
+    <div class="beans"><table>
+      <thead><tr><th>${zh('名字')}</th><th>${zh('幫到自己的元素')}</th><th>${zh('用對行動牌')}</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <div class="confirm">
+      ${askReset ? `<span>確定要把豆子全部歸零嗎？</span><button class="reset" type="button" id="resetYes">歸零</button><button class="reset" type="button" id="resetNo">取消</button>`
+                 : `<button class="reset" type="button" id="resetAsk">全部歸零</button><span style="color:var(--muted)">紀錄只存在這台電腦的瀏覽器裡。</span>`}
+    </div>
+  </section>`;
+}
+function mountBeans() {
+  main.querySelectorAll('[data-b]').forEach(b => b.onclick = () => {
+    const s = beans[+b.dataset.b], k = b.dataset.k;
+    s[k] = Math.max(0, s[k] + +b.dataset.d); saveBeans(); render();
+  });
+  main.querySelectorAll('[data-name]').forEach(inp => inp.oninput = () => { beans[+inp.dataset.name].name = inp.value; saveBeans(); });
+  const a = document.getElementById('resetAsk'); if (a) a.onclick = () => { askReset = true; render(); };
+  const y = document.getElementById('resetYes'); if (y) y.onclick = () => { beans.forEach(b => { b.self = 0; b.act = 0; }); askReset = false; saveBeans(); render(); };
+  const n = document.getElementById('resetNo'); if (n) n.onclick = () => { askReset = false; render(); };
+}
+
+/* wrap up */
+function stepWrap() {
+  const self = beans.reduce((s, b) => s + b.self, 0), act = beans.reduce((s, b) => s + b.act, 0);
+  return `<section class="step">
+    ${head(9, '數豆子：我進步了！', '這一場，你幫到自己幾次？')}
+    <div class="summary">
+      <div class="sum"><div class="big">${self}</div><div class="lb">${zh('全班幫到自己的元素')}</div></div>
+      <div class="sum"><div class="big act">${act}</div><div class="lb">${zh('全班用對行動牌')}</div></div>
+    </div>
+    <p class="lead">${zh('每個人說一句：')}</p>
+    <div class="star-list">
+      <div>${zh('我學到最厲害的一招是')}<u style="text-decoration:none;display:inline-block;min-width:4em;border-bottom:3px solid var(--ink)"></u>${zh('。')}</div>
+      <div>${zh('下次玩，我要記得')}<u style="text-decoration:none;display:inline-block;min-width:4em;border-bottom:3px solid var(--ink)"></u>${zh('。')}</div>
+    </div>
+    <p class="mantra">${zh('看任務、找元素、碰一起')}</p>
+  </section>`;
+}
+
+/* ---------- shell ---------- */
+const MOUNT = { xiaoming: mountXiaoming, flow: mountFlow, practice: mountPractice, doctor: mountDoctor, beans: mountBeans };
+function render() {
+  const S = STEPS[cur];
+  chips.innerHTML = STEPS.map((s, i) => `<button class="chip ${i < cur ? 'done' : ''}" type="button" data-step="${i}" ${i === cur ? 'aria-current="step"' : ''} aria-label="第${i + 1}步：${s.label}">${i + 1}</button>`).join('');
+  chips.querySelectorAll('[data-step]').forEach(b => b.onclick = () => go(+b.dataset.step));
+  const scrollY = window.scrollY;
+  main.innerHTML = S.render();
+  zhAll(main);
+  main.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(b.dataset.say));
+  (MOUNT[S.id] || (() => {}))();
+  const again = document.getElementById('pzAgain'); if (again) again.onclick = () => { pz.placed = null; pz.result = null; render(); };
+  const pnext = document.getElementById('pzNext'); if (pnext) pnext.onclick = () => { pz = { i: pz.i + 1, sel: null, placed: null }; render(); };
+  const prev = document.getElementById('prev'), next = document.getElementById('next');
+  prev.innerHTML = zh('上一步'); next.innerHTML = zh(cur === STEPS.length - 1 ? '回到開始' : '下一步');
+  prev.disabled = cur === 0;
+  window.scrollTo(0, scrollY);
+}
+function go(i) {
+  cur = (i + STEPS.length) % STEPS.length;
+  if (location.hash !== '#' + STEPS[cur].id) history.replaceState(null, '', '#' + STEPS[cur].id);
+  render();
+  document.querySelector('.wrap').scrollIntoView({ block: 'start' });
+}
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('next').onclick = () => go(cur === STEPS.length - 1 ? 0 : cur + 1);
+document.addEventListener('keydown', e => {
+  if (e.target.closest('input')) return;
+  if (e.key === 'ArrowRight') go(cur + 1 >= STEPS.length ? cur : cur + 1);
+  if (e.key === 'ArrowLeft') go(Math.max(0, cur - 1));
+});
+function fromHash() { const i = STEPS.findIndex(s => '#' + s.id === location.hash); if (i >= 0) { cur = i; render(); } }
+window.addEventListener('hashchange', fromHash);
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (['xiaoming', 'practice'].includes(STEPS[cur].id)) render(); }, 150); });
+zhAll(document.querySelector('header'));
+const start = STEPS.findIndex(s => '#' + s.id === location.hash);
+cur = start >= 0 ? start : 0;
+render();
+</script>
+
+<a href="../index.html#board" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body></html>

@@ -1,0 +1,633 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>水瓶座結業式</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@700;900&display=swap">
+<style>
+/* Layout: classroom slideshow for the last 15–20 minutes — one activity per screen, step chips + timer on top, big prev/next below; same poster look as the 水瓶座 app (deliberately light-only, every colour explicit) */
+:root {
+  color-scheme: light;
+  --paper: #FFF8EA;
+  --card: #FFFFFF;
+  --line: #EFE4CF;
+  --ink: #3B322C;
+  --muted: #7C6F64;
+  --blue: #2D5FA8;
+  --blue-deep: #1D4482;
+  --blue-soft: #E6EFFB;
+  --red: #D93A2B;
+  --felt: #E5EFE2;
+  --felt-line: #C6DBC1;
+  --good: #2E8B4E;
+  --good-soft: #E1F3E6;
+  --gold: #F7C948;
+  --gold-deep: #C9971A;
+  --gold-soft: #FDF1D8;
+  --f-kid: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB", "BiauKai", "Noto Sans TC", serif;
+  --f-head: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--f-kid); font-size: 20px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 40px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; display: grid; gap: 20px; }
+button { font: inherit; }
+button:focus-visible, input:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+
+.z { display: inline-flex; align-items: center; vertical-align: middle; margin-right: .08em; }
+.z .h { line-height: 1.15; }
+.z .b { display: inline-grid; grid-template-columns: auto .42em; align-items: center; font-size: .42em; line-height: 1; margin-left: .1em; font-weight: 400; }
+.z .b i { grid-column: 1; font-style: normal; display: block; text-align: center; height: .9em; line-height: .9em; }
+.z .b i.nt { height: .6em; line-height: .3em; }
+.z .t { grid-column: 2; align-self: start; font-size: .8em; line-height: 1; transform: translateY(-.25em); }
+.p { display: inline-block; }
+.zt { display: inline; line-height: 1.8; }
+.hd .z .sy, .hd .z .t { font-family: var(--f-head); }
+
+header { padding-block: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+header h1 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(28px, 5vw, 44px); }
+.hright { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-family: var(--f-head); font-weight: 700; font-size: 16px; cursor: pointer; border: 2px solid var(--line); background: var(--card); color: var(--muted); border-radius: 999px; padding: 4px 12px 6px; min-width: 40px; }
+.chip[aria-current="step"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.timer { display: flex; align-items: center; gap: 6px; background: var(--card); border: 2px solid var(--line); border-radius: 999px; padding: 4px 6px 4px 14px; font-family: var(--f-head); font-weight: 900; }
+.timer output { font-size: 20px; min-width: 3.2em; font-variant-numeric: tabular-nums; color: var(--blue); }
+.timer output.over { color: var(--red); }
+.timer button { border: 0; cursor: pointer; border-radius: 999px; padding: 4px 12px; font-family: var(--f-head); font-weight: 700; font-size: 14px; background: var(--blue-soft); color: var(--blue); }
+
+.step { background: var(--card); border: 3px solid var(--line); border-radius: 28px; padding: clamp(16px, 3.5vw, 34px); display: grid; gap: 20px; min-width: 0; }
+.step-top { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.num { flex: none; width: 64px; height: 64px; border-radius: 50%; background: var(--blue); color: #fff; font-family: var(--f-head); font-weight: 900; font-size: 34px; display: grid; place-items: center; box-shadow: 0 5px 0 var(--blue-deep); }
+.step h2 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(30px, 5vw, 46px); text-wrap: balance; }
+.mins { font-family: var(--f-head); font-weight: 700; font-size: 16px; color: var(--muted); background: var(--paper); border-radius: 999px; padding: 4px 12px; }
+.lead { margin: 0; font-size: clamp(24px, 3.6vw, 34px); color: var(--red); font-weight: 700; }
+.teacher { font-family: var(--f-head); font-size: 15px; color: var(--muted); background: var(--paper); border-radius: 12px; padding: 10px 14px; margin: 0; }
+.teacher b { color: var(--blue); }
+.speak { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 18px; font-weight: 700; color: var(--blue); background: var(--card); border: 2px solid #BCD0EC; border-radius: 999px; padding: 4px 14px 4px 10px; vertical-align: middle; }
+.speak svg { width: 22px; height: 22px; }
+.nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.btn { font-family: var(--f-head); font-weight: 900; font-size: 22px; cursor: pointer; color: #fff; background: var(--blue); border: 0; border-radius: 999px; padding: 10px 28px 12px; box-shadow: 0 5px 0 var(--blue-deep); }
+.btn .z .sy, .btn .z .t { font-family: var(--f-head); }
+.btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--blue-deep); }
+.btn.ghost { background: var(--card); color: var(--blue); border: 2px solid #BCD0EC; box-shadow: 0 5px 0 #BCD0EC; }
+.btn.gold { background: var(--gold); color: var(--ink); box-shadow: 0 5px 0 var(--gold-deep); }
+.btn:disabled { opacity: .35; cursor: default; }
+
+/* opening agenda */
+.agenda { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.ag { background: var(--paper); border-radius: 22px; padding: 16px 18px; display: grid; gap: 6px; }
+.ag .n { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 18px; }
+.ag .at { font-size: 26px; font-weight: 700; }
+.ag .m { font-family: var(--f-head); color: var(--muted); font-size: 15px; }
+.hero { text-align: center; display: grid; gap: 8px; justify-items: center; padding-block: 8px; }
+.hero .big { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(40px, 8vw, 76px); margin: 0; text-wrap: balance; }
+.hero .big .z .sy, .hero .big .z .t { font-family: var(--f-head); }
+.fan { display: flex; justify-content: center; gap: 0; padding-block: 10px 4px; max-width: 100%; overflow: hidden; }
+@media (max-width: 520px) { .fan .ecard { zoom: .7; } }
+.fan > div { margin: 0 -10px; }
+
+/* element cards */
+.ecard { position: relative; border-radius: 9%/7%; background: #1F1F24; padding: 5%; box-shadow: 0 4px 10px rgba(40,50,30,.28); flex: none; }
+.ecard .in { width: 100%; height: 100%; display: grid; gap: 2px; border-radius: 6px; overflow: hidden; }
+.ecard .s { position: relative; border-radius: 4px; overflow: hidden; }
+.ecard .s svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+/* flip game */
+.flipgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; max-width: 640px; width: 100%; margin: 0 auto; }
+.fc { aspect-ratio: 3 / 4; max-width: 100%; border: 0; padding: 0; cursor: pointer; border-radius: 16px; position: relative; background: #1F1F24; box-shadow: 0 6px 0 rgba(0,0,0,.25); transition: transform .15s ease; }
+.fc:hover { transform: translateY(-3px); }
+.fc .face { position: absolute; inset: 7%; border-radius: 10px; display: grid; place-items: center; }
+.fc .face svg { width: 52%; height: auto; }
+.fc .no { position: absolute; left: 10px; top: 6px; font-family: var(--f-head); font-weight: 900; color: #fff; font-size: clamp(20px, 3.4vw, 30px); text-shadow: 0 2px 0 rgba(0,0,0,.3); }
+.fc.done { opacity: .35; }
+.fc.done::after { content: ""; position: absolute; right: 10px; bottom: 10px; width: 34px; height: 34px; border-radius: 50%; background: var(--good) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/70% no-repeat; }
+.qpanel { background: var(--felt); border: 3px solid var(--felt-line); border-radius: 24px; padding: clamp(16px, 3vw, 28px); display: grid; gap: 16px; }
+.qhead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.qtag { font-family: var(--f-head); font-weight: 900; color: #fff; border-radius: 999px; padding: 4px 16px 6px; font-size: 18px; }
+.qtext { font-size: clamp(28px, 4.6vw, 42px); font-weight: 700; margin: 0; }
+.qart { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.ans { background: var(--good-soft); color: var(--good); border-radius: 18px; padding: 14px 18px; font-size: clamp(25px, 4vw, 34px); font-weight: 700; }
+.wild { background: var(--gold-soft); color: var(--ink); }
+
+/* vote */
+.votes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.vote { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; align-items: center; background: var(--paper); border: 3px solid var(--line); border-radius: 20px; padding: 12px; cursor: pointer; text-align: left; color: var(--ink); min-width: 0; }
+.vote img { width: 72px; border-radius: 8px; box-shadow: 0 3px 8px rgba(40,50,30,.2); }
+.vote .nm { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 22px; }
+.vote .nm .z .sy, .vote .nm .z .t { font-family: var(--f-head); }
+.vote .bar { height: 14px; border-radius: 999px; background: var(--blue-soft); overflow: hidden; margin-top: 6px; }
+.vote .bar i { display: block; height: 100%; background: var(--blue); border-radius: 999px; transition: width .3s ease; }
+.vote .cnt { font-family: var(--f-head); font-weight: 900; font-size: 34px; color: var(--blue); min-width: 1.4em; text-align: center; font-variant-numeric: tabular-nums; }
+.vote .tx { min-width: 0; }
+.vote.win { border-color: var(--gold); background: var(--gold-soft); }
+.vote.win .bar i { background: var(--gold-deep); }
+.crown { display: inline-block; width: 30px; vertical-align: middle; }
+.frame { background: var(--blue-soft); border-radius: 20px; padding: 16px 20px; font-size: clamp(25px, 4vw, 34px); font-weight: 700; color: var(--blue); }
+.frame u { text-decoration: none; display: inline-block; min-width: 3.2em; border-bottom: 4px solid var(--blue); margin: 0 .2em; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.small { font-family: var(--f-head); font-weight: 700; font-size: 15px; cursor: pointer; background: none; border: 2px solid var(--line); color: var(--muted); border-radius: 999px; padding: 4px 14px; }
+
+/* reminder */
+.judge { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.jb { cursor: pointer; border: 4px solid var(--line); background: var(--card); border-radius: 22px; padding: 14px; display: grid; justify-items: center; gap: 6px; font-size: clamp(24px, 4vw, 32px); font-weight: 700; color: var(--ink); box-shadow: 0 5px 0 var(--line); }
+.jb svg { width: clamp(56px, 10vw, 84px); height: auto; }
+.jb:disabled { cursor: default; }
+.jb.right { border-color: var(--good); background: var(--good-soft); box-shadow: 0 5px 0 var(--good); }
+.jb.wrong { border-color: var(--red); background: #FBE6E1; box-shadow: 0 5px 0 var(--red); }
+.jb.fade { opacity: .4; }
+.fb { border-radius: 18px; padding: 14px 18px; font-size: clamp(22px, 3.4vw, 28px); font-weight: 700; display: grid; gap: 4px; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: #FBE6E1; color: var(--red); }
+.fb .ex { color: var(--ink); font-weight: 400; }
+.clip { display: grid; gap: 8px; }
+.clip video { width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #1F1F24; display: block; }
+.clip .cl { font-family: var(--f-head); font-weight: 700; font-size: 15px; color: var(--muted); }
+.rules2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.rule { background: var(--blue-soft); border-radius: 22px; padding: 18px 20px; display: grid; gap: 8px; }
+.rule .rt { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(26px, 4vw, 34px); }
+.rule .rt .z .sy, .rule .rt .z .t { font-family: var(--f-head); }
+.rule .d { font-size: clamp(21px, 3.2vw, 26px); }
+.qdots { display: flex; gap: 7px; }
+.qdots span { width: 16px; height: 16px; border-radius: 50%; background: #EDE6DA; border: 2px solid #E0D6C6; }
+.qdots .now { background: var(--gold); border-color: var(--gold-deep); }
+.qdots .ok { background: var(--good); border-color: var(--good); }
+.qdots .no { background: var(--red); border-color: var(--red); }
+
+/* awards */
+.students { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 12px; }
+.stu { cursor: pointer; border: 3px solid var(--line); background: var(--paper); border-radius: 20px; padding: 14px 10px; display: grid; gap: 6px; justify-items: center; color: var(--ink); min-width: 0; }
+.stu .nm { font-family: var(--f-head); font-weight: 900; font-size: 26px; overflow-wrap: anywhere; }
+.stu .aw { font-size: 16px; color: var(--muted); }
+.stu.got { border-color: var(--gold); background: var(--gold-soft); }
+.stu.sel { border-color: var(--blue); background: var(--blue-soft); }
+.awards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.awb { cursor: pointer; border: 3px solid var(--line); background: var(--card); border-radius: 18px; padding: 12px 14px; display: grid; grid-template-columns: 48px 1fr; gap: 12px; align-items: center; text-align: left; color: var(--ink); min-width: 0; }
+.awb .md { width: 48px; height: 48px; }
+.awb .awt { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 20px; }
+.awb .awt .z .sy, .awb .awt .z .t { font-family: var(--f-head); }
+.awb.used { opacity: .5; }
+.names { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr)); gap: 8px; }
+.names input { font: inherit; font-size: 18px; width: 100%; min-width: 0; border: 2px solid var(--line); border-radius: 12px; padding: 6px 10px; background: var(--card); color: var(--ink); }
+details summary { cursor: pointer; font-family: var(--f-head); font-weight: 700; color: var(--muted); font-size: 15px; }
+details[open] summary { margin-bottom: 10px; }
+
+/* certificate overlay */
+.overlay { position: fixed; inset: 0; z-index: 40; background: rgba(59,50,44,.55); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.cert { position: relative; width: min(820px, 100%); max-height: 100%; overflow: auto; background: var(--card); border-radius: 28px; padding: clamp(20px, 4vw, 44px); display: grid; gap: 14px; justify-items: center; text-align: center; border: 10px solid var(--gold); box-shadow: inset 0 0 0 4px var(--gold-soft); }
+.cert .kicker { font-family: var(--f-head); font-weight: 900; color: var(--gold-deep); font-size: 20px; letter-spacing: .2em; }
+.cert .who { font-family: var(--f-head); font-weight: 900; font-size: clamp(44px, 9vw, 84px); color: var(--ink); line-height: 1.1; overflow-wrap: anywhere; }
+.cert .what { font-family: var(--f-head); font-weight: 900; color: var(--red); font-size: clamp(32px, 6vw, 56px); }
+.cert .what .z .sy, .cert .what .z .t { font-family: var(--f-head); }
+.cert .say { font-size: clamp(24px, 3.8vw, 32px); }
+.cert .medal { width: 110px; height: 110px; }
+.cert .from { font-family: var(--f-head); color: var(--muted); font-size: 16px; }
+.cert .close { position: absolute; right: 14px; top: 14px; }
+
+/* finale */
+.finale { text-align: center; display: grid; gap: 16px; justify-items: center; padding-block: 10px; }
+.promise { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; width: 100%; }
+.promise div { background: var(--good-soft); color: var(--good); border-radius: 18px; padding: 12px 16px; font-size: 24px; font-weight: 700; }
+.mantra { font-family: var(--f-head); font-weight: 900; font-size: clamp(28px, 5vw, 44px); color: var(--red); margin: 0; }
+.mantra .z .sy, .mantra .z .t { font-family: var(--f-head); }
+
+#confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; }
+footer { text-align: center; color: var(--muted); font-size: 15px; font-family: var(--f-head); }
+@keyframes pop { 0% { transform: scale(.6); opacity: .3 } 70% { transform: scale(1.06) } 100% { transform: scale(1); opacity: 1 } }
+.pop { animation: pop .35s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } .fc, .vote .bar i { transition: none; } }
+</style>
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div class="wrap">
+  <header>
+    <h1 class="hd" data-zh="水瓶座結業式"></h1>
+    <div class="hright">
+      <div class="timer" aria-label="計時器"><output id="clock">0:00</output><button type="button" id="tgo">開始</button><button type="button" id="treset">重來</button></div>
+      <nav class="chips" id="chips" aria-label="活動步驟"></nav>
+    </div>
+  </header>
+  <main id="main"></main>
+  <div class="nav">
+    <button class="btn ghost" type="button" id="prev"></button>
+    <button class="btn" type="button" id="next"></button>
+  </div>
+  <footer>水瓶座 Aquarius｜二年級資源班桌遊教學｜結尾活動約 20 分鐘｜鍵盤左右鍵可以換頁</footer>
+</div>
+<div id="layer"></div>
+
+<script>
+const ZY = {"行": "ㄒㄧㄥˊ", "動": "ㄉㄨㄥˋ", "牌": "ㄆㄞˊ", "登": "ㄉㄥ", "場": "ㄔㄤˇ", "學": "ㄒㄩㄝˊ", "會": "ㄏㄨㄟˋ", "基": "ㄐㄧ", "本": "ㄅㄣˇ", "玩": "ㄨㄢˊ", "法": "ㄈㄚˇ", "後": "ㄏㄡˋ", "再": "ㄗㄞˋ", "加": "ㄐㄧㄚ", "入": "ㄖㄨˋ", "特": "ㄊㄜˋ", "殊": "ㄕㄨ", "能": "ㄋㄥˊ", "力": "ㄌㄧˋ", "交": "ㄐㄧㄠ", "換": "ㄏㄨㄢˋ", "任": "ㄖㄣˋ", "務": "ㄨˋ", "大": "ㄉㄚˋ", "風": "ㄈㄥ", "吹": "ㄔㄨㄟ", "重": "ㄔㄨㄥˊ", "洗": "ㄒㄧˇ", "手": "ㄕㄡˇ", "移": "ㄧˊ", "一": "ㄧ", "張": "ㄓㄤ", "拿": "ㄋㄚˊ", "回": "ㄏㄨㄟˊ", "元": "ㄩㄢˊ", "素": "ㄙㄨˋ", "你": "ㄋㄧˇ", "和": "ㄏㄜˊ", "位": "ㄨㄟˋ", "家": "ㄐㄧㄚ", "所": "ㄙㄨㄛˇ", "有": "ㄧㄡˇ", "的": "˙ㄉㄜ", "起": "ㄑㄧˇ", "往": "ㄨㄤˇ", "同": "ㄊㄨㄥˊ", "個": "ㄍㄜˋ", "方": "ㄈㄤ", "向": "ㄒㄧㄤˋ", "傳": "ㄔㄨㄢˊ", "把": "ㄅㄚˇ", "收": "ㄕㄡ", "來": "ㄌㄞˊ", "發": "ㄈㄚ", "去": "ㄑㄩˋ", "桌": "ㄓㄨㄛ", "上": "ㄕㄤˋ", "到": "ㄉㄠˋ", "別": "ㄅㄧㄝˊ", "地": "ㄉㄧˋ", "也": "ㄧㄝˇ", "可": "ㄎㄜˇ", "以": "ㄧˇ", "轉": "ㄓㄨㄢˇ", "全": "ㄑㄩㄢˊ", "部": "ㄅㄨˋ", "自": "ㄗˋ", "己": "ㄐㄧˇ", "選": "ㄒㄩㄢˇ", "兩": "ㄌㄧㄤˇ", "人": "ㄖㄣˊ", "互": "ㄏㄨˋ", "左": "ㄗㄨㄛˇ", "或": "ㄏㄨㄛˋ", "右": "ㄧㄡˋ", "都": "ㄉㄡ", "從": "ㄘㄨㄥˊ", "出": "ㄔㄨ", "開": "ㄎㄞ", "始": "ㄕˇ", "在": "ㄗㄞˋ", "原": "ㄩㄢˊ", "半": "ㄅㄢˋ", "圈": "ㄑㄩㄢ", "比": "ㄅㄧˇ", "較": "ㄐㄧㄠˋ", "多": "ㄉㄨㄛ", "過": "ㄍㄨㄛˋ", "就": "ㄐㄧㄡˋ", "賺": "ㄓㄨㄢˋ", "了": "˙ㄌㄜ", "些": "ㄒㄧㄝ", "變": "ㄅㄧㄢˋ", "記": "ㄐㄧˋ", "住": "ㄓㄨˋ", "這": "ㄓㄜˋ", "六": "ㄌㄧㄡˋ", "吧": "˙ㄅㄚ", "給": "ㄍㄟˇ", "另": "ㄌㄧㄥˋ", "接": "ㄐㄧㄝ", "得": "˙ㄉㄜ", "下": "ㄒㄧㄚˋ", "不": "ㄅㄨˋ", "五": "ㄨˇ", "什": "ㄕㄣˊ", "係": "˙ㄒㄧ", "候": "˙ㄏㄡ", "做": "ㄗㄨㄛˋ", "先": "ㄒㄧㄢ", "只": "ㄓˇ", "叫": "ㄐㄧㄠˋ", "名": "ㄇㄧㄥˊ", "哪": "ㄋㄚˇ", "喔": "ㄛ", "嗎": "˙ㄇㄚ", "堂": "ㄊㄤˊ", "好": "ㄏㄠˇ", "字": "˙ㄗ", "完": "ㄨㄢˊ", "對": "ㄉㄨㄟˋ", "小": "ㄒㄧㄠˇ", "年": "ㄋㄧㄢˊ", "影": "ㄧㄥˇ", "很": "ㄏㄣˇ", "怎": "ㄗㄣˇ", "想": "ㄒㄧㄤˇ", "成": "ㄔㄥˊ", "才": "ㄘㄞˊ", "放": "ㄈㄤˋ", "是": "ㄕˋ", "時": "ㄕˊ", "最": "ㄗㄨㄟˋ", "案": "ㄢˋ", "棒": "ㄅㄤˋ", "楚": "˙ㄔㄨ", "樣": "ㄧㄤˋ", "次": "ㄘˋ", "正": "ㄓㄥˋ", "沒": "ㄇㄟˊ", "清": "ㄑㄧㄥ", "測": "ㄘㄜˋ", "片": "ㄆㄧㄢˋ", "用": "ㄩㄥˋ", "目": "ㄇㄨˋ", "看": "ㄎㄢˋ", "確": "ㄑㄩㄝˋ", "答": "ㄉㄚˊ", "紀": "ㄐㄧˋ", "績": "ㄐㄧ", "習": "ㄒㄧˊ", "考": "ㄎㄠˇ", "聽": "ㄊㄧㄥ", "裡": "ㄌㄧˇ", "複": "ㄈㄨˋ", "要": "ㄧㄠˋ", "誰": "ㄕㄟˊ", "送": "ㄙㄨㄥˋ", "還": "ㄏㄞˊ", "關": "ㄍㄨㄢ", "面": "ㄇㄧㄢˋ", "題": "ㄊㄧˊ", "驗": "ㄧㄢˋ", "高": "ㄍㄠ", "麼": "˙ㄇㄜ", "水": "ㄕㄨㄟˇ", "瓶": "ㄆㄧㄥˊ", "座": "ㄗㄨㄛˋ", "認": "ㄖㄣˋ", "識": "ㄕˊ", "準": "ㄓㄨㄣˇ", "備": "ㄅㄟˋ", "輪": "ㄌㄨㄣˊ", "贏": "ㄧㄥˊ", "種": "ㄓㄨㄥˇ", "顏": "ㄧㄢˊ", "色": "ㄙㄜˋ", "格": "ㄍㄜˊ", "四": "ㄙˋ", "子": "˙ㄗ", "中": "ㄓㄨㄥ", "間": "ㄐㄧㄢ", "每": "ㄇㄟˇ", "偷": "ㄊㄡ", "三": "ㄙㄢ", "堆": "ㄉㄨㄟ", "連": "ㄌㄧㄢˊ", "那": "ㄋㄚˋ", "保": "ㄅㄠˇ", "密": "ㄇㄧˋ", "綠": "ㄌㄩˋ", "抽": "ㄔㄡ", "碰": "ㄆㄥˋ", "七": "ㄑㄧ", "算": "ㄙㄨㄢˋ", "樂": "ㄌㄜˋ", "機": "ㄐㄧ", "天": "ㄊㄧㄢ", "空": "ㄎㄨㄥ", "草": "ㄘㄠˇ", "火": "ㄏㄨㄛˇ", "焰": "ㄧㄢˋ", "太": "ㄊㄞˋ", "卡": "ㄎㄚˇ", "秘": "ㄇㄧˋ", "標": "ㄅㄧㄠ", "讓": "ㄖㄤˋ", "萬": "ㄨㄢˋ", "當": "ㄉㄤ", "作": "ㄗㄨㄛˋ", "何": "ㄏㄜˊ", "遊": "ㄧㄡˊ", "戲": "ㄒㄧˋ", "翻": "ㄈㄢ", "前": "ㄑㄧㄢˊ", "件": "ㄐㄧㄢˋ", "事": "ㄕˋ", "我": "ㄨㄛˇ", "跳": "ㄊㄧㄠˋ", "至": "ㄓˋ", "少": "ㄕㄠˇ", "相": "ㄒㄧㄤ", "新": "ㄒㄧㄣ", "直": "ㄓˊ", "齊": "ㄑㄧˊ", "之": "ㄓ", "邊": "ㄅㄧㄢ", "橫": "ㄏㄥˊ", "整": "ㄓㄥˇ", "角": "ㄐㄧㄠˇ", "獲": "ㄏㄨㄛˋ", "勝": "ㄕㄥˋ", "立": "ㄌㄧˋ", "刻": "ㄎㄜˋ", "錯": "ㄘㄨㄛˋ", "誤": "ㄨˋ", "妙": "ㄇㄧㄠˋ", "招": "ㄓㄠ", "二": "ㄦˋ", "級": "ㄐㄧˊ", "資": "ㄗ", "源": "ㄩㄢˊ", "班": "ㄅㄢ", "總": "ㄗㄨㄥˇ", "結": "ㄐㄧㄝˊ", "課": "ㄎㄜˋ", "步": "ㄅㄨˋ", "驟": "ㄓㄡˋ", "教": "ㄐㄧㄠˋ", "鍵": "ㄐㄧㄢˋ", "盤": "ㄆㄢˊ", "頁": "ㄧㄝˋ", "快": "ㄎㄨㄞˋ", "走": "ㄗㄡˇ", "他": "ㄊㄚ", "幫": "ㄅㄤ", "難": "ㄋㄢˊ", "容": "ㄖㄨㄥˊ", "易": "ㄧˋ", "找": "ㄓㄠˇ", "美": "ㄇㄟˇ", "已": "ㄧˇ", "經": "ㄐㄧㄥ", "剩": "ㄕㄥˋ", "華": "ㄏㄨㄚˊ", "她": "ㄊㄚ", "留": "ㄌㄧㄡˊ", "著": "˙ㄓㄜ", "幾": "ㄐㄧˇ", "乎": "ㄏㄨ", "明": "ㄇㄧㄥˊ", "流": "ㄌㄧㄡˊ", "程": "ㄔㄥˊ", "圖": "ㄊㄨˊ", "練": "ㄌㄧㄢˋ", "實": "ㄕˊ", "戰": "ㄓㄢˋ", "豆": "ㄉㄡˋ", "今": "ㄐㄧㄣ", "厲": "ㄌㄧˋ", "害": "ㄏㄞˋ", "問": "ㄨㄣˋ", "知": "ㄓ", "道": "ㄉㄠˋ", "卻": "ㄑㄩㄝˋ", "老": "ㄌㄠˇ", "師": "ㄕ", "提": "ㄊㄧˊ", "示": "ㄕˋ", "投": "ㄊㄡˊ", "圓": "ㄩㄢˊ", "點": "ㄉㄧㄢˇ", "生": "ㄕㄥ", "請": "ㄑㄧㄥˇ", "句": "ㄐㄩˋ", "說": "ㄕㄨㄛ", "理": "ㄌㄧˇ", "由": "ㄧㄡˊ", "紅": "ㄏㄨㄥˊ", "框": "ㄎㄨㄤ", "項": "ㄒㄧㄤˋ", "零": "ㄌㄧㄥˊ", "其": "ㄑㄧˊ", "應": "ㄧㄥ", "該": "ㄍㄞ", "等": "ㄉㄥˇ", "們": "˙ㄇㄣ", "它": "ㄊㄚ", "指": "ㄓˇ", "適": "ㄕˋ", "合": "ㄏㄜˊ", "照": "ㄓㄠˋ", "順": "ㄕㄨㄣˋ", "序": "ㄒㄩˋ", "範": "ㄈㄢˋ", "亮": "ㄌㄧㄤˋ", "例": "ㄌㄧˋ", "如": "ㄖㄨˊ", "虛": "ㄒㄩ", "線": "ㄒㄧㄢˋ", "按": "ㄢˋ", "試": "ㄕˋ", "八": "ㄅㄚ", "九": "ㄐㄧㄡˇ", "十": "ㄕˊ", "更": "ㄍㄥˋ", "糟": "ㄗㄠ", "糕": "ㄍㄠ", "進": "ㄐㄧㄣˋ", "階": "ㄐㄧㄝ", "現": "ㄒㄧㄢˋ", "建": "ㄐㄧㄢˋ", "議": "ㄧˋ", "黃": "ㄏㄨㄤˊ", "度": "ㄉㄨˋ", "醫": "ㄧ", "因": "ㄧㄣ", "為": "ㄨㄟˋ", "第": "ㄉㄧˋ", "話": "ㄏㄨㄚˋ", "忙": "ㄇㄤˊ", "顆": "ㄎㄜ", "錄": "ㄌㄨˋ", "號": "ㄏㄠˋ", "減": "ㄐㄧㄢˇ", "定": "ㄉㄧㄥˋ", "歸": "ㄍㄨㄟ", "取": "ㄑㄩˇ", "消": "ㄒㄧㄠ", "存": "ㄘㄨㄣˊ", "台": "ㄊㄞˊ", "電": "ㄉㄧㄢˋ", "腦": "ㄋㄠˇ", "瀏": "ㄌㄧㄡˊ", "覽": "ㄌㄢˇ", "器": "ㄑㄧˋ", "數": "ㄕㄨˇ", "冠": "ㄍㄨㄢˋ", "囉": "˙ㄌㄨㄛ", "業": "ㄧㄝˋ", "式": "ㄕˋ", "計": "ㄐㄧˋ", "活": "ㄏㄨㄛˊ", "尾": "ㄨㄟˇ", "約": "ㄩㄝ", "分": "ㄈㄣ", "鐘": "ㄓㄨㄥ", "規": "ㄍㄨㄟ", "則": "ㄗㄜˊ", "口": "ㄎㄡˇ", "訣": "ㄐㄩㄝˊ", "拍": "ㄆㄞ", "聲": "ㄕㄥ", "心": "ㄒㄧㄣ", "享": "ㄒㄧㄤˇ", "旁": "ㄆㄤˊ", "馬": "ㄇㄚˇ", "急": "ㄐㄧˊ", "獎": "ㄐㄧㄤˇ", "又": "ㄧㄡˋ", "達": "ㄉㄚˊ", "努": "ㄋㄨˇ", "耐": "ㄋㄞˋ", "待": "ㄉㄞˋ", "管": "ㄍㄨㄢˇ", "輸": "ㄕㄨ", "熱": "ㄖㄜˋ", "醒": "ㄒㄧㄥˇ", "票": "ㄆㄧㄠˋ", "頒": "ㄅㄢ", "畢": "ㄅㄧˋ", "顧": "ㄍㄨˋ", "憶": "ㄧˋ", "愛": "ㄞˋ", "典": "ㄉㄧㄢˇ", "禮": "ㄌㄧˇ", "依": "ㄧ", "倒": "ㄉㄠˋ", "狀": "ㄓㄨㄤˋ", "況": "ㄎㄨㄤˋ", "調": "ㄉㄧㄠˋ", "碼": "ㄇㄚˇ", "限": "ㄒㄧㄢˋ", "挑": "ㄊㄧㄠ", "餘": "ㄩˊ", "隨": "ㄙㄨㄟˊ", "便": "ㄅㄧㄢˋ", "判": "ㄆㄢˋ", "斷": "ㄉㄨㄢˋ", "念": "ㄋㄧㄢˋ", "遍": "ㄅㄧㄢˋ", "喜": "ㄒㄧˇ", "歡": "ㄏㄨㄢ", "軍": "ㄐㄩㄣ", "領": "ㄌㄧㄥˇ", "修": "ㄒㄧㄡ", "改": "ㄍㄞˇ", "除": "ㄔㄨˊ", "鼓": "ㄍㄨˇ", "勵": "ㄌㄧˋ", "謝": "ㄒㄧㄝˋ", "搶": "ㄑㄧㄤˇ", "亂": "ㄌㄨㄢˋ", "撒": "ㄙㄚ", "花": "ㄏㄨㄚ", "慶": "ㄑㄧㄥˋ", "祝": "ㄓㄨˋ", "閉": "ㄅㄧˋ", "暫": "ㄗㄢˋ", "停": "ㄊㄧㄥˊ", "短": "ㄉㄨㄢˇ", "音": "ㄧㄣ", "播": "ㄅㄛ", "段": "ㄉㄨㄢˋ"};
+const PUNCT = /[，。！？、：；「」（）\s0-9A-Za-z\/+①②③④⑤＿…→]/;
+function zh(text) {
+  let out = '';
+  for (const ch of text) {
+    const z = ZY[ch];
+    if (!z || PUNCT.test(ch)) { out += `<span class="p">${ch}</span>`; continue; }
+    const neutral = z.startsWith('˙');
+    let sy = [...z.replace('˙', '')];
+    let tone = '';
+    if ('ˊˇˋ'.includes(sy.at(-1))) tone = sy.pop();
+    const n = sy.length + (neutral ? 1 : 0);
+    const col = (neutral ? '<i class="nt">˙</i>' : '') + sy.map(c => `<i>${c}</i>`).join('');
+    out += `<span class="z"><span class="h">${ch}</span><span class="b" aria-hidden="true">${col}` +
+      (tone ? `<span class="t" style="grid-row:${n}">${tone}</span>` : '') + `</span></span>`;
+  }
+  return `<span class="zt" aria-label="${text}">${out}</span>`;
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const SPEAKER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.3 5.7a9 9 0 0 1 0 12.6"/></svg>';
+function say(text) {
+  try {
+    const s = window.speechSynthesis; if (!s) return;
+    s.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[「」＿]/g, ''));
+    u.lang = 'zh-TW'; u.rate = 0.85;
+    const v = s.getVoices().find(v => /zh[-_]TW/i.test(v.lang)) || s.getVoices().find(v => /^zh/i.test(v.lang));
+    if (v) u.voice = v;
+    s.speak(u);
+  } catch (e) {}
+}
+const speakBtn = text => `<button class="speak" type="button" data-say="${text}">${SPEAKER}${zh('聽')}</button>`;
+const store = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem('aq-closing-' + k)); return v ?? d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('aq-closing-' + k, JSON.stringify(v)); } catch (e) {} },
+};
+
+/* ---------- elements & cards ---------- */
+const EL = {
+  s: { name: '天空', bg: '#5BB8F0', icon: '<path d="M5 31 A15 15 0 0 1 35 31" stroke="#E2453C" stroke-width="3.2" fill="none"/><path d="M8.6 31 A11.4 11.4 0 0 1 31.4 31" stroke="#F4C430" stroke-width="3.2" fill="none"/><path d="M12.2 31 A7.8 7.8 0 0 1 27.8 31" stroke="#3FAE4A" stroke-width="3.2" fill="none"/><g fill="#fff"><circle cx="12" cy="30" r="5"/><circle cx="19" cy="27" r="6.5"/><circle cx="26" cy="30" r="5"/><rect x="12" y="29" width="14" height="6"/></g>' },
+  w: { name: '水', bg: '#14A3A0', icon: '<g fill="#fff" opacity=".85"><circle cx="9" cy="9" r="1.8"/><circle cx="31" cy="12" r="1.5"/><circle cx="28" cy="31" r="1.8"/></g><ellipse cx="18" cy="21" rx="9" ry="5.5" fill="#E8327A"/><path d="M26 21 L34 15 L34 27 Z" fill="#E8327A"/><circle cx="14" cy="20" r="1.4" fill="#fff"/>' },
+  g: { name: '草地', bg: '#7BC043', icon: '<path d="M0 30 Q20 22 40 30 L40 40 L0 40 Z" fill="#4E9A2B"/><g fill="#EC4FA0"><circle cx="20" cy="13" r="4.4"/><circle cx="26.5" cy="18" r="4.4"/><circle cx="24" cy="25.5" r="4.4"/><circle cx="16" cy="25.5" r="4.4"/><circle cx="13.5" cy="18" r="4.4"/></g><circle cx="20" cy="19.5" r="3.6" fill="#F7D25A"/>' },
+  f: { name: '火焰', bg: '#F2711C', icon: '<path d="M20 4 C24 12 32 16 30 26 C29 33 24 37 20 37 C14 37 9 32 10 25 C11 19 15 17 15 11 C18 14 18 17 18 19 C21 15 21 9 20 4 Z" fill="#FFD23F"/><path d="M20 20 C23 24 25 27 24 31 C23 34 21 35 20 35 C17 35 15 32 16 29 C17 26 19 25 20 20 Z" fill="#FFF3B0"/>' },
+  p: { name: '太空', bg: '#6B36B0', icon: '<path d="M20 7 l3.6 7.6 8.3 1 -6.1 5.7 1.6 8.2 -7.4-4.1 -7.4 4.1 1.6-8.2 -6.1-5.7 8.3-1z" fill="#fff"/><g fill="#fff"><circle cx="7" cy="8" r="1.4"/><circle cx="33" cy="33" r="1.6"/><circle cx="8" cy="32" r="1.1"/><circle cx="34" cy="7" r="1.1"/></g>' },
+};
+const icon = (k, px) => `<svg viewBox="0 0 40 40" ${px ? `width="${px}" height="${px}"` : ''} aria-hidden="true">${EL[k].icon}</svg>`;
+const sec = (k, px) => `<div class="s" style="background:${EL[k].bg}">${icon(k, px)}</div>`;
+function ecard(cs, w, rot = 0) {
+  const [a, b, c, d] = cs;
+  let inner;
+  if (a === b && b === c && c === d) inner = `<div class="in">${sec(a, w * .52)}</div>`;
+  else if (a === b && c === d) inner = `<div class="in" style="grid-template-rows:1fr 1fr">${sec(a, w * .38)}${sec(c, w * .38)}</div>`;
+  else if (a === c && b === d) inner = `<div class="in" style="grid-template-columns:1fr 1fr">${sec(a, w * .34)}${sec(b, w * .34)}</div>`;
+  else inner = `<div class="in" style="grid-template:1fr 1fr/1fr 1fr">${cs.map(k => sec(k, w * .3)).join('')}</div>`;
+  return `<div class="ecard" style="width:${w}px;height:${w * 4 / 3}px;transform:rotate(${rot}deg)">${inner}</div>`;
+}
+const MEDAL = col => `<svg viewBox="0 0 48 48" class="md" aria-hidden="true"><path d="M15 3h8l-4 16h-8z" fill="#2D5FA8"/><path d="M33 3h-8l4 16h8z" fill="#D93A2B"/><circle cx="24" cy="30" r="14" fill="${col}" stroke="#C9971A" stroke-width="2.5"/><path d="M24 21.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8-4.2-4.1 5.8-.8z" fill="#fff"/></svg>`;
+const CROWN = '<svg viewBox="0 0 24 24" class="crown" aria-hidden="true"><path d="M3 18 L5 7 L10 12 L12 5 L14 12 L19 7 L21 18 Z" fill="#F7C948" stroke="#C9971A" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+
+/* ---------- content ---------- */
+const FLIPS = [
+  { el: 's', tag: '規則', q: '說出五大元素！', a: '天空、水、草地、火焰、太空', art: 'elements' },
+  { el: 'w', tag: '規則', q: '輪到我時，要先做什麼？', a: '先抽一張牌，再出一張牌！' },
+  { el: 'g', tag: '看一看', q: '這兩張牌可以接在一起嗎？', a: '不可以！兩張牌之間沒有相同元素。', art: 'pair' },
+  { el: 'f', tag: '規則', q: '任務牌可以給別人看嗎？', a: '不可以，任務牌是秘密！' },
+  { el: 'p', tag: '規則', q: '連成幾張就贏了？', a: '把自己的任務元素連成七張！' },
+  { el: 's', tag: '妙招', q: '出牌的口訣是什麼？', a: '看任務、找元素、碰一起！' },
+  { el: 'w', tag: '行動牌', q: '手牌都沒有你的元素，可以用哪一張行動牌？', a: '重洗手牌！', art: 'shuffle' },
+  { el: 'g', tag: '萬用牌', q: '萬用牌！全班一起拍手三下，大聲說：「我們會玩水瓶座了！」', a: '', wild: true },
+  { el: 'f', tag: '說說看', q: '玩水瓶座的時候，你最開心的一次是什麼時候？', a: '每個人都可以分享！' },
+];
+const ACTIONS = [
+  ['trade_goals', '交換任務牌'], ['rotate_goals', '大風吹'], ['shuffle', '重洗手牌'],
+  ['move', '移動一張牌'], ['trade_hands', '交換手牌'], ['zap', '拿回元素牌'],
+];
+const REMIND = [
+  { clip: 'q1', fix: 'q1fix', q: '小明的任務是火焰。他把草地牌接在小美的草地旁邊。', good: false, ex: '這樣幫到小美了！看看正確做法：' },
+  { clip: 'q2', fix: 'q2fix', q: '小華拿到行動牌，馬上就出了。可是他的手牌有水，可以接上。', good: false, ex: '行動牌不用急著出！看看正確做法：' },
+  { clip: 'q3', q: '小美的手牌都沒有太空，所以她用了重洗手牌。', good: true, ex: '對！問自己「我的手牌都沒有我的元素嗎？」答案是「是」，就可以用。' },
+  { clip: 'q4', q: '小華找到有水的牌，放在碰到水的地方。', good: true, ex: '對！看任務、找元素、碰一起，這樣是在幫自己。' },
+];
+const AWARDS = [
+  { t: '接牌高手獎', s: '你最會找相同元素，接得又快又對！', c: '#F2711C' },
+  { t: '任務達人獎', s: '你一直記得自己的任務，努力把它連起來！', c: '#6B36B0' },
+  { t: '行動牌大師獎', s: '你知道什麼時候該用行動牌！', c: '#2D5FA8' },
+  { t: '耐心等待獎', s: '你會等別人想一想，好有耐心！', c: '#14A3A0' },
+  { t: '好好說話獎', s: '不管輸贏，你都能好好說話！', c: '#E8327A' },
+  { t: '熱心幫忙獎', s: '你當小幫手，幫大家學會出牌！', c: '#7BC043' },
+  { t: '進步最多獎', s: '你一次比一次進步，好厲害！', c: '#F7C948' },
+];
+
+/* ---------- state ---------- */
+let flipDone = store.get('flips', []);
+let flipOpen = null, flipShow = false;
+let votes = store.get('votes', [0, 0, 0, 0, 0, 0]);
+let voteReveal = false;
+let names = store.get('names', ['1號', '2號', '3號', '4號', '5號', '6號', '7號']);
+let given = store.get('given', {});         // student index -> award index
+let pickStu = null;
+let certOpen = null;
+let rq = { i: 0, picked: null, results: [] };
+
+/* ---------- steps ---------- */
+const STEPS = [
+  { id: 'open', label: '開場', mins: 1, render: stepOpen },
+  { id: 'flip', label: '翻翻樂', mins: 5, render: stepFlip },
+  { id: 'remind', label: '提醒', mins: 3, render: stepRemind },
+  { id: 'vote', label: '投票', mins: 3, render: stepVote },
+  { id: 'award', label: '頒獎', mins: 6, render: stepAward },
+  { id: 'bye', label: '畢業', mins: 2, render: stepBye },
+];
+let cur = 0;
+const main = document.getElementById('main');
+function head(n, title, mins) {
+  return `<div class="step-top"><div class="num">${n}</div><h2 class="hd">${zh(title)}</h2>${mins ? `<span class="mins">約 ${mins} 分鐘</span>` : ''}</div>`;
+}
+
+function stepOpen() {
+  const fan = [['f','f','f','f'], ['w','w','s','s'], ['s','w','g','f'], ['p','p','g','g'], ['g','g','g','g']];
+  return `<section class="step">
+    <div class="hero">
+      <div class="fan">${fan.map((cs, i) => `<div>${ecard(cs, 92, (i - 2) * 9)}</div>`).join('')}</div>
+      <p class="big">${zh('水瓶座，最後一關！')}</p>
+      <p class="lead">${zh('我們一起玩了好多次水瓶座，今天來回顧、頒獎！')} ${speakBtn('我們一起玩了好多次水瓶座，今天來回顧、頒獎！')}</p>
+    </div>
+    <div class="agenda">
+      ${[['一', '回憶翻翻樂', 5], ['二', '出牌最後提醒', 3], ['三', '最愛行動牌投票', 3], ['四', '頒獎典禮', 6], ['五', '水瓶座畢業囉', 2]].map(([n, t, m]) => `<div class="ag"><div class="n">${zh('第' + n + '關')}</div><div class="at">${zh(t)}</div><div class="m">約 ${m} 分鐘</div></div>`).join('')}
+    </div>
+    <p class="teacher"><b>老師提示</b>：右上角的計時器會依每一關的建議時間倒數，按「開始」就會計時。全部約 20 分鐘，可以依學生狀況調整。</p>
+  </section>`;
+}
+
+function flipArt(f) {
+  if (f.art === 'elements') return `<div class="qart">${'swgfp'.split('').map(k => `<span style="display:grid;justify-items:center;gap:4px"><span style="width:64px;height:64px;border-radius:50%;background:${EL[k].bg};display:grid;place-items:center;border:4px solid #1F1F24">${icon(k, 38)}</span>${flipShow ? `<span style="font-size:22px;font-weight:700">${zh(EL[k].name)}</span>` : ''}</span>`).join('')}</div>`;
+  if (f.art === 'pair') return `<div class="qart" style="gap:0">${ecard(['f','f','f','f'], 96)}${ecard(['p','p','s','s'], 96)}</div>`;
+  if (f.art === 'shuffle' && flipShow) return `<div class="qart"><img src="shuffle.png" alt="重洗手牌的牌" style="width:110px;border-radius:10px;box-shadow:0 4px 10px rgba(40,50,30,.25)"></div>`;
+  return '';
+}
+function stepFlip() {
+  const grid = FLIPS.map((f, i) => `<button class="fc ${flipDone.includes(i) ? 'done' : ''}" type="button" data-flip="${i}" aria-label="第${i + 1}張牌"><span class="face" style="background:${EL[f.el].bg}">${icon(f.el)}</span><span class="no">${i + 1}</span></button>`).join('');
+  let panel = '';
+  if (flipOpen !== null) {
+    const f = FLIPS[flipOpen];
+    panel = `<div class="qpanel pop" id="qpanel">
+      <div class="qhead"><span class="qtag" style="background:${f.wild ? 'var(--gold-deep)' : 'var(--blue)'}">${zh(f.tag)}</span><span class="mins">第 ${flipOpen + 1} 張</span></div>
+      <p class="qtext">${zh(f.q)} ${speakBtn(f.q)}</p>
+      ${flipArt(f)}
+      ${f.wild ? `<div class="ans wild">${zh('拍、拍、拍！太棒了！')}</div>`
+        : (flipShow ? `<div class="ans pop">${zh(f.a)}</div>` : `<div class="row"><button class="btn" type="button" id="showAns">${zh('看答案')}</button></div>`)}
+      <div class="row"><button class="btn ghost" type="button" id="backGrid">${zh('選下一張')}</button></div>
+    </div>`;
+  }
+  return `<section class="step">
+    ${head(1, '回憶翻翻樂', 5)}
+    <p class="lead">${zh('輪流選一個號碼，翻開牌，回答問題！')}</p>
+    ${flipOpen === null ? `<div class="flipgrid">${grid}</div>` : panel}
+    <div class="row"><button class="small" type="button" id="flipReset">翻翻樂重新開始</button><span class="teacher" style="padding:6px 12px">已翻開 ${flipDone.length} / 9 張</span></div>
+    <p class="teacher"><b>老師提示</b>：時間有限，可以挑 5～6 張翻，其餘全班一起快答。第 8 張是萬用牌，全班一起拍手。</p>
+  </section>`;
+}
+
+const vid = (base, attrs) => `<video ${attrs}><source src="${base}.webm" type="video/webm"><source src="${base}.mp4" type="video/mp4"></video>`;
+const OK_ICON = '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17" fill="none" stroke="#2E8B4E" stroke-width="6"/></svg>';
+const NO_ICON = '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 10 L38 38 M38 10 L10 38" stroke="#D93A2B" stroke-width="7" stroke-linecap="round"/></svg>';
+function rulesBox() {
+  return `<div class="rules2">
+    <div class="rule"><div class="rt">${zh('一、出牌要幫自己')}</div><div class="d">${zh('不是幫別人！先看任務，找自己的元素，讓它碰在一起。')}</div></div>
+    <div class="rule"><div class="rt">${zh('二、行動牌想一想再用')}</div><div class="d">${zh('不是隨便出！先問自己，用得到才用，用不到就先留著。')}</div></div>
+  </div>`;
+}
+function stepRemind() {
+  if (rq.i >= REMIND.length) {
+    return `<section class="step">
+      ${head(2, '出牌最後提醒', 3)}
+      <p class="lead">${zh('記住這兩件事！')} ${speakBtn('第一，出牌要幫自己，不是幫別人。第二，行動牌想一想再用，不是隨便出。')}</p>
+      <div class="clip">${vid('rules', 'controls autoplay muted playsinline preload="auto"')}</div>
+      ${rulesBox()}
+      <div class="row"><button class="small" type="button" id="rqAgain">再判斷一次</button><span class="teacher" style="padding:6px 12px">答對 ${rq.results.filter(Boolean).length} / ${REMIND.length} 題</span></div>
+      <p class="teacher"><b>老師提示</b>：請全班一起把兩個提醒念一遍，也可以請學生說說：「以前我有沒有不小心幫到別人？」</p>
+    </section>`;
+  }
+  const Q = REMIND[rq.i];
+  const dots = REMIND.map((_, i) => `<span class="${i < rq.i ? (rq.results[i] ? 'ok' : 'no') : i === rq.i ? 'now' : ''}"></span>`).join('');
+  const done = rq.picked !== null;
+  const cls = v => !done ? '' : (v === Q.good ? 'right pop' : (v === rq.picked ? 'wrong' : 'fade'));
+  return `<section class="step">
+    ${head(2, '出牌最後提醒', 3)}
+    <div class="qhead"><span class="mins">${rq.i + 1} / ${REMIND.length}</span><span class="qdots" aria-hidden="true">${dots}</span></div>
+    <div class="qpanel">
+      ${!done ? `<div class="clip">${vid(Q.clip, 'controls autoplay muted playsinline preload="auto"')}<span class="cl">短片沒有聲音，看完再回答；可以按播放鍵重看。</span></div>` : ''}
+      <p class="qtext">${zh(Q.q)} ${speakBtn(Q.q + '這樣好不好？')}</p>
+      <p class="lead" style="margin:0">${zh('這樣好不好？')}</p>
+      <div class="judge">
+        <button class="jb ${cls(true)}" type="button" data-judge="1" ${done ? 'disabled' : ''}>${OK_ICON}${zh('好')}</button>
+        <button class="jb ${cls(false)}" type="button" data-judge="0" ${done ? 'disabled' : ''}>${NO_ICON}${zh('不好')}</button>
+      </div>
+    </div>
+    ${done ? `<div class="fb ${rq.picked === Q.good ? 'ok' : 'no'} pop" role="status"><div>${zh(rq.picked === Q.good ? '答對了！' : '再想想！')}</div><div class="ex">${zh(Q.ex)}</div></div>
+      ${Q.fix ? `<div class="clip">${vid(Q.fix, 'controls autoplay muted playsinline preload="auto"')}</div>` : `<div class="clip">${vid(Q.clip, 'controls muted playsinline preload="metadata"')}<span class="cl">想再看一次可以按播放。</span></div>`}
+      <div class="row" style="justify-content:flex-end"><button class="btn" type="button" id="rqNext">${zh(rq.i === REMIND.length - 1 ? '看兩個提醒' : '下一題')}</button></div>` : ''}
+    <p class="teacher"><b>老師提示</b>：先讓短片播完，再請學生用手比 ⭕ 或 ❌ 全班一起回答，最後請一位同學說出原因。答錯示範的兩題，答完會再播一段正確做法。</p>
+  </section>`;
+}
+
+function stepVote() {
+  const max = Math.max(1, ...votes);
+  const top = Math.max(...votes);
+  const total = votes.reduce((a, b) => a + b, 0);
+  const items = ACTIONS.map(([k, n], i) => {
+    const win = voteReveal && top > 0 && votes[i] === top;
+    return `<button class="vote ${win ? 'win pop' : ''}" type="button" data-vote="${i}" aria-label="投給${n}">
+      <img src="${k}.png" alt="">
+      <span class="tx"><span class="nm">${win ? CROWN : ''}${zh(n)}</span><span class="bar" style="display:block"><i style="width:${votes[i] / max * 100}%"></i></span></span>
+      <span class="cnt">${votes[i]}</span></button>`;
+  }).join('');
+  return `<section class="step">
+    ${head(3, '最愛行動牌投票', 3)}
+    <p class="lead">${zh('你最喜歡哪一張行動牌？上台點一下，投一票！')} ${speakBtn('你最喜歡哪一張行動牌？上台點一下，投一票！')}</p>
+    <div class="votes">${items}</div>
+    <div class="row">
+      <button class="btn gold" type="button" id="reveal">${zh('看冠軍')}</button>
+      <button class="small" type="button" id="undo">收回最後一票</button>
+      <button class="small" type="button" id="voteReset">投票重來</button>
+      <span class="teacher" style="padding:6px 12px">已投 ${total} 票</span>
+    </div>
+    <div class="frame">${zh('我最喜歡')}<u></u>${zh('，因為')}<u></u>${zh('。')}</div>
+    <p class="teacher"><b>老師提示</b>：每人投一票，投完請他用上面的句子說出原因。</p>
+  </section>`;
+}
+
+function stepAward() {
+  const stu = names.map((n, i) => {
+    const g = given[i];
+    return `<button class="stu ${g !== undefined ? 'got' : ''} ${pickStu === i ? 'sel' : ''}" type="button" data-stu="${i}"><span class="nm">${esc(n)}</span><span class="aw">${g !== undefined ? zh(AWARDS[g].t) : zh('還沒領獎')}</span></button>`;
+  }).join('');
+  const used = new Set(Object.values(given));
+  const aw = AWARDS.map((a, i) => `<button class="awb ${used.has(i) ? 'used' : ''}" type="button" data-aw="${i}" ${pickStu === null ? 'disabled' : ''}>${MEDAL(a.c)}<span><div class="awt">${zh(a.t)}</div></span></button>`).join('');
+  return `<section class="step">
+    ${head(4, '頒獎典禮', 6)}
+    <p class="lead">${zh(pickStu === null ? '老師點一位同學的名字。' : '幫' + '這位同學選一個獎！')}</p>
+    <div class="students">${stu}</div>
+    ${pickStu !== null ? `<div class="awards pop">${aw}</div>` : ''}
+    <details>
+      <summary>修改學生名字</summary>
+      <div class="names">${names.map((n, i) => `<input id="name${i}" data-name="${i}" value="${esc(n)}" aria-label="第${i + 1}位學生的名字">`).join('')}</div>
+    </details>
+    <div class="row"><button class="small" type="button" id="awardReset">頒獎紀錄清除</button></div>
+    <p class="teacher"><b>老師提示</b>：點名字，再點獎項，就會跳出大大的獎狀。可以請全班一起念出獎項和鼓勵的話，再拍手。名字和頒獎紀錄只存在這台電腦的瀏覽器裡。</p>
+  </section>`;
+}
+
+function stepBye() {
+  return `<section class="step">
+    <div class="finale">
+      <div class="fan">${[['s','s','s','s'], ['w','w','w','w'], ['g','g','g','g'], ['f','f','f','f'], ['p','p','p','p']].map((cs, i) => `<div>${ecard(cs, 84, (i - 2) * 9)}</div>`).join('')}</div>
+      <p class="hero" style="margin:0"><span class="big">${zh('水瓶座，畢業囉！')}</span></p>
+      <p class="lead">${zh('謝謝大家一起玩！')} ${speakBtn('水瓶座，畢業囉！謝謝大家一起玩！')}</p>
+      <p class="mantra">${zh('看任務、找元素、碰一起')}</p>
+      ${rulesBox()}
+      <div class="promise">
+        <div>${zh('輪到我再出牌')}</div>
+        <div>${zh('等待別人想一想')}</div>
+        <div>${zh('不搶牌、不亂動桌上的牌')}</div>
+        <div>${zh('輸贏都能好好說話')}</div>
+      </div>
+      <p class="lead" style="color:var(--blue)">${zh('以後玩別的桌遊，也要記得這四個約定喔！')}</p>
+      <button class="btn gold" type="button" id="party">${zh('撒花慶祝')}</button>
+    </div>
+  </section>`;
+}
+
+/* ---------- certificate ---------- */
+function showCert(si, ai) {
+  const a = AWARDS[ai];
+  document.getElementById('layer').innerHTML = `<div class="overlay" id="ov" role="dialog" aria-modal="true" aria-label="獎狀">
+    <div class="cert pop">
+      <button class="small close" type="button" id="closeCert">關閉</button>
+      <div class="kicker">水瓶座桌遊課</div>
+      ${MEDAL(a.c).replace('class="md"', 'class="medal"')}
+      <div class="who">${esc(names[si])}</div>
+      <div class="what">${zh(a.t)}</div>
+      <div class="say">${zh(a.s)}</div>
+      <div><button class="speak" type="button" id="sayCert">${SPEAKER}${zh('聽')}</button></div>
+      <div class="from">二年級資源班</div>
+    </div></div>`;
+  const close = () => { document.getElementById('layer').innerHTML = ''; };
+  document.getElementById('closeCert').onclick = close;
+  document.getElementById('ov').onclick = e => { if (e.target.id === 'ov') close(); };
+  document.getElementById('sayCert').onclick = () => say(names[si] + '，' + a.t + '！' + a.s);
+  document.getElementById('closeCert').focus();
+  say(names[si] + '，' + a.t + '！' + a.s);
+  confetti();
+}
+
+/* ---------- confetti ---------- */
+const cv = document.getElementById('confetti'), cx = cv.getContext('2d');
+let bits = [], raf = 0;
+const COLS = Object.values(EL).map(e => e.bg).concat(['#F7C948', '#D93A2B']);
+function confetti() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio;
+  for (let i = 0; i < 160; i++) bits.push({ x: Math.random() * cv.width, y: -Math.random() * cv.height * .5, vx: (Math.random() - .5) * 3 * devicePixelRatio, vy: (2 + Math.random() * 4) * devicePixelRatio, r: (5 + Math.random() * 7) * devicePixelRatio, a: Math.random() * 6, va: (Math.random() - .5) * .3, c: COLS[i % COLS.length] });
+  if (!raf) raf = requestAnimationFrame(tick);
+}
+function tick() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  bits = bits.filter(b => b.y < cv.height + 40);
+  for (const b of bits) {
+    b.x += b.vx; b.y += b.vy; b.a += b.va;
+    cx.save(); cx.translate(b.x, b.y); cx.rotate(b.a); cx.fillStyle = b.c; cx.fillRect(-b.r / 2, -b.r / 3, b.r, b.r * .66); cx.restore();
+  }
+  raf = bits.length ? requestAnimationFrame(tick) : 0;
+  if (!raf) cx.clearRect(0, 0, cv.width, cv.height);
+}
+
+/* ---------- timer ---------- */
+let left = STEPS[0].mins * 60, running = false, tickT = 0;
+const clock = document.getElementById('clock'), tgo = document.getElementById('tgo');
+function showClock() {
+  const a = Math.abs(left), s = `${left < 0 ? '+' : ''}${Math.floor(a / 60)}:${String(a % 60).padStart(2, '0')}`;
+  clock.textContent = s; clock.classList.toggle('over', left < 0);
+  tgo.textContent = running ? '暫停' : '開始';
+}
+function resetClock() { running = false; clearInterval(tickT); left = STEPS[cur].mins * 60; showClock(); }
+tgo.onclick = () => {
+  running = !running; clearInterval(tickT);
+  if (running) tickT = setInterval(() => { left--; showClock(); }, 1000);
+  showClock();
+};
+document.getElementById('treset').onclick = resetClock;
+
+/* ---------- shell ---------- */
+function mount() {
+  const id = STEPS[cur].id;
+  main.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(b.dataset.say));
+  if (id === 'flip') {
+    main.querySelectorAll('[data-flip]').forEach(b => b.onclick = () => {
+      flipOpen = +b.dataset.flip; flipShow = false;
+      if (!flipDone.includes(flipOpen)) { flipDone.push(flipOpen); store.set('flips', flipDone); }
+      if (FLIPS[flipOpen].wild) confetti();
+      say(FLIPS[flipOpen].q); render();
+    });
+    const sa = document.getElementById('showAns'); if (sa) sa.onclick = () => { flipShow = true; say(FLIPS[flipOpen].a); render(); };
+    const bg = document.getElementById('backGrid'); if (bg) bg.onclick = () => { flipOpen = null; render(); };
+    document.getElementById('flipReset').onclick = () => { flipDone = []; flipOpen = null; store.set('flips', flipDone); render(); };
+  }
+  if (id === 'remind') {
+    main.querySelectorAll('[data-judge]').forEach(b => b.onclick = () => {
+      const Q = REMIND[rq.i];
+      rq.picked = b.dataset.judge === '1'; rq.results[rq.i] = rq.picked === Q.good;
+      say((rq.picked === Q.good ? '答對了！' : '再想想！') + Q.ex); render();
+    });
+    const nx = document.getElementById('rqNext'); if (nx) nx.onclick = () => { rq.i++; rq.picked = null; render(); };
+    const ag = document.getElementById('rqAgain'); if (ag) ag.onclick = () => { rq = { i: 0, picked: null, results: [] }; render(); };
+  }
+  if (id === 'vote') {
+    main.querySelectorAll('[data-vote]').forEach(b => b.onclick = () => { votes[+b.dataset.vote]++; lastVote.push(+b.dataset.vote); store.set('votes', votes); render(); });
+    document.getElementById('reveal').onclick = () => { voteReveal = true; const top = Math.max(...votes); if (top > 0) { const w = ACTIONS.filter((_, i) => votes[i] === top).map(a => a[1]).join('和'); say('冠軍是' + w + '！'); confetti(); } render(); };
+    document.getElementById('undo').onclick = () => { const i = lastVote.pop(); if (i !== undefined && votes[i] > 0) { votes[i]--; store.set('votes', votes); } render(); };
+    document.getElementById('voteReset').onclick = () => { votes = [0, 0, 0, 0, 0, 0]; lastVote = []; voteReveal = false; store.set('votes', votes); render(); };
+  }
+  if (id === 'award') {
+    main.querySelectorAll('[data-stu]').forEach(b => b.onclick = () => { pickStu = pickStu === +b.dataset.stu ? null : +b.dataset.stu; render(); });
+    main.querySelectorAll('[data-aw]').forEach(b => b.onclick = () => {
+      const si = pickStu, ai = +b.dataset.aw;
+      given[si] = ai; store.set('given', given); pickStu = null; render(); showCert(si, ai);
+    });
+    main.querySelectorAll('[data-name]').forEach(inp => inp.onchange = () => { names[+inp.dataset.name] = inp.value.trim() || `${+inp.dataset.name + 1}號`; store.set('names', names); render(); main.querySelector('details').open = true; });
+    document.getElementById('awardReset').onclick = () => { given = {}; pickStu = null; store.set('given', given); render(); };
+  }
+  if (id === 'bye') {
+    document.getElementById('party').onclick = confetti;
+  }
+}
+let lastVote = [];
+const chips = document.getElementById('chips');
+function render() {
+  chips.innerHTML = STEPS.map((s, i) => `<button class="chip" type="button" data-step="${i}" ${i === cur ? 'aria-current="step"' : ''} aria-label="第${i + 1}關：${s.label}">${s.label}</button>`).join('');
+  chips.querySelectorAll('[data-step]').forEach(b => b.onclick = () => go(+b.dataset.step));
+  const y = window.scrollY;
+  main.innerHTML = STEPS[cur].render();
+  mount();
+  document.getElementById('prev').innerHTML = zh('上一關');
+  document.getElementById('next').innerHTML = zh(cur === STEPS.length - 1 ? '回到開場' : '下一關');
+  document.getElementById('prev').disabled = cur === 0;
+  window.scrollTo(0, y);
+}
+function go(i) {
+  cur = (i + STEPS.length) % STEPS.length;
+  if (location.hash !== '#' + STEPS[cur].id) history.replaceState(null, '', '#' + STEPS[cur].id);
+  resetClock(); render();
+  document.querySelector('.wrap').scrollIntoView({ block: 'start' });
+  if (STEPS[cur].id === 'bye') confetti();
+}
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('next').onclick = () => go(cur + 1);
+document.addEventListener('keydown', e => {
+  if (e.target.closest('input')) return;
+  if (e.key === 'Escape') document.getElementById('layer').innerHTML = '';
+  if (e.key === 'ArrowRight' && cur < STEPS.length - 1) go(cur + 1);
+  if (e.key === 'ArrowLeft' && cur > 0) go(cur - 1);
+});
+window.addEventListener('hashchange', () => { const i = STEPS.findIndex(s => '#' + s.id === location.hash); if (i >= 0 && i !== cur) go(i); });
+document.querySelectorAll('[data-zh]').forEach(el => el.innerHTML = zh(el.dataset.zh));
+const startAt = STEPS.findIndex(s => '#' + s.id === location.hash);
+cur = startAt >= 0 ? startAt : 0;
+resetClock(); render();
+</script>
+
+<a href="../index.html#board" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body></html>

@@ -1,0 +1,57 @@
+{
+  "items": [
+    {
+      "id": "aquarius",
+      "zone": "board",
+      "title": "水瓶座 Aquarius",
+      "summary": "五大元素的接接樂！把自己任務牌上的元素連成七張就贏。練習輪流等待、遵守規則，也學會看懂別人在做什麼。",
+      "audience": "二年級資源班",
+      "skills": [
+        "輪流等待",
+        "遵守規則",
+        "輸贏情緒",
+        "觀點取替",
+        "策略思考"
+      ],
+      "links": [
+        {
+          "label": "水瓶座玩法（app）",
+          "url": "aquarius/rules.html"
+        },
+        {
+          "label": "基本玩法與行動牌影片、小測驗",
+          "url": "aquarius/intro.html"
+        },
+        {
+          "label": "出牌小妙招（總結課上課網頁）",
+          "url": "aquarius/lesson.html"
+        },
+        {
+          "label": "水瓶座結業式（結尾活動）",
+          "url": "aquarius/closing.html"
+        }
+      ]
+    },
+    {
+      "id": "exam-day",
+      "zone": "lesson",
+      "title": "小勇的考試日大冒險",
+      "summary": "陪小勇走過期中考這一天，一共六站：裝鉛筆盒、身體警報器、情境影片紅綠牌、舉手求助練習、等待魔法、分數小劇場。每站拿一顆星星，最後做出自己的勇氣卡。",
+      "audience": "二年級資源班・期中考前",
+      "skills": [
+        "情緒辨識",
+        "情緒調節",
+        "遵守規則",
+        "求助",
+        "輪流等待",
+        "面對挫折"
+      ],
+      "links": [
+        {
+          "label": "考試日大冒險（上課互動網頁）",
+          "url": "exam/adventure.html"
+        }
+      ]
+    }
+  ]
+}

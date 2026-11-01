@@ -1,0 +1,29 @@
+{
+  "name": "社會技巧島",
+  "short_name": "社會技巧島",
+  "description": "我設計的桌遊、社會技巧課程與活動。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#CFEAF2",
+  "theme_color": "#CFEAF2",
+  "lang": "zh-Hant",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>社會技巧島</title>
+<meta name="description" content="我設計的桌遊、社會技巧課程與活動，都放在這座島上。">
+<meta name="theme-color" content="#CFEAF2">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="社會技巧島">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:type" content="website">
+<meta property="og:title" content="社會技巧島">
+<meta property="og:description" content="我設計的桌遊、社會技巧課程與活動，都放在這座島上。">
+<meta property="og:url" content="https://a890823lily-boop.github.io/board-game/">
+<meta property="og:image" content="https://a890823lily-boop.github.io/board-game/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&display=swap">
+<style>
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Layout: an illustrated island map up top (four harbours = four kinds of material), filter chips under it, then a grid of material cards; teachers who can edit get add/edit/delete in place. Deliberately one sunny sea-and-sand look, every colour explicit. */
+:root {
+  color-scheme: light;
+  --sea: #CFEAF2;
+  --sea-deep: #8CC9DA;
+  --sand: #F6E7C1;
+  --grass: #B9DB8E;
+  --ink: #23383F;
+  --muted: #5F7479;
+  --card: #FFFFFF;
+  --line: #E3DCC8;
+  --coral: #E3684A;
+  --teal: #1F7F8C;
+  --teal-soft: #DDF0F2;
+  --sun: #F4C14B;
+  --sun-soft: #FCF0CF;
+  --leaf: #4E8B3A;
+  --plum: #7A5197;
+  --z-board: #E3684A;
+  --z-lesson: #1F7F8C;
+  --z-practice: #4E8B3A;
+  --z-tool: #7A5197;
+  --f-display: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB", serif;
+  --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--sea); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 calc(96px + env(safe-area-inset-bottom, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--sea); }
+button, input, select, textarea { font: inherit; color: inherit; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, .pin:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; display: grid; gap: 20px; }
+
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--sea); padding-block: 12px 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.appbar h1 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, 5vw, 34px); line-height: 1.1; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; }
+.appbar h1 svg { width: 38px; height: 38px; flex: none; }
+.iconbtn { cursor: pointer; width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--card); color: var(--ink); display: grid; place-items: center; box-shadow: 0 2px 0 rgba(35,56,63,.12); }
+.iconbtn svg { width: 24px; height: 24px; }
+.iconbtn.add { background: var(--teal); color: #fff; box-shadow: 0 3px 0 #155B64; }
+.tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: #FFFDF6; border-top: 2px solid var(--line);
+  padding: 6px max(6px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px)); }
+.tabbar .in { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.tab { cursor: pointer; border: 0; background: none; border-radius: 16px; padding: 6px 2px 5px; display: grid; justify-items: center; gap: 2px; color: var(--muted); font-weight: 700; font-size: 14px; min-width: 0; }
+.tab .ti { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; }
+.tab .ti svg { width: 22px; height: 22px; }
+.tab[aria-current="page"] { color: var(--ink); background: var(--teal-soft); }
+.tab[aria-current="page"] .ti { background: var(--tc); color: #fff; }
+.banner { border-radius: 26px; padding: 20px 22px; color: #fff; display: flex; align-items: center; gap: 16px; }
+.banner svg { width: 64px; height: 64px; flex: none; }
+.banner h2 { margin: 0; font-family: var(--f-display); font-size: clamp(30px, 6vw, 42px); line-height: 1.15; }
+.banner p { margin: 2px 0 0; opacity: .92; }
+.hello { background: rgba(255,253,244,.9); border-radius: 22px; padding: 16px 18px; display: grid; gap: 4px; }
+.hello b { font-family: var(--f-display); font-size: 24px; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 760px) { .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.tile { cursor: pointer; border: 0; border-radius: 22px; padding: 16px; color: #fff; text-align: left; display: grid; gap: 4px; min-height: 120px; align-content: space-between; box-shadow: 0 3px 0 rgba(35,56,63,.15); }
+.tile svg { width: 40px; height: 40px; }
+.tile b { font-family: var(--f-display); font-size: 24px; }
+.tile span { font-size: 14px; opacity: .92; }
+.install { cursor: pointer; border: 0; width: 100%; text-align: left; background: #FFFDF4; border-radius: 22px; padding: 12px 16px; display: flex; gap: 14px; align-items: center; box-shadow: 0 2px 0 rgba(35,56,63,.1); }
+.install img { width: 56px; height: 56px; border-radius: 14px; flex: none; }
+.install b { display: block; font-family: var(--f-display); font-size: 21px; }
+.install span { color: var(--muted); font-size: 14px; }
+.howto { display: grid; gap: 14px; }
+.howto .big { display: flex; gap: 16px; align-items: center; }
+.howto .big img { width: 96px; height: 96px; border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+.howto h3 { margin: 0; font-size: 18px; }
+.howto ol { margin: 4px 0 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.sech { margin: 6px 0 0; font-family: var(--f-display); font-size: 24px; }
+.searchrow { display: flex; gap: 8px; }
+.hbtns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn { cursor: pointer; border: 0; border-radius: 999px; padding: 9px 20px; font-weight: 700; background: var(--teal); color: #fff; box-shadow: 0 3px 0 #155B64; }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #155B64; }
+.btn.ghost { background: var(--card); color: var(--teal); box-shadow: 0 3px 0 var(--line); border: 2px solid var(--line); }
+.btn.danger { background: var(--coral); box-shadow: 0 3px 0 #A94530; }
+.btn.small { padding: 4px 12px; font-size: 14px; }
+.btn:disabled { opacity: .5; cursor: default; }
+
+/* map */
+.map { position: relative; border-radius: 28px; overflow: hidden; background: var(--sea-deep); }
+.map svg { display: block; width: 100%; height: auto; }
+.pin { cursor: pointer; }
+.pin .disc { transition: transform .15s ease; transform-box: fill-box; transform-origin: center; }
+.pin:hover .disc, .pin.on .disc { transform: scale(1.08); }
+.pin .lab { font-family: var(--f-display); font-weight: 700; font-size: 30px; fill: var(--ink); paint-order: stroke; stroke: #FFFDF4; stroke-width: 7px; stroke-linejoin: round; }
+.pin .cnt { font-family: var(--f-body); font-weight: 900; font-size: 20px; fill: #fff; }
+.pin.on .ring { stroke: var(--ink); }
+.maphint { pointer-events: none; position: absolute; left: 14px; bottom: 12px; background: rgba(255,253,244,.9); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--muted); }
+@media (max-width: 560px) { .maphint { display: none; } }
+
+/* filters */
+.filters { display: grid; gap: 10px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.chip { cursor: pointer; border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 14px; font-size: 15px; font-weight: 700; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.chip i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip.skill { font-weight: 400; font-size: 14px; }
+.search { flex: 1 1 220px; min-width: 0; border: 2px solid var(--line); border-radius: 999px; padding: 6px 14px; background: var(--card); }
+.flabel { font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: .08em; }
+
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; align-items: start; }
+.item { background: var(--card); border-radius: 22px; padding: 18px; display: grid; gap: 10px; min-width: 0; box-shadow: 0 2px 0 rgba(35,56,63,.08); }
+.item .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.zt { font-size: 13px; font-weight: 700; border-radius: 999px; padding: 2px 10px; color: #fff; }
+.aud { font-size: 13px; color: var(--muted); }
+.item h3 { margin: 0; font-family: var(--f-display); font-size: 26px; line-height: 1.25; text-wrap: balance; }
+.item p { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.skills { display: flex; gap: 6px; flex-wrap: wrap; }
+.skills span { font-size: 13px; background: var(--sun-soft); color: #7A5A12; border-radius: 999px; padding: 1px 10px; }
+.links { display: grid; gap: 6px; }
+.links a { display: flex; justify-content: space-between; gap: 10px; align-items: center; text-decoration: none; color: var(--teal); background: var(--teal-soft); border-radius: 12px; padding: 8px 12px; font-weight: 700; font-size: 15px; overflow-wrap: anywhere; }
+.links a span { flex: none; }
+.edits { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; border-top: 2px dashed var(--line); padding-top: 10px; font-size: 14px; }
+.empty { background: rgba(255,253,244,.85); border-radius: 22px; padding: 28px 20px; text-align: center; color: var(--muted); display: grid; gap: 10px; justify-items: center; }
+.empty b { font-family: var(--f-display); font-size: 24px; color: var(--ink); }
+.count { color: var(--muted); font-size: 14px; }
+
+/* editor */
+.overlay { position: fixed; inset: 0; z-index: 30; background: rgba(35,56,63,.45); display: grid; place-items: center;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.panel { width: min(640px, 100%); max-height: 100%; overflow: auto; background: var(--card); border-radius: 24px; padding: 22px; display: grid; gap: 14px; }
+.panel h2 { margin: 0; font-family: var(--f-display); font-size: 28px; }
+.field { display: grid; gap: 4px; }
+.field label, .field .lb { font-size: 14px; font-weight: 700; color: var(--muted); }
+.field input, .field select, .field textarea { width: 100%; min-width: 0; border: 2px solid var(--line); border-radius: 12px; padding: 8px 12px; background: #FFFDF8; }
+.field textarea { min-height: 80px; resize: vertical; }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.lrow { display: grid; grid-template-columns: 1fr 1.6fr auto; gap: 8px; align-items: center; }
+@media (max-width: 520px) { .lrow { grid-template-columns: 1fr; } }
+.pick { display: flex; gap: 6px; flex-wrap: wrap; }
+.pick button { cursor: pointer; border: 2px solid var(--line); background: #fff; border-radius: 999px; padding: 2px 12px; font-size: 14px; }
+.pick button[aria-pressed="true"] { background: var(--sun); border-color: var(--sun); }
+.err { color: var(--coral); font-weight: 700; font-size: 14px; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 40; background: var(--ink); color: #fff; border-radius: 999px; padding: 8px 18px; font-size: 15px; max-width: calc(100% - 32px); }
+.note { font-size: 14px; color: var(--muted); background: rgba(255,253,244,.85); border-radius: 14px; padding: 10px 14px; }
+footer { text-align: center; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .pin .disc { transition: none; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const ZONES = {
+  board:    { name: '桌遊港', desc: '我設計的桌遊', color: 'var(--z-board)' },
+  lesson:   { name: '課程村', desc: '社會技巧課程', color: 'var(--z-lesson)' },
+  practice: { name: '練習營', desc: '活動與學習單', color: 'var(--z-practice)' },
+  tool:     { name: '寶物屋', desc: '教具與資源', color: 'var(--z-tool)' },
+};
+const SKILL_PRESETS = ['輪流等待', '遵守規則', '輸贏情緒', '情緒辨識', '情緒調節', '合作', '溝通表達', '傾聽', '求助', '觀點取替', '問題解決', '策略思考', '自我控制'];
+const HEAD = '<title>社會技巧島</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n<link rel="apple-touch-icon" href="icon-180.png">\n<link rel="icon" type="image/png" href="icon-180.png">\n<meta name="apple-mobile-web-app-title" content="社會技巧島">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&display=swap">\n';
+const PREFIX = '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>';
+
+let data = { items: [] }, loaded = false;
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const isLocal = u => /^[a-z0-9][a-z0-9_\-\/]*\.html$/i.test(String(u || '').trim()) && !String(u).includes('..');
+const safeUrl = u => (/^https?:\/\//i.test(String(u || '').trim()) || isLocal(u)) ? String(u).trim() : '';
+let zone = 'all', skill = null, q = '', view = 'home';
+const VIEWS = ['home', 'board', 'lesson', 'practice', 'tool', 'search'];
+let canEdit = false, artifactNS = null, readOnly = false;
+let confirmDel = null, editing = null, saving = false, formErr = '';
+
+/* ---------- island map ---------- */
+const PIN_POS = { board: [230, 400], lesson: [500, 170], practice: [790, 330], tool: [560, 420] };
+function islandSVG() {
+  const count = z => data.items.filter(i => i.zone === z).length;
+  const pins = Object.entries(ZONES).map(([k, z]) => {
+    const [x, y] = PIN_POS[k];
+    return `<g class="pin ${zone === k ? 'on' : ''}" data-zone="${k}" tabindex="0" role="button" aria-label="${z.name}：${z.desc}，${count(k)} 項">
+      <g class="disc"><circle class="ring" cx="${x}" cy="${y}" r="44" fill="#FFFDF4" stroke="#FFFDF4" stroke-width="5"/><circle cx="${x}" cy="${y}" r="36" fill="${z.color}"/>
+      ${pinIcon(k, x, y)}</g>
+      <circle cx="${x + 34}" cy="${y - 32}" r="17" fill="#23383F"/><text class="cnt" x="${x + 34}" y="${y - 25}" text-anchor="middle">${count(k)}</text>
+      <text class="lab" x="${x}" y="${y + 80}" text-anchor="middle">${z.name}</text></g>`;
+  }).join('');
+  return `<svg viewBox="0 0 1000 560" role="group" aria-label="社會技巧島地圖">
+    <rect width="1000" height="560" fill="#8CC9DA"/>
+    <g stroke="#B9E1EC" stroke-width="5" fill="none" stroke-linecap="round" opacity=".9">
+      <path d="M40 70 q20 -14 40 0 t40 0"/><path d="M860 60 q20 -14 40 0 t40 0"/><path d="M60 500 q20 -14 40 0 t40 0"/><path d="M880 500 q20 -14 40 0 t40 0"/><path d="M780 120 q16 -10 32 0 t32 0"/>
+    </g>
+    <path d="M150 300 C140 190 250 95 420 80 C560 66 720 70 830 150 C930 222 920 360 860 430 C790 512 640 520 500 515 C350 512 220 500 175 430 C155 400 152 350 150 300 Z" fill="#F6E7C1"/>
+    <path d="M190 300 C185 205 280 120 425 108 C560 97 705 102 805 168 C890 228 880 350 828 410 C765 482 635 488 505 485 C365 482 250 472 210 410 C195 385 192 340 190 300 Z" fill="#B9DB8E"/>
+    <g fill="#8DBF62"><circle cx="340" cy="230" r="26"/><circle cx="368" cy="214" r="22"/><circle cx="660" cy="210" r="24"/><circle cx="690" cy="226" r="20"/><circle cx="420" cy="330" r="18"/><circle cx="700" cy="420" r="18"/></g>
+    <g fill="#6E5236"><rect x="336" y="248" width="8" height="18" rx="2"/><rect x="657" y="228" width="8" height="18" rx="2"/></g>
+    <path d="M300 300 C380 290 430 250 500 250 C570 250 620 300 700 320" stroke="#EADBB2" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="2 20"/>
+    <g><rect x="90" y="392" width="110" height="16" rx="4" fill="#A97C50"/><rect x="100" y="408" width="8" height="26" fill="#7C5A38"/><rect x="180" y="408" width="8" height="26" fill="#7C5A38"/></g>
+    <g transform="translate(70 360)"><path d="M0 18 h50 l-8 14 h-34 z" fill="#E3684A"/><path d="M24 18 V-14 L44 12 Z" fill="#FFFDF4"/><rect x="23" y="-14" width="3" height="32" fill="#6E5236"/></g>
+    <circle cx="905" cy="80" r="34" fill="#F4C14B"/>
+    ${pins}
+  </svg>`;
+}
+function pinIcon(k, x, y) {
+  if (k === 'board') return `<g transform="translate(${x - 20} ${y - 18})" fill="#fff"><rect x="0" y="6" width="22" height="30" rx="4" opacity=".7"/><rect x="14" y="0" width="24" height="32" rx="4"/><circle cx="26" cy="16" r="5" fill="${'#E3684A'}"/></g>`;
+  if (k === 'lesson') return `<g transform="translate(${x - 20} ${y - 18})" fill="#fff"><path d="M20 0 L40 16 H34 V36 H6 V16 H0 Z"/><rect x="16" y="22" width="8" height="14" fill="#1F7F8C"/></g>`;
+  if (k === 'practice') return `<g transform="translate(${x - 20} ${y - 18})" fill="#fff"><path d="M20 2 L40 36 H0 Z"/><path d="M20 14 L28 36 H12 Z" fill="#4E8B3A"/></g>`;
+  return `<g transform="translate(${x - 20} ${y - 16})" fill="#fff"><rect x="0" y="12" width="40" height="22" rx="4"/><path d="M0 14 Q20 -6 40 14 Z"/><rect x="16" y="16" width="8" height="8" rx="2" fill="#7A5197"/></g>`;
+}
+
+/* ---------- render ---------- */
+const root = document.getElementById('root');
+function filtered() {
+  const needle = q.trim().toLowerCase();
+  return data.items.filter(i => (zone === 'all' || i.zone === zone) && (!skill || (i.skills || []).includes(skill)) &&
+    (!needle || [i.title, i.summary, i.audience, ...(i.skills || [])].join(' ').toLowerCase().includes(needle)));
+}
+function allSkills() { const s = new Set(); data.items.forEach(i => (i.skills || []).forEach(k => s.add(k))); return [...s]; }
+function card(i) {
+  const z = ZONES[i.zone] || ZONES.board;
+  const links = (i.links || []).filter(l => safeUrl(l.url));
+  const edit = canEdit ? `<div class="edits">${confirmDel === i.id
+      ? `<span>確定要從島上移除「${esc(i.title)}」嗎？</span><button class="btn danger small" type="button" data-del-yes="${esc(i.id)}">移除</button><button class="btn ghost small" type="button" data-del-no>取消</button>`
+      : `<button class="btn ghost small" type="button" data-edit="${esc(i.id)}">編輯</button><button class="btn ghost small" type="button" data-del="${esc(i.id)}">移除</button>`}</div>` : '';
+  return `<article class="item">
+    <div class="top"><span class="zt" style="background:${z.color}">${z.name}</span>${i.audience ? `<span class="aud">${esc(i.audience)}</span>` : ''}</div>
+    <h3>${esc(i.title)}</h3>
+    ${i.summary ? `<p>${esc(i.summary)}</p>` : ''}
+    ${(i.skills || []).length ? `<div class="skills">${i.skills.map(s => `<span>${esc(s)}</span>`).join('')}</div>` : ''}
+    ${links.length ? `<div class="links">${links.map(l => isLocal(l.url) ? `<a href="${esc(safeUrl(l.url))}">${esc(l.label || '開啟')}<span>→</span></a>` : `<a href="${esc(safeUrl(l.url))}" target="_blank" rel="noopener">${esc(l.label || '開啟')}<span>↗</span></a>`).join('')}</div>` : ''}
+    ${edit}
+  </article>`;
+}
+const ICON = {
+  home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15c0-4 4-7 9-7s9 3 9 7c0 2-3 4-9 4s-9-2-9-4z" fill="currentColor" opacity=".35"/><path d="M12 4v7M12 4l5 3-5 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>',
+  search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+  add: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>',
+};
+const zoneIcon = (k, col = 'currentColor') => `<svg viewBox="-24 -22 48 48" aria-hidden="true" style="color:${col}">${pinIcon(k, 0, 0).replace(/fill="#fff"/, 'fill="currentColor"').replace(/fill="#[0-9A-Fa-f]{6}"/g, 'fill="rgba(0,0,0,.25)"')}</svg>`;
+const LOGO = '<img src="icon-180.png" alt="" width="40" height="40" style="border-radius:11px;flex:none">';
+const LOGO_OLD = '<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#8CC9DA"/><path d="M6 24c0-6 6-10 14-10s14 4 14 10c0 3-6 6-14 6S6 27 6 24z" fill="#F6E7C1"/><path d="M10 23c0-4 5-7 10-7s10 3 10 7c0 2-4 4-10 4s-10-2-10-4z" fill="#B9DB8E"/><circle cx="31" cy="10" r="4" fill="#F4C14B"/></svg>';
+function zoneItems(k) { return data.items.filter(i => i.zone === k); }
+function matches(list) {
+  const needle = q.trim().toLowerCase();
+  return list.filter(i => (!skill || (i.skills || []).includes(skill)) &&
+    (!needle || [i.title, i.summary, i.audience, ...(i.skills || [])].join(' ').toLowerCase().includes(needle)));
+}
+function skillChips(list) {
+  const s = new Set(); list.forEach(i => (i.skills || []).forEach(k => s.add(k)));
+  if (!s.size) return '';
+  return `<div class="chips" role="group" aria-label="練習的技巧"><span class="flabel">練習的技巧</span>${[...s].map(k => `<button class="chip skill" type="button" data-s="${esc(k)}" aria-pressed="${skill === k}">${esc(k)}</button>`).join('')}</div>`;
+}
+function grid(list, emptyMsg) {
+  return list.length ? `<div class="grid">${list.map(card).join('')}</div>` : `<div class="empty"><b>這裡還沒有東西</b><span>${emptyMsg}</span></div>`;
+}
+function viewHome() {
+  const recent = data.items.slice(-3).reverse();
+  return `
+    <div class="map">${islandSVG()}<span class="maphint">點港口，看看那裡有什麼</span></div>
+    <div class="tiles">${Object.entries(ZONES).map(([k, z]) => `<button class="tile" type="button" data-go="${k}" style="background:${z.color}">${zoneIcon(k, '#fff')}<b>${z.name}</b><span>${z.desc}・${zoneItems(k).length} 項</span></button>`).join('')}</div>
+    <button class="install" type="button" id="install"><img src="icon-180.png" alt=""><span><b>把社會技巧島放到手機主畫面</b><span>點這裡看怎麼加，之後點圖示就能打開。</span></span></button>
+    <h2 class="sech">最近放上島的</h2>
+    ${!loaded ? `<div class="empty"><b>島上的東西載入中……</b></div>` : data.items.length ? `<div class="grid">${recent.map(card).join('')}</div>` : `<div class="empty"><b>島上還空空的</b><span>${canEdit ? '按右上角的「＋」，放進第一個桌遊或課程。' : '老師還沒有放東西上來。'}</span></div>`}`;
+}
+function viewZone(k) {
+  const z = ZONES[k], all = zoneItems(k), list = matches(all);
+  return `
+    <section class="banner" style="background:${z.color}">${zoneIcon(k, '#fff')}<div><h2>${z.name}</h2><p>${z.desc}・共 ${all.length} 項</p></div></section>
+    ${skillChips(all)}
+    ${grid(list, canEdit ? '按右上角的「＋」放一個進來。' : (all.length ? '換一個技巧看看。' : '老師還沒有放東西上來。'))}`;
+}
+function viewSearch() {
+  const list = matches(data.items);
+  return `
+    <div class="searchrow"><input class="search" id="q" type="search" placeholder="搜尋名稱、技巧或對象" value="${esc(q)}" aria-label="搜尋"></div>
+    ${skillChips(data.items)}
+    <div class="count">${q || skill ? `找到 ${list.length} 項` : `全島共 ${data.items.length} 項`}</div>
+    ${grid(list, '換個關鍵字或技巧看看。')}`;
+}
+function render() {
+  zone = ZONES[view] ? view : 'all';
+  const body = view === 'home' ? viewHome() : view === 'search' ? viewSearch() : viewZone(view);
+  const tabs = [['home', '島嶼', 'var(--teal)'], ...Object.entries(ZONES).map(([k, z]) => [k, z.name, z.color])];
+  root.innerHTML = `<div class="wrap">
+    <header class="appbar">
+      <h1>${LOGO}社會技巧島</h1>
+      <div class="hbtns">
+        <button class="iconbtn" type="button" data-go="search" aria-label="搜尋">${ICON.search}</button>
+        ${canEdit ? `<button class="iconbtn add" type="button" id="add" aria-label="新增到島上">${ICON.add}</button>` : ''}
+      </div>
+    </header>
+    ${body}
+    ${readOnly ? `<p class="note">這個檢視只能瀏覽，不能修改島上的內容。</p>` : ''}
+    <footer>社會技巧島｜二年級資源班</footer>
+  </div>
+  <nav class="tabbar" aria-label="島上的地點"><div class="in">${tabs.map(([k, n, c]) => `<button class="tab" type="button" data-go="${k}" style="--tc:${c}" ${view === k ? 'aria-current="page"' : ''}><span class="ti">${k === 'home' ? ICON.home : zoneIcon(k)}</span>${n}</button>`).join('')}</div></nav>`;
+  mount();
+}
+function go(v) {
+  if (!VIEWS.includes(v)) v = 'home';
+  if (v !== view) { skill = null; confirmDel = null; }
+  view = v;
+  if (location.hash !== '#' + v) history.replaceState(null, '', '#' + v);
+  render(); window.scrollTo(0, 0);
+  if (v === 'search') { const n = document.getElementById('q'); if (n) n.focus(); }
+}
+window.addEventListener('hashchange', () => { const v = location.hash.slice(1); if (VIEWS.includes(v) && v !== view) go(v); });
+function mount() {
+  root.querySelectorAll('[data-zone]').forEach(p => {
+    const open = () => go(p.dataset.zone);
+    p.onclick = open; p.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } };
+  });
+  root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
+  root.querySelectorAll('[data-s]').forEach(b => b.onclick = () => { skill = skill === b.dataset.s ? null : b.dataset.s; render(); });
+  const qi = document.getElementById('q');
+  if (qi) qi.oninput = () => { q = qi.value; const pos = qi.selectionStart; render(); const n = document.getElementById('q'); n.focus(); n.setSelectionRange(pos, pos); };
+  const add = document.getElementById('add'); if (add) add.onclick = () => openEditor(null);
+  const ins = document.getElementById('install'); if (ins) ins.onclick = showInstall;
+  root.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openEditor(b.dataset.edit));
+  root.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { confirmDel = b.dataset.del; render(); });
+  root.querySelectorAll('[data-del-no]').forEach(b => b.onclick = () => { confirmDel = null; render(); });
+  root.querySelectorAll('[data-del-yes]').forEach(b => b.onclick = () => {
+    const next = { ...data, items: data.items.filter(i => i.id !== b.dataset.delYes) };
+    save(next, '已從島上移除');
+  });
+}
+
+/* ---------- editor ---------- */
+let draft = null;
+function openEditor(id) {
+  const src = id ? data.items.find(i => i.id === id) : null;
+  draft = src ? JSON.parse(JSON.stringify(src)) : { id: '', zone: zone === 'all' ? 'board' : zone, title: '', summary: '', audience: '', skills: [], links: [{ label: '', url: '' }] };
+  if (!draft.links.length) draft.links.push({ label: '', url: '' });
+  editing = id || 'new'; formErr = '';
+  drawEditor();
+}
+function drawEditor() {
+  let ov = document.getElementById('ov');
+  if (!ov) { ov = document.createElement('div'); ov.id = 'ov'; ov.className = 'overlay'; document.body.appendChild(ov); }
+  const custom = (draft.skills || []).filter(s => !SKILL_PRESETS.includes(s));
+  ov.innerHTML = `<form class="panel" id="form" novalidate>
+    <h2>${editing === 'new' ? '新增到島上' : '編輯'}</h2>
+    <div class="two">
+      <div class="field"><label for="f-title">名稱</label><input id="f-title" value="${esc(draft.title)}" placeholder="例如：水瓶座 Aquarius" required></div>
+      <div class="field"><label for="f-zone">放在哪裡</label><select id="f-zone">${Object.entries(ZONES).map(([k, z]) => `<option value="${k}" ${draft.zone === k ? 'selected' : ''}>${z.name}（${z.desc}）</option>`).join('')}</select></div>
+    </div>
+    <div class="field"><label for="f-summary">簡介</label><textarea id="f-summary" placeholder="這個桌遊或課程在做什麼？">${esc(draft.summary)}</textarea></div>
+    <div class="field"><label for="f-aud">適用對象</label><input id="f-aud" value="${esc(draft.audience)}" placeholder="例如：二年級資源班"></div>
+    <div class="field"><span class="lb">練習的社會技巧（可多選）</span>
+      <div class="pick">${SKILL_PRESETS.concat(custom).map(s => `<button type="button" data-pick="${esc(s)}" aria-pressed="${draft.skills.includes(s)}">${esc(s)}</button>`).join('')}</div>
+      <div class="lrow" style="grid-template-columns:1fr auto"><input id="f-newskill" placeholder="其他技巧，輸入後按「加入」" aria-label="新增其他技巧"><button class="btn ghost small" type="button" id="f-addskill">加入</button></div>
+    </div>
+    <div class="field"><span class="lb">連結（網頁、影片、雲端檔案都可以）</span>
+      ${draft.links.map((l, i) => `<div class="lrow"><input id="f-ll${i}" data-ll="${i}" value="${esc(l.label)}" placeholder="連結名稱" aria-label="第 ${i + 1} 個連結名稱"><input id="f-lu${i}" data-lu="${i}" value="${esc(l.url)}" placeholder="https://..." aria-label="第 ${i + 1} 個連結網址" inputmode="url"><button class="btn ghost small" type="button" data-lrm="${i}" aria-label="移除第 ${i + 1} 個連結">移除</button></div>`).join('')}
+      <div><button class="btn ghost small" type="button" id="f-addlink">再加一個連結</button></div>
+    </div>
+    ${formErr ? `<div class="err" role="alert">${esc(formErr)}</div>` : ''}
+    <div class="hbtns" style="justify-content:flex-end">
+      <button class="btn ghost" type="button" id="f-cancel">取消</button>
+      <button class="btn" type="submit" ${saving ? 'disabled' : ''}>${saving ? '儲存中…' : '儲存到島上'}</button>
+    </div>
+  </form>`;
+  const $ = id => document.getElementById(id);
+  const pull = () => {
+    draft.title = $('f-title').value; draft.zone = $('f-zone').value; draft.summary = $('f-summary').value; draft.audience = $('f-aud').value;
+    ov.querySelectorAll('[data-ll]').forEach(el => draft.links[+el.dataset.ll].label = el.value);
+    ov.querySelectorAll('[data-lu]').forEach(el => draft.links[+el.dataset.lu].url = el.value);
+  };
+  ov.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => { pull(); const s = b.dataset.pick; draft.skills = draft.skills.includes(s) ? draft.skills.filter(x => x !== s) : [...draft.skills, s]; drawEditor(); });
+  $('f-addskill').onclick = () => { pull(); const v = $('f-newskill').value.trim(); if (v && !draft.skills.includes(v)) draft.skills.push(v); drawEditor(); };
+  $('f-addlink').onclick = () => { pull(); draft.links.push({ label: '', url: '' }); drawEditor(); };
+  ov.querySelectorAll('[data-lrm]').forEach(b => b.onclick = () => { pull(); draft.links.splice(+b.dataset.lrm, 1); if (!draft.links.length) draft.links.push({ label: '', url: '' }); drawEditor(); });
+  $('f-cancel').onclick = closeEditor;
+  ov.onclick = e => { if (e.target === ov) closeEditor(); };
+  $('form').onsubmit = e => {
+    e.preventDefault(); pull();
+    const title = draft.title.trim();
+    if (!title) { formErr = '請填寫名稱。'; drawEditor(); $('f-title').focus(); return; }
+    const links = draft.links.map(l => ({ label: l.label.trim(), url: l.url.trim() })).filter(l => l.url || l.label);
+    const bad = links.find(l => !safeUrl(l.url));
+    if (bad) { formErr = `「${bad.label || bad.url || '連結'}」的網址要以 http:// 或 https:// 開頭。`; drawEditor(); return; }
+    const item = { id: draft.id || ('i' + Date.now().toString(36)), zone: draft.zone, title, summary: draft.summary.trim(), audience: draft.audience.trim(), skills: draft.skills, links: links.map(l => ({ label: l.label || l.url, url: l.url })) };
+    const items = editing === 'new' ? [...data.items, item] : data.items.map(i => i.id === item.id ? item : i);
+    save({ ...data, items }, editing === 'new' ? '已放到島上' : '已更新');
+  };
+  setTimeout(() => { const t = $('f-title'); if (t && !t.value) t.focus(); }, 0);
+}
+function showInstall() {
+  let ov = document.getElementById('ov');
+  if (!ov) { ov = document.createElement('div'); ov.id = 'ov'; ov.className = 'overlay'; document.body.appendChild(ov); }
+  ov.innerHTML = `<div class="panel howto" role="dialog" aria-modal="true" aria-label="加到主畫面">
+    <div class="big"><img src="icon-512.png" alt="社會技巧島圖示"><div><h2>社會技巧島</h2><span class="aud">加到主畫面後，像 app 一樣點圖示打開</span></div></div>
+    <div><h3>iPhone、iPad（Safari）</h3><ol><li>用 Safari 打開社會技巧島的網址。</li><li>按下方的「分享」按鈕。</li><li>選「加入主畫面」，名稱填「社會技巧島」，按「新增」。</li></ol></div>
+    <div><h3>Android（Chrome）</h3><ol><li>用 Chrome 打開社會技巧島的網址。</li><li>按右上角「⋮」選單。</li><li>選「加到主畫面」或「安裝應用程式」，按「新增」。</li></ol></div>
+    <p class="note">加好之後，主畫面會出現這個島嶼圖示，點一下就會全螢幕打開社會技巧島。</p>
+    <div class="hbtns" style="justify-content:flex-end"><button class="btn" type="button" id="insClose">知道了</button></div>
+  </div>`;
+  document.getElementById('insClose').onclick = closeEditor;
+  ov.onclick = e => { if (e.target === ov) closeEditor(); };
+  document.getElementById('insClose').focus();
+}
+function closeEditor() { editing = null; draft = null; const ov = document.getElementById('ov'); if (ov) ov.remove(); }
+function toast(t) {
+  let el = document.getElementById('toast');
+  if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+  el.textContent = t; clearTimeout(toast.t); toast.t = setTimeout(() => el.remove(), 3500);
+}
+
+/* ---------- save: republish this page with the new data ---------- */
+function buildDocument(next) {
+  const json = JSON.stringify(next).replace(/</g, '\\u003c');
+  const css = document.getElementById('app-css').textContent;
+  const js = document.getElementById('app-js').textContent;
+  return PREFIX + HEAD + `<style id="app-css">${css}</style>\n<div id="root"></div>\n<script type="application/json" id="island-data">${json}<\/script>\n<script id="app-js">${js}<\/script>\n</body></html>`;
+}
+async function save(next, okMsg) {
+  if (!artifactNS || saving) return;
+  saving = true; if (editing) drawEditor();
+  try {
+    sessionStorage.setItem('island-toast', okMsg);
+  } catch (e) {}
+  try {
+    await artifactNS.publish({ 'index.html': buildDocument(next) });
+    // other open views reload; this one keeps running, so show the new data here
+    data = next; saving = false; confirmDel = null;
+    try { sessionStorage.removeItem('island-toast'); } catch (e) {}
+    closeEditor(); render(); toast(okMsg);
+  } catch (err) {
+    saving = false;
+    try { sessionStorage.removeItem('island-toast'); } catch (e) {}
+    const code = err && err.code;
+    if (code === 'not_writer' || code === 'not_granted') {
+      readOnly = true; canEdit = false; closeEditor(); render(); toast('這個檢視只能瀏覽，不能修改。');
+    } else if (code === 'conflict') {
+      toast('剛剛有其他人更新了島上的內容，頁面會重新整理，請再改一次。');
+    } else if (code === 'capability_disabled') {
+      formErr = '目前的分享設定下，頁面不能直接存檔。請跟 Claude 說要新增或修改什麼。'; if (editing) drawEditor(); else toast(formErr);
+    } else if (code === 'rate_limited') {
+      formErr = '儲存太頻繁了，請稍等一下再按儲存。'; if (editing) drawEditor(); else toast(formErr);
+    } else {
+      formErr = '沒有存成功，請再按一次儲存。'; if (editing) drawEditor(); else toast(formErr);
+    }
+  }
+}
+
+view = VIEWS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+render();
+try { const t = sessionStorage.getItem('island-toast'); if (t) { sessionStorage.removeItem('island-toast'); toast(t); } } catch (e) {}
+fetch('items.json', { cache: 'no-cache' }).then(r => r.json()).then(d => {
+  data = d && Array.isArray(d.items) ? d : { items: [] }; loaded = true; render();
+}).catch(() => { loaded = true; render(); });
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+</script>
+</body>
+</html>

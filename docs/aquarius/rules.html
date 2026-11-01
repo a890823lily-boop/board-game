@@ -1,0 +1,535 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>水瓶座玩法</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@700;900&display=swap">
+<style>
+/* Layout: phone-style rules app — sticky title bar, one topic per screen, fixed bottom tab bar; same poster look as the other 水瓶座 pages (deliberately light-only, every colour explicit) */
+:root {
+  color-scheme: light;
+  --paper: #FFF8EA;
+  --card: #FFFFFF;
+  --line: #EFE4CF;
+  --ink: #3B322C;
+  --muted: #7C6F64;
+  --blue: #2D5FA8;
+  --blue-deep: #1D4482;
+  --blue-soft: #E6EFFB;
+  --red: #D93A2B;
+  --felt: #E5EFE2;
+  --felt-line: #C6DBC1;
+  --good: #2E8B4E;
+  --good-soft: #E1F3E6;
+  --bad: #C2452F;
+  --bad-soft: #FBE6E1;
+  --gold: #F7C948;
+  --gold-deep: #C9971A;
+  --gold-soft: #FDF1D8;
+  --f-kid: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB", "BiauKai", "Noto Sans TC", serif;
+  --f-head: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --tabh: 74px;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--f-kid); font-size: 20px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 calc(var(--tabh) + 30px + env(safe-area-inset-bottom, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+button { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 920px; margin: 0 auto; display: grid; gap: 18px; }
+
+.zt { line-height: 1.5; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--paper); padding-block: 14px 8px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.bar h1 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(24px, 4.6vw, 34px); }
+.bar .sub { font-family: var(--f-head); color: var(--muted); font-size: 14px; }
+@media (max-width: 520px) { .bar .sub { display: none; } }
+
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--card); border-top: 3px solid var(--line);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
+.tabs .in { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
+.tab { border: 0; background: none; cursor: pointer; border-radius: 16px; padding: 6px 2px 4px; display: grid; justify-items: center; gap: 2px; color: var(--muted); min-width: 0; }
+.tab svg { width: 28px; height: 28px; }
+.tab .l { font-family: var(--f-head); font-weight: 700; font-size: 15px; white-space: nowrap; }
+.tab[aria-current="page"] { background: var(--blue-soft); color: var(--blue); }
+@media (max-width: 420px) { .tab .l { font-size: 13px; } .tab svg { width: 24px; height: 24px; } }
+
+.sec { background: var(--card); border: 3px solid var(--line); border-radius: 26px; padding: clamp(16px, 3.4vw, 28px); display: grid; gap: 16px; min-width: 0; }
+.sec h2 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: clamp(26px, 4.6vw, 38px); text-wrap: balance; }
+.sec h3 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--ink); font-size: clamp(22px, 3.8vw, 28px); }
+.sec p { margin: 0; }
+.big { font-size: clamp(22px, 3.6vw, 28px); }
+.red { color: var(--red); font-weight: 700; }
+.speak { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 17px; font-weight: 700; color: var(--blue); background: var(--card); border: 2px solid #BCD0EC; border-radius: 999px; padding: 3px 12px 3px 8px; vertical-align: middle; }
+.speak svg { width: 20px; height: 20px; }
+video { width: 100%; max-width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; background: #1F1F24; display: block; }
+
+.goalline { background: var(--gold-soft); border-radius: 20px; padding: 16px 18px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.goalline .tx { flex: 1 1 240px; min-width: 0; font-size: clamp(22px, 3.6vw, 28px); font-weight: 700; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.fact { background: var(--paper); border-radius: 16px; padding: 10px 14px; display: grid; gap: 2px; }
+.fact b { font-family: var(--f-head); font-size: 26px; color: var(--blue); font-variant-numeric: tabular-nums; }
+.fact span { font-size: 18px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.tile { cursor: pointer; text-align: left; border: 3px solid var(--line); background: var(--card); border-radius: 20px; padding: 14px 16px; display: grid; gap: 4px; color: var(--ink); }
+.tile .n { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 22px; }
+.tile .d { font-size: 17px; color: var(--muted); }
+.links { display: grid; gap: 8px; }
+.links a { font-family: var(--f-head); font-weight: 700; color: var(--blue); font-size: 16px; text-decoration: none; background: var(--blue-soft); border-radius: 14px; padding: 10px 14px; display: flex; justify-content: space-between; gap: 10px; }
+
+/* cards */
+.ecard { position: relative; border-radius: 9%/7%; background: #1F1F24; padding: 5%; box-shadow: 0 4px 10px rgba(40,50,30,.28); flex: none; }
+.board .ecard { position: absolute; }
+.ecard .in { width: 100%; height: 100%; display: grid; gap: 2px; border-radius: 6px; overflow: hidden; }
+.ecard .s { position: relative; border-radius: 4px; overflow: hidden; }
+.ecard .s svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.ecard.lit { box-shadow: 0 0 0 4px #FFE066, 0 4px 10px rgba(40,50,30,.28); }
+.ecard.new { box-shadow: 0 0 0 5px var(--good), 0 4px 10px rgba(40,50,30,.28); }
+.gcard { width: 64px; height: 86px; border-radius: 9px; background: #1F1F24; display: grid; place-items: center; flex: none; }
+.gcard span { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; border: 2px solid rgba(255,255,255,.7); }
+.wild { width: 72px; height: 96px; border-radius: 9px; background: #1F1F24; padding: 5px; flex: none; }
+.wild div { width: 100%; height: 100%; border-radius: 6px; background: linear-gradient(135deg, #5BB8F0 0 20%, #14A3A0 20% 40%, #7BC043 40% 60%, #F2711C 60% 80%, #6B36B0 80%); display: grid; place-items: center; }
+.wild b { background: #FFD23F; color: #C2452F; font-family: var(--f-head); font-size: 14px; border-radius: 999px; padding: 0 8px 2px; transform: rotate(-12deg); }
+.gback { width: 64px; height: 86px; border-radius: 9px; background: #4FAE3E; display: grid; place-items: center; flex: none; }
+
+.els { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.el { display: grid; justify-items: center; gap: 4px; cursor: pointer; border: 0; background: none; padding: 4px; border-radius: 14px; color: var(--ink); }
+.el .c { width: clamp(52px, 12vw, 84px); aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; border: 4px solid #1F1F24; max-width: 100%; }
+.el .c svg { width: 60%; height: 60%; }
+.el .nm { font-size: clamp(18px, 3.2vw, 24px); font-weight: 700; }
+.kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.kind { background: var(--paper); border-radius: 20px; padding: 14px; display: grid; grid-template-columns: 1fr; gap: 12px; align-content: start; min-width: 0; }
+.kind .tx { display: grid; gap: 4px; min-width: 0; }
+.kind .nm { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 24px; }
+.kind .ds { font-size: 19px; }
+.row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.cap { font-size: 16px; color: var(--muted); text-align: center; }
+
+/* steps */
+.steps { display: grid; gap: 12px; counter-reset: s; }
+.stepi { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: center; background: var(--paper); border-radius: 20px; padding: 12px 16px; }
+.stepi .n { width: 52px; height: 52px; border-radius: 50%; background: var(--blue); color: #fff; font-family: var(--f-head); font-weight: 900; font-size: 26px; display: grid; place-items: center; }
+.stepi .q { font-size: clamp(22px, 3.6vw, 28px); font-weight: 700; }
+.stepi .a { font-size: 18px; color: var(--muted); }
+.note { background: var(--gold-soft); border-radius: 18px; padding: 12px 16px; font-size: clamp(20px, 3.2vw, 24px); }
+
+/* connect rules */
+.felt { background: var(--felt); border: 3px solid var(--felt-line); border-radius: 20px; padding: 14px; display: grid; gap: 12px; min-width: 0; }
+.ex { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px; }
+.exc { background: var(--felt); border: 3px solid var(--felt-line); border-radius: 20px; padding: 12px; display: grid; gap: 8px; justify-items: center; text-align: center; min-width: 0; }
+.exc.no { background: var(--bad-soft); border-color: #F1C2B7; }
+.exc.ok { background: var(--good-soft); border-color: #B9DFC4; }
+.exc .t { font-family: var(--f-head); font-weight: 900; font-size: 20px; }
+.exc.no .t { color: var(--bad); }
+.exc.ok .t { color: var(--good); }
+.exc .d { font-size: 18px; }
+.pair { display: flex; align-items: center; justify-content: center; min-height: 150px; position: relative; }
+.mark { width: 40px; height: 40px; }
+
+/* action cards */
+.acts { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.act { background: var(--paper); border-radius: 20px; padding: 12px; display: grid; grid-template-columns: 78px 1fr; gap: 14px; align-items: start; min-width: 0; }
+.act img { width: 78px; border-radius: 8px; box-shadow: 0 3px 8px rgba(40,50,30,.2); }
+.act .tx { display: grid; gap: 4px; min-width: 0; }
+.act .nm { font-family: var(--f-head); font-weight: 900; color: var(--blue); font-size: 22px; }
+.act .do { font-size: 19px; }
+.act .when { font-size: 18px; color: var(--red); font-weight: 700; }
+.flow { display: grid; gap: 8px; }
+.flow div { background: var(--blue-soft); border-radius: 16px; padding: 10px 16px; font-size: clamp(20px, 3.2vw, 25px); font-weight: 700; color: var(--blue); }
+
+/* try it */
+.status { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pillc { font-family: var(--f-head); font-weight: 900; font-size: 18px; border-radius: 999px; padding: 6px 14px; background: var(--card); color: var(--blue); }
+.meter { display: flex; gap: 5px; }
+.meter i { width: 22px; height: 30px; border-radius: 5px; background: var(--card); border: 2px solid var(--felt-line); display: block; }
+.meter i.on { background: #F2711C; border-color: #C25A16; }
+.board { position: relative; margin: 0 auto; }
+.slot { position: absolute; border: 3px dashed #8FB4E3; border-radius: 9%/7%; background: rgba(255,255,255,.4); cursor: pointer; padding: 0; }
+.slot:hover, .slot:focus-visible { background: rgba(45,95,168,.15); border-color: var(--blue); }
+.slot:disabled { opacity: .3; cursor: default; }
+.hand { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; min-height: 110px; }
+.hcard { border: 0; background: none; padding: 0; cursor: pointer; border-radius: 10px; }
+.hcard[aria-pressed="true"] .ecard { transform: translateY(-12px); box-shadow: 0 0 0 5px var(--blue), 0 10px 16px rgba(40,50,30,.3); }
+.ctl { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn { font-family: var(--f-head); font-weight: 900; font-size: 20px; cursor: pointer; color: #fff; background: var(--blue); border: 0; border-radius: 999px; padding: 8px 22px 10px; box-shadow: 0 4px 0 var(--blue-deep); }
+.btn.ghost { background: var(--card); color: var(--blue); border: 2px solid #BCD0EC; box-shadow: 0 4px 0 #BCD0EC; }
+.btn:disabled { opacity: .35; cursor: default; }
+.msg { border-radius: 16px; padding: 12px 16px; font-size: clamp(20px, 3.2vw, 24px); font-weight: 700; }
+.msg.ok { background: var(--good-soft); color: var(--good); }
+.msg.no { background: var(--bad-soft); color: var(--bad); }
+.msg.info { background: var(--blue-soft); color: var(--blue); }
+.msg.win { background: var(--gold-soft); color: var(--ink); text-align: center; font-size: clamp(26px, 5vw, 38px); }
+footer { text-align: center; color: var(--muted); font-size: 14px; font-family: var(--f-head); }
+@keyframes pop { 0% { transform: scale(.7); opacity: .4 } 70% { transform: scale(1.05) } 100% { transform: scale(1); opacity: 1 } }
+.pop { animation: pop .3s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } }
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <h1 class="hd" data-zh="水瓶座玩法"></h1>
+    <span class="sub">二年級資源班桌遊教學</span>
+  </div>
+  <main id="main"></main>
+  <footer>水瓶座 Aquarius｜玩法整理依據課堂簡報</footer>
+</div>
+<nav class="tabs" aria-label="玩法目錄"><div class="in" id="tabs"></div></nav>
+
+<script>
+const zh = text => `<span class="zt">${text}</span>`;
+const SPEAKER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.3 5.7a9 9 0 0 1 0 12.6"/></svg>';
+function say(text) {
+  try {
+    const s = window.speechSynthesis; if (!s) return;
+    s.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[「」＿]/g, ''));
+    u.lang = 'zh-TW'; u.rate = 0.85;
+    const v = s.getVoices().find(v => /zh[-_]TW/i.test(v.lang)) || s.getVoices().find(v => /^zh/i.test(v.lang));
+    if (v) u.voice = v;
+    s.speak(u);
+  } catch (e) {}
+}
+const sp = text => `<button class="speak" type="button" data-say="${text}">${SPEAKER}${zh('聽')}</button>`;
+
+/* ---------- elements & cards ---------- */
+const EL = {
+  s: { name: '天空', bg: '#5BB8F0', icon: '<path d="M5 31 A15 15 0 0 1 35 31" stroke="#E2453C" stroke-width="3.2" fill="none"/><path d="M8.6 31 A11.4 11.4 0 0 1 31.4 31" stroke="#F4C430" stroke-width="3.2" fill="none"/><path d="M12.2 31 A7.8 7.8 0 0 1 27.8 31" stroke="#3FAE4A" stroke-width="3.2" fill="none"/><g fill="#fff"><circle cx="12" cy="30" r="5"/><circle cx="19" cy="27" r="6.5"/><circle cx="26" cy="30" r="5"/><rect x="12" y="29" width="14" height="6"/></g>' },
+  w: { name: '水', bg: '#14A3A0', icon: '<g fill="#fff" opacity=".85"><circle cx="9" cy="9" r="1.8"/><circle cx="31" cy="12" r="1.5"/><circle cx="28" cy="31" r="1.8"/></g><ellipse cx="18" cy="21" rx="9" ry="5.5" fill="#E8327A"/><path d="M26 21 L34 15 L34 27 Z" fill="#E8327A"/><circle cx="14" cy="20" r="1.4" fill="#fff"/>' },
+  g: { name: '草地', bg: '#7BC043', icon: '<path d="M0 30 Q20 22 40 30 L40 40 L0 40 Z" fill="#4E9A2B"/><g fill="#EC4FA0"><circle cx="20" cy="13" r="4.4"/><circle cx="26.5" cy="18" r="4.4"/><circle cx="24" cy="25.5" r="4.4"/><circle cx="16" cy="25.5" r="4.4"/><circle cx="13.5" cy="18" r="4.4"/></g><circle cx="20" cy="19.5" r="3.6" fill="#F7D25A"/>' },
+  f: { name: '火焰', bg: '#F2711C', icon: '<path d="M20 4 C24 12 32 16 30 26 C29 33 24 37 20 37 C14 37 9 32 10 25 C11 19 15 17 15 11 C18 14 18 17 18 19 C21 15 21 9 20 4 Z" fill="#FFD23F"/><path d="M20 20 C23 24 25 27 24 31 C23 34 21 35 20 35 C17 35 15 32 16 29 C17 26 19 25 20 20 Z" fill="#FFF3B0"/>' },
+  p: { name: '太空', bg: '#6B36B0', icon: '<path d="M20 7 l3.6 7.6 8.3 1 -6.1 5.7 1.6 8.2 -7.4-4.1 -7.4 4.1 1.6-8.2 -6.1-5.7 8.3-1z" fill="#fff"/><g fill="#fff"><circle cx="7" cy="8" r="1.4"/><circle cx="33" cy="33" r="1.6"/><circle cx="8" cy="32" r="1.1"/><circle cx="34" cy="7" r="1.1"/></g>' },
+};
+const ORDER = ['s', 'w', 'g', 'f', 'p'];
+const icon = (k, px) => `<svg viewBox="0 0 40 40" ${px ? `width="${px}" height="${px}"` : ''} aria-hidden="true">${EL[k].icon}</svg>`;
+const sec = (k, px) => `<div class="s" style="background:${EL[k].bg}">${icon(k, px)}</div>`;
+const turn = cs => [cs[3], cs[2], cs[1], cs[0]];   // half a turn: still upright, upside down
+const cardName = cs => [...new Set(cs)].map(k => EL[k].name).join('、');
+function ecard(cs, w, style = '', cls = '') {
+  const [a, b, c, d] = cs;
+  let inner;
+  if (a === b && b === c && c === d) inner = `<div class="in">${sec(a, w * .52)}</div>`;
+  else if (a === b && c === d) inner = `<div class="in" style="grid-template-rows:1fr 1fr">${sec(a, w * .38)}${sec(c, w * .38)}</div>`;
+  else if (a === c && b === d) inner = `<div class="in" style="grid-template-columns:1fr 1fr">${sec(a, w * .34)}${sec(b, w * .34)}</div>`;
+  else inner = `<div class="in" style="grid-template:1fr 1fr/1fr 1fr">${cs.map(k => sec(k, w * .3)).join('')}</div>`;
+  return `<div class="ecard ${cls}" role="img" aria-label="元素牌：${cardName(cs)}" style="width:${w}px;height:${w * 4 / 3}px;${style}">${inner}</div>`;
+}
+const goalCard = k => `<span class="gcard" role="img" aria-label="任務牌：${EL[k].name}"><span style="background:${EL[k].bg}">${icon(k, 32)}</span></span>`;
+const wildCard = () => `<span class="wild" role="img" aria-label="萬用牌"><div><b>WILD</b></div></span>`;
+const X = '<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#C2452F"/><path d="M13 13 L27 27 M27 13 L13 27" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/></svg>';
+const V = '<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#2E8B4E"/><path d="M11 21 L18 27 L29 14" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* ---------- board logic ---------- */
+const key = (x, y) => x + ',' + y;
+const DIRS = [[1, 0, [1, 3], [0, 2]], [-1, 0, [0, 2], [1, 3]], [0, 1, [2, 3], [0, 1]], [0, -1, [0, 1], [2, 3]]];
+function neighbours(map, x, y) {
+  const out = [];
+  for (const [dx, dy, mine, theirs] of DIRS) { const n = map.get(key(x + dx, y + dy)); if (n) out.push({ n, mine, theirs }); }
+  return out;
+}
+function legal(map, x, y, cs) {
+  if (map.has(key(x, y))) return false;
+  const ns = neighbours(map, x, y);
+  if (!ns.length) return false;
+  return ns.every(({ n, mine, theirs }) => cs[mine[0]] === n.cs[theirs[0]] || cs[mine[1]] === n.cs[theirs[1]]);
+}
+function group(map, el) {
+  const cards = [...map.values()].filter(c => c.cs.includes(el));
+  const seen = new Set(); let best = [];
+  for (const c of cards) {
+    if (seen.has(c)) continue;
+    const comp = [c]; seen.add(c);
+    for (let i = 0; i < comp.length; i++) {
+      const cur = comp[i];
+      for (const { n, mine, theirs } of neighbours(map, cur.x, cur.y)) {
+        if (seen.has(n)) continue;
+        if ((cur.cs[mine[0]] === el && n.cs[theirs[0]] === el) || (cur.cs[mine[1]] === el && n.cs[theirs[1]] === el)) { seen.add(n); comp.push(n); }
+      }
+    }
+    if (comp.length > best.length) best = comp;
+  }
+  return best;
+}
+const toMap = cards => new Map(cards.map(([x, y, cs]) => [key(x, y), { x, y, cs }]));
+function slotsOf(map) {
+  const s = new Map();
+  for (const c of map.values()) for (const [dx, dy] of DIRS) { const k = key(c.x + dx, c.y + dy); if (!map.has(k)) s.set(k, { x: c.x + dx, y: c.y + dy }); }
+  return [...s.values()];
+}
+function drawBoard(el, map, opts = {}) {
+  const slots = opts.slots ? slotsOf(map) : [];
+  const all = [...map.values(), ...slots];
+  const xs = all.map(c => c.x), ys = all.map(c => c.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+  const cols = maxX - minX + 1, rows = maxY - minY + 1;
+  const avail = Math.max(220, el.parentElement.clientWidth - 8);
+  const w = Math.max(30, Math.min(opts.max || 84, Math.floor(avail / cols)));
+  const h = w * 4 / 3;
+  el.style.width = cols * w + 'px'; el.style.height = rows * h + 'px';
+  const pos = (x, y) => `left:${(x - minX) * w}px;top:${(y - minY) * h}px;`;
+  let html = '';
+  for (const c of map.values()) html += ecard(c.cs, w, pos(c.x, c.y), (opts.cls && opts.cls(c)) || '');
+  for (const s of slots) html += `<button class="slot" type="button" data-x="${s.x}" data-y="${s.y}" aria-label="放在這裡" style="${pos(s.x, s.y)}width:${w}px;height:${h}px"></button>`;
+  el.innerHTML = html;
+}
+
+/* ---------- pages ---------- */
+const TAB_ICONS = {
+  home: '<path d="M4 11 L12 4 L20 11 V20 H4 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+  cards: '<rect x="3" y="6" width="11" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="10" y="3" width="11" height="15" rx="2" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="2.2"/>',
+  play: '<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10 8 L16 12 L10 16 Z" fill="currentColor"/>',
+  connect: '<rect x="2" y="6" width="9" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="11" y="6" width="9" height="12" rx="2" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="2.2"/>',
+  actions: '<path d="M13 2 L5 13 H11 L10 22 L19 10 H13 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+  try: '<path d="M12 3 L14.6 9 L21 9.5 L16 13.6 L17.6 20 L12 16.6 L6.4 20 L8 13.6 L3 9.5 L9.4 9 Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+};
+const PAGES = [
+  { id: 'home', label: '首頁', render: pHome },
+  { id: 'cards', label: '牌卡', render: pCards },
+  { id: 'play', label: '玩法', render: pPlay },
+  { id: 'connect', label: '接牌', render: pConnect },
+  { id: 'actions', label: '行動', render: pActions },
+  { id: 'try', label: '試玩', render: pTry },
+];
+let cur = 0;
+const main = document.getElementById('main');
+
+function pHome() {
+  return `
+  <section class="sec">
+    <h2>${zh('水瓶座怎麼玩？')}</h2>
+    <video controls playsinline preload="metadata" src="basics.mp4"></video>
+    <p class="cap">${zh('先看影片，再一頁一頁看玩法。')}</p>
+  </section>
+  <section class="sec">
+    <div class="goalline">${goalCard('f')}<div class="tx">${zh('把自己任務牌上的元素，連成七張，就贏了！')} ${sp('把自己任務牌上的元素，連成七張，就贏了！')}</div></div>
+    <div class="facts">
+      <div class="fact"><b>2–5</b><span>${zh('人一起玩')}</span></div>
+      <div class="fact"><b>5</b><span>${zh('種元素')}</span></div>
+      <div class="fact"><b>3</b><span>${zh('張手牌')}</span></div>
+      <div class="fact"><b>7</b><span>${zh('張連起來就贏')}</span></div>
+    </div>
+  </section>
+  <section class="sec">
+    <h3>${zh('從這裡開始看')}</h3>
+    <div class="tiles">
+      ${[['cards', '認識牌', '五大元素和四種牌'], ['play', '怎麼玩', '準備、輪到我、怎麼贏'], ['connect', '怎麼接', '對的接法和不可以'], ['actions', '行動牌', '六張行動牌和使用時機'], ['try', '試玩', '自己動手接接看']].map(([id, n, d]) => `<button class="tile" type="button" data-go="${id}"><span class="n">${zh(n)}</span><span class="d">${zh(d)}</span></button>`).join('')}
+    </div>
+  </section>
+  <section class="sec">
+    <h3>${zh('更多水瓶座教材')}</h3>
+    <div class="links">
+      <a href="intro.html">行動牌影片和小測驗<span>→</span></a>
+      <a href="lesson.html">出牌小妙招（上課網頁）<span>→</span></a>
+      <a href="closing.html">水瓶座結業式<span>→</span></a>
+    </div>
+  </section>`;
+}
+
+function pCards() {
+  return `
+  <section class="sec">
+    <h2>${zh('五大元素')}</h2>
+    <p class="big">${zh('點一下，聽聽看它叫什麼名字。')}</p>
+    <div class="els">${ORDER.map(k => `<button class="el" type="button" data-say="${EL[k].name}"><span class="c" style="background:${EL[k].bg}">${icon(k)}</span><span class="nm">${zh(EL[k].name)}</span></button>`).join('')}</div>
+    <p class="note">${zh('看到一樣的元素，就有機會接在一起！')}</p>
+  </section>
+  <section class="sec">
+    <h2>${zh('四種牌')}</h2>
+    <div class="kinds">
+      <div class="kind"><div class="row">${goalCard('w')}<span class="gback"></span></div><div class="tx"><div class="nm">${zh('任務牌')}</div><div class="ds">${zh('自己的秘密目標。每人抽一張，不要讓別人看到！')}</div></div></div>
+      <div class="kind"><div class="row">${ecard(['f','f','f','f'], 50)}${ecard(['w','w','s','s'], 50)}${ecard(['s','w','g','f'], 50)}</div><div class="tx"><div class="nm">${zh('元素牌')}</div><div class="ds">${zh('桌上最常用的牌。有些只有一種元素，有些有很多種。')}</div></div></div>
+      <div class="kind"><div class="row">${wildCard()}</div><div class="tx"><div class="nm">${zh('萬用牌')}</div><div class="ds">${zh('可以當作任何一種元素，哪一種都可以接。')}</div></div></div>
+      <div class="kind"><div class="row"><img src="move.png" alt="行動牌：移動一張牌" style="width:72px;border-radius:8px"></div><div class="tx"><div class="nm">${zh('行動牌')}</div><div class="ds">${zh('有特殊能力的牌。熟悉基本玩法後，再加進來。')}</div></div></div>
+    </div>
+  </section>`;
+}
+
+function pPlay() {
+  const step = (n, q, a) => `<div class="stepi"><span class="n">${n}</span><span><div class="q">${zh(q)}</div>${a ? `<div class="a">${zh(a)}</div>` : ''}</span></div>`;
+  return `
+  <section class="sec">
+    <h2>${zh('遊戲準備')} ${sp('遊戲準備。第一，每人抽一張任務牌。第二，每人拿三張手牌。第三，翻開一張元素牌當起始牌。')}</h2>
+    <div class="steps">
+      ${step('①', '每人抽一張任務牌', '偷偷看，不要讓別人看到。')}
+      ${step('②', '每人拿三張手牌', '')}
+      ${step('③', '翻開一張元素牌當起始牌', '放在桌子中間。')}
+    </div>
+  </section>
+  <section class="sec">
+    <h2>${zh('輪到我時')} ${sp('輪到我時。第一，抽一張牌。第二，看看可以放哪裡。第三，出一張牌。記住，先抽，再出！')}</h2>
+    <div class="steps">
+      ${step('①', '抽一張牌', '')}
+      ${step('②', '看看可以放哪裡', '找一找，哪裡有一樣的元素？')}
+      ${step('③', '出一張牌', '接一張元素牌，或用一張行動牌。')}
+    </div>
+    <p class="note">${zh('記住：先抽，再出！沒有牌能出時，可以跳過。')}</p>
+  </section>
+  <section class="sec">
+    <h2>${zh('怎麼獲勝')} ${sp('把自己的任務元素連成七張。最先完成的人立刻獲勝！')}</h2>
+    <div class="felt"><div><div class="board" id="winBoard"></div></div></div>
+    <p class="big red">${zh('把自己的任務元素連成七張。最先完成的人立刻獲勝！')}</p>
+    <p class="note">${zh('牌要用相同的元素連在一起才算喔。')}</p>
+  </section>`;
+}
+const WIN = [[0, 0, ['p','s','w','g']], [-1, 0, ['p','p','w','w']], [0, 1, ['g','g','w','w']], [1, 0, ['f','f','g','g']], [1, -1, ['p','p','f','f']], [2, -1, ['p','f','f','f']], [2, 0, ['f','f','f','f']], [3, 0, ['f','w','f','w']], [4, 0, ['w','g','w','g']], [2, 1, ['f','f','s','s']], [3, 1, ['f','p','s','p']]];
+
+function pConnect() {
+  const pair = (a, b, o = {}) => {
+    const w = 70, h = w * 4 / 3;
+    let bStyle = `position:absolute;left:${w}px;top:0;`;
+    if (o.rot) bStyle = `position:absolute;left:${w + (h - w) / 2}px;top:0;transform:rotate(90deg);`;
+    if (o.off) bStyle = `position:absolute;left:${w}px;top:${h * .55}px;`;
+    return `<div class="pair"><div style="position:relative;width:${o.rot ? w + h : w * 2}px;height:${o.off ? h * 1.55 : h}px">${ecard(a, w, 'position:absolute;left:0;top:0;')}${ecard(b, w, bStyle)}</div></div>`;
+  };
+  return `
+  <section class="sec">
+    <h2>${zh('元素牌怎麼接？')} ${sp('新牌要直直放。至少要有一個相同元素相接。牌要對齊，不能歪掉。自己的牌可以轉半圈再放。')}</h2>
+    <div class="steps">
+      <div class="stepi"><span class="n">1</span><span class="q">${zh('新牌要直直放')}</span></div>
+      <div class="stepi"><span class="n">2</span><span class="q">${zh('至少要有一個相同元素相接')}</span></div>
+      <div class="stepi"><span class="n">3</span><span class="q">${zh('牌要對齊，不能歪掉')}</span></div>
+      <div class="stepi"><span class="n">4</span><span class="q">${zh('自己的牌可以轉半圈（上下顛倒）再放')}</span></div>
+    </div>
+    <div class="ex"><div class="exc ok"><div class="t">${zh('轉半圈就接得上！')}</div>
+      <div class="pair" style="gap:10px">${ecard(['f','f','s','s'], 70)}<span style="font-size:30px;color:var(--good)">→</span>${ecard(turn(['f','f','s','s']), 70)}</div>
+      <div class="d">${zh('上下顛倒，牌還是直直的，可以這樣放。轉成橫的就不行喔！')}</div></div></div>
+    <div class="ex"><div class="exc ok"><div class="t">${zh('這樣接是正確的！')}</div>${pair(['f','f','s','s'], ['f','p','w','g'])}<div class="d">${zh('火焰碰到火焰，接上了！')}</div></div></div>
+  </section>
+  <section class="sec">
+    <h2>${zh('這樣不可以')}</h2>
+    <div class="ex">
+      <div class="exc no"><div class="t">${zh('不可以 ①')}</div>${pair(['f','f','f','f'], ['p','p','s','s'])}<div class="d">${zh('兩張牌之間，沒有相同元素。')}</div></div>
+      <div class="exc no"><div class="t">${zh('不可以 ②')}</div>${pair(['f','w','f','w'], ['p','f','p','f'])}<div class="d">${zh('都有火焰，可是碰到的那一邊不一樣。')}</div></div>
+      <div class="exc no"><div class="t">${zh('不可以 ③')}</div>${pair(['f','f','s','s'], ['f','f','s','s'], { rot: true })}<div class="d">${zh('牌不能轉成橫的。')}</div></div>
+      <div class="exc no"><div class="t">${zh('不可以 ④')}</div>${pair(['f','f','s','s'], ['f','f','s','s'], { off: true })}<div class="d">${zh('沒有對齊，只碰到一小角。')}</div></div>
+    </div>
+  </section>`;
+}
+
+const ACTS = [
+  ['trade_goals', '交換任務牌', '你和一位玩家，交換任務牌。', '我的元素在桌上很少，很難完成嗎？'],
+  ['rotate_goals', '大風吹', '所有玩家的任務牌，一起往同一個方向傳。往左或往右都可以。', '我的任務很難完成，想讓大家一起換嗎？'],
+  ['shuffle', '重洗手牌', '把大家的手牌收起來，洗一洗，從出牌的人開始發回去。', '我的手牌都沒有我的元素嗎？'],
+  ['move', '移動一張牌', '把桌上的一張元素牌，移到另一個接得上的地方，也可以在原地轉半圈。', '移一張牌，我的元素就能碰在一起嗎？'],
+  ['trade_hands', '交換手牌', '你和一位玩家，交換全部的手牌。', '我的牌很少，別人的牌很多嗎？'],
+  ['zap', '拿回元素牌', '把桌上的一張元素牌，拿回自己的手上。', '有人快連成七張了嗎？'],
+];
+function pActions() {
+  return `
+  <section class="sec">
+    <h2>${zh('六張行動牌')}</h2>
+    <p class="big">${zh('紅色那一句是「問自己」：答案是「是」，就可以用這張牌。')}</p>
+    <div class="acts">${ACTS.map(([k, n, d, w]) => `<div class="act"><img src="${k}.png" alt="${n}的牌"><div class="tx"><div class="nm">${zh(n)}</div><div class="do">${zh(d)}</div><div class="when">${zh(w)}</div><div>${sp(n + '。' + d + '什麼時候用？' + w)}</div></div></div>`).join('')}</div>
+    <p class="note">${zh('現在用不到，可以先留著！手牌有我的元素，先出元素牌。')}</p>
+  </section>
+  <section class="sec">
+    <h2>${zh('出牌小妙招')} ${sp('看任務、找元素、碰一起。出牌要幫自己，不是幫別人。行動牌想一想再用，不是隨便出。')}</h2>
+    <div class="flow">
+      <div>${zh('① 看任務：我的元素是什麼？')}</div>
+      <div>${zh('② 找元素：手牌有我的元素嗎？')}</div>
+      <div>${zh('③ 碰一起：放在碰到我的元素的地方')}</div>
+    </div>
+    <p class="note">${zh('出牌要幫自己，不是幫別人。行動牌想一想再用，不是隨便出。')}</p>
+  </section>`;
+}
+
+/* ---------- try it: a solo practice game ---------- */
+const GOAL = 'f';
+const POOL = (() => {
+  const out = [];
+  for (const a of ORDER) { out.push([a, a, a, a]); for (const b of ORDER) if (a !== b) { out.push([a, a, b, b]); out.push([a, b, a, b]); } }
+  for (let i = 0; i < 12; i++) { const r = () => ORDER[Math.floor(Math.random() * 5)]; out.push([r(), r(), r(), r()]); }
+  return out;
+})();
+const rnd = () => POOL[Math.floor(Math.random() * POOL.length)];
+let game;
+function newGame() {
+  game = { map: toMap([[0, 0, ['s','w','g','f']]]), hand: [rnd(), rnd(), rnd()], phase: 'draw', sel: null, last: null, msg: { k: 'info', t: '① 先按「抽一張牌」。' }, turns: 0 };
+}
+newGame();
+function pTry() {
+  const n = group(game.map, GOAL).length;
+  const won = n >= 7;
+  const hand = game.hand.map((cs, i) => `<button class="hcard" type="button" data-h="${i}" aria-pressed="${game.sel === i}" aria-label="手牌：${cardName(cs)}" ${game.phase !== 'play' || won ? 'disabled' : ''}>${ecard(cs, 70)}</button>`).join('');
+  return `
+  <section class="sec">
+    <h2>${zh('試玩：接接看')} ${sp('你的任務是火焰。先抽一張牌，再出一張牌，把火焰連成七張！')}</h2>
+    <div class="goalline">${goalCard(GOAL)}<div class="tx">${zh('你的任務是火焰。把火焰連成七張！')}</div></div>
+    <div class="felt">
+      <div class="status">
+        <span class="pillc">${zh(`火焰連了：${'零一二三四五六七八九十'[Math.min(n, 10)]}張`)}</span>
+        <span class="meter" aria-hidden="true">${[...Array(7)].map((_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('')}</span>
+      </div>
+      <div><div class="board" id="tryBoard"></div></div>
+      <div class="hand">${hand}</div>
+      <div class="ctl">
+        <button class="btn" type="button" id="draw" ${game.phase !== 'draw' || won ? 'disabled' : ''}>${zh('抽一張牌')}</button>
+        <button class="btn ghost" type="button" id="turn" ${game.sel === null || won ? 'disabled' : ''}>${zh('轉半圈')}</button>
+        <button class="btn ghost" type="button" id="skip" ${game.phase !== 'play' || won ? 'disabled' : ''}>${zh('跳過')}</button>
+        <button class="btn ghost" type="button" id="restart">${zh('重新開始')}</button>
+      </div>
+    </div>
+    ${won ? `<div class="msg win pop">${zh(`你贏了！用了${game.turns}回合把火焰連成七張！`)}</div>` : `<div class="msg ${game.msg.k} ${game.last ? 'pop' : ''}" role="status">${zh(game.msg.t)}</div>`}
+    <p class="note">${zh('提醒：看任務、找元素、碰一起。選好一張牌後，可以按「轉半圈」換方向。手牌沒有火焰時，可以按「跳過」。')}</p>
+  </section>`;
+}
+function mountTry() {
+  const g = group(game.map, GOAL);
+  const won = g.length >= 7;
+  drawBoard(document.getElementById('tryBoard'), game.map, { slots: game.phase === 'play' && !won, max: 78,
+    cls: c => (game.last && c.x === game.last.x && c.y === game.last.y ? 'new' : (g.includes(c) && g.length > 1 ? 'lit' : '')) });
+  main.querySelectorAll('.slot').forEach(b => { b.disabled = game.sel === null; b.onclick = () => place(+b.dataset.x, +b.dataset.y); });
+  main.querySelectorAll('[data-h]').forEach(b => b.onclick = () => { game.sel = game.sel === +b.dataset.h ? null : +b.dataset.h; game.last = null; game.msg = { k: 'info', t: game.sel === null ? '② 點一張手牌。' : '③ 點桌上的虛線格子，把牌放上去。接不上的話，可以按「轉半圈」。' }; render(); });
+  document.getElementById('draw').onclick = () => { if (game.hand.length >= 6) game.hand.shift(); game.hand.push(rnd()); game.phase = 'play'; game.sel = null; game.last = null; game.msg = { k: 'info', t: '② 看看可以放哪裡，點一張手牌。' }; say('看看可以放哪裡'); render(); };
+  document.getElementById('skip').onclick = () => { game.phase = 'draw'; game.sel = null; game.last = null; game.turns++; game.msg = { k: 'info', t: '跳過了。下一回合，再抽一張牌。' }; render(); };
+  document.getElementById('turn').onclick = () => { if (game.sel === null) return; game.hand[game.sel] = turn(game.hand[game.sel]); game.last = null; game.msg = { k: 'info', t: '轉好了！再點桌上的虛線格子。' }; render(); };
+  document.getElementById('restart').onclick = () => { newGame(); render(); };
+}
+function place(x, y) {
+  const cs = game.hand[game.sel];
+  if (!legal(game.map, x, y, cs)) {
+    game.msg = { k: 'no', t: '接不上喔！碰到的地方，要有相同的元素。也可以按「轉半圈」再試試。' }; game.last = null;
+    say('接不上喔！碰到的地方，要有相同的元素。'); render(); return;
+  }
+  const before = group(game.map, GOAL).length;
+  game.map.set(key(x, y), { x, y, cs });
+  game.hand.splice(game.sel, 1);
+  game.sel = null; game.phase = 'draw'; game.turns++; game.last = { x, y };
+  const after = group(game.map, GOAL).length;
+  if (after >= 7) { say('你贏了！'); }
+  else if (after > before) { game.msg = { k: 'ok', t: `好棒！火焰連成${'零一二三四五六七'[after]}張了。再抽一張牌吧！` }; say(`好棒！火焰連成${'零一二三四五六七'[after]}張了`); }
+  else { game.msg = { k: 'info', t: '接上了！可是火焰沒有變多。想一想：你的火焰有碰在一起嗎？' }; say('接上了，可是火焰沒有變多'); }
+  render();
+}
+
+/* ---------- shell ---------- */
+const tabs = document.getElementById('tabs');
+function render() {
+  tabs.innerHTML = PAGES.map((p, i) => `<button class="tab" type="button" data-tab="${i}" ${i === cur ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" aria-hidden="true">${TAB_ICONS[p.id]}</svg><span class="l">${zh(p.label)}</span></button>`).join('');
+  tabs.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => go(+b.dataset.tab));
+  main.innerHTML = `<div style="display:grid;gap:18px">${PAGES[cur].render()}</div>`;
+  main.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(b.dataset.say));
+  main.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(PAGES.findIndex(p => p.id === b.dataset.go)));
+  const id = PAGES[cur].id;
+  if (id === 'play') { const m = toMap(WIN), g = group(m, 'f'); drawBoard(document.getElementById('winBoard'), m, { max: 64, cls: c => g.includes(c) ? 'lit' : '' }); }
+  if (id === 'try') mountTry();
+}
+function go(i) {
+  if (i < 0) return;
+  const y = cur === i ? window.scrollY : 0;
+  cur = i;
+  if (location.hash !== '#' + PAGES[cur].id) history.replaceState(null, '', '#' + PAGES[cur].id);
+  render(); window.scrollTo(0, y);
+}
+window.addEventListener('hashchange', () => { const i = PAGES.findIndex(p => '#' + p.id === location.hash); if (i >= 0 && i !== cur) go(i); });
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (['play', 'try'].includes(PAGES[cur].id)) { const y = window.scrollY; render(); window.scrollTo(0, y); } }, 150); });
+document.querySelectorAll('[data-zh]').forEach(el => el.innerHTML = zh(el.dataset.zh));
+const start = PAGES.findIndex(p => '#' + p.id === location.hash);
+cur = start >= 0 ? start : 0;
+render();
+</script>
+
+<a href="../index.html#board" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(100px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body></html>
