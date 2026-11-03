@@ -1,6 +1,6 @@
 // 社會技巧島 service worker: pages and data come from the network first (so updates show up),
 // and fall back to the last copy when offline. Big videos are not stored ahead of time.
-const CACHE = 'island-v1';
+const CACHE = 'island-v2';
 const CORE = ['./', 'index.html', 'items.json', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
