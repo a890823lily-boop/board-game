@@ -1,0 +1,351 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>火柴會說話 Family 規則</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<style>
+/* Layout: one reading column on a "game table"; transparent-card motif = translucent overlapping panels with white line art */
+:root{
+  --bg:#eef1f6; --surface:#ffffff; --ink:#1b2236; --muted:#5b6479;
+  --line:#d5dbe7; --accent:#2f5bd8; --accent-soft:rgba(47,91,216,.10);
+  --flame:#e2632b; --ok:#1f8a5b; --no:#c23b3b;
+  --card-glass:rgba(255,255,255,.55); --stroke:#1b2236;
+  --display:"Zen Maru Gothic","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121726; --surface:#1a2133; --ink:#e9edf6; --muted:#9aa4bb;
+  --line:#2c3550; --accent:#7f9fff; --accent-soft:rgba(127,159,255,.14);
+  --flame:#ff8a52; --ok:#4cc790; --no:#ff7a7a;
+  --card-glass:rgba(255,255,255,.06); --stroke:#e9edf6; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121726; --surface:#1a2133; --ink:#e9edf6; --muted:#9aa4bb;
+  --line:#2c3550; --accent:#7f9fff; --accent-soft:rgba(127,159,255,.14);
+  --flame:#ff8a52; --ok:#4cc790; --no:#ff7a7a;
+  --card-glass:rgba(255,255,255,.06); --stroke:#e9edf6; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(2.2rem,7vw,3.4rem);font-weight:900;letter-spacing:.02em}
+h2{font-size:1.5rem;font-weight:700;display:flex;align-items:center;gap:10px}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0}
+.label{font-size:.78rem;letter-spacing:.14em;color:var(--muted);font-weight:500}
+
+.hero{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.hero p.lede{color:var(--muted);max-width:34em;margin-top:12px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 14px;font-size:.9rem}
+.chip b{font-variant-numeric:tabular-nums}
+
+section{display:flex;flex-direction:column;gap:16px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.badge{font-family:var(--display);font-size:.8rem;background:var(--accent-soft);color:var(--accent);padding:2px 10px;border-radius:6px;font-weight:700}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:500;color:var(--muted);font-size:.85rem}
+td.n{font-variant-numeric:tabular-nums;font-weight:700}
+.muted{color:var(--muted);font-size:.93rem}
+
+.tool{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.tool{grid-template-columns:1fr}}
+.big{font-family:var(--display);font-weight:900;font-size:3.4rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+button,select{font:inherit;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 14px;cursor:pointer}
+button.primary{background:var(--accent);color:var(--surface);border-color:var(--accent);font-weight:700}
+button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.note{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:no-preference){.big.pop{animation:pop .35s ease}@keyframes pop{0%{transform:scale(.6);opacity:.3}100%{transform:none;opacity:1}}}
+
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;aspect-ratio:960/495;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:block}
+figcaption{font-size:.88rem;color:var(--muted);line-height:1.5}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.grid3{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.grid2{grid-template-columns:1fr}}
+.tstep{display:grid;grid-template-columns:40px minmax(0,1fr) minmax(0,1.1fr);gap:14px;align-items:center}
+.tstep .num{font-family:var(--display);font-weight:900;font-size:1.1rem;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--surface);align-self:start}
+.tstep .txt{display:flex;flex-direction:column;gap:4px;min-width:0}
+.tsteps{display:flex;flex-direction:column;gap:22px}
+@media (max-width:620px){.tstep{grid-template-columns:40px minmax(0,1fr)}.tstep figure{grid-column:2}}
+.heroimg{width:300px;border-radius:14px;border:1px solid var(--line);aspect-ratio:960/495;object-fit:cover}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.heroimg{width:100%}}
+
+:root{--star:#e9a514;--ok-soft:rgba(31,138,91,.12);--no-soft:rgba(194,59,59,.12)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--star:#ffc53d;--ok-soft:rgba(76,199,144,.14);--no-soft:rgba(255,122,122,.14)}}
+:root[data-theme="dark"]{--star:#ffc53d;--ok-soft:rgba(76,199,144,.14);--no-soft:rgba(255,122,122,.14)}
+button:disabled{opacity:.4;cursor:default}
+input{font:inherit;color:var(--ink)}
+input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.rowb{display:flex;gap:8px;flex-wrap:wrap}
+.q{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:640px){.q{grid-template-columns:1fr}}
+.q img{width:100%;aspect-ratio:960/495;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answers button{padding:14px;font-family:var(--display);font-weight:700;font-size:1.1rem;background:var(--surface)}
+.answers button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);opacity:1}
+.answers button.wrong{background:var(--no-soft);border-color:var(--no);color:var(--no);opacity:1}
+.answers button:disabled{opacity:.55}
+.feedback{border-radius:10px;padding:10px 14px;font-size:.95rem}
+.feedback.good{background:var(--ok-soft)} .feedback.bad{background:var(--no-soft)}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dots{display:flex;gap:6px;flex-wrap:wrap}
+.dots span{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.dots span.g{background:var(--ok)} .dots span.b{background:var(--no)} .dots span.cur{outline:2px solid var(--accent);outline-offset:1px}
+.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:460px){.names{grid-template-columns:1fr}}
+.names input{width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.stepper{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stepper output{font-family:var(--display);font-weight:900;font-size:1.6rem;min-width:2ch;text-align:center;font-variant-numeric:tabular-nums}
+.giver{font-family:var(--display);font-weight:900;font-size:clamp(1.6rem,6vw,2.2rem);color:var(--accent);line-height:1.2}
+.todo{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.todo label{display:flex;gap:10px;align-items:center;cursor:pointer;flex-wrap:wrap}
+.todo input{width:18px;height:18px;accent-color:var(--accent)}
+.guessers{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.guessers button{font-weight:700;background:var(--surface)}
+.score{display:flex;flex-direction:column;gap:6px}
+.score div{display:grid;grid-template-columns:minmax(0,7em) 1fr auto;gap:10px;align-items:center}
+.score .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.score .st{color:var(--star);letter-spacing:1px;overflow:hidden;white-space:nowrap}
+.score b{font-variant-numeric:tabular-nums}
+.score .cur .nm{color:var(--accent);font-weight:700}
+.pick{font-family:var(--display);font-weight:900;font-size:1.6rem;color:var(--accent);min-width:1.2ch;display:inline-block;text-align:center}
+.center{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+.toast{font-size:.9rem;color:var(--ok);min-height:1.5em}
+.sub{font-size:.85rem;color:var(--muted)}
+
+.ico{width:44px;height:44px;flex:0 0 auto;border-radius:14px;background:var(--accent-soft);display:inline-grid;place-items:center}
+.ico svg{width:30px;height:30px}
+.mini{display:inline-grid;place-items:center;vertical-align:-5px;margin-right:6px}
+.mini svg{width:24px;height:24px}
+.face{display:inline-grid;vertical-align:-6px;margin-right:6px}.face svg{width:24px;height:24px}
+.decor{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.decor span{display:grid}.decor svg{width:30px;height:30px}
+@media (prefers-reduced-motion:no-preference){
+ .decor span{animation:bob 2.6s ease-in-out infinite}
+ .decor span:nth-child(2){animation-delay:.3s}.decor span:nth-child(3){animation-delay:.6s}.decor span:nth-child(4){animation-delay:.9s}
+ .decor span:nth-child(5){animation-delay:1.2s}.decor span:nth-child(6){animation-delay:1.5s}.decor span:nth-child(7){animation-delay:1.8s}
+ h2:hover .ico svg{animation:wig .5s ease}
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes wig{0%,100%{transform:rotate(0)}30%{transform:rotate(-12deg)}60%{transform:rotate(10deg)}}
+.trophy svg{width:72px;height:72px}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-box" viewBox="0 0 48 48"><rect x="7" y="12" width="22" height="28" rx="4" fill="#5ab4f0" transform="rotate(-10 18 26)"/><rect x="18" y="9" width="22" height="28" rx="4" fill="#ff7eb6" transform="rotate(8 29 23)"/><circle cx="29" cy="18" r="3" fill="#fff"/><path d="M29 21v8M25 25h8M29 29l-3 5M29 29l3 5" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></symbol><symbol id="i-land" viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="28" rx="6" fill="#bfe6ff"/><path d="M5 30c8-6 14-6 20 0s12 4 18-2v4a6 6 0 0 1-6 6H11a6 6 0 0 1-6-6z" fill="#7ccf7a"/><circle cx="33" cy="19" r="4.5" fill="#ffd23f"/></symbol><symbol id="i-man" viewBox="0 0 48 48"><circle cx="24" cy="10" r="6" fill="#ff9f43"/><path d="M24 17v13M24 21l-9-7M24 21l9-7M24 30l-7 10M24 30l7 10" stroke="#ff9f43" stroke-width="4.5" stroke-linecap="round" fill="none"/></symbol><symbol id="i-heart" viewBox="0 0 48 48"><path d="M24 41S7 30 7 18a9 9 0 0 1 17-4 9 9 0 0 1 17 4c0 12-17 23-17 23z" fill="#ff6b8b"/><path d="M17 23l5 5 9-10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-shh" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="#ffd23f"/><circle cx="18" cy="20" r="2.2" fill="#3a2a10"/><circle cx="30" cy="20" r="2.2" fill="#3a2a10"/><path d="M16 30h16" stroke="#3a2a10" stroke-width="2.5" stroke-linecap="round"/><path d="M19 27.5v5M23 27.5v5M27 27.5v5" stroke="#3a2a10" stroke-width="1.8" stroke-linecap="round"/><circle cx="14" cy="26" r="2.5" fill="#ff9f9f"/><circle cx="34" cy="26" r="2.5" fill="#ff9f9f"/></symbol><symbol id="i-trophy" viewBox="0 0 48 48"><path d="M15 8h18v10a9 9 0 0 1-18 0z" fill="#ffc53d"/><path d="M15 11H9a6 6 0 0 0 6 8M33 11h6a6 6 0 0 1-6 8" stroke="#ffc53d" stroke-width="3" fill="none"/><rect x="21" y="26" width="6" height="7" fill="#f0a500"/><rect x="14" y="33" width="20" height="6" rx="2" fill="#a86bff"/><path d="M24 11l1.5 3 3.3.4-2.4 2.3.6 3.3-3-1.6-3 1.6.6-3.3-2.4-2.3 3.3-.4z" fill="#fff"/></symbol><symbol id="i-ask" viewBox="0 0 48 48"><path d="M8 9h32a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H22l-8 7v-7H8a4 4 0 0 1-4-4V13a4 4 0 0 1 4-4z" fill="#4fa3ff"/><path d="M20 16.5a4 4 0 1 1 6 3.5c-1.5.8-2 1.6-2 3" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="24" cy="27.5" r="1.9" fill="#fff"/></symbol><symbol id="i-star" viewBox="0 0 48 48"><path d="M24 5l5.6 11.6 12.7 1.8-9.2 8.9 2.2 12.6L24 34l-11.3 5.9 2.2-12.6-9.2-8.9 12.7-1.8z" fill="#ffc53d" stroke="#f0a500" stroke-width="2" stroke-linejoin="round"/><circle cx="20" cy="22.5" r="1.7" fill="#3a2a10"/><circle cx="28" cy="22.5" r="1.7" fill="#3a2a10"/><path d="M21.5 27q2.5 2.5 5 0" stroke="#3a2a10" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol><symbol id="i-card" viewBox="0 0 48 48"><rect x="12" y="6" width="24" height="36" rx="4" fill="#a86bff"/><rect x="15" y="9" width="18" height="7" rx="2" fill="#fff" opacity=".9"/><path d="M18 23h12M18 28h12M18 33h8" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></symbol><symbol id="i-eye" viewBox="0 0 48 48"><path d="M4 24s8-12 20-12 20 12 20 12-8 12-20 12S4 24 4 24z" fill="#fff" stroke="#4fa3ff" stroke-width="3"/><circle cx="24" cy="24" r="6.5" fill="#4fa3ff"/><circle cx="26.5" cy="21.5" r="2" fill="#fff"/></symbol><symbol id="i-place" viewBox="0 0 48 48"><rect x="6" y="13" width="22" height="26" rx="4" fill="#5ab4f0" opacity=".55"/><rect x="19" y="8" width="22" height="26" rx="4" fill="#ff7eb6" opacity=".55"/><path d="M17 33a4 4 0 0 1 .5-8 5.5 5.5 0 0 1 10.5-1 4.5 4.5 0 0 1 1 9z" fill="#fff" stroke="#4fa3ff" stroke-width="2"/></symbol><symbol id="i-bang" viewBox="0 0 48 48"><path d="M8 9h32a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H34v7l-8-7H8a4 4 0 0 1-4-4V13a4 4 0 0 1 4-4z" fill="#ff9f43"/><path d="M24 14v9" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><circle cx="24" cy="28" r="2" fill="#fff"/></symbol><symbol id="i-cycle" viewBox="0 0 48 48"><path d="M36 18a13 13 0 0 0-23-3M12 30a13 13 0 0 0 23 3" stroke="#3cc48b" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M10 9v7h7M38 39v-7h-7" stroke="#3cc48b" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol><symbol id="i-smile" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="#3cc48b"/><circle cx="18" cy="21" r="2.4" fill="#fff"/><circle cx="30" cy="21" r="2.4" fill="#fff"/><path d="M16 28q8 8 16 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/></symbol><symbol id="i-oops" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="#ff7a7a"/><path d="M15 19l5 3-5 3M33 19l-5 3 5 3" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="24" cy="32" rx="4" ry="3" fill="#fff"/></symbol><symbol id="i-cloud" viewBox="0 0 48 48"><path d="M14 36a8 8 0 0 1 1-16 10 10 0 0 1 19-2 9 9 0 0 1 1 18z" fill="#5ab4f0"/></symbol><symbol id="i-drop" viewBox="0 0 48 48"><path d="M24 5c6 10 12 16 12 24a12 12 0 0 1-24 0c0-8 6-14 12-24z" fill="#4fa3ff"/><ellipse cx="19" cy="29" rx="2" ry="4" fill="#fff" opacity=".6"/></symbol><symbol id="i-apple" viewBox="0 0 48 48"><circle cx="24" cy="29" r="13" fill="#6cc04a"/><path d="M24 16c0-4 2-7 5-8" stroke="#6b4a2b" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M26 13c4-4 9-3 10-2-2 4-6 5-10 2z" fill="#3c9a3c"/></symbol><symbol id="i-rainbow" viewBox="0 0 48 48"><path d="M6 38a18 18 0 0 1 36 0" stroke="#ff6b6b" stroke-width="4.5" fill="none"/><path d="M11 38a13 13 0 0 1 26 0" stroke="#ffd23f" stroke-width="4.5" fill="none"/><path d="M16 38a8 8 0 0 1 16 0" stroke="#4fa3ff" stroke-width="4.5" fill="none"/></symbol></svg>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <div class="label">IMAGINE FAMILY · 派對桌遊</div>
+      <h1>火柴會說話 Family</h1>
+      <p class="lede">不能說話、不能比手勢，只能用印著圖案的透明牌，在布景版圖上擺放、重疊、移動，讓大家猜出你的題目。</p>
+      <div class="stats">
+        <span class="chip"><b>3–8</b> 人</span>
+        <span class="chip">約 <b>30</b> 分鐘</span>
+        <span class="chip"><b>8</b> 歲以上</span>
+      </div>
+      <div class="decor" aria-hidden="true"><span><svg><use href="#i-man"/></svg></span><span><svg><use href="#i-heart"/></svg></span><span><svg><use href="#i-cloud"/></svg></span><span><svg><use href="#i-star"/></svg></span><span><svg><use href="#i-drop"/></svg></span><span><svg><use href="#i-apple"/></svg></span><span><svg><use href="#i-rainbow"/></svg></span></div>
+    </div>
+    <img class="heroimg" src="img/box.jpg" alt="火柴會說話 Family 與原版的遊戲盒">
+  </header>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-box"/></svg></span>遊戲內容物</h2>
+    <div class="box tbl">
+      <table>
+        <thead><tr><th>配件</th><th>數量</th></tr></thead>
+        <tbody>
+          <tr><td>遊戲版圖（布景板塊）</td><td class="n">1</td></tr>
+          <tr><td>透明牌（印有圖案，可重疊）</td><td class="n">60</td></tr>
+          <tr><td>謎題牌（背面是類別，正面 5 道題目）</td><td class="n">120</td></tr>
+          <tr><td>計分標記（星星）</td><td class="n">24</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-land"/></svg></span>遊戲設置</h2>
+    <div class="grid2">
+      <figure><img src="img/setup1.jpg" alt="攤開遊戲版圖"><figcaption><b>1</b>　把遊戲版圖攤開在桌子中央。</figcaption></figure>
+      <figure><img src="img/setup2.jpg" alt="透明牌擺在版圖周圍"><figcaption><b>2</b>　透明牌擺在版圖周圍，每張都看得到。</figcaption></figure>
+      <figure><img src="img/setup3.jpg" alt="計分標記放桌上"><figcaption><b>3</b>　星星計分標記放在桌上。</figcaption></figure>
+      <figure><img src="img/setup4.jpg" alt="謎題牌分成三疊"><figcaption><b>4</b>　謎題牌洗勻，大致分成三疊，遊戲開始。</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-man"/></svg></span>一回合怎麼玩</h2>
+    <p class="muted">玩家依順時針輪流出題。</p>
+    <div class="tsteps">
+      <div class="tstep"><div class="num">1</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-card"/></svg></span>抽一張謎題牌</h3><p>從任何一疊抽最上面一張，大聲念出牌背的類別，例如「運動」。</p></div><figure><img src="img/turn1.jpg" alt="三疊謎題牌放在版圖旁" loading="lazy"><figcaption>三疊謎題牌放在版圖旁</figcaption></figure></div>
+      <div class="tstep"><div class="num">2</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-eye"/></svg></span>秘密選一題</h3><p>偷看牌的正面，從 5 道題目中自己選一道，不要給別人看。</p></div><figure><img src="img/turn2.jpg" alt="「運動」牌，選了 3 號排球" loading="lazy"><figcaption>「運動」牌，選了 3 號排球</figcaption></figure></div>
+      <div class="tstep"><div class="num">3</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-place"/></svg></span>在版圖上擺牌</h3><p>拿任意張數的透明牌放到版圖上，想辦法讓其他人猜中你的題目。</p></div><figure><img src="img/turn3.jpg" alt="從周圍挑出要用的透明牌" loading="lazy"><figcaption>從周圍挑出要用的透明牌</figcaption></figure></div>
+      <div class="tstep"><div class="num">4</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-bang"/></svg></span>開始搶答</h3><p>放上<strong>第二張</strong>透明牌後，其他玩家就可以開始猜，次數不限，也沒有時間限制。</p></div><figure><img src="img/turn4.jpg" alt="有人先猜「跳舞」" loading="lazy"><figcaption>有人先猜「跳舞」</figcaption></figure></div>
+      <div class="tstep"><div class="num">5</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-star"/></svg></span>計分</h3><p>第一個猜中的玩家和出題者，各拿 1 個計分標記，回合結束。</p></div><figure><img src="img/turn5.jpg" alt="加上扣殺和爆炸，猜中「排球」" loading="lazy"><figcaption>加上扣殺和爆炸，猜中「排球」</figcaption></figure></div>
+      <div class="tstep"><div class="num">6</div><div class="txt"><h3><span class="mini" aria-hidden="true"><svg><use href="#i-cycle"/></svg></span>收拾、換人</h3><p>用過的透明牌放回版圖周圍，用過的謎題牌棄掉，輪到下一位玩家。</p></div><figure><img src="img/turn7.jpg" alt="棄掉用過的謎題牌" loading="lazy"><figcaption>棄掉用過的謎題牌</figcaption></figure></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-heart"/></svg></span>可以做</h2>
+    <div class="grid3">
+      <figure><img src="img/do1.jpg" alt="透明牌重疊、旋轉" loading="lazy"><figcaption>重疊、旋轉方向</figcaption></figure>
+      <figure><img src="img/do2.jpg" alt="用手指遮住一部分" loading="lazy"><figcaption>用手指遮住一部分</figcaption></figure>
+      <figure><img src="img/do3.jpg" alt="讓卡片動起來" loading="lazy"><figcaption>移動卡片，讓它動起來</figcaption></figure>
+    </div>
+    <p class="muted">張數不限，也可以把版圖的風景當布景。</p>
+  </section>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-shh"/></svg></span>不可以</h2>
+    <div class="grid3">
+      <figure><img src="img/no1.jpg" alt="排出文字" loading="lazy"><figcaption>排出文字或數字</figcaption></figure>
+      <figure><img src="img/no2.jpg" alt="不可以發出聲音" loading="lazy"><figcaption>發出任何聲音</figcaption></figure>
+      <figure><img src="img/no3.jpg" alt="不可以用手勢提示" loading="lazy"><figcaption>透明牌以外的提示，例如手勢</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-trophy"/></svg></span>猜不出來與遊戲結束</h2>
+    <div class="grid2">
+      <figure><img src="img/giveup.jpg" alt="沒人猜得出來" loading="lazy"><figcaption><span class="badge">放棄</span>　一直沒人猜中，且所有人同意放棄本題，回合結束，無人得分。</figcaption></figure>
+      <figure><img src="img/end.jpg" alt="比較星星數" loading="lazy"><figcaption><span class="badge">結束</span>　3–4 人每人出題 2 次；5–8 人每人出題 1 次。星星最多的人獲勝。</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="quiz-sec">
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-ask"/></svg></span>小測驗：這樣可以嗎？</h2>
+    <div class="box" id="quiz" style="display:flex;flex-direction:column;gap:16px"></div>
+  </section>
+
+  <section id="score-sec">
+    <h2><span class="ico" aria-hidden="true"><svg><use href="#i-star"/></svg></span>記分板</h2>
+    <div id="play" style="display:flex;flex-direction:column;gap:14px"></div>
+  </section>
+
+  <p class="note">規則與圖片取自 2Plus《火柴會說話 Family》官方教學影片。原版《火柴會說話》的抽題方式不同：由其他玩家喊 1–8 的數字決定題目，且每人出題 2 次。</p>
+</div>
+
+<script>
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* quiz */
+const quiz=[
+ {img:'no1',q:'用透明牌排出字母，提示題目的第一個字。',a:false,e:'不可以排出文字或數字。'},
+ {img:'do1',q:'把兩張透明牌疊在一起，再轉個方向。',a:true,e:'重疊、旋轉都可以。'},
+ {img:'do2',q:'用手指遮住卡片的一部分，只露出想要的形狀。',a:true,e:'可以用手指遮蓋一部分。'},
+ {img:'no2',q:'猜的人快答對了，出題者「嗯～」一聲鼓勵他。',a:false,e:'出題者不可以發出任何聲音。'},
+ {img:'turn3',q:'出題者才放第一張透明牌，大家就可以開始搶答。',a:false,e:'要等第二張透明牌放上版圖後，才可以開始猜。'},
+ {img:'turn5',q:'有人猜中時，出題者也會得到 1 分。',a:true,e:'第一個猜中的玩家和出題者各得 1 分。'},
+ {img:'giveup',q:'只要有一個人說「放棄」，這題就跳過。',a:false,e:'要所有人都同意放棄，這回合才結束，而且無人得分。'},
+ {img:'end',q:'6 個人玩時，每人要出題 2 次。',a:false,e:'5–8 人每人出題 1 次；3–4 人才是每人 2 次。'},
+];
+let qi=0,qres=[];
+function drawQuiz(){
+  const box=$('quiz');
+  if(qi>=quiz.length){
+    const ok=qres.filter(Boolean).length;
+    box.innerHTML=`<div class="center"><span class="trophy"><svg><use href="#i-${ok===quiz.length?'trophy':'star'}"/></svg></span><div class="sub">測驗完成</div><div class="giver">${ok} / ${quiz.length} 題答對</div>
+      <p>${ok===quiz.length?'全對！你已經可以當出題者了。':ok>=6?'差一點點，回頭看看答錯的規則吧。':'再看一次上面的圖解，會更有把握。'}</p>
+      <div class="rowb"><button type="button" id="qagain">再測一次</button><button class="primary" type="button" id="goplay">去記分板</button></div></div>`;
+    $('qagain').onclick=()=>{qi=0;qres=[];drawQuiz()};
+    $('goplay').onclick=()=>$('score-sec').scrollIntoView({behavior:'smooth'});return;
+  }
+  const q=quiz[qi];
+  box.innerHTML=`<div class="qhead"><span class="sub">第 ${qi+1} / ${quiz.length} 題</span><div class="dots">${quiz.map((_,i)=>`<span class="${qres[i]===true?'g':qres[i]===false?'b':''}${i===qi?' cur':''}"></span>`).join('')}</div></div>
+    <div class="q"><img src="img/${q.img}.jpg" alt=""><div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+    <p style="font-size:1.1rem;font-weight:500">${q.q}</p>
+    <div class="answers"><button type="button" data-a="1">⭕ 可以</button><button type="button" data-a="0">✕ 不可以</button></div>
+    <div id="fb"></div></div></div>`;
+  box.querySelector('.answers').onclick=e=>{
+    const b=e.target.closest('button');if(!b||qres[qi]!==undefined)return;
+    const right=(b.dataset.a==='1')===q.a;qres[qi]=right;
+    box.querySelectorAll('.answers button').forEach(x=>{x.disabled=true;if((x.dataset.a==='1')===q.a)x.classList.add('right');else if(x===b)x.classList.add('wrong')});
+    box.querySelectorAll('.dots span')[qi].className=(right?'g':'b')+' cur';
+    $('fb').innerHTML=`<div class="feedback ${right?'good':'bad'}"><span class="face"><svg><use href="#i-${right?'smile':'oops'}"/></svg></span><b>${right?'答對了！':'不對喔。'}</b> ${q.e}</div>
+      <div style="margin-top:12px"><button class="primary" type="button" id="qnext">${qi===quiz.length-1?'看結果':'下一題 →'}</button></div>`;
+    $('qnext').onclick=()=>{qi++;drawQuiz()};
+  };
+}
+
+/* scoreboard */
+let G=store.get('im_game',null);
+const save=()=>store.set('im_game',G);
+let names=store.get('im_names',['玩家1','玩家2','玩家3','玩家4']);
+const totalTurns=n=>n*(n<=4?2:1);
+function drawPlay(){
+  const el=$('play');
+  if(!G){
+    el.innerHTML=`<div class="box" style="display:flex;flex-direction:column;gap:16px">
+      <h3><span class="mini"><svg><use href="#i-man"/></svg></span>誰要一起玩？</h3>
+      <div class="stepper"><button type="button" id="minus" aria-label="減少人數">−</button><output>${names.length}</output><span>人</span><button type="button" id="plus" aria-label="增加人數">＋</button>
+        <span class="sub" style="margin-left:auto">共 ${totalTurns(names.length)} 回合・每人出題 ${names.length<=4?2:1} 次</span></div>
+      <div class="names">${names.map((n,i)=>`<input id="nm${i}" value="${esc(n)}" maxlength="10" aria-label="玩家 ${i+1} 名字" placeholder="玩家 ${i+1}">`).join('')}</div>
+      <p class="sub">依座位順時針排列，第一位就是起始玩家。</p>
+      <button class="primary" type="button" id="start">開始記分</button></div>`;
+    const read=()=>names=names.map((n,i)=>($('nm'+i).value.trim()||`玩家${i+1}`));
+    $('minus').disabled=names.length<=3;$('plus').disabled=names.length>=8;
+    $('minus').onclick=()=>{read();names.pop();store.set('im_names',names);drawPlay()};
+    $('plus').onclick=()=>{read();names.push(`玩家${names.length+1}`);store.set('im_names',names);drawPlay()};
+    $('start').onclick=()=>{read();store.set('im_names',names);
+      G={p:names.slice(),s:names.map(()=>0),turn:0,total:totalTurns(names.length),hist:[],last:''};save();drawPlay()};
+    return;
+  }
+  const n=G.p.length;
+  if(G.turn>=G.total){
+    const max=Math.max(...G.s),win=G.p.filter((_,i)=>G.s[i]===max);
+    el.innerHTML=`<div class="box center"><span class="trophy"><svg><use href="#i-trophy"/></svg></span><div class="sub">遊戲結束</div>
+      <div class="giver">${win.map(esc).join('、')} 獲勝！</div><p>${max} 顆星星${win.length>1?'，平手':''}</p>
+      <div style="width:100%;text-align:left">${scoreHtml(-1)}</div>
+      <div class="rowb"><button type="button" id="undo">復原上一步</button><button class="primary" type="button" id="again">再玩一局</button></div></div>`;
+    $('again').onclick=()=>{G=null;save();drawPlay()};$('undo').onclick=undo;return;
+  }
+  const g=G.turn%n, per=G.total/n, round=Math.floor(G.turn/n)+1;
+  el.innerHTML=`<div class="box" style="display:flex;flex-direction:column;gap:12px">
+      <div class="sub">第 ${G.turn+1} / ${G.total} 回合${per>1?`・第 ${round} 輪`:''}・出題者</div>
+      <div class="giver">${esc(G.p[g])}</div>
+      <ul class="todo">
+        <li><label><input type="checkbox" id="c1">抽一張謎題牌，大聲念出類別</label></li>
+        <li><label><input type="checkbox" id="c2">偷偷選一道題目</label> <span class="sub">選不出來？</span> <button type="button" id="rnd" style="padding:2px 10px">抽 1–5 號</button> <span class="pick" id="pk" aria-live="polite"></span></li>
+        <li><label><input type="checkbox" id="c3">擺上第二張透明牌後，大家開始猜</label></li>
+      </ul>
+    </div>
+    <div class="box" style="display:flex;flex-direction:column;gap:12px">
+      <h3><span class="mini"><svg><use href="#i-bang"/></svg></span>誰先猜中？</h3>
+      <div class="guessers">${G.p.map((p,i)=>i===g?'':`<button type="button" data-i="${i}">${esc(p)}</button>`).join('')}</div>
+      <div class="toast" aria-live="polite">${esc(G.last||'')}</div>
+      <div class="rowb"><button type="button" id="giveup">大家都同意放棄</button><button type="button" id="undo" ${G.hist.length?'':'disabled'}>復原上一步</button></div>
+    </div>
+    <div class="box" style="display:flex;flex-direction:column;gap:12px">
+      <h3><span class="mini"><svg><use href="#i-star"/></svg></span>目前分數</h3>${scoreHtml(g)}
+      <button type="button" id="reset" style="align-self:flex-start">重新設定玩家</button><div id="confirm"></div>
+    </div>`;
+  $('rnd').onclick=()=>{$('pk').textContent=1+Math.floor(Math.random()*5)};
+  const snap=()=>G.hist.push(JSON.stringify({s:G.s,turn:G.turn,last:G.last}));
+  el.querySelector('.guessers').onclick=e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;
+    snap();G.s=G.s.slice();G.s[i]++;G.s[g]++;G.last=`⭐ ${G.p[i]} 猜中，${G.p[i]} 和 ${G.p[g]} 各得 1 分`;G.turn++;save();drawPlay()};
+  $('giveup').onclick=()=>{snap();G.last=`${G.p[g]} 的題目放棄，無人得分`;G.turn++;save();drawPlay()};
+  $('undo').onclick=undo;
+  $('reset').onclick=()=>{$('confirm').innerHTML=`<p class="sub">目前分數會清除，確定嗎？</p><div class="rowb" style="margin-top:6px"><button type="button" id="no">取消</button><button type="button" class="primary" id="yes">確定重設</button></div>`;
+    $('no').onclick=()=>$('confirm').innerHTML='';$('yes').onclick=()=>{G=null;save();drawPlay()}};
+}
+function undo(){if(!G.hist.length)return;const h=JSON.parse(G.hist.pop());G.s=h.s;G.turn=h.turn;G.last=h.last||'';save();drawPlay()}
+function scoreHtml(g){return `<div class="score">${G.p.map((p,i)=>`<div class="${i===g?'cur':''}"><span class="nm">${esc(p)}</span><span class="st">${G.s[i]?'★'.repeat(G.s[i]):'<span class="sub">—</span>'}</span><b>${G.s[i]}</b></div>`).join('')}</div>`}
+
+drawQuiz();drawPlay();
+</script>
+
+
+
+<a href="../index.html#board" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body></html>
