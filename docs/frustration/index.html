@@ -81,20 +81,30 @@ header h1 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(
 .btn:disabled { opacity: .35; cursor: default; }
 .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-/* short clip */
-.player { background: #22333A; border-radius: 22px; padding: 10px; display: grid; gap: 8px; }
-.screen { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; background: #F3EBDD; container-type: inline-size; }
-.screen svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cap { position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%); background: rgba(20,24,28,.82); color: #fff; border-radius: 1.4cqw; padding: .6cqw 2cqw 1cqw; font-size: 3.4cqw; font-weight: 700; max-width: 94%; text-align: center; }
-.cap:empty { display: none; }
-.cover { position: absolute; inset: 0; background: rgba(20,32,36,.72); display: grid; place-items: center; text-align: center; color: #fff; gap: 2cqw; }
-.cover .ttl { font-family: var(--f-head); font-size: 4.6cqw; font-weight: 900; }
-.cover button { width: 13cqw; height: 13cqw; min-width: 64px; min-height: 64px; border-radius: 50%; border: 0; background: var(--sun); cursor: pointer; display: grid; place-items: center; }
-.cover button svg { width: 45%; height: 45%; margin-left: 8%; }
-.ctrl { display: flex; align-items: center; gap: 10px; color: #fff; padding: 0 4px 2px; }
-.ctrl button { border: 0; background: rgba(255,255,255,.14); color: #fff; border-radius: 10px; padding: 4px 12px; cursor: pointer; font-family: var(--f-head); font-weight: 700; font-size: 14px; }
-.prog { flex: 1; height: 8px; background: rgba(255,255,255,.2); border-radius: 4px; overflow: hidden; }
-.prog i { display: block; height: 100%; width: 0; background: var(--sun); }
+/* 3D game */
+.lvpick { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.lvcard { position: relative; cursor: pointer; text-align: left; background: var(--card); border: 3px solid var(--line); border-left: 12px solid var(--c); border-radius: 22px; padding: 14px 16px; display: grid; gap: 6px; box-shadow: 0 4px 0 var(--line); }
+.lvcard .ic { width: 54px; height: 54px; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font-size: 26px; font-weight: 700; }
+.lvcard .nm { font-family: var(--f-head); font-weight: 900; font-size: clamp(22px, 3.2vw, 27px); color: var(--ink); }
+.lvcard .ds { font-size: 19px; color: var(--muted); }
+.lvcard .st { position: absolute; top: 10px; right: 14px; font-size: 36px; color: var(--sun); line-height: 1; }
+.g3d { position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 22px; overflow: hidden; background: #22333A; border: 6px solid #22333A; }
+.g3d-stage, .g3d-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+.g3d-fallback { color: #fff; display: grid; place-items: center; height: 100%; font-size: 22px; padding: 20px; text-align: center; }
+.g3d-hud { position: absolute; left: 50%; top: 4%; transform: translateX(-50%); background: rgba(20,24,28,.78); color: #fff; border-radius: 14px; padding: 4px 16px 6px; font-size: clamp(16px, 2.6vw, 24px); font-weight: 700; text-align: center; max-width: 94%; pointer-events: none; }
+.g3d-hud:empty { display: none; }
+.g3d-hud .cd { font-family: var(--f-head); font-weight: 900; font-size: clamp(24px, 5vw, 44px); color: var(--sun); }
+.g3d-meter { position: absolute; left: 6%; right: 6%; bottom: 6%; height: 26px; background: rgba(255,255,255,.85); border: 3px solid #22333A; border-radius: 14px; overflow: hidden; }
+.g3d-meter b { position: absolute; left: 54%; width: 16%; top: 0; bottom: 0; background: #6CC08B; }
+.g3d-meter i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-right: 6px solid #D9534F; }
+.g3d-ctl { justify-content: center; }
+.g3act { font-size: clamp(24px, 4vw, 32px); padding: 14px 40px 16px; touch-action: manipulation; user-select: none; -webkit-user-select: none; min-width: min(100%, 320px); }
+.g3panel { display: grid; gap: 14px; }
+.g3panel:empty { display: none; }
+.thermo5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.thermo5 button { cursor: pointer; border: 3px solid var(--line); background: var(--card); border-radius: 18px; padding: 8px 4px; display: grid; justify-items: center; gap: 2px; font-family: var(--f-head); font-size: 24px; color: var(--ink); }
+.thermo5 button svg { width: min(56px, 100%); height: auto; }
+.thermo5 button.on { border-color: var(--c); background: var(--paper); box-shadow: 0 0 0 4px var(--c) inset; }
 
 /* choices */
 .opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
@@ -204,8 +214,9 @@ footer { text-align: center; color: var(--muted); font-size: 14px; font-family: 
   <footer>二年級資源班社會技巧課｜挫折容忍｜約 40 分鐘｜鍵盤左右鍵可以換頁</footer>
 </div>
 
+<script src="three.min.js"></script>
 <script>
-const ZY = {"行": "ㄒㄧㄥˊ", "動": "ㄉㄨㄥˋ", "牌": "ㄆㄞˊ", "登": "ㄉㄥ", "場": "ㄔㄤˇ", "學": "ㄒㄩㄝˊ", "會": "ㄏㄨㄟˋ", "基": "ㄐㄧ", "本": "ㄅㄣˇ", "玩": "ㄨㄢˊ", "法": "ㄈㄚˇ", "後": "ㄏㄡˋ", "再": "ㄗㄞˋ", "加": "ㄐㄧㄚ", "入": "ㄖㄨˋ", "特": "ㄊㄜˋ", "殊": "ㄕㄨ", "能": "ㄋㄥˊ", "力": "ㄌㄧˋ", "交": "ㄐㄧㄠ", "換": "ㄏㄨㄢˋ", "任": "ㄖㄣˋ", "務": "ㄨˋ", "大": "ㄉㄚˋ", "風": "ㄈㄥ", "吹": "ㄔㄨㄟ", "重": "ㄔㄨㄥˊ", "洗": "ㄒㄧˇ", "手": "ㄕㄡˇ", "移": "ㄧˊ", "一": "ㄧ", "張": "ㄓㄤ", "拿": "ㄋㄚˊ", "回": "ㄏㄨㄟˊ", "元": "ㄩㄢˊ", "素": "ㄙㄨˋ", "你": "ㄋㄧˇ", "和": "ㄏㄜˊ", "位": "ㄨㄟˋ", "家": "ㄐㄧㄚ", "所": "ㄙㄨㄛˇ", "有": "ㄧㄡˇ", "的": "˙ㄉㄜ", "起": "ㄑㄧˇ", "往": "ㄨㄤˇ", "同": "ㄊㄨㄥˊ", "個": "ㄍㄜˋ", "方": "ㄈㄤ", "向": "ㄒㄧㄤˋ", "傳": "ㄔㄨㄢˊ", "把": "ㄅㄚˇ", "收": "ㄕㄡ", "來": "ㄌㄞˊ", "發": "ㄈㄚ", "去": "ㄑㄩˋ", "桌": "ㄓㄨㄛ", "上": "ㄕㄤˋ", "到": "ㄉㄠˋ", "別": "ㄅㄧㄝˊ", "地": "ㄉㄧˋ", "也": "ㄧㄝˇ", "可": "ㄎㄜˇ", "以": "ㄧˇ", "轉": "ㄓㄨㄢˇ", "全": "ㄑㄩㄢˊ", "部": "ㄅㄨˋ", "自": "ㄗˋ", "己": "ㄐㄧˇ", "選": "ㄒㄩㄢˇ", "兩": "ㄌㄧㄤˇ", "人": "ㄖㄣˊ", "互": "ㄏㄨˋ", "左": "ㄗㄨㄛˇ", "或": "ㄏㄨㄛˋ", "右": "ㄧㄡˋ", "都": "ㄉㄡ", "從": "ㄘㄨㄥˊ", "出": "ㄔㄨ", "開": "ㄎㄞ", "始": "ㄕˇ", "在": "ㄗㄞˋ", "原": "ㄩㄢˊ", "半": "ㄅㄢˋ", "圈": "ㄑㄩㄢ", "比": "ㄅㄧˇ", "較": "ㄐㄧㄠˋ", "多": "ㄉㄨㄛ", "過": "ㄍㄨㄛˋ", "就": "ㄐㄧㄡˋ", "賺": "ㄓㄨㄢˋ", "了": "˙ㄌㄜ", "些": "ㄒㄧㄝ", "變": "ㄅㄧㄢˋ", "記": "ㄐㄧˋ", "住": "ㄓㄨˋ", "這": "ㄓㄜˋ", "六": "ㄌㄧㄡˋ", "吧": "˙ㄅㄚ", "給": "ㄍㄟˇ", "另": "ㄌㄧㄥˋ", "接": "ㄐㄧㄝ", "得": "ㄉㄜˊ", "下": "ㄒㄧㄚˋ", "不": "ㄅㄨˋ", "五": "ㄨˇ", "什": "ㄕㄣˊ", "係": "˙ㄒㄧ", "候": "˙ㄏㄡ", "做": "ㄗㄨㄛˋ", "先": "ㄒㄧㄢ", "只": "ㄓˇ", "叫": "ㄐㄧㄠˋ", "名": "ㄇㄧㄥˊ", "哪": "ㄋㄚˇ", "喔": "ㄛ", "嗎": "˙ㄇㄚ", "堂": "ㄊㄤˊ", "好": "ㄏㄠˇ", "字": "ㄗˋ", "完": "ㄨㄢˊ", "對": "ㄉㄨㄟˋ", "小": "ㄒㄧㄠˇ", "年": "ㄋㄧㄢˊ", "影": "ㄧㄥˇ", "很": "ㄏㄣˇ", "怎": "ㄗㄣˇ", "想": "ㄒㄧㄤˇ", "成": "ㄔㄥˊ", "才": "ㄘㄞˊ", "放": "ㄈㄤˋ", "是": "ㄕˋ", "時": "ㄕˊ", "最": "ㄗㄨㄟˋ", "案": "ㄢˋ", "棒": "ㄅㄤˋ", "楚": "˙ㄔㄨ", "樣": "ㄧㄤˋ", "次": "ㄘˋ", "正": "ㄓㄥˋ", "沒": "ㄇㄟˊ", "清": "ㄑㄧㄥ", "測": "ㄘㄜˋ", "片": "ㄆㄧㄢˋ", "用": "ㄩㄥˋ", "目": "ㄇㄨˋ", "看": "ㄎㄢˋ", "確": "ㄑㄩㄝˋ", "答": "ㄉㄚˊ", "紀": "ㄐㄧˋ", "績": "ㄐㄧ", "習": "ㄒㄧˊ", "考": "ㄎㄠˇ", "聽": "ㄊㄧㄥ", "裡": "ㄌㄧˇ", "複": "ㄈㄨˋ", "要": "ㄧㄠˋ", "誰": "ㄕㄟˊ", "送": "ㄙㄨㄥˋ", "還": "ㄏㄞˊ", "關": "ㄍㄨㄢ", "面": "ㄇㄧㄢˋ", "題": "ㄊㄧˊ", "驗": "ㄧㄢˋ", "高": "ㄍㄠ", "麼": "˙ㄇㄜ", "水": "ㄕㄨㄟˇ", "瓶": "ㄆㄧㄥˊ", "座": "ㄗㄨㄛˋ", "認": "ㄖㄣˋ", "識": "ㄕˊ", "準": "ㄓㄨㄣˇ", "備": "ㄅㄟˋ", "輪": "ㄌㄨㄣˊ", "贏": "ㄧㄥˊ", "種": "ㄓㄨㄥˇ", "顏": "ㄧㄢˊ", "色": "ㄙㄜˋ", "格": "ㄍㄜˊ", "四": "ㄙˋ", "子": "˙ㄗ", "中": "ㄓㄨㄥ", "間": "ㄐㄧㄢ", "每": "ㄇㄟˇ", "偷": "ㄊㄡ", "三": "ㄙㄢ", "堆": "ㄉㄨㄟ", "連": "ㄌㄧㄢˊ", "那": "ㄋㄚˋ", "保": "ㄅㄠˇ", "密": "ㄇㄧˋ", "綠": "ㄌㄩˋ", "抽": "ㄔㄡ", "碰": "ㄆㄥˋ", "七": "ㄑㄧ", "算": "ㄙㄨㄢˋ", "樂": "ㄌㄜˋ", "機": "ㄐㄧ", "天": "ㄊㄧㄢ", "空": "ㄎㄨㄥ", "草": "ㄘㄠˇ", "火": "ㄏㄨㄛˇ", "焰": "ㄧㄢˋ", "太": "ㄊㄞˋ", "卡": "ㄎㄚˇ", "秘": "ㄇㄧˋ", "標": "ㄅㄧㄠ", "讓": "ㄖㄤˋ", "萬": "ㄨㄢˋ", "當": "ㄉㄤ", "作": "ㄗㄨㄛˋ", "何": "ㄏㄜˊ", "遊": "ㄧㄡˊ", "戲": "ㄒㄧˋ", "翻": "ㄈㄢ", "前": "ㄑㄧㄢˊ", "件": "ㄐㄧㄢˋ", "事": "ㄕˋ", "我": "ㄨㄛˇ", "跳": "ㄊㄧㄠˋ", "至": "ㄓˋ", "少": "ㄕㄠˇ", "相": "ㄒㄧㄤ", "新": "ㄒㄧㄣ", "直": "ㄓˊ", "齊": "ㄑㄧˊ", "之": "ㄓ", "邊": "ㄅㄧㄢ", "橫": "ㄏㄥˊ", "整": "ㄓㄥˇ", "角": "ㄐㄧㄠˇ", "獲": "ㄏㄨㄛˋ", "勝": "ㄕㄥˋ", "立": "ㄌㄧˋ", "刻": "ㄎㄜˋ", "錯": "ㄘㄨㄛˋ", "誤": "ㄨˋ", "妙": "ㄇㄧㄠˋ", "招": "ㄓㄠ", "二": "ㄦˋ", "級": "ㄐㄧˊ", "資": "ㄗ", "源": "ㄩㄢˊ", "班": "ㄅㄢ", "總": "ㄗㄨㄥˇ", "結": "ㄐㄧㄝˊ", "課": "ㄎㄜˋ", "步": "ㄅㄨˋ", "驟": "ㄓㄡˋ", "教": "ㄐㄧㄠˋ", "鍵": "ㄐㄧㄢˋ", "盤": "ㄆㄢˊ", "頁": "ㄧㄝˋ", "快": "ㄎㄨㄞˋ", "走": "ㄗㄡˇ", "他": "ㄊㄚ", "幫": "ㄅㄤ", "難": "ㄋㄢˊ", "容": "ㄖㄨㄥˊ", "易": "ㄧˋ", "找": "ㄓㄠˇ", "美": "ㄇㄟˇ", "已": "ㄧˇ", "經": "ㄐㄧㄥ", "剩": "ㄕㄥˋ", "華": "ㄏㄨㄚˊ", "她": "ㄊㄚ", "留": "ㄌㄧㄡˊ", "著": "˙ㄓㄜ", "幾": "ㄐㄧˇ", "乎": "ㄏㄨ", "明": "ㄇㄧㄥˊ", "流": "ㄌㄧㄡˊ", "程": "ㄔㄥˊ", "圖": "ㄊㄨˊ", "練": "ㄌㄧㄢˋ", "實": "ㄕˊ", "戰": "ㄓㄢˋ", "豆": "ㄉㄡˋ", "今": "ㄐㄧㄣ", "厲": "ㄌㄧˋ", "害": "ㄏㄞˋ", "問": "ㄨㄣˋ", "知": "ㄓ", "道": "ㄉㄠˋ", "卻": "ㄑㄩㄝˋ", "老": "ㄌㄠˇ", "師": "ㄕ", "提": "ㄊㄧˊ", "示": "ㄕˋ", "投": "ㄊㄡˊ", "圓": "ㄩㄢˊ", "點": "ㄉㄧㄢˇ", "生": "ㄕㄥ", "請": "ㄑㄧㄥˇ", "句": "ㄐㄩˋ", "說": "ㄕㄨㄛ", "理": "ㄌㄧˇ", "由": "ㄧㄡˊ", "紅": "ㄏㄨㄥˊ", "框": "ㄎㄨㄤ", "項": "ㄒㄧㄤˋ", "零": "ㄌㄧㄥˊ", "其": "ㄑㄧˊ", "應": "ㄧㄥ", "該": "ㄍㄞ", "等": "ㄉㄥˇ", "們": "˙ㄇㄣ", "它": "ㄊㄚ", "指": "ㄓˇ", "適": "ㄕˋ", "合": "ㄏㄜˊ", "照": "ㄓㄠˋ", "順": "ㄕㄨㄣˋ", "序": "ㄒㄩˋ", "範": "ㄈㄢˋ", "亮": "ㄌㄧㄤˋ", "例": "ㄌㄧˋ", "如": "ㄖㄨˊ", "虛": "ㄒㄩ", "線": "ㄒㄧㄢˋ", "按": "ㄢˋ", "試": "ㄕˋ", "八": "ㄅㄚ", "九": "ㄐㄧㄡˇ", "十": "ㄕˊ", "更": "ㄍㄥˋ", "糟": "ㄗㄠ", "糕": "ㄍㄠ", "進": "ㄐㄧㄣˋ", "階": "ㄐㄧㄝ", "現": "ㄒㄧㄢˋ", "建": "ㄐㄧㄢˋ", "議": "ㄧˋ", "黃": "ㄏㄨㄤˊ", "度": "ㄉㄨˋ", "醫": "ㄧ", "因": "ㄧㄣ", "為": "ㄨㄟˋ", "第": "ㄉㄧˋ", "話": "ㄏㄨㄚˋ", "忙": "ㄇㄤˊ", "顆": "ㄎㄜ", "錄": "ㄌㄨˋ", "號": "ㄏㄠˋ", "減": "ㄐㄧㄢˇ", "定": "ㄉㄧㄥˋ", "歸": "ㄍㄨㄟ", "取": "ㄑㄩˇ", "消": "ㄒㄧㄠ", "存": "ㄘㄨㄣˊ", "台": "ㄊㄞˊ", "電": "ㄉㄧㄢˋ", "腦": "ㄋㄠˇ", "瀏": "ㄌㄧㄡˊ", "覽": "ㄌㄢˇ", "器": "ㄑㄧˋ", "數": "ㄕㄨˇ", "冠": "ㄍㄨㄢˋ", "囉": "˙ㄌㄨㄛ", "輸": "ㄕㄨ", "計": "ㄐㄧˋ", "注": "ㄓㄨˋ", "音": "ㄧㄣ", "社": "ㄕㄜˋ", "技": "ㄐㄧˋ", "巧": "ㄑㄧㄠˇ", "挫": "ㄘㄨㄛˋ", "折": "ㄓㄜˊ", "忍": "ㄖㄣˇ", "約": "ㄩㄝ", "分": "ㄈㄣ", "鐘": "ㄓㄨㄥ", "氣": "ㄑㄧˋ", "失": "ㄕ", "望": "ㄨㄤˋ", "心": "ㄒㄧㄣ", "星": "ㄒㄧㄥ", "故": "ㄍㄨˋ", "朋": "ㄆㄥˊ", "友": "ㄧㄡˇ", "符": "ㄈㄨˊ", "搶": "ㄑㄧㄤˇ", "槌": "ㄔㄨㄟˊ", "雨": "ㄩˇ", "傘": "ㄙㄢˇ", "又": "ㄧㄡˋ", "熱": "ㄖㄜˋ", "狗": "ㄍㄡˇ", "堡": "ㄅㄠˇ", "慢": "ㄇㄢˋ", "眼": "ㄧㄢˇ", "淚": "ㄌㄟˋ", "掉": "ㄉㄧㄠˋ", "哭": "ㄎㄨ", "吸": "ㄒㄧ", "呼": "ㄏㄨ", "降": "ㄐㄧㄤˋ", "溫": "ㄨㄣ", "魔": "ㄇㄛˊ", "聞": "ㄨㄣˊ", "花": "ㄏㄨㄚ", "蠟": "ㄌㄚˋ", "燭": "ㄓㄨˊ", "深": "ㄕㄣ", "恭": "ㄍㄨㄥ", "喜": "ㄒㄧˇ", "繼": "ㄐㄧˋ", "續": "ㄒㄩˋ", "局": "ㄐㄩˊ", "跟": "ㄍㄣ", "播": "ㄅㄛ", "短": "ㄉㄨㄢˇ", "情": "ㄑㄧㄥˊ", "身": "ㄕㄣ", "冷": "ㄌㄥˇ", "靜": "ㄐㄧㄥˋ", "構": "ㄍㄡˋ", "帶": "ㄉㄞˋ", "境": "ㄐㄧㄥˋ", "感": "ㄍㄢˇ", "覺": "ㄐㄩㄝˊ", "願": "ㄩㄢˋ", "意": "ㄧˋ", "享": "ㄒㄧㄤˇ", "勉": "ㄇㄧㄢˇ", "強": "ㄑㄧㄤˊ", "臉": "ㄌㄧㄢˇ", "常": "ㄔㄤˊ", "舒": "ㄕㄨ", "服": "ㄈㄨˊ", "平": "ㄆㄧㄥˊ", "悶": "ㄇㄣˋ", "嘴": "ㄗㄨㄟˇ", "巴": "ㄅㄚ", "嘟": "ㄉㄨ", "體": "ㄊㄧˇ", "告": "ㄍㄠˋ", "訴": "ㄙㄨˋ", "爆": "ㄅㄠˋ", "炸": "ㄓㄚˋ", "丟": "ㄉㄧㄡ", "東": "ㄉㄨㄥ", "西": "ㄒㄧ", "休": "ㄒㄧㄡ", "息": "ㄒㄧ", "越": "ㄩㄝˋ", "辦": "ㄅㄢˋ", "概": "ㄍㄞˋ", "升": "ㄕㄥ", "假": "ㄐㄧㄚˇ", "裝": "ㄓㄨㄤ", "鼻": "ㄅㄧˊ", "握": "ㄨㄛˋ", "拳": "ㄑㄩㄢˊ", "緊": "ㄐㄧㄣˇ", "秒": "ㄇㄧㄠˇ", "需": "ㄒㄩ", "舉": "ㄐㄩˇ", "歡": "ㄏㄨㄢ", "室": "ㄕˋ", "布": "ㄅㄨˋ", "置": "ㄓˋ", "被": "ㄅㄟˋ", "允": "ㄩㄣˇ", "許": "ㄒㄩˇ", "稱": "ㄔㄥ", "讚": "ㄗㄢˋ", "涼": "ㄌㄧㄤˊ", "香": "ㄒㄧㄤ", "雙": "ㄕㄨㄤ", "頭": "ㄊㄡˊ", "輕": "ㄑㄧㄥ", "鬆": "ㄙㄨㄥ", "坐": "ㄗㄨㄛˋ", "勇": "ㄩㄥˇ", "敢": "ㄍㄢˇ", "爛": "ㄌㄢˋ", "公": "ㄍㄨㄥ", "笑": "ㄒㄧㄠˋ", "袋": "ㄉㄞˋ", "跑": "ㄆㄠˇ", "助": "ㄓㄨˋ", "貼": "ㄊㄧㄝ", "近": "ㄐㄧㄣˋ", "狀": "ㄓㄨㄤˋ", "況": "ㄎㄨㄤˋ", "停": "ㄊㄧㄥˊ", "擅": "ㄕㄢˋ", "長": "ㄓㄤˇ", "觀": "ㄍㄨㄢ", "察": "ㄔㄚˊ", "仔": "ㄗㄞˇ", "細": "ㄒㄧˋ", "耐": "ㄋㄞˋ", "聲": "ㄕㄥ", "念": "ㄋㄧㄢˋ", "安": "ㄢ", "慰": "ㄨㄟˋ", "束": "ㄕㄨˋ", "謝": "ㄒㄧㄝˋ", "陪": "ㄆㄟˊ", "耶": "ㄧㄝ", "禮": "ㄌㄧˇ", "貌": "ㄇㄠˋ", "演": "ㄧㄢˇ", "邀": "ㄧㄠ", "管": "ㄍㄨㄢˇ", "修": "ㄒㄧㄡ", "改": "ㄍㄞˇ", "除": "ㄔㄨˊ", "低": "ㄉㄧ", "險": "ㄒㄧㄢˇ", "並": "ㄅㄧㄥˋ", "馬": "ㄇㄚˇ", "具": "ㄐㄩˋ", "剛": "ㄍㄤ", "但": "ㄉㄢˋ", "抄": "ㄔㄠ", "醒": "ㄒㄧㄥˇ", "處": "ㄔㄨˋ", "效": "ㄒㄧㄠˋ", "挑": "ㄊㄧㄠ", "穿": "ㄔㄨㄢ", "插": "ㄔㄚ", "靠": "ㄎㄠˋ", "運": "ㄩㄣˋ", "速": "ㄙㄨˋ", "反": "ㄈㄢˇ", "擔": "ㄉㄢ", "員": "ㄩㄢˊ", "增": "ㄗㄥ", "功": "ㄍㄨㄥ", "暫": "ㄗㄢˋ"};
+const ZY = {"一": "ㄧ", "三": "ㄙㄢ", "上": "ㄕㄤˋ", "下": "ㄒㄧㄚˋ", "不": "ㄅㄨˋ", "丟": "ㄉㄧㄡ", "並": "ㄅㄧㄥˋ", "之": "ㄓ", "也": "ㄧㄝˇ", "了": "˙ㄌㄜ", "事": "ㄕˋ", "二": "ㄦˋ", "五": "ㄨˇ", "交": "ㄐㄧㄠ", "人": "ㄖㄣˊ", "什": "ㄕㄣˊ", "仔": "ㄗㄞˇ", "他": "ㄊㄚ", "以": "ㄧˇ", "件": "ㄐㄧㄢˋ", "任": "ㄖㄣˋ", "休": "ㄒㄧㄡ", "但": "ㄉㄢˋ", "位": "ㄨㄟˋ", "低": "ㄉㄧ", "你": "ㄋㄧˇ", "來": "ㄌㄞˊ", "例": "ㄌㄧˋ", "係": "˙ㄒㄧ", "修": "ㄒㄧㄡ", "個": "ㄍㄜˋ", "們": "˙ㄇㄣ", "候": "˙ㄏㄡ", "假": "ㄐㄧㄚˇ", "做": "ㄗㄨㄛˋ", "停": "ㄊㄧㄥˊ", "偷": "ㄊㄡ", "備": "ㄅㄟˋ", "允": "ㄩㄣˇ", "先": "ㄒㄧㄢ", "入": "ㄖㄨˋ", "全": "ㄑㄩㄢˊ", "兩": "ㄌㄧㄤˇ", "公": "ㄍㄨㄥ", "具": "ㄐㄩˋ", "再": "ㄗㄞˋ", "冷": "ㄌㄥˇ", "出": "ㄔㄨ", "分": "ㄈㄣ", "別": "ㄅㄧㄝˊ", "到": "ㄉㄠˋ", "刻": "ㄎㄜˋ", "前": "ㄑㄧㄢˊ", "剛": "ㄍㄤ", "力": "ㄌㄧˋ", "功": "ㄍㄨㄥ", "加": "ㄐㄧㄚ", "助": "ㄓㄨˋ", "勇": "ㄩㄥˇ", "十": "ㄕˊ", "升": "ㄕㄥ", "卡": "ㄎㄚˇ", "厲": "ㄌㄧˋ", "去": "ㄑㄩˋ", "友": "ㄧㄡˇ", "反": "ㄈㄢˇ", "只": "ㄓˇ", "叫": "ㄐㄧㄠˋ", "可": "ㄎㄜˇ", "台": "ㄊㄞˊ", "右": "ㄧㄡˋ", "同": "ㄊㄨㄥˊ", "名": "ㄇㄧㄥˊ", "向": "ㄒㄧㄤˋ", "吧": "˙ㄅㄚ", "吸": "ㄒㄧ", "吹": "ㄔㄨㄟ", "告": "ㄍㄠˋ", "呼": "ㄏㄨ", "和": "ㄏㄜˊ", "員": "ㄩㄢˊ", "哭": "ㄎㄨ", "問": "ㄨㄣˋ", "喜": "ㄒㄧˇ", "嗎": "˙ㄇㄚ", "嘟": "ㄉㄨ", "嘴": "ㄗㄨㄟˇ", "器": "ㄑㄧˋ", "四": "ㄙˋ", "回": "ㄏㄨㄟˊ", "因": "ㄧㄣ", "在": "ㄗㄞˋ", "地": "ㄉㄧˋ", "坐": "ㄗㄨㄛˋ", "增": "ㄗㄥ", "多": "ㄉㄨㄛ", "大": "ㄉㄚˋ", "失": "ㄕ", "好": "ㄏㄠˇ", "如": "ㄖㄨˊ", "始": "ㄕˇ", "子": "˙ㄗ", "字": "ㄗˋ", "學": "ㄒㄩㄝˊ", "它": "ㄊㄚ", "安": "ㄢ", "完": "ㄨㄢˊ", "定": "ㄉㄧㄥˋ", "室": "ㄕˋ", "害": "ㄏㄞˋ", "家": "ㄐㄧㄚ", "容": "ㄖㄨㄥˊ", "察": "ㄔㄚˊ", "對": "ㄉㄨㄟˋ", "小": "ㄒㄧㄠˇ", "就": "ㄐㄧㄡˋ", "局": "ㄐㄩˊ", "左": "ㄗㄨㄛˇ", "巧": "ㄑㄧㄠˇ", "己": "ㄐㄧˇ", "已": "ㄧˇ", "巴": "ㄅㄚ", "布": "ㄅㄨˋ", "師": "ㄕ", "帶": "ㄉㄞˋ", "常": "ㄔㄤˊ", "幫": "ㄅㄤ", "平": "ㄆㄧㄥˊ", "年": "ㄋㄧㄢˊ", "幾": "ㄐㄧˇ", "度": "ㄉㄨˋ", "張": "ㄓㄤ", "往": "ㄨㄤˇ", "很": "ㄏㄣˇ", "後": "ㄏㄡˋ", "得": "ㄉㄜˊ", "心": "ㄒㄧㄣ", "忍": "ㄖㄣˇ", "忙": "ㄇㄤˊ", "快": "ㄎㄨㄞˋ", "念": "ㄋㄧㄢˋ", "怎": "ㄗㄣˇ", "恭": "ㄍㄨㄥ", "息": "ㄒㄧ", "悶": "ㄇㄣˋ", "情": "ㄑㄧㄥˊ", "想": "ㄒㄧㄤˇ", "感": "ㄍㄢˇ", "慢": "ㄇㄢˋ", "慰": "ㄨㄟˋ", "應": "ㄧㄥ", "成": "ㄔㄥˊ", "我": "ㄨㄛˇ", "或": "ㄏㄨㄛˋ", "戲": "ㄒㄧˋ", "所": "ㄙㄨㄛˇ", "手": "ㄕㄡˇ", "才": "ㄘㄞˊ", "技": "ㄐㄧˋ", "抄": "ㄔㄠ", "把": "ㄅㄚˇ", "投": "ㄊㄡˊ", "折": "ㄓㄜˊ", "拳": "ㄑㄩㄢˊ", "拿": "ㄋㄚˊ", "指": "ㄓˇ", "按": "ㄢˋ", "挑": "ㄊㄧㄠ", "挫": "ㄘㄨㄛˋ", "掉": "ㄉㄧㄠˋ", "接": "ㄐㄧㄝ", "提": "ㄊㄧˊ", "插": "ㄔㄚ", "換": "ㄏㄨㄢˋ", "握": "ㄨㄛˋ", "搶": "ㄑㄧㄤˇ", "擅": "ㄕㄢˋ", "擔": "ㄉㄢ", "改": "ㄍㄞˇ", "放": "ㄈㄤˋ", "效": "ㄒㄧㄠˋ", "教": "ㄐㄧㄠ", "敢": "ㄍㄢˇ", "整": "ㄓㄥˇ", "數": "ㄕㄨˇ", "新": "ㄒㄧㄣ", "易": "ㄧˋ", "星": "ㄒㄧㄥ", "是": "ㄕˋ", "時": "ㄕˊ", "暫": "ㄗㄢˋ", "更": "ㄍㄥˋ", "最": "ㄗㄨㄟˋ", "會": "ㄏㄨㄟˋ", "有": "ㄧㄡˇ", "朋": "ㄆㄥˊ", "服": "ㄈㄨˊ", "望": "ㄨㄤˋ", "本": "ㄅㄣˇ", "束": "ㄕㄨˋ", "東": "ㄉㄨㄥ", "桌": "ㄓㄨㄛ", "棒": "ㄅㄤˋ", "概": "ㄍㄞˋ", "樂": "ㄩㄝˋ", "樣": "ㄧㄤˋ", "次": "ㄘˋ", "歡": "ㄏㄨㄢ", "正": "ㄓㄥˋ", "步": "ㄅㄨˋ", "歸": "ㄍㄨㄟ", "每": "ㄇㄟˇ", "比": "ㄅㄧˇ", "氣": "ㄑㄧˋ", "沒": "ㄇㄟˊ", "況": "ㄎㄨㄤˋ", "法": "ㄈㄚˇ", "注": "ㄓㄨˋ", "流": "ㄌㄧㄡˊ", "涼": "ㄌㄧㄤˊ", "淚": "ㄌㄟˋ", "深": "ㄕㄣ", "清": "ㄑㄧㄥ", "源": "ㄩㄢˊ", "準": "ㄓㄨㄣˇ", "溫": "ㄨㄣ", "演": "ㄧㄢˇ", "炸": "ㄓㄚˋ", "為": "ㄨㄟˋ", "熱": "ㄖㄜˋ", "燭": "ㄓㄨˊ", "爆": "ㄅㄠˋ", "爛": "ㄌㄢˋ", "片": "ㄆㄧㄢˋ", "牌": "ㄆㄞˊ", "狀": "ㄓㄨㄤˋ", "玩": "ㄨㄢˊ", "班": "ㄅㄢ", "現": "ㄒㄧㄢˋ", "理": "ㄌㄧˇ", "生": "ㄕㄥ", "用": "ㄩㄥˋ", "留": "ㄌㄧㄡˊ", "當": "ㄉㄤ", "發": "ㄈㄚ", "的": "˙ㄉㄜ", "盤": "ㄆㄢˊ", "目": "ㄇㄨˋ", "直": "ㄓˊ", "看": "ㄎㄢˋ", "眼": "ㄧㄢˇ", "確": "ㄑㄩㄝˋ", "示": "ㄕˋ", "社": "ㄕㄜˋ", "禮": "ㄌㄧˇ", "秒": "ㄇㄧㄠˇ", "程": "ㄔㄥˊ", "稱": "ㄔㄥ", "穿": "ㄔㄨㄢ", "笑": "ㄒㄧㄠˋ", "第": "ㄉㄧˋ", "等": "ㄉㄥˇ", "答": "ㄉㄚˊ", "管": "ㄍㄨㄢˇ", "約": "ㄩㄝ", "級": "ㄐㄧˊ", "細": "ㄒㄧˋ", "結": "ㄐㄧㄝˊ", "經": "ㄐㄧㄥ", "緊": "ㄐㄧㄣˇ", "線": "ㄒㄧㄢˋ", "練": "ㄌㄧㄢˋ", "繼": "ㄐㄧˋ", "續": "ㄒㄩˋ", "置": "ㄓˋ", "美": "ㄇㄟˇ", "習": "ㄒㄧˊ", "翻": "ㄈㄢ", "老": "ㄌㄠˇ", "耐": "ㄋㄞˋ", "耶": "ㄧㄝ", "聞": "ㄨㄣˊ", "聲": "ㄕㄥ", "聽": "ㄊㄧㄥ", "能": "ㄋㄥˊ", "腦": "ㄋㄠˇ", "自": "ㄗˋ", "舉": "ㄐㄩˇ", "舒": "ㄕㄨ", "花": "ㄏㄨㄚ", "華": "ㄏㄨㄚˊ", "著": "˙ㄓㄜ", "處": "ㄔㄨˋ", "號": "ㄏㄠˋ", "蠟": "ㄌㄚˋ", "袋": "ㄉㄞˋ", "被": "ㄅㄟˋ", "裝": "ㄓㄨㄤ", "裡": "ㄌㄧˇ", "西": "ㄒㄧ", "要": "ㄧㄠˋ", "覺": "ㄐㄩㄝˊ", "觀": "ㄍㄨㄢ", "角": "ㄐㄧㄠˇ", "計": "ㄐㄧˋ", "許": "ㄒㄩˇ", "訴": "ㄙㄨˋ", "試": "ㄕˋ", "話": "ㄏㄨㄚˋ", "認": "ㄖㄣˋ", "說": "ㄕㄨㄛ", "課": "ㄎㄜˋ", "請": "ㄑㄧㄥˇ", "謝": "ㄒㄧㄝˋ", "變": "ㄅㄧㄢˋ", "讓": "ㄖㄤˋ", "讚": "ㄗㄢˋ", "貌": "ㄇㄠˋ", "貼": "ㄊㄧㄝ", "資": "ㄗ", "贏": "ㄧㄥˊ", "走": "ㄗㄡˇ", "起": "ㄑㄧˇ", "越": "ㄩㄝˋ", "跑": "ㄆㄠˇ", "跟": "ㄍㄣ", "身": "ㄕㄣ", "較": "ㄐㄧㄠˋ", "輕": "ㄑㄧㄥ", "輪": "ㄌㄨㄣˊ", "輸": "ㄕㄨ", "轉": "ㄓㄨㄢˇ", "辦": "ㄅㄢˋ", "近": "ㄐㄧㄣˋ", "這": "ㄓㄜˋ", "速": "ㄙㄨˋ", "連": "ㄌㄧㄢˊ", "進": "ㄐㄧㄣˋ", "遊": "ㄧㄡˊ", "運": "ㄩㄣˋ", "過": "ㄍㄨㄛˋ", "選": "ㄒㄩㄢˇ", "邀": "ㄧㄠ", "還": "ㄏㄞˊ", "部": "ㄅㄨˋ", "都": "ㄉㄡ", "醒": "ㄒㄧㄥˇ", "重": "ㄔㄨㄥˊ", "錯": "ㄘㄨㄛˋ", "鍵": "ㄐㄧㄢˋ", "鐘": "ㄓㄨㄥ", "長": "ㄓㄤˇ", "開": "ㄎㄞ", "關": "ㄍㄨㄢ", "降": "ㄐㄧㄤˋ", "除": "ㄔㄨˊ", "陪": "ㄆㄟˊ", "險": "ㄒㄧㄢˇ", "雙": "ㄕㄨㄤ", "難": "ㄋㄢˊ", "零": "ㄌㄧㄥˊ", "需": "ㄒㄩ", "靜": "ㄐㄧㄥˋ", "靠": "ㄎㄠˋ", "面": "ㄇㄧㄢˋ", "音": "ㄧㄣ", "頁": "ㄧㄝˋ", "頭": "ㄊㄡˊ", "顆": "ㄎㄜ", "題": "ㄊㄧˊ", "願": "ㄩㄢˋ", "風": "ㄈㄥ", "香": "ㄒㄧㄤ", "馬": "ㄇㄚˇ", "驗": "ㄧㄢˋ", "驟": "ㄓㄡˋ", "體": "ㄊㄧˇ", "高": "ㄍㄠ", "鬆": "ㄙㄨㄥ", "魔": "ㄇㄛˊ", "麼": "˙ㄇㄜ", "點": "ㄉㄧㄢˇ", "鼻": "ㄅㄧˊ", "倒": "ㄉㄠˇ", "傲": "ㄠˋ", "危": "ㄨㄟ", "受": "ㄕㄡˋ", "喊": "ㄏㄢˇ", "尺": "ㄔˇ", "打": "ㄉㄚˇ", "推": "ㄊㄨㄟ", "據": "ㄐㄩˋ", "敗": "ㄅㄞˋ", "條": "ㄊㄧㄠˊ", "棄": "ㄑㄧˋ", "椅": "ㄧˇ", "決": "ㄐㄩㄝˊ", "油": "ㄧㄡˊ", "炫": "ㄒㄩㄢˋ", "球": "ㄑㄧㄡˊ", "畫": "ㄏㄨㄚˋ", "真": "ㄓㄣ", "籃": "ㄌㄢˊ", "終": "ㄓㄨㄥ", "網": "ㄨㄤˇ", "繞": "ㄖㄠˋ", "耀": "ㄧㄠˋ", "育": "ㄩˋ", "設": "ㄕㄜˋ", "證": "ㄓㄥˋ", "賽": "ㄙㄞˋ", "距": "ㄐㄩˋ", "路": "ㄌㄨˋ", "載": "ㄗㄞˋ", "鈕": "ㄋㄧㄡˇ", "離": "ㄌㄧˊ", "驕": "ㄐㄧㄠ"};
 const PUNCT = /[，。！？、：；「」（）\s0-9A-Za-z\/+①②③④⑤＿…→～]/;
 function zh(text) {
   let out = '';
@@ -260,134 +271,341 @@ const EMO = {
   happy: { name: '開心', svg: face(1, 72) },
 };
 
-/* ---------- the two short clips ---------- */
-function kid(x, y, col, mood, label, hair = '#3B2A20', star = false) {
-  const m = mood === 'cry' ? 'M-9 14 Q0 6 9 14' : mood === 'sad' ? 'M-9 13 Q0 8 9 13' : mood === 'calm' ? 'M-8 10 L8 10' : 'M-9 8 Q0 17 9 8';
-  const tears = mood === 'cry' ? '<path class="tear" d="M-12 2 q-4 8 0 12 q4 -4 0 -12" fill="#5AB4F0"/><path class="tear" d="M12 2 q-4 8 0 12 q4 -4 0 -12" fill="#5AB4F0"/>' : '';
-  return `<g transform="translate(${x} ${y})">
-    <path d="M-34 90 Q0 52 34 90 Z" fill="${col}"/>
-    <circle cx="0" cy="0" r="30" fill="#FFD9B8"/>
-    <path d="M-30 -4 Q-28 -34 0 -34 Q28 -34 30 -4 Q18 -20 0 -18 Q-18 -20 -30 -4 Z" fill="${hair}"/>
-    ${star ? '<path d="M18 -30 l4 8 9 1 -7 6 2 9 -8 -5 -8 5 2 -9 -7 -6 9 -1z" fill="#F4C24B" stroke="#C9971A" stroke-width="1.5"/>' : ''}
-    <circle cx="-10" cy="-2" r="3.4" fill="#33302B"/><circle cx="10" cy="-2" r="3.4" fill="#33302B"/>
-    <path d="${m}" stroke="#B5463C" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-    ${tears}
-    <text x="0" y="112" text-anchor="middle" font-size="20" font-weight="700" fill="#33302B" font-family="Noto Sans TC, sans-serif">${label}</text>
-  </g>`;
-}
-function bubble(x, y, text, col = '#237A80') {
-  const w = text.length * 22 + 30;
-  return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="-26" width="${w}" height="44" rx="16" fill="#fff" stroke="${col}" stroke-width="3"/><path d="M-6 18 L0 30 L6 18 Z" fill="#fff" stroke="${col}" stroke-width="3"/><rect x="-8" y="14" width="16" height="6" fill="#fff"/><text x="0" y="5" text-anchor="middle" font-size="22" font-weight="900" fill="${col}" font-family="Noto Sans TC, sans-serif">${text}</text></g>`;
-}
-function cardSvg(x, y, sym, flash) {
-  const shape = { star: '<path d="M0 -14 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1z" fill="#2F6FD6"/>', heart: '<path d="M0 12 C-16 0 -12 -14 0 -6 C12 -14 16 0 0 12Z" fill="#D9534F"/>', bolt: '<path d="M3 -14 L-8 2 H0 L-3 14 L8 -2 H0 Z" fill="#F4C24B"/>' }[sym];
-  return `<g transform="translate(${x} ${y})"><rect x="-26" y="-36" width="52" height="72" rx="8" fill="#fff" stroke="${flash ? '#F4C24B' : '#BFB4A2'}" stroke-width="${flash ? 6 : 3}"/>${shape}</g>`;
-}
-function score(x, y, names, pts) {
-  return `<g transform="translate(${x} ${y})"><rect x="0" y="0" width="210" height="${30 + names.length * 30}" rx="12" fill="#fff" stroke="#EBE2D3" stroke-width="3"/>
-    <text x="105" y="22" text-anchor="middle" font-size="16" font-weight="700" fill="#7A7064" font-family="Noto Sans TC, sans-serif">分數</text>
-    ${names.map((n, i) => `<text x="18" y="${50 + i * 30}" font-size="19" font-weight="700" fill="#33302B" font-family="Noto Sans TC, sans-serif">${n}</text><text x="190" y="${50 + i * 30}" text-anchor="end" font-size="22" font-weight="900" fill="${pts[i] ? '#237A80' : '#D9534F'}" font-family="Noto Sans TC, sans-serif">${pts[i]}</text>`).join('')}</g>`;
-}
-function sceneFrame(st) {
-  // st: { moods:{mei,hua,star}, cards:[sym,sym,sym], flash:[bool..], bub:{who,text}, pts:[mei,hua,star], extra }
-  const pos = { mei: 230, hua: 640, star: 435 };
-  let s = `<rect width="1000" height="562" fill="#F3EBDD"/><rect y="390" width="1000" height="172" fill="#D9B98C"/><ellipse cx="435" cy="420" rx="330" ry="60" fill="#C9A372"/>`;
-  s += kid(pos.mei, 230, '#E87FA4', st.moods.mei, '小美', '#5A3A2A');
-  s += kid(pos.hua, 230, '#6FA8DC', st.moods.hua, '小華');
-  s += kid(pos.star, 250, '#F4C24B', st.moods.star, '小星', '#3B2A20', true);
-  st.cards.forEach((c, i) => { if (c) s += cardSvg([300, 435, 570][i], 420, c, st.flash && st.flash[i]); });
-  if (st.bub) s += bubble(pos[st.bub.who], st.bub.who === 'star' ? 150 : 132, st.bub.text, st.bub.col);
-  s += score(770, 24, ['小美', '小華', '小星'], st.pts);
-  if (st.extra) s += st.extra;
-  return `<svg class="scene" viewBox="0 0 1000 562" aria-hidden="true">${s}</svg>`;
-}
-const CLIPS = {
-  lose: {
-    title: '小星的故事',
-    steps: [
-      [0, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['heart', 'bolt', 'star'], pts: [0, 0, 0] }, '小星和朋友在玩字字轉機，大家都很開心。'],
-      [3500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'bolt', 'star'], flash: [1, 0, 1], pts: [0, 0, 0] }, '兩張牌的符號一樣！要搶著說出別人的圖案。'],
-      [6500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['star', 'bolt', 'star'], flash: [1, 0, 1], bub: { who: 'mei', text: '槌子！' }, pts: [1, 0, 0] }, '小美最快說出來，小美得一分。'],
-      [9500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['bolt', 'bolt', 'heart'], flash: [1, 1, 0], bub: { who: 'hua', text: '雨傘！' }, pts: [1, 1, 0] }, '又一次……小華先說了，小華也得一分。'],
-      [12500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['heart', 'bolt', 'heart'], flash: [1, 0, 1], bub: { who: 'mei', text: '熱狗堡！' }, pts: [2, 1, 0] }, '小星每次都慢一步，一分都沒有。'],
-      [15500, { moods: { mei: 'happy', hua: 'happy', star: 'cry' }, cards: ['heart', 'bolt', 'heart'], pts: [2, 1, 0] }, '小星的眼淚掉下來了，一直哭，不想玩了……'],
-      [19000, null, ''],
-    ],
-  },
-  better: {
-    title: '小星換個做法',
-    steps: [
-      [0, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['heart', 'bolt', 'heart'], flash: [1, 0, 1], bub: { who: 'mei', text: '熱狗堡！' }, pts: [2, 1, 0] }, '小星又慢了一步，心裡好難過。'],
-      [3500, { moods: { mei: 'happy', hua: 'happy', star: 'calm' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '吸～　呼～', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星先用降溫魔法：聞花、吹蠟燭，深呼吸三次。'],
-      [7500, { moods: { mei: 'happy', hua: 'happy', star: 'calm' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '下次我再試試！', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星換一個想法：「我只是這次沒拿到，下次再試試。」'],
-      [11500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '恭喜你！', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星對小美說：「恭喜你！」'],
-      [14500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'heart', 'star'], flash: [1, 0, 1], bub: { who: 'star', text: '槌子！', col: '#F08A5D' }, pts: [2, 1, 1] }, '大家繼續玩。這一次，小星也拿到一分了！'],
-      [18000, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'heart', 'star'], pts: [2, 1, 1], extra: '<text x="435" y="90" text-anchor="middle" font-size="40" font-weight="900" fill="#237A80" font-family="Noto Sans TC, sans-serif">輸了也沒關係，再玩一局！</text>' }, '輸了也沒關係，跟朋友一起玩最開心！'],
-      [22000, null, ''],
-    ],
-  },
+/* ---------- 3D game: three moments of losing ---------- */
+const G = { renderer: null, scene: null, camera: null, raf: 0, ro: null, t: 0, last: 0, tick: null, level: null, stars: {}, audio: null, keyH: null };
+const LEVELS3D = {
+  race: { name: '賽跑比賽', icon: '跑', ds: '體育課賽跑，快按按鈕往前跑！', col: '#F08A5D' },
+  chairs: { name: '搶椅子', icon: '椅', ds: '音樂停了，要最快坐到椅子上！', col: '#237A80' },
+  hoop: { name: '投籃比賽', icon: '球', ds: '看準力氣條，投進越多球越好！', col: '#7A5197' },
 };
-const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" fill="#33302B"/></svg>';
-function playerHTML(id, question) {
-  const c = CLIPS[id];
-  return `<div class="player" data-clip="${id}" data-q="${esc(question || '')}"><div class="screen">${sceneFrame(c.steps[0][1])}<div class="cap"></div>
-    <div class="cover"><div class="ttl">${zh(c.title)}</div><button type="button" data-play="${id}" aria-label="播放">${PLAY}</button></div></div>
-    <div class="ctrl"><button type="button" data-replay="${id}">↻ 重播</button><div class="prog"><i></i></div><span style="font-family:var(--f-head);font-size:14px">${zh('小短片')}</span></div></div>`;
+const LOSE_CHOICES = {
+  race: [
+    { t: '坐在地上大哭，不跑了', good: false, why: '難過可以哭，但要先用降溫魔法讓自己冷靜，不要放棄。' },
+    { t: '深呼吸，說「我有跑完，下次再加油！」', good: true, why: '你有跑完全程，好棒！下次再加油！' },
+    { t: '大喊「不公平！他們偷跑！」', good: false, why: '沒有證據就說別人偷跑，朋友會難過。' },
+  ],
+  chairs: [
+    { t: '把椅子推倒', good: false, why: '推椅子很危險，也會讓大家不想跟你玩。' },
+    { t: '說「沒關係」，去幫忙放音樂', good: true, why: '出局了還能幫忙，你是好風度的好朋友！' },
+    { t: '大叫「我不要玩了！」跑走', good: false, why: '先用降溫魔法，冷靜下來再決定要不要玩。' },
+  ],
+  hoop: [
+    { t: '把球用力丟出去', good: false, why: '丟球會打到別人，也很危險。' },
+    { t: '說「你好厲害！可以教我嗎？」', good: true, why: '稱讚別人、向別人學習，你會越來越厲害！' },
+    { t: '說「我最爛了」，一直哭', good: false, why: '你不爛！只是這次沒投進，換個想法：多練習就會進步。' },
+  ],
+};
+const WIN_CHOICES = [
+  { t: '說「謝謝大家，再玩一次！」', good: true, why: '贏了不驕傲，還邀請大家再玩，大家都喜歡你！' },
+  { t: '大喊「耶！你們好爛！」', good: false, why: '這樣說朋友會很難過，贏了也要有好風度。' },
+  { t: '一直說「我最厲害！」', good: false, why: '一直炫耀，別人會不想跟你玩。說謝謝就好。' },
+];
+
+function g3dStop() {
+  cancelAnimationFrame(G.raf); G.raf = 0; G.tick = null;
+  if (G.ro) { G.ro.disconnect(); G.ro = null; }
+  if (G.keyH) { document.removeEventListener('keydown', G.keyH); G.keyH = null; }
+  stopMusic();
+  if (G.renderer) { G.renderer.dispose(); G.renderer = null; }
+  G.scene = null;
 }
-function playClip(id, onEnd) {
-  const host = main.querySelector(`.player[data-clip="${id}"]`); if (!host) return;
-  clearTimers();
-  const c = CLIPS[id], scr = host.querySelector('.screen'), cap = host.querySelector('.cap'), bar = host.querySelector('.prog i');
-  host.querySelector('.cover').hidden = true;
-  const dur = c.steps[c.steps.length - 1][0];
-  bar.style.transition = 'none'; bar.style.width = '0';
-  requestAnimationFrame(() => { bar.style.transition = `width ${dur}ms linear`; bar.style.width = '100%'; });
-  c.steps.forEach(([t, st, text]) => later(() => {
-    if (!st) { const q = host.dataset.q; const cv = host.querySelector('.cover'); cv.hidden = false; cv.innerHTML = `<div class="ttl">${zh(q || '看完了！')}</div><button type="button" data-replay="${id}" aria-label="重播">${PLAY}</button>`; cv.querySelector('button').onclick = () => playClip(id, onEnd); onEnd && onEnd(); return; }
-    scr.querySelector('svg.scene').outerHTML = sceneFrame(st);
-    cap.innerHTML = zh(text); say(text);
-  }, t));
+function g3dInit(host) {
+  g3dStop();
+  if (!window.THREE) { host.innerHTML = `<div class="g3d-fallback">${zh('3D 畫面載入失敗，請確認網路連線後重新整理。')}</div>`; return false; }
+  const r = new THREE.WebGLRenderer({ antialias: true });
+  r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  r.shadowMap.enabled = true;
+  host.appendChild(r.domElement);
+  G.renderer = r;
+  G.scene = new THREE.Scene();
+  G.camera = new THREE.PerspectiveCamera(50, 16 / 9, 0.1, 200);
+  const fit = () => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h || !G.renderer) return; G.renderer.setSize(w, h, false); G.camera.aspect = w / h; G.camera.updateProjectionMatrix(); };
+  G.ro = new ResizeObserver(fit); G.ro.observe(host); fit();
+  G.scene.add(new THREE.HemisphereLight(0xffffff, 0x8a7a60, 0.75));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(6, 12, 8); sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024); Object.assign(sun.shadow.camera, { left: -25, right: 25, top: 25, bottom: -25 });
+  G.scene.add(sun);
+  G.last = performance.now();
+  const loop = now => {
+    if (!G.renderer) return;
+    const dt = Math.min(0.05, (now - G.last) / 1000); G.last = now; G.t += dt;
+    if (G.tick) G.tick(dt);
+    G.renderer.render(G.scene, G.camera);
+    G.raf = requestAnimationFrame(loop);
+  };
+  G.raf = requestAnimationFrame(loop);
+  return true;
+}
+const mat = c => new THREE.MeshLambertMaterial({ color: c });
+function mesh(geo, c, shadow = true) { const m = new THREE.Mesh(geo, mat(c)); m.castShadow = shadow; m.receiveShadow = true; return m; }
+function label(text, col = '#33302B') {
+  const cv = document.createElement('canvas'); cv.width = 256; cv.height = 96;
+  const x = cv.getContext('2d');
+  x.fillStyle = 'rgba(255,255,255,.92)'; x.beginPath(); x.roundRect ? x.roundRect(8, 14, 240, 68, 30) : x.rect(8, 14, 240, 68); x.fill();
+  x.fillStyle = col; x.font = '700 44px "Noto Sans TC", sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(text, 128, 50);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), depthTest: false }));
+  s.scale.set(1.3, 0.49, 1); s.renderOrder = 10; return s;
+}
+function person(col, hair, name, isYou) {
+  const g = new THREE.Group();
+  const limb = (w, h, c, y, x) => { const piv = new THREE.Group(); piv.position.set(x, y, 0); const m = mesh(new THREE.BoxGeometry(w, h, w), c); m.position.y = -h / 2; piv.add(m); g.add(piv); return piv; };
+  const legL = limb(0.16, 0.6, 0x3B4A6B, 0.6, -0.13), legR = limb(0.16, 0.6, 0x3B4A6B, 0.6, 0.13);
+  const body = mesh(new THREE.CylinderGeometry(0.3, 0.36, 0.8, 16), col); body.position.y = 0.98; g.add(body);
+  const armL = limb(0.13, 0.55, col, 1.32, -0.43), armR = limb(0.13, 0.55, col, 1.32, 0.43);
+  const head = mesh(new THREE.SphereGeometry(0.34, 24, 16), 0xFFD9B8); head.position.y = 1.72; g.add(head);
+  const hairM = mesh(new THREE.SphereGeometry(0.36, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2.1), hair); hairM.position.y = 1.76; g.add(hairM);
+  const hairB = mesh(new THREE.SphereGeometry(0.36, 24, 16, Math.PI, Math.PI, 0, Math.PI * 0.78), hair); hairB.position.y = 1.73; g.add(hairB);
+  [-0.12, 0.12].forEach(x => { const e = mesh(new THREE.SphereGeometry(0.045, 10, 8), 0x33302B, false); e.position.set(x, 1.74, 0.31); g.add(e); });
+  const lb = label(name, isYou ? '#C4552A' : '#33302B'); lb.position.y = 2.45; g.add(lb);
+  g.userData = { legL, legR, armL, armR, sit: 0 };
+  return g;
+}
+function animWalk(p, phase, amt = 0.7) {
+  const s = Math.sin(phase) * amt, u = p.userData;
+  u.legL.rotation.x = s; u.legR.rotation.x = -s; u.armL.rotation.x = -s; u.armR.rotation.x = s;
+}
+function animStand(p) { animWalk(p, 0, 0); }
+function animSit(p) { const u = p.userData; u.legL.rotation.x = u.legR.rotation.x = -1.45; u.armL.rotation.x = u.armR.rotation.x = -0.3; }
+function confetti(at) {
+  const cols = [0xF08A5D, 0xF4C24B, 0x6CC08B, 0x237A80, 0xD9534F, 0x7A5197];
+  const bits = [];
+  for (let i = 0; i < 80; i++) {
+    const m = mesh(new THREE.BoxGeometry(0.08, 0.08, 0.02), cols[i % cols.length], false);
+    m.position.copy(at); m.userData.v = new THREE.Vector3((Math.random() - .5) * 5, 4 + Math.random() * 4, (Math.random() - .5) * 5);
+    G.scene.add(m); bits.push(m);
+  }
+  return dt => bits.forEach(b => { b.userData.v.y -= 9 * dt; b.position.addScaledVector(b.userData.v, dt); b.rotation.x += 6 * dt; b.rotation.y += 4 * dt; if (b.position.y < 0) b.visible = false; });
+}
+
+/* music for musical chairs (starts only after a click) */
+function startMusic() {
+  try {
+    const ac = G.audio || (G.audio = new (window.AudioContext || window.webkitAudioContext)());
+    const notes = [523, 659, 784, 659, 587, 698, 880, 698];
+    let i = 0;
+    G.musicT = setInterval(() => {
+      const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime;
+      o.type = 'triangle'; o.frequency.value = notes[i++ % notes.length];
+      g.gain.setValueAtTime(0.16, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
+      o.connect(g).connect(ac.destination); o.start(t); o.stop(t + 0.26);
+    }, 260);
+  } catch (e) {}
+}
+function stopMusic() { clearInterval(G.musicT); G.musicT = 0; }
+function beep(f = 880, d = 0.15) { try { const ac = G.audio || (G.audio = new (window.AudioContext || window.webkitAudioContext)()); const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime; o.frequency.value = f; g.gain.setValueAtTime(0.2, t); g.gain.exponentialRampToValueAtTime(0.001, t + d); o.connect(g).connect(ac.destination); o.start(t); o.stop(t + d); } catch (e) {} }
+
+/* ---- level: race ---- */
+function setupRace(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xBFE3F2); S.fog = new THREE.Fog(0xBFE3F2, 30, 80);
+  const ground = mesh(new THREE.PlaneGeometry(120, 160), 0x8CC56E); ground.rotation.x = -Math.PI / 2; ground.position.z = -40; S.add(ground);
+  const track = mesh(new THREE.PlaneGeometry(8, 70), 0xD9845A); track.rotation.x = -Math.PI / 2; track.position.set(0, 0.01, -28); S.add(track);
+  [-3.3, -1.1, 1.1, 3.3].forEach(x => { const l = mesh(new THREE.BoxGeometry(0.08, 0.02, 70), 0xffffff, false); l.position.set(x, 0.02, -28); S.add(l); });
+  const cv = document.createElement('canvas'); cv.width = 64; cv.height = 8; const cx = cv.getContext('2d');
+  for (let i = 0; i < 16; i++) for (let j = 0; j < 2; j++) { cx.fillStyle = (i + j) % 2 ? '#222' : '#fff'; cx.fillRect(i * 4, j * 4, 4, 4); }
+  const fin = new THREE.Mesh(new THREE.PlaneGeometry(6.6, 0.8), new THREE.MeshLambertMaterial({ map: new THREE.CanvasTexture(cv) })); fin.rotation.x = -Math.PI / 2; fin.position.set(0, 0.03, -40); S.add(fin);
+  [-3.6, 3.6].forEach(x => { const p = mesh(new THREE.CylinderGeometry(0.08, 0.08, 3), 0xffffff); p.position.set(x, 1.5, -40); S.add(p); });
+  const ban = mesh(new THREE.BoxGeometry(7.4, 0.6, 0.1), 0xF4C24B); ban.position.set(0, 3, -40); S.add(ban);
+  for (let i = 0; i < 14; i++) { const tr = new THREE.Group(); const tk = mesh(new THREE.CylinderGeometry(0.15, 0.2, 1.2), 0x8A6239); tk.position.y = 0.6; const lf = mesh(new THREE.SphereGeometry(0.8, 12, 10), 0x4E8B3A); lf.position.y = 1.6; tr.add(tk, lf); tr.position.set(i % 2 ? 7 : -7, 0, -i * 5); S.add(tr); }
+  const you = person(0xF4C24B, 0x3B2A20, '你', true), mei = person(0xE87FA4, 0x5A3A2A, '小美'), hua = person(0x6FA8DC, 0x2A2A2A, '小華');
+  const runners = [{ p: mei, x: -2.2, v: 4.6 + Math.random() * 0.3 }, { p: you, x: 0, v: 0, you: true }, { p: hua, x: 2.2, v: 4.0 + Math.random() * 0.3 }];
+  runners.forEach(r => { r.p.position.set(r.x, 0, 0); r.p.rotation.y = Math.PI; r.z = 0; r.done = false; r.ph = 0; S.add(r.p); });
+  G.camera.position.set(0, 3.2, 6); G.camera.lookAt(0, 1, -4);
+  let state = 'count', cd = 3.2, order = [], taps = 0, elapsed = 0, endT = 0, fx = null;
+  ui.hud(zh('準備……'));
+  ui.action('快按！跑跑跑！', () => { if (state === 'run') { const me = runners[1]; me.v = Math.min(6.4, me.v + 1.1); taps++; } }, true);
+  G.tick = dt => {
+    if (state === 'count') {
+      const before = Math.ceil(cd); cd -= dt; const now = Math.ceil(cd);
+      if (now !== before && now > 0) { ui.hud(`<span class="cd">${now}</span>`); beep(660); }
+      if (cd <= 0) { state = 'run'; ui.hud(`<span class="cd">${zh('跑！')}</span>`); beep(990, 0.3); ui.enable(true); }
+      return;
+    }
+    if (state === 'run' || state === 'end') {
+      elapsed += dt;
+      runners.forEach(r => {
+        if (r.done) { animStand(r.p); return; }
+        if (r.you) { r.v *= Math.exp(-1.5 * dt); if (elapsed > 14) r.v = Math.max(r.v, 3); }
+        r.z -= r.v * dt; r.ph += r.v * dt * 3.2; animWalk(r.p, r.ph, Math.min(0.9, r.v / 5));
+        r.p.position.z = r.z;
+        if (r.z <= -40) { r.done = true; order.push(r); if (r.you) { endT = 0; } }
+      });
+      const me = runners[1];
+      G.camera.position.z += ((me.z + 6) - G.camera.position.z) * Math.min(1, dt * 3);
+      G.camera.lookAt(0, 1, G.camera.position.z - 10);
+      if (state === 'run') ui.hud(zh(`距離終點 ${Math.max(0, Math.ceil(40 + me.z))} 公尺`));
+      if (me.done && state === 'run') {
+        state = 'end'; ui.enable(false);
+        const rank = order.indexOf(me) + 1;
+        ui.hud(`<span class="cd">${zh(`你是第 ${rank} 名`)}</span>`);
+        if (rank === 1) fx = confetti(new THREE.Vector3(0, 2, me.z));
+      }
+      if (state === 'end') { endT += dt; if (fx) fx(dt); if (endT > 2.2 && order.length === 3) { state = 'over'; const rank = order.indexOf(me) + 1; ui.finish(rank === 1, rank === 1 ? '你跑第一名！' : `你跑第 ${rank} 名，小美跑第一名。`, [mei, hua]); } }
+    }
+    if (state === 'over' && G.react) G.react(dt);
+  };
+}
+
+/* ---- level: musical chairs ---- */
+function setupChairs(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xF6EBD9); S.fog = null;
+  const floor = mesh(new THREE.PlaneGeometry(40, 40), 0xD9B98C); floor.rotation.x = -Math.PI / 2; S.add(floor);
+  const rug = mesh(new THREE.CylinderGeometry(3.4, 3.4, 0.02, 48), 0xE8C9A0); rug.position.y = 0.01; S.add(rug);
+  const wall = mesh(new THREE.BoxGeometry(40, 8, 0.2), 0xFBF6EE); wall.position.set(0, 4, -8); S.add(wall);
+  const board = mesh(new THREE.BoxGeometry(6, 2.4, 0.1), 0x2F5D4A); board.position.set(0, 3.6, -7.85); S.add(board);
+  const chairs = [0, 1, 2].map(i => {
+    const a = i * Math.PI * 2 / 3 + Math.PI / 2, c = new THREE.Group();
+    const seat = mesh(new THREE.BoxGeometry(0.7, 0.08, 0.7), 0xC4552A); seat.position.y = 0.55;
+    const back = mesh(new THREE.BoxGeometry(0.7, 0.7, 0.08), 0xC4552A); back.position.set(0, 0.95, -0.31);
+    c.add(seat, back);
+    [[-.3, -.3], [.3, -.3], [-.3, .3], [.3, .3]].forEach(([x, z]) => { const l = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55), 0x6B4A2B); l.position.set(x, 0.27, z); c.add(l); });
+    c.position.set(Math.cos(a) * 1.3, 0, Math.sin(a) * 1.3); c.rotation.y = Math.PI / 2 - a;
+    S.add(c); return { g: c, a, taken: null };
+  });
+  const ppl = [
+    { p: person(0xF4C24B, 0x3B2A20, '你', true), you: true, name: '你' },
+    { p: person(0xE87FA4, 0x5A3A2A, '小美'), delay: 0.42, name: '小美' },
+    { p: person(0x6FA8DC, 0x2A2A2A, '小華'), delay: 0.5, name: '小華' },
+    { p: person(0x8FCB6B, 0x6B3A1A, '小安'), delay: 0.58, name: '小安' },
+  ];
+  ppl.forEach((o, i) => { o.ang = i * Math.PI / 2; o.seat = null; S.add(o.p); });
+  G.camera.position.set(0, 6.5, 7.5); G.camera.lookAt(0, 0.8, 0);
+  let state = 'ready', stopAt = 0, tStop = 0, pressed = -1, ph = 0, endT = 0, fx = null, outGuy = null;
+  const place = () => ppl.forEach(o => { if (o.seat) return; o.p.position.set(Math.cos(o.ang) * 2.5, 0, Math.sin(o.ang) * 2.5); o.p.rotation.y = -o.ang; });
+  place();
+  ui.hud(zh('按「開始放音樂」，大家繞著椅子走'));
+  ui.action('開始放音樂', () => {
+    if (state === 'ready') { state = 'walk'; stopAt = 3.5 + Math.random() * 3.5; startMusic(); ui.label('坐下！'); ui.hud(zh('音樂在放……準備好！')); return; }
+    if (state === 'walk') { ui.hud(zh('音樂還沒停，再等一下！')); return; }
+    if (state === 'stop' && pressed < 0) { pressed = tStop; }
+  }, true);
+  ui.enable(true);
+  G.tick = dt => {
+    if (state === 'walk') {
+      stopAt -= dt; ph += dt * 7;
+      ppl.forEach(o => { o.ang += dt * 0.7; animWalk(o.p, ph); });
+      place();
+      if (stopAt <= 0) { state = 'stop'; tStop = 0; stopMusic(); beep(300, 0.25); ui.hud(`<span class="cd">${zh('音樂停了！快坐下！')}</span>`); }
+      return;
+    }
+    if (state === 'stop') {
+      tStop += dt;
+      const free = () => chairs.filter(c => !c.taken);
+      const grab = o => {
+        const c = free().sort((a, b) => Math.abs(((a.a - o.ang) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI) - Math.abs(((b.a - o.ang) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI))[0];
+        c.taken = o; o.seat = c; o.from = o.p.position.clone(); o.k = 0;
+      };
+      ppl.forEach(o => {
+        if (o.seat || !free().length) return;
+        const t = o.you ? (pressed >= 0 ? pressed : Infinity) : o.delay;
+        if (tStop >= t) grab(o);
+      });
+      ppl.forEach(o => {
+        if (!o.seat || o.k >= 1) return;
+        o.k = Math.min(1, o.k + dt * 2.5);
+        const c = o.seat.g.position;
+        o.p.position.lerpVectors(o.from, new THREE.Vector3(c.x, 0, c.z), o.k);
+        o.p.rotation.y = o.seat.g.rotation.y;
+        if (o.k >= 1) animSit(o.p);
+        else animWalk(o.p, tStop * 12);
+      });
+      if (!free().length || tStop > 3) {
+        endT += dt;
+        if (endT > 1.4) {
+          state = 'over'; ui.enable(false);
+          outGuy = ppl.find(o => !o.seat);
+          if (outGuy) animStand(outGuy.p);
+          const won = !!ppl[0].seat;
+          if (won) fx = confetti(new THREE.Vector3(ppl[0].p.position.x, 2, ppl[0].p.position.z));
+          ui.hud(`<span class="cd">${zh(won ? '你搶到椅子了！' : '你沒有搶到椅子……')}</span>`);
+          ui.finish(won, won ? `你搶到椅子了！${outGuy ? outGuy.name + '這次出局了。' : ''}` : '你沒有搶到椅子，這次出局了。', ppl.slice(1).map(o => o.p));
+        }
+      }
+      return;
+    }
+    if (state === 'over') { if (fx) fx(dt); if (G.react) G.react(dt); }
+  };
+}
+
+/* ---- level: basketball ---- */
+function setupHoop(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xCDE6F5); S.fog = null;
+  const court = mesh(new THREE.PlaneGeometry(30, 30), 0xD89B5B); court.rotation.x = -Math.PI / 2; S.add(court);
+  const key = mesh(new THREE.PlaneGeometry(3.6, 5.4), 0xC9874A); key.rotation.x = -Math.PI / 2; key.position.set(0, 0.01, -4.6); S.add(key);
+  const pole = mesh(new THREE.CylinderGeometry(0.12, 0.12, 3.4), 0x7A7064); pole.position.set(0, 1.7, -7.5); S.add(pole);
+  const bb = mesh(new THREE.BoxGeometry(1.8, 1.1, 0.08), 0xffffff); bb.position.set(0, 3.45, -7.2); S.add(bb);
+  const sq = mesh(new THREE.BoxGeometry(0.6, 0.45, 0.02), 0xD9534F, false); sq.position.set(0, 3.3, -7.15); S.add(sq);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.03, 8, 24), mat(0xF08A5D)); rim.rotation.x = Math.PI / 2; rim.position.set(0, 3.05, -6.8); S.add(rim);
+  const net = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.2, 0.45, 16, 1, true), new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true })); net.position.set(0, 2.8, -6.8); S.add(net);
+  const you = person(0xF4C24B, 0x3B2A20, '你', true); you.rotation.y = Math.PI; you.position.set(-0.6, 0, 0); you.children.find(c => c.isSprite).visible = false; S.add(you);
+  const hua = person(0x6FA8DC, 0x2A2A2A, '小華'); hua.position.set(2.3, 0, -2.6); hua.rotation.y = -0.7; S.add(hua);
+  const ball = mesh(new THREE.SphereGeometry(0.16, 20, 14), 0xE8762B); S.add(ball);
+  G.camera.position.set(0.9, 2.5, 2.4); G.camera.lookAt(-0.2, 2.7, -6);
+  const HUAS = 3, SHOTS = 5;
+  let state = 'aim', made = 0, shots = 0, pow = 0, dir = 1, fly = null, endT = 0, fx = null;
+  const start = new THREE.Vector3(-0.35, 1.7, -0.35);
+  ball.position.copy(start);
+  you.userData.armL.rotation.x = you.userData.armR.rotation.x = -2.6;
+  ui.meter(true);
+  const hud = () => ui.hud(zh(`你：投進 ${made} 球　｜　小華：投進 ${HUAS} 球　｜　還有 ${SHOTS - shots} 球`));
+  hud();
+  ui.action('投籃！', () => {
+    if (state !== 'aim') return;
+    state = 'fly'; shots++;
+    const good = Math.abs(pow - 0.62) <= 0.08;
+    const D = 6.45 * (pow / 0.62);
+    fly = { u: 0, D, good, phase: 'arc', v: new THREE.Vector3() };
+  }, true);
+  ui.enable(true);
+  G.tick = dt => {
+    if (state === 'aim') { pow += dir * dt / 1.1; if (pow > 1) { pow = 1; dir = -1; } if (pow < 0) { pow = 0; dir = 1; } ui.setMeter(pow); }
+    if (state === 'fly' && fly) {
+      if (fly.phase === 'arc') {
+        fly.u = Math.min(1, fly.u + dt / 1.05);
+        const u = fly.u, z = start.z - fly.D * u, y = start.y + (3.15 - start.y) * u + 4 * 1.6 * u * (1 - u);
+        ball.position.set(start.x * (1 - u), y, z);
+        if (u >= 1) {
+          if (fly.good) { fly.phase = 'in'; beep(990, 0.25); made++; }
+          else if (fly.D > 6.45) { fly.phase = 'bounce'; fly.v.set(0, 1.2, 2.4); beep(220, 0.12); }
+          else { fly.phase = 'bounce'; fly.v.set(0, -0.5, 1.2); beep(220, 0.12); }
+        }
+      } else if (fly.phase === 'in') {
+        ball.position.y -= dt * 3; ball.position.z += (-6.8 - ball.position.z) * Math.min(1, dt * 8);
+        if (ball.position.y < 0.2) fly.phase = 'done';
+      } else if (fly.phase === 'bounce') {
+        fly.v.y -= 9.8 * dt; ball.position.addScaledVector(fly.v, dt);
+        if (ball.position.y < 0.16) { ball.position.y = 0.16; fly.v.y *= -0.45; fly.v.z *= 0.7; if (Math.abs(fly.v.y) < 0.6) fly.phase = 'done'; }
+      } else if (fly.phase === 'done') {
+        endT += dt;
+        if (endT > 0.6) {
+          endT = 0; fly = null; hud();
+          if (shots >= SHOTS) {
+            state = 'over'; ui.enable(false); ui.meter(false);
+            const won = made > HUAS;
+            if (won) fx = confetti(new THREE.Vector3(0, 2.5, -2));
+            ui.hud(`<span class="cd">${zh(won ? `你投進 ${made} 球，贏了！` : `你投進 ${made} 球，小華投進 ${HUAS} 球`)}</span>`);
+            ui.finish(won, won ? `你投進 ${made} 球，比小華多！` : `你投進 ${made} 球，小華投進 ${HUAS} 球，這次小華贏了。`, [hua]);
+          } else { state = 'aim'; ball.position.copy(start); }
+        }
+      }
+      return;
+    }
+    if (state === 'over') { if (fx) fx(dt); if (G.react) G.react(dt); }
+  };
 }
 
 /* ---------- steps ---------- */
 const STEPS = [
-  { id: 'story', label: '小星的故事', mins: 5, render: sStory },
-  { id: 'thermo', label: '心情溫度計', mins: 6, render: sThermo },
-  { id: 'calm', label: '降溫魔法', mins: 8, render: sCalm },
-  { id: 'think', label: '想法變身', mins: 6, render: sThink },
-  { id: 'say', label: '輸了怎麼說', mins: 5, render: sSay },
-  { id: 'spin', label: '輸贏練習', mins: 8, render: sSpin },
+  { id: 'game', label: '三個輸的時刻', mins: 11, render: sGame },
+  { id: 'thermo', label: '心情溫度計', mins: 5, render: sThermo },
+  { id: 'calm', label: '降溫魔法', mins: 7, render: sCalm },
+  { id: 'think', label: '想法變身', mins: 5, render: sThink },
+  { id: 'say', label: '輸了怎麼說', mins: 4, render: sSay },
+  { id: 'spin', label: '輸贏練習', mins: 6, render: sSpin },
   { id: 'plan', label: '我的冷靜卡', mins: 2, render: sPlan },
 ];
 let cur = 0;
 const main = document.getElementById('main');
 const head = (n, title, mins) => `<div class="step-top"><div class="num">${n}</div><h2 class="hd">${zh(title)}</h2><span class="mins">約 ${mins} 分鐘</span></div>`;
-
-/* 1 story */
-let storyPick = null;
-function sStory() {
-  const opts = ['sad', 'angry', 'down', 'happy'];
-  return `<section class="step">${head(1, '小星的故事', 5)}
-    <p class="lead">${zh('先看小短片：小星玩桌遊的時候發生了什麼事？')}</p>
-    ${playerHTML('lose', '小星現在是什麼心情？')}
-    <p class="big">${zh('小星現在是什麼心情？可以選很多個！')} ${sp('小星現在是什麼心情？可以選很多個！')}</p>
-    <div class="opts">${opts.map(k => `<button class="opt ${storyPick && storyPick.includes(k) ? 'on' : ''}" type="button" data-emo="${k}">${EMO[k].svg}${zh(EMO[k].name)}</button>`).join('')}</div>
-    <div id="storyFb">${storyPick && storyPick.length ? storyFb() : ''}</div>
-    <p class="teacher"><b>老師提示</b>：用虛構的小星帶出情境，不點名班上的同學。看完請學生說說：「你有沒有過跟小星一樣的感覺？」願意分享的人再分享，不勉強。</p>
-  </section>`;
-}
-function storyFb() {
-  if (storyPick.includes('happy') && storyPick.length === 1) return `<div class="fb no pop"><div>${zh('再看看小星的臉和眼淚喔！')}</div></div>`;
-  return `<div class="fb ok pop"><div>${zh('難過、生氣、失望，這些心情都很正常！')}</div><div class="ex">${zh('每個人輸的時候都會不舒服。輸了以後怎麼做，才是最厲害的！')}</div></div>`;
-}
-function mStory() {
-  main.querySelectorAll('[data-emo]').forEach(b => b.onclick = () => {
-    storyPick = storyPick || [];
-    const k = b.dataset.emo; storyPick = storyPick.includes(k) ? storyPick.filter(x => x !== k) : [...storyPick, k];
-    render();
-    if (storyPick.length && !(storyPick.includes('happy') && storyPick.length === 1)) say('難過、生氣、失望，這些心情都很正常！');
-  });
-}
 
 /* 2 thermometer */
 const LEVELS = [
@@ -400,14 +618,14 @@ const LEVELS = [
 ];
 let lvOn = 4;
 function sThermo() {
-  return `<section class="step">${head(2, '心情溫度計', 6)}
+  return `<section class="step">${head(2, '心情溫度計', 5)}
     <p class="lead">${zh('輸了的時候，你的心情是幾度？')} ${sp('輸了的時候，你的心情是幾度？')}</p>
     <div class="thermo">
       <div class="tube" role="group" aria-label="溫度">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-lv="${i}" class="${i <= lvOn ? 'on' : ''}" style="background:${LV_COL[i]}" aria-label="${i} 度">${i}</button>`).join('')}</div>
       <div class="levels">${[5, 4, 3, 2, 1].map(i => `<button class="lv ${i === lvOn ? 'on' : ''}" type="button" data-lv="${i}">${face(i)}<span><div class="nm">${zh(LEVELS[i].nm)}</div><div class="ds">${zh(LEVELS[i].ds)}</div><div class="todo">${zh('要做：' + LEVELS[i].todo)}</div></span></button>`).join('')}</div>
     </div>
     <div class="fb info"><div>${zh('溫度越高，越要先讓自己冷靜下來，才能想辦法。')}</div></div>
-    <p class="teacher"><b>老師提示</b>：先問「小星哭的時候是幾度？」（4 度），再請每位學生用手指比出「自己輸了的時候大概幾度」。重點是學會「發現自己升溫了」，不是要學生假裝不難過。</p>
+    <p class="teacher"><b>老師提示</b>：先問「剛剛遊戲輸了的時候是幾度？」，再請每位學生用手指比出「自己輸了的時候大概幾度」。重點是學會「發現自己升溫了」，不是要學生假裝不難過。</p>
   </section>`;
 }
 function mThermo() { main.querySelectorAll('[data-lv]').forEach(b => b.onclick = () => { lvOn = +b.dataset.lv; render(); say(LEVELS[lvOn].nm + '。' + LEVELS[lvOn].ds + '要做：' + LEVELS[lvOn].todo); }); }
@@ -423,7 +641,7 @@ const TOOLS = [
 ];
 let toolOn = null;
 function sCalm() {
-  return `<section class="step">${head(3, '降溫魔法', 8)}
+  return `<section class="step">${head(3, '降溫魔法', 7)}
     <p class="lead">${zh('心情溫度升高了，用降溫魔法讓自己冷靜下來！')} ${sp('心情溫度升高了，用降溫魔法讓自己冷靜下來！')}</p>
     <div class="tools4">${TOOLS.map(t => `<button class="tool ${toolOn === t.id ? 'on' : ''}" type="button" data-tool="${t.id}">${t.svg}<span class="nm">${zh(t.nm)}</span><span class="ds">${zh(t.ds)}</span></button>`).join('')}</div>
     <div class="guide" id="guide"><div class="gtxt">${zh('點一個降溫魔法，大家一起練習！')}</div></div>
@@ -458,6 +676,179 @@ function runTool(id) {
   }
 }
 
+/* 1 game: three moments of losing */
+G.stars = store.get('g3stars', {});
+function sGame() {
+  const n = Object.keys(LEVELS3D).filter(k => G.stars[k]).length;
+  return `<section class="step">${head(1, '三個輸的時刻', 11)}
+    <p class="lead">${zh('玩玩看 3D 小遊戲！賽跑、搶椅子、投籃，輸了的時候，你會怎麼做？')}</p>
+    <div class="lvpick" id="g3Pick">${Object.entries(LEVELS3D).map(([k, L], i) => `<button class="lvcard" type="button" data-g3="${k}" style="--c:${L.col}">
+      <span class="ic">${zh(L.icon)}</span><span class="nm">${zh(`第 ${i + 1} 關　${L.name}`)}</span><span class="ds">${zh(L.ds)}</span>
+      <span class="st" aria-label="${G.stars[k] ? '已拿到星星' : '還沒有星星'}">${G.stars[k] ? '★' : '☆'}</span></button>`).join('')}</div>
+    ${n === 3 ? `<div class="fb ok pop"><div>${zh('三關都拿到好風度星星了！')}</div><div class="ex">${zh('輸了也沒關係，輸了以後怎麼做，才是最厲害的！')}</div></div>` : ''}
+    <div class="g3d" id="g3Wrap" hidden>
+      <div class="g3d-stage" id="g3Host"></div>
+      <div class="g3d-hud" id="g3Hud"></div>
+      <div class="g3d-meter" id="g3Meter" hidden><b></b><i></i></div>
+    </div>
+    <div class="row g3d-ctl" id="g3Ctl" hidden><button class="btn peach g3act" type="button" id="g3Act"></button><button class="pillbtn" type="button" id="g3Back">${zh('換一關')}</button></div>
+    <div id="g3Panel" class="g3panel"></div>
+    <p class="teacher"><b>老師提示</b>：三個遊戲都設計得「很容易輸」，讓學生在安全的情況下真的體驗輸的感覺。可以請學生輪流上台玩，台下同學幫忙選「好的做法」。輸了以後先問「你現在什麼心情？幾度？」，接受所有心情，再帶到降溫和好的做法。選錯也沒關係，看看朋友的反應，再選一次。</p>
+  </section>`;
+}
+function mGame() {
+  main.querySelectorAll('[data-g3]').forEach(b => b.onclick = () => startLevel(b.dataset.g3));
+}
+function startLevel(key) {
+  clearTimers();
+  const wrap = document.getElementById('g3Wrap'), host = document.getElementById('g3Host'), ctl = document.getElementById('g3Ctl');
+  const panel = document.getElementById('g3Panel'), act = document.getElementById('g3Act'), hudEl = document.getElementById('g3Hud'), meter = document.getElementById('g3Meter');
+  G.level = key; G.react = null;
+  document.getElementById('g3Pick').hidden = true;
+  wrap.hidden = false; ctl.hidden = false; act.hidden = false; panel.innerHTML = ''; meter.hidden = true;
+  host.innerHTML = '';
+  document.getElementById('g3Back').onclick = () => { g3dStop(); render(); };
+  if (!g3dInit(host)) return;
+  let fn = null;
+  const fire = () => { if (!act.disabled && fn) fn(); };
+  act.onpointerdown = e => { e.preventDefault(); fire(); };
+  act.onclick = e => { if (e.detail === 0) fire(); };
+  G.keyH = e => { if (e.code === 'Space' && !e.target.closest('input')) { e.preventDefault(); fire(); } };
+  document.addEventListener('keydown', G.keyH);
+  const ui = {
+    hud: h => { hudEl.innerHTML = h; },
+    action(lbl, f) { act.innerHTML = zh(lbl); fn = f; act.disabled = true; },
+    enable(b) { act.disabled = !b; },
+    label(t) { act.innerHTML = zh(t); },
+    meter(b) { meter.hidden = !b; },
+    setMeter(v) { meter.querySelector('i').style.width = (v * 100).toFixed(1) + '%'; },
+    finish(won, msg, npcs) {
+      act.hidden = true;
+      G.won = won; G.npcs = npcs;
+      say(msg);
+      later(() => showFeel(won, msg), 300);
+    },
+  };
+  ({ race: setupRace, chairs: setupChairs, hoop: setupHoop })[key](ui);
+  wrap.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+const panelEl = () => document.getElementById('g3Panel');
+function panelSet(html) { const p = panelEl(); if (!p) return null; p.innerHTML = html; p.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return p; }
+function showFeel(won, msg) {
+  const opts = ['sad', 'angry', 'down', 'happy'];
+  const p = panelSet(`<div class="fb ${won ? 'ok' : 'info'} pop"><div>${zh(msg)}</div></div>
+    <p class="big">${zh('你現在是什麼心情？')} ${sp('你現在是什麼心情？')}</p>
+    <div class="opts">${opts.map(k => `<button class="opt" type="button" data-feel="${k}">${EMO[k].svg}${zh(EMO[k].name)}</button>`).join('')}</div><div id="g3Fb"></div>`);
+  if (!p) return;
+  p.querySelectorAll('[data-feel]').forEach(b => b.onclick = () => {
+    p.querySelectorAll('[data-feel]').forEach(x => { x.classList.toggle('on', x === b); x.disabled = true; });
+    const k = b.dataset.feel, nm = EMO[k].name;
+    let t;
+    if (won) t = k === 'happy' ? '贏了好開心！開心的時候，也要想想朋友的心情。' : `${nm}也沒關係，每個人的感覺都不一樣。`;
+    else t = k === 'happy' ? '輸了還能開心玩，你好厲害！' : `${nm}很正常，每個人輸了都會不舒服。`;
+    document.getElementById('g3Fb').innerHTML = `<div class="fb ok pop"><div>${zh(t)}</div></div>`;
+    say(t);
+    later(() => won ? showChoices() : showThermo(), 2200);
+  });
+}
+function showThermo() {
+  const p = panelSet(`<p class="big">${zh('你的心情溫度是幾度？')} ${sp('你的心情溫度是幾度？')}</p>
+    <div class="thermo5">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-t5="${i}" style="--c:${LV_COL[i]}">${face(i, 56)}<b>${i}</b></button>`).join('')}</div><div id="g3Fb"></div>`);
+  if (!p) return;
+  p.querySelectorAll('[data-t5]').forEach(b => b.onclick = () => {
+    p.querySelectorAll('[data-t5]').forEach(x => { x.classList.toggle('on', x === b); x.disabled = true; });
+    const n = +b.dataset.t5;
+    if (n >= 3) {
+      const t = `${n} 度，溫度有點高。我們先用降溫魔法！`;
+      document.getElementById('g3Fb').innerHTML = `<div class="fb info pop"><div>${zh(t)}</div></div>`;
+      say(t); later(showBreath, 2400);
+    } else {
+      const t = `${n} 度，你很冷靜，好棒！`;
+      document.getElementById('g3Fb').innerHTML = `<div class="fb ok pop"><div>${zh(t)}</div></div>`;
+      say(t); later(showChoices, 2000);
+    }
+  });
+}
+function showBreath() {
+  const step = (svg, big, txt, sc0, sc1) => {
+    const p = panelSet(`<div class="guide">${svg.replace('<svg', '<svg class="anim"')}<div class="gbig">${big}</div><div class="gtxt">${zh(txt)}</div></div>`);
+    if (!p) return;
+    say(txt);
+    const a = p.querySelector('.anim'); a.style.transform = `scale(${sc0})`;
+    requestAnimationFrame(() => requestAnimationFrame(() => { a.style.transform = `scale(${sc1})`; }));
+  };
+  step(FLOWER, zh('吸～'), '鼻子聞一聞花，好香～', 1, 1.3);
+  later(() => step(CANDLE, zh('呼～'), '嘴巴吹一吹蠟燭，呼～', 1.2, 0.9), 3500);
+  later(() => {
+    const p = panelSet(`<div class="fb ok pop"><div>${zh('身體涼下來了，現在可以好好想一想。')}</div></div>`);
+    if (p) { say('身體涼下來了，現在可以好好想一想。'); later(showChoices, 1800); }
+  }, 7500);
+}
+function showChoices() {
+  const list = G.won ? WIN_CHOICES : LOSE_CHOICES[G.level];
+  const order = list.map((_, i) => i).sort(() => Math.random() - .5);
+  const q = G.won ? '你贏了，接下來要怎麼做？' : '輸了，接下來要怎麼做？';
+  const p = panelSet(`<p class="big">${zh(q)} ${sp(q)}</p>
+    <div class="opts">${order.map(i => `<button class="opt" type="button" data-ch="${i}">${zh(list[i].t)}</button>`).join('')}</div><div id="g3Fb"></div>`);
+  if (!p) return;
+  p.querySelectorAll('[data-ch]').forEach(b => b.onclick = () => {
+    const c = list[+b.dataset.ch];
+    b.classList.add(c.good ? 'right' : 'wrong');
+    const fb = document.getElementById('g3Fb');
+    if (c.good) {
+      p.querySelectorAll('[data-ch]').forEach(x => x.disabled = true);
+      reactGood();
+      const first = !G.stars[G.level];
+      G.stars[G.level] = true; store.set('g3stars', G.stars);
+      const keys = Object.keys(LEVELS3D), nx = keys.find(k => !G.stars[k]);
+      fb.innerHTML = `<div class="fb ok pop"><div>${zh(first ? '好風度！拿到一顆星星！' : '好風度！')}</div><div class="ex">${zh(c.why)}</div></div>
+        <div class="row" style="justify-content:flex-end">
+          <button class="btn ghost" type="button" id="g3Again">${zh('再玩一次')}</button>
+          ${nx ? `<button class="btn" type="button" id="g3Next">${zh('下一關：' + LEVELS3D[nx].name)}</button>` : `<button class="btn" type="button" id="g3Done">${zh('看我的星星')}</button>`}
+        </div>`;
+      say((first ? '好風度！拿到一顆星星！' : '好風度！') + c.why);
+      document.getElementById('g3Again').onclick = () => startLevel(G.level);
+      const nb = document.getElementById('g3Next'); if (nb) nb.onclick = () => startLevel(nx);
+      const db = document.getElementById('g3Done'); if (db) db.onclick = () => { g3dStop(); render(); };
+    } else {
+      b.disabled = true;
+      reactBad();
+      fb.innerHTML = `<div class="fb no pop"><div>${zh('朋友們不開心了……再選一次！')}</div><div class="ex">${zh(c.why)}</div></div>`;
+      say('朋友們不開心了，再選一次！' + c.why);
+    }
+  });
+}
+function faceCam(p) { const w = new THREE.Vector3(); p.getWorldPosition(w); return Math.atan2(G.camera.position.x - w.x, G.camera.position.z - w.z); }
+function reactGood() {
+  if (!G.scene) return;
+  const npcs = G.npcs || [];
+  npcs.forEach(p => { p.userData.baseY = p.userData.baseY ?? p.position.y; p.userData.rotTo = faceCam(p); });
+  const c = G.camera.position, look = new THREE.Vector3(); G.camera.getWorldDirection(look);
+  const fx = confetti(c.clone().addScaledVector(look, 6).add(new THREE.Vector3(0, 1, 0)));
+  beep(784, .15); setTimeout(() => beep(1046, .25), 160);
+  let t = 0;
+  G.react = dt => {
+    t += dt; fx(dt);
+    npcs.forEach((p, i) => {
+      p.rotation.y += (p.userData.rotTo - p.rotation.y) * Math.min(1, dt * 6);
+      p.position.y = p.userData.baseY + Math.abs(Math.sin(t * 6 + i)) * 0.35;
+      const u = p.userData; u.armL.rotation.x = u.armR.rotation.x = -2.8 + Math.sin(t * 10 + i) * 0.3;
+    });
+  };
+}
+function reactBad() {
+  if (!G.scene) return;
+  const npcs = G.npcs || [];
+  npcs.forEach(p => { p.userData.baseY = p.userData.baseY ?? p.position.y; p.userData.rotTo = faceCam(p) + Math.PI; p.position.y = p.userData.baseY; });
+  beep(260, .3);
+  G.react = dt => {
+    npcs.forEach(p => {
+      p.rotation.y += (p.userData.rotTo - p.rotation.y) * Math.min(1, dt * 3);
+      const u = p.userData; u.armL.rotation.x += (0 - u.armL.rotation.x) * dt * 5; u.armR.rotation.x = u.armL.rotation.x;
+    });
+  };
+}
+
 /* 4 thoughts */
 const THOUGHTS = [
   ['我最爛了！', '我只是這次沒拿到，下次再試試。'],
@@ -468,7 +859,7 @@ const THOUGHTS = [
 ];
 let flipped = [];
 function sThink() {
-  return `<section class="step">${head(4, '想法變身', 6)}
+  return `<section class="step">${head(4, '想法變身', 5)}
     <p class="lead">${zh('輸了的時候，腦袋裡會跑出「難過的想法」。點一下，把它變成「幫助自己的想法」！')}</p>
     <div class="flips">${THOUGHTS.map(([a, b], i) => `<button class="flip ${flipped.includes(i) ? 'on' : ''}" type="button" data-th="${i}" aria-label="${a}"><div class="in"><div class="face bad"><small>${zh('難過的想法')}</small><b>${zh(a)}</b><small>${zh('點我變身')}</small></div><div class="face good"><small>${zh('幫助自己的想法')}</small><b>${zh(b)}</b></div></div></button>`).join('')}</div>
     <p class="teacher"><b>老師提示</b>：第二張「我都比別人慢」最貼近這次的狀況，可以多停留，讓學生說說自己擅長什麼（例如觀察很仔細、很有耐心）。翻完後全班一起大聲念好想法。</p>
@@ -478,7 +869,7 @@ function mThink() { main.querySelectorAll('[data-th]').forEach(b => b.onclick = 
 
 /* 5 what to say */
 const SAYQ = [
-  { q: '小星輸了，可以怎麼說？', o: ['恭喜你！', '不公平！', '把牌丟掉'], a: 0, ex: '說「恭喜你」，大家都會想再跟你玩。' },
+  { q: '你輸了，可以怎麼說？', o: ['恭喜你！', '不公平！', '把牌丟掉'], a: 0, ex: '說「恭喜你」，大家都會想再跟你玩。' },
   { q: '你一直沒拿到分，好想哭，第一步先做什麼？', o: ['用降溫魔法', '大哭跑走', '搶別人的牌'], a: 0, ex: '先讓自己冷靜下來，再繼續玩。' },
   { q: '朋友輸了在哭，你可以怎麼做？', o: ['說「沒關係，我們再玩一次」', '笑他', '不理他'], a: 0, ex: '安慰朋友，大家都會更開心。' },
   { q: '遊戲結束，你贏了，可以怎麼說？', o: ['謝謝大家陪我玩！', '耶！你們都輸了！', '我最厲害！'], a: 0, ex: '贏了不笑別人，說謝謝最有禮貌。' },
@@ -488,13 +879,12 @@ function sSay() {
   const Q = SAYQ[sq.i];
   if (!sq.order) sq.order = Q.o.map((_, i) => i).sort(() => Math.random() - .5);
   const done = sq.picked !== null;
-  return `<section class="step">${head(5, '輸了怎麼說', 5)}
-    ${playerHTML('better', '小星做了哪些事？')}
+  return `<section class="step">${head(5, '輸了怎麼說', 4)}
     <p class="big">${zh(Q.q)} ${sp(Q.q)}<span class="mins" style="margin-left:8px">${sq.i + 1} / ${SAYQ.length}</span></p>
     <div class="opts">${sq.order.map(k => `<button class="opt ${done ? (k === Q.a ? 'right pop' : k === sq.picked ? 'wrong' : '') : ''}" type="button" data-sq="${k}" ${done ? 'disabled' : ''}>${zh(Q.o[k])}</button>`).join('')}</div>
     ${done ? `<div class="fb ${sq.picked === Q.a ? 'ok' : 'no'} pop"><div>${zh(sq.picked === Q.a ? '答對了！' : '再想想！')}</div><div class="ex">${zh(Q.ex)}</div></div>
       <div class="row" style="justify-content:flex-end"><button class="btn" type="button" id="sqNext">${zh(sq.i < SAYQ.length - 1 ? '下一題' : '再做一次')}</button></div>` : ''}
-    <p class="teacher"><b>老師提示</b>：先播「小星換個做法」，請學生找出小星做了哪三件事（深呼吸、換想法、說恭喜你），再做題目。可以請學生兩兩演一次：一人當贏的、一人當輸的，再交換。</p>
+    <p class="teacher"><b>老師提示</b>：先請學生回想 3D 遊戲裡選到的好做法（深呼吸、換想法、說恭喜你、去幫忙），再做題目。可以請學生兩兩演一次：一人當贏的、一人當輸的，再交換。</p>
   </section>`;
 }
 function mSay() {
@@ -524,7 +914,7 @@ function wheelSVG() {
 function sSpin() {
   const steps = spin.result === '輸' ? LOSE_STEPS : WIN_STEPS;
   const allDone = spin.result && spin.checks.length === steps.length;
-  return `<section class="step">${head(6, '輸贏練習', 8)}
+  return `<section class="step">${head(6, '輸贏練習', 6)}
     <p class="lead">${zh('轉轉盤，看看這次是贏還是輸。不管輸贏，做到好風度就拿星星！')}</p>
     <div class="practice">
       <div style="display:grid;gap:12px">
@@ -594,16 +984,15 @@ function mPlan() {
 }
 
 /* ---------- shell ---------- */
-const MOUNT = { story: mStory, thermo: mThermo, calm: mCalm, think: mThink, say: mSay, spin: mSpin, plan: mPlan };
+const MOUNT = { game: mGame, thermo: mThermo, calm: mCalm, think: mThink, say: mSay, spin: mSpin, plan: mPlan };
 const chips = document.getElementById('chips');
 function render() {
-  clearTimers();
+  clearTimers(); g3dStop();
   chips.innerHTML = STEPS.map((s, i) => `<button class="chip" type="button" data-step="${i}" ${i === cur ? 'aria-current="step"' : ''}>${i + 1} ${s.label}</button>`).join('');
   chips.querySelectorAll('[data-step]').forEach(b => b.onclick = () => go(+b.dataset.step));
   const y = window.scrollY;
   main.innerHTML = STEPS[cur].render();
   main.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(b.dataset.say));
-  main.querySelectorAll('[data-play],[data-replay]').forEach(b => b.onclick = () => playClip(b.dataset.play || b.dataset.replay));
   (MOUNT[STEPS[cur].id] || (() => {}))();
   document.getElementById('prev').innerHTML = zh('上一步');
   document.getElementById('next').innerHTML = zh(cur === STEPS.length - 1 ? '回到開始' : '下一步');
@@ -643,6 +1032,7 @@ const startAt = STEPS.findIndex(s => '#' + s.id === location.hash);
 cur = startAt >= 0 ? startAt : 0;
 resetClock(); render();
 </script>
+
 
 <a href="../index.html#lesson" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
 </body></html>
