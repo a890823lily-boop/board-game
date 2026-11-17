@@ -1,0 +1,2711 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>沒關係，再試一次｜挫折容忍課</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bpmf+Huninn&family=Noto+Sans+TC:wght@400;700;900&display=swap">
+<style>
+/* Layout: felt hero, a teacher timeline strip, then six stacked stations matching the 40-minute flow */
+:root {
+  --bg: #F4F6F1; --surface: #FFFFFF; --ink: #23283A; --ink-soft: #545B70;
+  --felt: #1E5A4C; --felt-ink: #F4F1E6; --accent: #E8771E; --accent-ink: #FFFFFF;
+  --blue: #2F6FD6; --good: #2E8B57; --good-bg: #E3F4EA; --warn: #C2410C; --warn-bg: #FDECDF; --line: #DCE1D8;
+  --t1: #3FA36B; --t2: #9BC53D; --t3: #F2C230; --t4: #F08A24; --t5: #D9442B;
+  --font: "Bpmf Huninn", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --plain: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14181D; --surface: #1F252D; --ink: #EEF0F3; --ink-soft: #B3BAC6; --felt: #173F36;
+    --accent: #F28C3A; --accent-ink: #1A1206; --blue: #7FA8F0; --good: #6FD39C; --good-bg: #1C3A2B;
+    --warn: #FF9F6B; --warn-bg: #3E2418; --line: #323A45; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 20px; line-height: 1.6; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.25; margin: 0; }
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+button { font-family: var(--font); }
+:focus-visible { outline: 4px solid var(--accent); outline-offset: 3px; }
+
+.hero { background: var(--felt); color: var(--felt-ink); }
+.hero .wrap { padding-block: 40px 44px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; align-items: center; }
+.eyebrow { font-family: var(--plain); font-size: 15px; font-weight: 700; letter-spacing: 0.12em; color: #F6C38B; }
+.hero h1 { font-size: clamp(40px, 7vw, 66px); margin-top: 8px; }
+.hero .lede { font-size: 22px; margin-top: 12px; opacity: 0.92; }
+.nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.nav a { text-decoration: none; background: var(--felt-ink); color: #1E5A4C; font-weight: 700; font-size: 18px; padding: 8px 18px; border-radius: 999px; }
+.hero-art { display: flex; justify-content: center; }
+.hero-art svg { width: min(280px, 70vw); height: auto; }
+
+section { padding-block: 44px 8px; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.sec-head h2 { font-size: 34px; }
+.sec-head .tag { font-family: var(--plain); font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; }
+.sec-head .min { font-family: var(--plain); font-size: 15px; color: var(--ink-soft); }
+.box { background: var(--surface); border: 2px solid var(--line); border-radius: 22px; padding: 22px; }
+.teacher { margin-top: 14px; font-family: var(--plain); font-size: 16px; color: var(--ink-soft); border-left: 4px solid var(--accent); padding: 4px 0 4px 12px; }
+.teacher b { color: var(--ink); }
+.btn { font-family: var(--font); font-size: 22px; font-weight: 700; border-radius: 999px; padding: 12px 30px; cursor: pointer; border: 2px solid var(--line); background: var(--bg); color: var(--ink); }
+.btn.main { background: var(--accent); border-color: var(--accent); color: #FFFFFF; }
+.btn:disabled { opacity: 0.35; cursor: default; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
+
+/* Teacher plan */
+details.plan { margin-top: 24px; }
+details.plan summary { cursor: pointer; font-family: var(--plain); font-weight: 700; font-size: 18px; color: var(--ink); }
+.timeline { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; margin-top: 14px; }
+.timeline a { text-decoration: none; color: var(--ink); background: var(--bg); border-radius: 14px; padding: 10px; font-family: var(--plain); font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
+.timeline a b { font-size: 17px; }
+.timeline a span { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.plan ul { margin: 14px 0 0; padding-left: 1.2em; font-family: var(--plain); font-size: 16px; color: var(--ink-soft); display: grid; gap: 4px; }
+
+/* Story */
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
+.scene { background: radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--felt) 85%, white), var(--felt)); border-radius: 20px; min-height: 300px; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 20px; position: relative; overflow: hidden; }
+.scene .who { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--felt-ink); font-weight: 700; }
+.scene .who svg { width: 130px; height: 130px; }
+.scene .cards { display: flex; gap: 8px; }
+.scene .cards img { width: 78px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.35); }
+.bubble { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); background: #FFFFFF; color: #23283A; font-weight: 700; border-radius: 18px; padding: 6px 16px; font-size: 22px; white-space: nowrap; box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
+.caption .pno { font-family: var(--plain); font-weight: 700; color: var(--blue); font-size: 15px; letter-spacing: 0.08em; }
+.caption h3 { font-size: 30px; margin-top: 6px; }
+.caption p { margin-top: 10px; font-size: 22px; color: var(--ink-soft); }
+.dots { display: flex; gap: 8px; margin-top: 16px; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; background: var(--line); display: block; }
+.dots i.on { background: var(--accent); }
+.ask { margin-top: 14px; background: var(--good-bg); color: var(--good); border-radius: 16px; padding: 10px 16px; font-weight: 700; }
+
+/* Thermometer */
+.thermo { display: grid; grid-template-columns: 250px 1fr; gap: 24px; align-items: stretch; }
+.levels { display: flex; flex-direction: column-reverse; gap: 6px; }
+.lv { border: none; border-radius: 14px; padding: 12px 10px; font-size: 22px; font-weight: 900; color: #FFFFFF; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.25); transition: transform 0.15s; }
+.lv span { font-size: 17px; font-weight: 700; }
+.lv.on { transform: scale(1.06); box-shadow: 0 0 0 4px var(--ink); }
+.lv[data-l="1"] { background: var(--t1); } .lv[data-l="2"] { background: var(--t2); } .lv[data-l="3"] { background: #D9A400; } .lv[data-l="4"] { background: var(--t4); } .lv[data-l="5"] { background: var(--t5); }
+.lvinfo { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; background: var(--bg); border-radius: 18px; padding: 18px; }
+.lvinfo svg { width: 130px; height: 130px; }
+.lvinfo h3 { font-size: 30px; }
+.lvinfo dl { margin: 10px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 21px; }
+.lvinfo dt { font-weight: 700; color: var(--blue); }
+.lvinfo dd { margin: 0; }
+
+/* Calm steps */
+.steps3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.st { background: var(--bg); border-radius: 18px; padding: 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.st .n { width: 64px; height: 64px; border-radius: 50%; background: var(--accent); color: #FFFFFF; display: grid; place-items: center; font-size: 34px; font-weight: 900; }
+.st h3 { font-size: 34px; }
+.st p { color: var(--ink-soft); }
+.okcry { margin-top: 16px; text-align: center; font-size: 22px; font-weight: 700; color: var(--good); }
+.breathe { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; background: var(--bg); border-radius: 20px; padding: 22px; }
+.breathe h3 { font-size: 26px; }
+.ring { width: 220px; height: 220px; display: grid; place-items: center; }
+.ball { width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #C89270, #7A4A2A); display: grid; place-items: center; color: #FFFFFF; font-weight: 900; font-size: 24px; transition: transform 4s ease-in-out; text-align: center; line-height: 1.2; }
+.ball.big { transform: scale(1.9); }
+.bcount { font-family: var(--plain); font-weight: 700; color: var(--ink-soft); }
+
+/* Problem size */
+.sizes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.ps { background: var(--bg); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 3px solid transparent; }
+.ps p { font-size: 22px; font-weight: 700; }
+.ps .pick { display: flex; gap: 10px; }
+.ps .pick button { flex: 1; font-size: 20px; font-weight: 700; padding: 8px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.ps.right { border-color: var(--good); }
+.ps.right .res { color: var(--good); }
+.ps.wrong .res { color: var(--warn); }
+.ps .res { font-size: 18px; font-family: var(--plain); font-weight: 700; min-height: 1.2em; }
+.ps .res .howto { font-family: var(--font); }
+.rule2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.rule2 div { border-radius: 18px; padding: 14px 16px; }
+.rule2 .small { background: var(--good-bg); color: var(--good); }
+.rule2 .big { background: var(--warn-bg); color: var(--warn); }
+.rule2 b { font-size: 24px; display: block; }
+
+/* Quiz */
+.qtop { display: flex; justify-content: space-between; gap: 12px; align-items: center; flex-wrap: wrap; }
+.stars { display: flex; gap: 4px; }
+.stars i { width: 28px; height: 28px; display: block; background: var(--line); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.stars i.on { background: var(--accent); }
+.stars i.cur { background: var(--ink-soft); opacity: 0.5; }
+.qno { font-family: var(--plain); font-weight: 700; color: var(--blue); font-size: 15px; letter-spacing: 0.08em; margin-top: 14px; }
+.qtext { font-size: 30px; margin-top: 4px; }
+.qface { display: flex; justify-content: center; margin-top: 12px; }
+.qface svg { width: 120px; height: 120px; }
+.choices { display: grid; gap: 12px; margin-top: 18px; }
+.choice { font-size: 24px; font-weight: 700; padding: 16px; border-radius: 18px; border: 3px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; }
+.choice.right { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+.choice.wrong { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); animation: shake 0.35s; }
+.choice:disabled { cursor: default; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.feedback { margin-top: 16px; font-size: 22px; padding: 14px 18px; border-radius: 16px; }
+.feedback:empty { display: none; }
+.feedback.good { background: var(--good-bg); color: var(--good); }
+.feedback.try { background: var(--warn-bg); color: var(--warn); }
+.done { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding-block: 16px; }
+.done .big { font-size: 60px; font-weight: 900; color: var(--accent); }
+
+/* Pep cards */
+.peps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.pep { font-size: 22px; font-weight: 700; padding: 18px 14px; border-radius: 18px; border: 3px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; min-height: 96px; }
+.pep.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.mycard { margin-top: 20px; border-radius: 24px; padding: 26px; background: var(--felt); color: var(--felt-ink); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.step-lab { font-family: var(--plain); font-weight: 700; color: var(--blue); font-size: 18px; margin: 16px 0 10px; }
+.kids { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.kid { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border-radius: 16px; border: 3px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; font-family: var(--font); }
+.kid .kn { width: 40px; height: 40px; border-radius: 50%; background: var(--surface); border: 2px solid var(--line); display: grid; place-items: center; font-weight: 900; font-size: 22px; }
+.kid .kl { font-size: 15px; font-weight: 700; color: var(--ink-soft); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.kid.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.kid.on .kn { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+.kid.done .kn { border-color: var(--good); }
+.kid .kc { position: absolute; top: -8px; right: -6px; width: 26px; height: 26px; border-radius: 50%; background: var(--good); color: #FFFFFF; display: grid; place-items: center; font-style: normal; font-weight: 900; font-size: 15px; }
+.mybtns { display: flex; gap: 10px; }
+.mycard .speak.next { background: #F6C38B; color: #23283A; border-color: #F6C38B; }
+.gal-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+.gal-count { font-family: var(--plain); font-weight: 700; color: var(--good); }
+.gal-clear { margin-left: auto; font-family: var(--plain); font-size: 14px; border: 2px solid var(--line); background: transparent; color: var(--ink-soft); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 12px; }
+.gcard { border-radius: 18px; padding: 14px; background: var(--felt); color: var(--felt-ink); display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; cursor: pointer; border: 3px solid transparent; }
+.gcard .gic { width: 46px; height: 46px; background: rgba(255,255,255,0.9); border-radius: 12px; padding: 4px; }
+.gcard b { font-size: 18px; color: #F6C38B; }
+.gcard p { font-size: 20px; font-weight: 900; line-height: 1.35; }
+.gcard.empty { background: var(--bg); color: var(--ink-soft); border: 3px dashed var(--line); }
+.gcard.empty b { color: var(--ink-soft); }
+.gcard.empty p { font-size: 16px; font-weight: 700; }
+.gcard.cur { border-color: var(--accent); }
+.gcard { position: relative; }
+.gdel { position: absolute; top: 6px; right: 6px; width: 30px; height: 30px; border-radius: 50%; border: none; background: rgba(255,255,255,0.9); color: #C2410C; font-weight: 900; font-size: 15px; cursor: pointer; display: grid; place-items: center; }
+.gdel:hover { background: #FFFFFF; }
+.gsp { font-family: var(--plain); font-size: 13px; font-weight: 700; border-radius: 999px; padding: 3px 12px; cursor: pointer; border: 2px solid rgba(255,255,255,0.5); background: transparent; color: var(--felt-ink); margin-top: 4px; }
+@media (max-width: 720px) { .kids { grid-template-columns: repeat(4, minmax(0, 1fr)); } .gallery { grid-template-columns: 1fr 1fr; } }
+.mycard .lab { font-family: var(--plain); color: #F6C38B; font-weight: 700; letter-spacing: 0.1em; font-size: 15px; }
+.mycard .say { font-size: clamp(32px, 6vw, 52px); font-weight: 900; line-height: 1.3; }
+.mycard input { font-family: var(--font); font-size: 20px; text-align: center; border-radius: 999px; border: 2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.12); color: var(--felt-ink); padding: 6px 16px; width: min(260px, 80%); }
+.mycard input::placeholder { color: rgba(244,241,230,0.7); }
+.speak { font-family: var(--plain); font-size: 16px; font-weight: 700; border-radius: 999px; padding: 6px 16px; cursor: pointer; border: 2px solid rgba(255,255,255,0.5); background: transparent; color: var(--felt-ink); }
+.tools4 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+.tools4 div { background: var(--bg); border-radius: 16px; padding: 14px; color: var(--ink-soft); font-size: 18px; }
+.tools4 b { display: block; color: var(--ink); font-size: 22px; margin-bottom: 4px; }
+@media (max-width: 720px) { .tools4 { grid-template-columns: 1fr 1fr; } }
+.share { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.sh { background: var(--bg); border: 3px solid var(--line); border-radius: 20px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; cursor: pointer; font-family: var(--font); color: var(--ink); }
+.sh.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.sh svg.f { width: 96px; height: 96px; }
+.sh .nm { font-weight: 900; font-size: 20px; color: #FFFFFF; border-radius: 999px; padding: 0 14px; }
+.sh .ln { font-size: 19px; font-weight: 700; line-height: 1.45; }
+.sh .fl { font-family: var(--plain); font-size: 15px; font-weight: 700; border-radius: 999px; padding: 2px 12px; background: var(--warn-bg); color: var(--warn); }
+.sh .hint { font-family: var(--plain); font-size: 14px; color: var(--ink-soft); }
+.share-you { margin-top: 16px; background: var(--good-bg); color: var(--good); border-radius: 20px; padding: 16px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.share-you h3 { font-size: 26px; }
+.share-you p { font-size: 22px; font-weight: 700; color: var(--ink); }
+.feel-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.feel-chips span { background: var(--surface); color: var(--ink); border-radius: 999px; padding: 2px 14px; font-weight: 700; font-size: 18px; border: 2px solid var(--line); }
+@media (max-width: 720px) { .share { grid-template-columns: 1fr 1fr; } .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.lvinfo .exs { display: flex; flex-wrap: wrap; gap: 6px; }
+.lvinfo .ex { background: var(--surface); border: 2px solid var(--line); border-radius: 999px; padding: 0 12px; font-size: 18px; }
+.thermo-note { margin-top: 14px; font-size: 20px; font-weight: 700; color: var(--blue); }
+.howto { margin: 6px 0 0; padding-left: 1.4em; display: grid; gap: 2px; font-size: 18px; font-weight: 700; color: var(--ink); }
+.rule2 .howto { grid-column: 2; }
+.rule2 span { grid-column: 2; font-size: 17px; }
+.rule2 .small .howto { color: #1F6B43; } .rule2 .big .howto { color: #9A330A; }
+.ask3 { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; background: #EAF2FF; color: #1E4FA8; border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; font-size: 19px; }
+.ask3 span { background: #FFFFFF; border-radius: 999px; padding: 2px 12px; font-weight: 700; }
+.ask3 em { font-style: normal; font-size: 16px; width: 100%; }
+@media (prefers-color-scheme: dark) { .ask3 { background: #1C2A44; color: #9CC0FF; } .ask3 span { background: #2A3A58; } .rule2 .small .howto { color: var(--good); } .rule2 .big .howto { color: var(--warn); } }
+.promise { margin-top: 18px; display: grid; gap: 8px; }
+.promise label { display: flex; gap: 12px; align-items: center; font-size: 22px; background: var(--bg); border-radius: 14px; padding: 10px 14px; cursor: pointer; }
+.promise input { width: 26px; height: 26px; accent-color: var(--accent); }
+.vi { display: inline-flex; width: 1.5em; height: 1.5em; flex: none; vertical-align: middle; }
+.vi svg { width: 100%; height: 100%; display: block; }
+.sec-head .vi.hd { width: 46px; height: 46px; align-self: center; }
+.withic { display: flex; align-items: center; gap: 10px; }
+.st .stic { width: 72px; height: 72px; }
+.st { position: relative; }
+.st .n { position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; font-size: 22px; }
+.tools4 .tic { width: 52px; height: 52px; display: flex; margin-bottom: 6px; }
+.okcry { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.rule2 div { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center; }
+.rule2 .ric { width: 52px; height: 52px; grid-row: span 2; }
+.ps .psic { width: 48px; height: 48px; }
+.qface { align-items: center; gap: 18px; }
+.qface .qic { width: 84px; height: 84px; }
+.pep { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pep .pepic { width: 48px; height: 48px; }
+.promise .prmic { width: 34px; height: 34px; }
+.lv { white-space: nowrap; }
+.lv .lvface { width: 34px; height: 34px; display: inline-flex; flex: none; background: rgba(255,255,255,0.85); border-radius: 50%; }
+.lv .lvface svg { width: 100%; height: 100%; }
+footer { padding-block: 40px; font-family: var(--plain); font-size: 15px; color: var(--ink-soft); }
+footer a { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 720px) {
+  body { font-size: 18px; }
+  .hero .wrap, .story, .thermo { grid-template-columns: 1fr; }
+  .hero-art { display: none; }
+  .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps3, .sizes, .rule2 { grid-template-columns: 1fr; }
+  .peps { grid-template-columns: 1fr 1fr; }
+  .levels { flex-direction: column-reverse; }
+  .lvinfo { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .lvinfo dl { text-align: left; }
+  .scene .who svg { width: 100px; height: 100px; }
+  .scene .cards img { width: 60px; }
+  .qtext, .caption h3 { font-size: 25px; }
+}
+@media (prefers-reduced-motion: reduce) { .ball { transition: none; } .choice.wrong { animation: none; } }
+
+/* 3D story game: CSS-3D room, billboard characters, cube blocks */
+#g3d { position: relative; width: 100%; aspect-ratio: 16 / 10; min-height: 520px; border-radius: 20px; overflow: hidden; background: linear-gradient(#CFE6F2, #EAF3EC); user-select: none; -webkit-user-select: none; touch-action: none; font-family: var(--font); color: #23283A; }
+#g3d:fullscreen { border-radius: 0; aspect-ratio: auto; }
+#g3d .vp { position: absolute; inset: 0; perspective: 1100px; perspective-origin: 50% 35%; overflow: hidden; cursor: grab; }
+#g3d .vp:active { cursor: grabbing; }
+#g3d .scaler { position: absolute; left: 50%; top: 58%; width: 0; height: 0; transform-style: preserve-3d; }
+#g3d .world { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-style: preserve-3d; transition: transform 1.2s cubic-bezier(.3,.7,.3,1); }
+#g3d .world.drag, #g3d .world.drag .bb { transition: none; }
+#g3d .o { position: absolute; left: 0; top: 0; transform-style: preserve-3d; }
+#g3d .floor { width: 1100px; height: 900px; background: repeating-linear-gradient(90deg, #E9C99A 0 110px, #E2BF8E 110px 220px); }
+#g3d .rug { width: 520px; height: 380px; border-radius: 50%; background: radial-gradient(circle, #8FC7A6 0 30%, #6FB58D 30% 55%, #5AA57C 55%); }
+#g3d .wall { width: 1100px; height: 560px; background: #F6EBDD; border-bottom: 18px solid #D8BE98; }
+#g3d .wall.side { width: 900px; background: #EEDFCB; }
+#g3d .win { width: 220px; height: 150px; background: linear-gradient(#9FD4FF, #DDF1FF); border: 12px solid #FFFFFF; border-radius: 10px; box-shadow: inset 0 0 0 4px #BFDDF2; }
+#g3d .shelf { width: 260px; height: 140px; background: #C98B55; border-radius: 8px; box-shadow: inset 0 -60px 0 #B67844; }
+#g3d .poster { width: 150px; height: 110px; background: #FFF7E0; border-radius: 8px; display: grid; place-items: center; font-weight: 900; font-size: 26px; color: #E8771E; border: 6px solid #F6C38B; }
+#g3d .cube { width: 0; height: 0; transition: transform 0.55s cubic-bezier(.3,1.4,.5,1), opacity 0.6s; }
+#g3d .cube.fall { transition: transform 1s cubic-bezier(.45,.05,.55,1.2), opacity 0.6s; }
+#g3d .cube.instant { transition: none; }
+#g3d .face { position: absolute; left: 0; top: 0; border-radius: 4px; backface-visibility: hidden; }
+#g3d .bb { transition: transform 1.2s cubic-bezier(.3,.7,.3,1); }
+#g3d .char { width: 170px; height: 230px; }
+#g3d .char .inner { width: 100%; height: 100%; transition: transform 0.9s cubic-bezier(.3,.7,.3,1); }
+#g3d .char svg { width: 100%; height: 100%; overflow: visible; }
+#g3d .char.talk .inner { animation: g3hop 0.45s ease-out; }
+@keyframes g3hop { 40% { transform: translateY(-14px); } }
+#g3d .char.jump .inner { animation: g3jump 0.6s ease-in-out infinite; }
+@keyframes g3jump { 50% { transform: translateY(-36px); } }
+#g3d .shadow { width: 130px; height: 50px; border-radius: 50%; background: rgba(0,0,0,0.18); }
+#g3d .balloon { width: 90px; height: 120px; transition: transform 0.3s, opacity 0.4s; }
+#g3d .balloon .inner { width: 100%; height: 100%; transform-origin: 50% 100%; transition: transform 3s ease-in-out; }
+#g3d .tag3 { background: #FFFFFF; border-radius: 14px; padding: 4px 14px; font-weight: 900; font-size: 22px; white-space: nowrap; box-shadow: 0 6px 14px rgba(0,0,0,0.18); }
+
+/* HUD */
+#g3d .hud-top { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; pointer-events: none; z-index: 5; }
+#g3d .chap { background: rgba(30,90,76,0.92); color: #F4F1E6; border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 18px; }
+#g3d .mood { background: rgba(255,255,255,0.92); border-radius: 16px; padding: 6px 12px; display: flex; align-items: center; gap: 8px; font-family: var(--plain); font-size: 15px; font-weight: 700; }
+#g3d .mood i { width: 18px; height: 26px; border-radius: 5px; display: block; opacity: 0.25; transition: opacity 0.4s, transform 0.4s; }
+#g3d .mood i.on { opacity: 1; transform: scaleY(1.25); }
+#g3d .tools { display: flex; gap: 8px; pointer-events: auto; }
+#g3d .tools #g3back { background: #E8771E; color: #FFFFFF; font-size: 15px; }
+#g3d .tools button { font-family: var(--plain); font-size: 14px; font-weight: 700; border: none; border-radius: 999px; padding: 6px 12px; background: rgba(255,255,255,0.92); color: #23283A; cursor: pointer; }
+#g3d .dlg { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 6; display: flex; flex-direction: column; gap: 10px; }
+#g3d .bubble3 { background: rgba(255,255,255,0.96); border-radius: 18px; padding: 12px 18px; box-shadow: 0 8px 22px rgba(0,0,0,0.15); display: flex; gap: 12px; align-items: flex-start; }
+#g3d .bubble3 .nm { flex: none; font-weight: 900; font-size: 18px; border-radius: 999px; padding: 2px 12px; color: #FFFFFF; background: #545B70; margin-top: 3px; }
+#g3d .bubble3 .nm.mimi { background: #D9608A; } #g3d .bubble3 .nm.dada { background: #A0663A; }
+#g3d .bubble3 .tx { font-size: 24px; font-weight: 700; line-height: 1.45; flex: 1; }
+#g3d .acts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+#g3d .acts button { font-family: var(--font); font-size: 22px; font-weight: 700; border: 3px solid #FFFFFF; border-radius: 999px; padding: 10px 24px; cursor: pointer; background: #E8771E; color: #FFFFFF; box-shadow: 0 6px 14px rgba(0,0,0,0.2); touch-action: manipulation; }
+#g3d .acts button.alt { background: #FFFFFF; color: #23283A; border-color: #DCE1D8; }
+#g3d .acts button.lv { min-width: 64px; padding: 10px 16px; color: #FFFFFF; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+#g3d .acts button.hold { padding: 16px 34px; font-size: 24px; background: #2F6FD6; }
+#g3d .acts button.hold.on { background: #1E4FA8; transform: scale(1.06); }
+#g3d .acts button:disabled { opacity: 0.4; }
+#g3d .hint3 { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); font-family: var(--plain); font-size: 14px; color: #23283A; background: rgba(255,255,255,0.75); border-radius: 999px; padding: 3px 12px; z-index: 4; pointer-events: none; transition: opacity 0.6s; }
+#g3d .cover { position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: rgba(30,90,76,0.88); color: #F4F1E6; text-align: center; padding: 20px; }
+#g3d .cover h3 { font-size: clamp(32px, 6vw, 52px); }
+#g3d .cover p { font-size: 20px; opacity: 0.92; max-width: 560px; }
+#g3d .cover button { font-family: var(--font); font-size: 26px; font-weight: 900; border: none; border-radius: 999px; padding: 14px 44px; background: #E8771E; color: #FFFFFF; cursor: pointer; }
+#g3d .cover ol { text-align: left; font-size: 19px; margin: 0; padding-left: 1.3em; max-width: 520px; }
+#g3d .conf { position: absolute; width: 12px; height: 16px; z-index: 8; pointer-events: none; animation: g3conf 1.8s ease-in forwards; }
+@keyframes g3conf { to { transform: translate(var(--dx), 520px) rotate(720deg); opacity: 0; } }
+@media (max-width: 720px) {
+  #g3d { aspect-ratio: 3 / 4; min-height: 560px; }
+  #g3d .bubble3 .tx { font-size: 20px; }
+  #g3d .acts button { font-size: 19px; padding: 8px 16px; }
+  #g3d .chap { font-size: 15px; }
+  #g3d .mood span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { #g3d .char.jump .inner, #g3d .char.talk .inner, #g3d .conf { animation: none; } }
+#g3d .mug { width: 120px; height: 150px; transition: transform 1.2s cubic-bezier(.3,.7,.3,1), opacity 0.4s; }
+#g3d .mug .inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s ease-in-out; }
+#g3d .mug svg { overflow: visible; }
+#g3d .mug.in .inner { transform: scale(1.15); }
+#g3d .mug .steam { transition: transform 0.4s, opacity 0.4s; }
+#g3d .mug .steam path { stroke: #B9A79B; stroke-width: 5; fill: none; stroke-linecap: round; animation: g3steam 2s ease-in-out infinite; }
+#g3d .mug.in .steam path { animation-duration: 0.8s; stroke: #8E7768; }
+#g3d .mug.out .steam { transform: translate(70px, -10px); opacity: 0; transition: transform 3s ease-out, opacity 3s; }
+@keyframes g3steam { 50% { transform: translateY(-8px); } }
+#g3d .mug .temp { position: absolute; left: 50%; bottom: -40px; transform: translateX(-50%); background: #FFFFFF; border-radius: 999px; padding: 2px 12px; font-weight: 900; font-size: 18px; white-space: nowrap; color: #C2410C; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+#g3d .board { width: 240px; height: 180px; background: #FFFFFF; border: 8px solid #C98B55; border-radius: 6px; box-sizing: content-box; }
+#g3d .board svg { width: 100%; height: 100%; display: block; }
+#g3d .board .blob { transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform 0.8s ease-out; }
+#g3d .board.spill .blob { transform: scale(1); }
+#g3d .board.fixed .blob { opacity: 0; transition: opacity 0.8s; }
+#g3d .board .sea { opacity: 0; transition: opacity 1s; }
+#g3d .board.fixed .sea { opacity: 1; }
+#g3d .board.torn svg { clip-path: polygon(0 0, 55% 0, 47% 28%, 58% 52%, 46% 76%, 54% 100%, 0 100%); }
+#g3d .car { width: 0; height: 0; transition: transform 1.1s ease-in-out; }
+#g3d .map { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+#g3d .mug .lemon { transform-box: fill-box; transform-origin: center; transition: transform 0.4s; }
+#g3d .mug.in .lemon { transform: scale(1.2, 0.7); }
+#g3d .mug .drops { opacity: 0; transition: opacity 0.3s; }
+#g3d .mug.in .drops { opacity: 1; }
+#g3d .mug .wl, #g3d .mug .wr { transform-box: fill-box; transition: transform 0.2s; }
+#g3d .mug .wl { transform-origin: right center; } #g3d .mug .wr { transform-origin: left center; }
+#g3d .mug.flap .wl, #g3d .mug.flap .wr { animation: g3flap 0.4s ease-in-out; }
+@keyframes g3flap { 50% { transform: scaleX(0.35); } }
+#g3d .mug, #g3d .char, #g3d .shadow, #g3d .cube, #g3d .car { pointer-events: none; }
+#g3d .findme { width: 70px; height: 70px; cursor: pointer; transition: transform 1.2s cubic-bezier(.3,.7,.3,1), opacity 0.4s; filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
+#g3d .findme.got { opacity: 0.35; }
+#g3d .findme.got::after { content: "✓"; position: absolute; top: -10px; right: -10px; background: #2E8B57; color: #FFFFFF; border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; font-weight: 900; }
+
+#g3d .score3 { position: absolute; top: 58px; left: 12px; z-index: 5; display: flex; gap: 6px; align-items: center; background: rgba(255,255,255,0.94); border-radius: 999px; padding: 4px 14px; font-weight: 900; font-size: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+#g3d .score3 .sm { color: #D9608A; } #g3d .score3 .sd { color: #2F6FD6; } #g3d .score3 .sv { color: #545B70; }
+#g3d .tile3 { width: 64px; height: 64px; background: #FFF7E0; border: 3px solid #E2BF8E; border-radius: 10px; display: grid; place-items: center; font-weight: 900; font-size: 20px; color: #A0663A; }
+#g3d .tile3.goal { background: #F6C38B; color: #FFFFFF; font-size: 17px; }
+#g3d .tile3.start { background: #CDEBD9; color: #2E8B57; font-size: 17px; }
+#g3d .hand3 { width: 90px; height: 80px; font-size: 64px; line-height: 80px; text-align: center; background: #FFFFFF; border-radius: 20px; box-shadow: 0 6px 14px rgba(0,0,0,0.2); transition: transform 1.2s cubic-bezier(.3,.7,.3,1), opacity 0.3s; }
+#g3d .die { width: 0; height: 0; }
+#g3d .maprow { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+#g3d .maprow h4 { font-size: 18px; color: #F6C38B; margin: 0; }
+#g3d .cover { overflow-y: auto; justify-content: safe center; gap: 10px; }
+#g3d .cover h3 { font-size: clamp(26px, 4.5vw, 40px); }
+#g3d .cover p { font-size: 18px; }
+#g3d .cover .stop { width: 112px; padding: 8px 6px; }
+#g3d .cover .stop .ic { width: 40px; height: 40px; padding: 4px; }
+#g3d .cover .stop .star { font-size: 22px; }
+#g3d .cover .stop span { font-size: 15px; line-height: 1.3; }
+#g3d .cover > button { padding: 10px 34px; font-size: 22px; flex: none; }
+#g3d.home .wall { background: #E6EEF6; border-bottom-color: #B9C7D6; }
+#g3d.home .wall.side { background: #DCE6F0; }
+#g3d.home .floor { background: repeating-linear-gradient(90deg, #C99A6B 0 90px, #BE8E5F 90px 180px); }
+#g3d.home .rug { background: radial-gradient(circle, #F6C38B 0 30%, #F0A868 30% 55%, #E8915A 55%); }
+#g3d .tv { width: 200px; height: 120px; background: #23283A; border: 8px solid #3A4152; border-radius: 10px; }
+#g3d .frame { width: 140px; height: 96px; border: 8px solid #B67844; border-radius: 6px; background: #FFF7E0; }
+#g3d .bubble3 .nm.teacher { background: #E8771E; }
+#g3d .cover { gap: 8px; }
+#g3d .cover > button.again2 { background: transparent; border: 2px solid rgba(255,255,255,0.6); font-size: 17px; padding: 6px 20px; }
+#g3d .bubble3 .nm.bro { background: #2FA3A3; } #g3d .bubble3 .nm.mom { background: #8E5CC4; }
+#g3d .hw { width: 300px; height: 150px; background: #FFFFFF; border: 6px solid #4F7FE0; border-radius: 10px; position: relative; overflow: hidden; }
+#g3d .hw-row { display: flex; justify-content: space-around; align-items: center; height: 100%; padding: 0 8px; }
+#g3d .hw-row span { width: 60px; height: 60px; border: 2px dashed #F0A0A0; display: grid; place-items: center; font-size: 42px; font-weight: 900; color: #23283A; position: relative; font-family: var(--plain); }
+#g3d .hw-last i { position: absolute; inset: 0; display: grid; place-items: center; font-style: normal; }
+#g3d .hw-bad { transform: rotate(-24deg) scale(1.1, 0.8); color: #545B70; transition: opacity 0.3s; }
+#g3d .hw.rub1 .hw-bad { opacity: 0.65; } #g3d .hw.rub2 .hw-bad { opacity: 0.35; } #g3d .hw.rub3 .hw-bad { opacity: 0; }
+#g3d .hw-good { opacity: 0; clip-path: inset(0 calc((1 - var(--w, 0)) * 100%) 0 0); transition: clip-path 0.4s; }
+#g3d .hw.writing .hw-good { opacity: 1; }
+#g3d .hw-hole { position: absolute; right: 22px; top: 50%; width: 34px; height: 26px; margin-top: -13px; background: #C99A6B; border-radius: 40% 60% 50% 45%; opacity: 0; transition: opacity 0.3s; box-shadow: inset 0 0 0 3px #FFFFFF; }
+#g3d .hw.torn .hw-hole { opacity: 1; }
+#g3d .hw-tape { position: absolute; right: 8px; top: 50%; width: 70px; height: 30px; margin-top: -15px; background: rgba(246, 224, 160, 0.85); transform: rotate(-8deg); opacity: 0; transition: opacity 0.4s; }
+#g3d .hw.taped .hw-tape { opacity: 1; }
+#g3d .hw.ripped { clip-path: polygon(0 0, 52% 0, 46% 30%, 56% 55%, 45% 100%, 0 100%); }
+#g3d .hw.fixed { border-color: #2E8B57; box-shadow: 0 0 0 6px rgba(46,139,87,0.3); }
+#g3d .tab3 { width: 150px; height: 110px; }
+#g3d .tab-screen { width: 100%; height: 100%; background: #23283A; border-radius: 14px; padding: 8px; transition: filter 0.5s; }
+#g3d .tab3.off .tab-screen svg { opacity: 0; transition: opacity 0.6s; }
+#g3d .clock3 { width: 80px; height: 80px; border-radius: 50%; background: #FFFFFF; border: 6px solid #E8771E; display: grid; place-items: center; font-size: 40px; font-weight: 900; color: #E8771E; box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
+#g3d .pudding3 { width: 70px; height: 70px; }
+#g3d .hw, #g3d .tab3, #g3d .clock3, #g3d .pudding3, #g3d .tv, #g3d .frame, #g3d .board, #g3d .hand3, #g3d .bell3, #g3d .light3 { pointer-events: none; }
+#g3d.finding .hw, #g3d.finding .tab3, #g3d.finding .board { opacity: 0.2; transition: opacity 0.4s; }
+#g3d.finding .cube:not(.decor) { opacity: 0.25; }
+#g3d .ball3 { width: 50px; height: 50px; transition: transform 1s linear; }
+#g3d .ball3.rolling .inner { animation: g3spin 0.5s linear infinite; }
+#g3d .ball3 .inner { width: 100%; height: 100%; }
+@keyframes g3spin { to { transform: rotate(360deg); } }
+#g3d .cover .stop { font-size: 16px; font-weight: 700; border-radius: 18px; padding: 12px 14px; background: rgba(255,255,255,0.12); border: 3px solid rgba(255,255,255,0.3); color: #F4F1E6; }
+#g3d .cover .stop.now { border-color: #F6C38B; background: rgba(246,195,139,0.2); }
+#g3d .cover .stop.done { border-color: #6FD39C; }
+#g3d .cover .stop:hover { background: rgba(255,255,255,0.24); }
+#g3d .stop { font-family: var(--font); color: #F4F1E6; cursor: pointer; background: rgba(255,255,255,0.12); border: 3px solid rgba(255,255,255,0.3); border-radius: 18px; padding: 12px 14px; width: 150px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+#g3d .stop.now { border-color: #F6C38B; background: rgba(246,195,139,0.2); }
+#g3d .stop.done { border-color: #6FD39C; }
+#g3d .stop:hover { background: rgba(255,255,255,0.22); transform: translateY(-3px); }
+#g3d .stop { transition: transform 0.2s, background 0.2s; }
+#g3d .stop .ic { width: 52px; height: 52px; background: #FFFFFF; border-radius: 14px; padding: 6px; }
+#g3d .stop b { font-size: 18px; } #g3d .stop span { font-size: 17px; }
+#g3d .stop .star { font-style: normal; font-size: 30px; color: #F6C38B; line-height: 1; }
+@media (max-width: 720px) { #g3d .stop { width: 22%; min-width: 72px; padding: 6px; } #g3d .stop .ic { width: 40px; height: 40px; } #g3d .stop span { font-size: 14px; } }
+
+.cm-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.cm-tabs button { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); font-size: 20px; font-weight: 700; border-radius: 999px; padding: 8px 18px; border: 3px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.cm-tabs button[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
+.ball { transition: transform 4s ease-in-out, background 0.4s; }
+.ball.lemon { background: radial-gradient(circle at 35% 35%, #FBE77A, #E2B21C); color: #5A4300; transition: transform 0.6s ease-out, background 0.4s; }
+.ball.lemon.squeeze { transform: scale(1.25, 0.82); }
+.ball.findc { transition: transform 0.3s, background 0.4s; }
+.ball.findc.pop { transform: scale(1.2); }
+.cm-colors { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.cm-colors button { font-family: var(--font); font-size: 20px; font-weight: 900; color: #FFFFFF; border: 3px solid transparent; border-radius: 14px; padding: 8px 16px; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.cm-colors button[aria-pressed="true"] { border-color: var(--ink); transform: scale(1.06); }
+/* 3D sports day (#sports) */
+.sp-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sp-card { position: relative; cursor: pointer; text-align: left; font-family: var(--font); color: var(--ink); background: var(--bg); border: 3px solid var(--line); border-left: 12px solid var(--c); border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.sp-card:hover { transform: translateY(-2px); }
+.sp-card .sp-ic { width: 52px; height: 52px; border-radius: 50%; background: var(--c); color: #FFFFFF; display: grid; place-items: center; font-size: 26px; font-weight: 900; }
+.sp-card b { font-size: 23px; }
+.sp-card .sp-ds { font-size: 18px; color: var(--ink-soft); }
+.sp-card .sp-st { position: absolute; top: 10px; right: 14px; font-style: normal; font-size: 34px; color: #F2C230; line-height: 1; }
+.sp-reset { margin-top: 12px; font-family: var(--plain); font-size: 14px; border: 2px solid var(--line); background: transparent; color: var(--ink-soft); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.sp-3d { position: relative; aspect-ratio: 16 / 9; width: 100%; border-radius: 20px; overflow: hidden; background: #22333A; }
+.sp-3d .sp-stage, .sp-3d .sp-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+.sp-3d .g3d-fallback { color: #FFFFFF; display: grid; place-items: center; height: 100%; font-size: 22px; padding: 20px; text-align: center; }
+.sp-hud { position: absolute; left: 50%; top: 4%; transform: translateX(-50%); background: rgba(20,24,28,0.8); color: #FFFFFF; border-radius: 14px; padding: 4px 16px 6px; font-size: clamp(16px, 2.6vw, 24px); font-weight: 700; text-align: center; max-width: 94%; pointer-events: none; }
+.sp-hud:empty { display: none; }
+.sp-hud .cd { font-family: var(--plain); font-weight: 900; font-size: clamp(24px, 5vw, 44px); color: #F6C38B; }
+.sp-meter { position: absolute; left: 6%; right: 6%; bottom: 6%; height: 26px; background: rgba(255,255,255,0.88); border: 3px solid #22333A; border-radius: 14px; overflow: hidden; }
+.sp-meter b { position: absolute; left: 54%; width: 16%; top: 0; bottom: 0; background: #6CC08B; }
+.sp-meter i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-right: 6px solid #D9442B; }
+.sp-ctl { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; align-items: center; margin-top: 14px; }
+.sp-act { font-size: clamp(24px, 4vw, 32px); padding: 14px 40px; min-width: min(100%, 320px); touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+.sp-panel { display: grid; gap: 14px; margin-top: 16px; }
+.sp-panel:empty { display: none; }
+.sp-q { font-size: 28px; }
+.sp-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; }
+.sp-opts.col { grid-template-columns: 1fr; }
+.sp-opt { font-family: var(--font); font-size: 23px; font-weight: 700; padding: 14px 16px; border-radius: 18px; border: 3px solid var(--line); border-left: 10px solid var(--c); background: var(--bg); color: var(--ink); cursor: pointer; text-align: left; }
+.sp-opt.on { border-color: var(--c); background: color-mix(in srgb, var(--c) 14%, var(--surface)); }
+.sp-opt.right { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+.sp-opt.wrong { border-color: var(--warn); background: var(--warn-bg); color: var(--warn); }
+.sp-opt:disabled { cursor: default; }
+.sp-thermo { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.sp-thermo button { border: none; border-radius: 14px; padding: 14px 4px; font-family: var(--font); font-size: 22px; font-weight: 900; color: #FFFFFF; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.sp-thermo button.on { box-shadow: 0 0 0 4px var(--ink); transform: scale(1.05); }
+.sp-fb { border-radius: 16px; padding: 12px 16px; font-size: 22px; font-weight: 700; display: grid; gap: 4px; }
+.sp-fb.ok { background: var(--good-bg); color: var(--good); }
+.sp-fb.info { background: #EAF2FF; color: #1E4FA8; }
+.sp-fb.no { background: var(--warn-bg); color: var(--warn); }
+.sp-fb .sp-ex { color: var(--ink); font-weight: 400; font-size: 20px; }
+.sp-step { display: flex; gap: 14px; align-items: center; background: var(--bg); border-radius: 18px; padding: 14px 18px; }
+.sp-step .sp-n { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--accent); color: #FFFFFF; display: grid; place-items: center; font-size: 28px; font-weight: 900; }
+.sp-step h3 { font-size: 30px; }
+.sp-step p { color: var(--ink-soft); }
+.sp-guide { background: var(--bg); border-radius: 20px; padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.sp-guide p { font-size: 22px; font-weight: 700; }
+.sp-orb { width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #C89270, #7A4A2A); color: #FFFFFF; display: grid; place-items: center; font-size: 24px; font-weight: 900; transition: transform 3s ease-in-out; }
+.sp-orb.big { transform: scale(1.5); }
+@media (prefers-color-scheme: dark) { .sp-fb.info { background: #1C2A44; color: #9CC0FF; } }
+@media (max-width: 720px) { .sp-cards { grid-template-columns: 1fr; } .sp-q { font-size: 24px; } .sp-opt { font-size: 20px; } .sp-thermo button { font-size: 18px; } }
+@media (prefers-reduced-motion: reduce) { .sp-orb { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">社會技巧課．挫折容忍．二年級</p>
+      <h1>沒關係，再試一次</h1>
+      <p class="lede">事情不順利、好難過的時候，我們一起想辦法！</p>
+      <nav class="nav" aria-label="頁面導覽">
+        <a href="#share">大家都會不順利</a>
+        <a href="#thermo">心情溫度計</a>
+        <a href="#calm">冷靜三步</a>
+        <a href="#story">闖關故事</a>
+        <a href="#sports">3D 運動會</a>
+        <a href="#size">問題大小</a>
+        <a href="#think">想一想</a>
+        <a href="#pep">打氣卡</a>
+      </nav>
+    </div>
+    <div class="hero-art" id="heroArt" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <details class="plan box">
+    <summary>老師看這裡：40 分鐘上課流程</summary>
+    <div class="timeline">
+      <a href="#share"><span>0–4 分</span><b>大家都會不順利</b>老師和角色先分享</a>
+      <a href="#thermo"><span>4–8 分</span><b>心情溫度計</b>認識 1～5 度</a>
+      <a href="#calm"><span>8–12 分</span><b>冷靜三步</b>3 種冷靜小方法</a>
+      <a href="#story"><span>12–24 分</span><b>3D 闖關故事</b>學校＋家裡</a>
+      <a href="#sports"><span>24–30 分</span><b>3D 運動會</b>賽跑、搶椅子、投籃</a>
+      <a href="#size"><span>30–33 分</span><b>問題大小</b>小問題，小反應</a>
+      <a href="#think"><span>33–37 分</span><b>想一想</b>6 個情境題</a>
+      <a href="#pep"><span>37–40 分</span><b>打氣卡</b>選一句、做約定</a>
+    </div>
+    <ul>
+      <li><b>目標：</b>能用心情溫度計說出不順利時的心情；會用「停、冷靜、說」和冷靜小方法讓自己平靜；知道小問題可以再試一次。</li>
+      <li><b>先接住心情：</b>難過、想哭都是正常的。不要說「不可以哭」，改說「哭完，我們可以怎麼做？」</li>
+      <li><b>不點名、不提上次：</b>闖關故事用和上次不一樣的事來練習；3D 運動會的比賽是賽跑、搶椅子、投籃，不是桌遊。不要提到上次的事，也不要看向那位同學。</li>
+      <li><b>可以先私下預告：</b>上課前跟敏感的同學說「今天我們要學一個讓心情變好的方法」，讓他有心理準備；上課時可以請他當示範深呼吸的小幫手。</li>
+      <li><b>課後：</b>每天找一個小小不順利的時刻（拼圖、畫畫、排隊）練習「停、冷靜、說」；看到孩子願意再試一次，馬上具體稱讚。</li>
+    </ul>
+  </details>
+
+  <section id="share">
+    <div class="sec-head"><i class="vi hd" data-i="heart" aria-hidden="true"></i><h2>每個人都會遇到不順利</h2><span class="tag">EVERYONE</span><span class="min">4 分鐘</span></div>
+    <div class="box">
+      <p class="withic" style="font-size:22px;margin-bottom:16px"><i class="vi " data-i="chat" aria-hidden="true"></i>聽聽大家說一件自己不順利的小事。點一點卡片，聽他怎麼說。</p>
+      <div class="share" id="shareBox"></div>
+      <div class="share-you">
+        <h3>你呢？</h3>
+        <p>說說看：「我＿＿＿的時候，覺得＿＿＿。」</p>
+        <div class="feel-chips"><span>失望</span><span>難過</span><span>生氣</span><span>著急</span><span>害怕</span></div>
+      </div>
+      <p class="teacher"><b>老師可以這樣做：</b>老師先分享自己的一件小事，再點卡片聽米米、大大、跳跳說。最後請願意的學生用「我＿＿＿的時候，覺得＿＿＿」說一句，不想說的可以先聽就好，不要點名。說完告訴大家：「每個人都會遇到不順利，難過、生氣、著急都是可以的。接下來我們用心情溫度計，看看這些心情有幾度。」</p>
+    </div>
+  </section>
+
+  <section id="thermo">
+    <div class="sec-head"><i class="vi hd" data-i="thermo" aria-hidden="true"></i><h2>心情溫度計</h2><span class="tag">FEELINGS</span><span class="min">4 分鐘</span></div>
+    <div class="box">
+      <p class="withic" style="font-size:22px;margin-bottom:16px"><i class="vi " data-i="thermo" aria-hidden="true"></i>心情也有溫度。點一點，看看每一度是什麼樣子、可能是什麼事情。</p>
+      <div class="thermo">
+        <div class="levels" id="levels"></div>
+        <div class="lvinfo" id="lvinfo"></div>
+      </div>
+      <p class="thermo-note">同一件事，每個人的溫度可能不一樣，都沒有關係。</p>
+      <p class="teacher"><b>老師可以這樣教：</b>先帶全班認識 1 到 5 度，請學生跟著做出每一度的表情。再看每一度下面的「例如」，問學生：「如果是你，這件事是幾度？」同一件事，每個人的溫度可以不一樣。也可以問：「你什麼時候是 1 度？什麼時候會到 4 度？」請學生用手指比出來。等一下的冷靜三步和闖關故事，都會用到溫度計。</p>
+    </div>
+  </section>
+
+  <section id="calm">
+    <div class="sec-head"><i class="vi hd" data-i="calm" aria-hidden="true"></i><h2>冷靜三步</h2><span class="tag">CALM DOWN</span><span class="min">4 分鐘</span></div>
+    <div class="box">
+      <div class="steps3">
+        <div class="st"><div class="n">1</div><i class="vi stic" data-i="stop" aria-hidden="true"></i><h3>停</h3><p>手放在腿上，嘴巴先不說話。</p></div>
+        <div class="st"><div class="n">2</div><i class="vi stic" data-i="calm" aria-hidden="true"></i><h3>冷靜</h3><p>自己選一個冷靜小方法：擠檸檬、熱可可呼吸、找顏色。</p></div>
+        <div class="st"><div class="n">3</div><i class="vi stic" data-i="say" aria-hidden="true"></i><h3>說</h3><p>對自己說一句打氣的話：「沒關係，再試一次！」</p></div>
+      </div>
+      <h3 style="font-size:24px;margin-top:22px">3 種冷靜小方法（自己選一個）</h3>
+      <div class="tools4">
+        <div><i class="vi tic" data-i="calm" aria-hidden="true"></i><b>熱可可呼吸</b>捧著熱可可，聞香味（吸氣），把它吹涼（吐氣）。</div>
+        <div><i class="vi tic" data-i="lemon" aria-hidden="true"></i><b>擠檸檬</b>雙手用力握緊，像在擠檸檬汁；再放開，手軟軟的。</div>
+        <div><i class="vi tic" data-i="find" aria-hidden="true"></i><b>找顏色</b>自己選一個顏色，找出身邊 5 個那個顏色的東西，讓眼睛忙一忙。</div>
+        
+      </div>
+      <p class="okcry"><i class="vi " data-i="tear" aria-hidden="true"></i>想哭也沒關係。哭完，用冷靜三步讓心情降溫。</p>
+      <div class="breathe">
+        <div class="cm-tabs" role="group" aria-label="選一個冷靜小方法來練習">
+          <button type="button" data-cm="cocoa" aria-pressed="true"><i class="vi" data-i="calm" aria-hidden="true"></i>熱可可呼吸</button>
+          <button type="button" data-cm="lemon" aria-pressed="false"><i class="vi" data-i="lemon" aria-hidden="true"></i>擠檸檬</button>
+          <button type="button" data-cm="find" aria-pressed="false"><i class="vi" data-i="find" aria-hidden="true"></i>找顏色</button>
+        </div>
+        <h3 id="cmTitle">一起練習熱可可呼吸法</h3>
+        <div class="ring"><div class="ball" id="ball">準備</div></div>
+        <div class="cm-colors" id="cmColors" hidden></div>
+        <p class="bcount" id="bcount">雙手捧著假裝的熱可可：球變大時聞香味（吸氣），球變小時吹涼（吐氣）</p>
+        <div class="btns" style="margin-top:0"><button class="btn main" id="bStart">開始 3 次熱可可呼吸</button><button class="btn" id="cmFound" hidden>找到一個了！</button></div>
+      </div>
+      <p class="teacher"><b>老師可以做：</b>用上面的按鈕切換，全班把熱可可呼吸、擠檸檬、找顏色 3 種方法都練一次，再請每位學生說出最喜歡哪一個。等一下闖關時，冷靜那一步會讓學生自己選要用哪一種。也可以請兩位同學演一次「積木倒了 → 停、冷靜、說 → 再堆一次」。</p>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="sec-head"><i class="vi hd" data-i="game" aria-hidden="true"></i><h2>3D 闖關故事：米米在學校和在家裡</h2><span class="tag">STORY GAME</span><span class="min">12 分鐘</span></div>
+
+    <div id="g3d">
+      <div class="vp" id="g3vp"><div class="scaler" id="g3scaler"><div class="world" id="g3world"></div></div></div>
+      <div class="hud-top">
+        <span class="chap" id="g3chap">米米的闖關冒險</span>
+        <div class="mood" id="g3mood" aria-label="米米的心情"><span id="g3moodTx">米米的心情 1 度</span></div>
+        <div class="tools"><button id="g3back" type="button" hidden>← 回地圖</button><button id="g3voice" type="button">朗讀：開</button><button id="g3full" type="button">全螢幕</button></div>
+      </div>
+      <div class="hint3" id="g3hint">用手指拖一拖，可以轉動畫面</div>
+      <div class="dlg">
+        <div class="bubble3" id="g3bub" hidden aria-live="polite"><span class="nm" id="g3nm"></span><span class="tx" id="g3tx"></span></div>
+        <div class="acts" id="g3acts"></div>
+      </div>
+      <div class="cover" id="g3cover">
+      </div>
+    </div>
+    <p class="teacher"><b>老師怎麼用：</b>投影出來，按「開始」進入闖關地圖，全班一起闖關。地圖分成「在學校」3 關（積木塔倒了、打翻的水彩、等一等輪到我）和「在家裡」3 關（寫功課寫錯了、平板時間到了、猜拳選點心），哪一關都可以先玩。選擇題先請學生舉手表決再按；冷靜動作全班一起做。右上角可以回地圖、關朗讀、開全螢幕。一節課建議玩 2 關，學校和家裡各挑一關，讓學生知道在哪裡都可以用冷靜三步。</p>
+  </section>
+
+
+
+  <section id="sports">
+    <div class="sec-head"><i class="vi hd" data-i="star" aria-hidden="true"></i><h2>3D 運動會：輸了怎麼辦？</h2><span class="tag">SPORTS DAY</span><span class="min">6 分鐘</span></div>
+    <div class="box">
+      <p class="withic" style="font-size:22px;margin-bottom:16px"><i class="vi " data-i="game" aria-hidden="true"></i>換你上場！跟米米、大大、跳跳比賽。輸了的時候，用冷靜三步，再選一個好的做法。</p>
+      <div id="spPick"></div>
+      <div class="sp-3d" id="spWrap" hidden>
+        <div class="sp-stage" id="spHost"></div>
+        <div class="sp-hud" id="spHud"></div>
+        <div class="sp-meter" id="spMeter" hidden><b></b><i></i></div>
+      </div>
+      <div class="sp-ctl" id="spCtl" hidden><button class="btn main sp-act" type="button" id="spAct"></button><button class="btn" type="button" id="spBack">換一關</button></div>
+      <div class="sp-panel" id="spPanel" aria-live="polite"></div>
+      <p class="teacher"><b>老師怎麼用：</b>三個遊戲（賽跑、搶椅子、投籃）都故意設計成「很容易輸」，讓學生在安全的情況下真的體驗輸的感覺。請學生輪流上台玩，台下同學一起幫忙選。輸了以後先接住心情（選什麼心情都可以），量溫度；3 度以上就帶全班一起做冷靜三步，再選「好的做法」。選錯時朋友會轉身背對，請學生看看朋友的反應，再選一次。賽跑可以用空白鍵或連點按鈕。</p>
+    </div>
+  </section>
+
+  <section id="size">
+    <div class="sec-head"><i class="vi hd" data-i="scale" aria-hidden="true"></i><h2>小問題還是大問題？</h2><span class="tag">PROBLEM SIZE</span><span class="min">3 分鐘</span></div>
+    <div class="box">
+      <div class="rule2">
+        <div class="small"><i class="vi ric" data-i="small" aria-hidden="true"></i><b>小問題 → 小反應</b><span>自己可以處理，不會有人受傷。</span>
+          <ol class="howto"><li>停一停，用冷靜小方法</li><li>對自己說「沒關係」</li><li>想辦法：再試一次、換個方法，或請朋友幫忙</li></ol></div>
+        <div class="big"><i class="vi ric" data-i="big" aria-hidden="true"></i><b>大問題 → 找大人</b><span>有人受傷、很危險，自己處理不了。</span>
+          <ol class="howto"><li>先讓自己安全，離開危險的地方</li><li>馬上去找大人：老師、爸爸媽媽</li><li>說清楚：「老師，有人＿＿＿，在＿＿＿。」</li></ol></div>
+      </div>
+      <div class="ask3"><b>分不清楚的時候，問自己 3 個問題：</b><span>① 有人受傷嗎？</span><span>② 危險嗎？</span><span>③ 我自己可以處理嗎？</span><em>只要有人受傷、會危險，或自己處理不了，就是大問題，要找大人。</em></div>
+      <div class="sizes" id="sizes"></div>
+      <p class="teacher"><b>重點：</b>先按「小問題／大問題」，答對後會出現「可以這樣做」的步驟，請全班一起念一次。小問題用小反應，自己想辦法；大問題要先讓自己安全，再馬上找大人，並說清楚發生什麼事、在哪裡。</p>
+    </div>
+  </section>
+
+  <section id="think">
+    <div class="sec-head"><i class="vi hd" data-i="bulb" aria-hidden="true"></i><h2>想一想，怎麼做？</h2><span class="tag">WHAT WOULD YOU DO</span><span class="min">4 分鐘</span></div>
+    <div class="box" id="quiz" aria-live="polite"></div>
+  </section>
+
+  <section id="pep">
+    <div class="sec-head"><i class="vi hd" data-i="cheer" aria-hidden="true"></i><h2>我的打氣卡</h2><span class="tag">MY PEP TALK</span><span class="min">3 分鐘</span></div>
+    <div class="box">
+      <p class="withic" style="font-size:22px;margin-bottom:14px"><i class="vi " data-i="cheer" aria-hidden="true"></i>選一句你最喜歡的打氣話。事情不順利的時候，就對自己說這一句。</p>
+      <p class="step-lab">① 現在輪到誰？點一下自己的號碼，寫上名字</p>
+      <div class="kids" id="kids"></div>
+      <p class="step-lab">② 選一句打氣話</p>
+      <div class="peps" id="peps"></div>
+      <div class="mycard">
+        <span class="lab" id="myLab">1 號的打氣卡</span>
+        <input id="myName" type="text" placeholder="寫上你的名字" aria-label="名字">
+        <div class="say" id="mySay">先選一句打氣話</div>
+        <div class="mybtns"><button class="speak" id="mySpeak" type="button">聽一聽</button><button class="speak next" id="myNext" type="button">下一位 →</button></div>
+      </div>
+      <div class="gal-head"><h3 class="withic" style="font-size:24px"><i class="vi " data-i="cheer" aria-hidden="true"></i>全班的打氣卡</h3><span class="gal-count" id="galCount">0 / 7</span><button class="gal-clear" id="galClear" type="button">全部刪掉</button></div>
+      <div class="gallery" id="gallery"></div>
+      <h3 class="withic" style="font-size:24px;margin-top:24px"><i class="vi " data-i="star" aria-hidden="true"></i>下次事情不順利，我會：</h3>
+      <div class="promise" id="promise"></div>
+      <p class="teacher"><b>老師可以做：</b>7 位學生輪流上來：點自己的號碼、寫名字、選一句打氣話，按「下一位」換人。全班寫完後，下面會出現 7 張打氣卡（按卡片右上角的 ✕ 可以刪掉重選），請每位學生大聲念一次自己的打氣話；可以把打氣話寫在小卡上，玩遊戲時放在桌上。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">社會技巧課．挫折容忍</footer>
+
+<script>
+(function () {
+  const ICO = {"thermo": "<rect x=\"19\" y=\"4\" width=\"10\" height=\"30\" rx=\"5\" fill=\"#FFFFFF\" stroke=\"#545B70\" stroke-width=\"2.5\"/><rect x=\"22\" y=\"16\" width=\"4\" height=\"20\" fill=\"#D9442B\"/><circle cx=\"24\" cy=\"38\" r=\"7\" fill=\"#D9442B\" stroke=\"#545B70\" stroke-width=\"2.5\"/>", "game": "<rect x=\"4\" y=\"14\" width=\"40\" height=\"22\" rx=\"11\" fill=\"#2F6FD6\"/><rect x=\"12\" y=\"20\" width=\"3\" height=\"10\" fill=\"#FFFFFF\"/><rect x=\"8.5\" y=\"23.5\" width=\"10\" height=\"3\" fill=\"#FFFFFF\"/><circle cx=\"32\" cy=\"22\" r=\"3\" fill=\"#F2C230\"/><circle cx=\"37\" cy=\"28\" r=\"3\" fill=\"#E85B8A\"/>", "stop": "<path d=\"M16 4 H32 L44 16 V32 L32 44 H16 L4 32 V16z\" fill=\"#D9442B\"/><path d=\"M17 30 V20 a2 2 0 0 1 4 0 V16 a2 2 0 0 1 4 0 V17 a2 2 0 0 1 4 0 V20 a2 2 0 0 1 4 0 V30 q0 7 -8 7 q-8 0 -8 -7z\" fill=\"#FFFFFF\"/>", "calm": "<path d=\"M10 18 H34 L32 40 Q31 44 27 44 H17 Q13 44 12 40z\" fill=\"#E8771E\"/><path d=\"M34 22 Q42 22 41 30 Q40 37 32 36\" stroke=\"#E8771E\" stroke-width=\"4\" fill=\"none\"/><ellipse cx=\"22\" cy=\"18\" rx=\"12\" ry=\"3\" fill=\"#7A4A2A\"/><path d=\"M17 12 q-3 -4 0 -8 M24 12 q-3 -4 0 -8 M31 12 q-3 -4 0 -8\" stroke=\"#B9A79B\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\"/>", "say": "<path d=\"M6 8 H42 Q44 8 44 10 V30 Q44 32 42 32 H20 L10 41 V32 H6 Q4 32 4 30 V10 Q4 8 6 8z\" fill=\"#3FA36B\"/><circle cx=\"15\" cy=\"20\" r=\"3\" fill=\"#FFFFFF\"/><circle cx=\"24\" cy=\"20\" r=\"3\" fill=\"#FFFFFF\"/><circle cx=\"33\" cy=\"20\" r=\"3\" fill=\"#FFFFFF\"/>", "lemon": "<ellipse cx=\"24\" cy=\"26\" rx=\"17\" ry=\"13\" fill=\"#F7D33C\"/><path d=\"M6 26 l-4 -2 v4z M42 26 l4 -2 v4z\" fill=\"#E2B21C\"/><ellipse cx=\"18\" cy=\"21\" rx=\"5\" ry=\"3\" fill=\"#FFFFFF\" opacity=\"0.6\"/><path d=\"M28 14 q4 -8 10 -8 q-2 7 -10 8z\" fill=\"#3FA36B\"/>", "find": "<circle cx=\"20\" cy=\"20\" r=\"13\" fill=\"#DDF1FF\" stroke=\"#545B70\" stroke-width=\"4\"/><circle cx=\"20\" cy=\"20\" r=\"6\" fill=\"#2F6FD6\"/><path d=\"M30 30 L43 43\" stroke=\"#545B70\" stroke-width=\"6\" stroke-linecap=\"round\"/>", "butterfly": "<ellipse cx=\"14\" cy=\"18\" rx=\"11\" ry=\"10\" fill=\"#F48FB1\"/><ellipse cx=\"34\" cy=\"18\" rx=\"11\" ry=\"10\" fill=\"#F48FB1\"/><ellipse cx=\"16\" cy=\"33\" rx=\"8\" ry=\"7\" fill=\"#8E5CC4\"/><ellipse cx=\"32\" cy=\"33\" rx=\"8\" ry=\"7\" fill=\"#8E5CC4\"/><rect x=\"22\" y=\"12\" width=\"4\" height=\"28\" rx=\"2\" fill=\"#23283A\"/>", "blocks": "<rect x=\"6\" y=\"32\" width=\"14\" height=\"10\" fill=\"#E8771E\" transform=\"rotate(-12 13 37)\"/><rect x=\"24\" y=\"34\" width=\"14\" height=\"10\" fill=\"#2F6FD6\" transform=\"rotate(18 31 39)\"/><rect x=\"16\" y=\"18\" width=\"14\" height=\"10\" fill=\"#3FA36B\" transform=\"rotate(35 23 23)\"/><path d=\"M8 10 l4 4 M40 8 l-4 5 M24 4 v5\" stroke=\"#F2C230\" stroke-width=\"3\" stroke-linecap=\"round\"/>", "bandage": "<rect x=\"6\" y=\"18\" width=\"36\" height=\"12\" rx=\"6\" fill=\"#F2C9A0\" transform=\"rotate(-35 24 24)\"/><rect x=\"18\" y=\"19\" width=\"12\" height=\"10\" fill=\"#E8B88A\" transform=\"rotate(-35 24 24)\"/><circle cx=\"24\" cy=\"24\" r=\"1.5\" fill=\"#B07A50\"/><path d=\"M36 38 q4 4 0 8 q-4 -4 0 -8z\" fill=\"#D9442B\"/>", "pencil": "<rect x=\"10\" y=\"18\" width=\"28\" height=\"10\" fill=\"#F2C230\" transform=\"rotate(-40 24 23)\"/><path d=\"M8 40 l3 -9 l6 6z\" fill=\"#E8B88A\"/><path d=\"M8 40 l1.5 -4.5 l3 3z\" fill=\"#23283A\"/><path d=\"M30 44 q6 -6 12 0\" stroke=\"#D9442B\" stroke-width=\"3\" fill=\"none\"/>", "puzzle": "<path d=\"M8 14 H18 a5 5 0 1 1 10 0 H38 V24 a5 5 0 1 0 0 10 V42 H8 V32 a5 5 0 1 1 0 -10z\" fill=\"#8E5CC4\"/>", "fight": "<path d=\"M24 4 L44 40 H4z\" fill=\"#F08A24\"/><rect x=\"22\" y=\"15\" width=\"4\" height=\"14\" rx=\"2\" fill=\"#FFFFFF\"/><circle cx=\"24\" cy=\"34\" r=\"2.5\" fill=\"#FFFFFF\"/>", "queue": "<circle cx=\"10\" cy=\"16\" r=\"5\" fill=\"#F48FB1\"/><rect x=\"5\" y=\"23\" width=\"10\" height=\"16\" rx=\"5\" fill=\"#F48FB1\"/><circle cx=\"24\" cy=\"16\" r=\"5\" fill=\"#4F7FE0\"/><rect x=\"19\" y=\"23\" width=\"10\" height=\"16\" rx=\"5\" fill=\"#4F7FE0\"/><circle cx=\"38\" cy=\"16\" r=\"5\" fill=\"#3FA36B\"/><rect x=\"33\" y=\"23\" width=\"10\" height=\"16\" rx=\"5\" fill=\"#3FA36B\"/>", "small": "<circle cx=\"24\" cy=\"24\" r=\"18\" fill=\"#2E8B57\"/><path d=\"M15 25 l6 6 l12 -13\" stroke=\"#FFFFFF\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>", "big": "<path d=\"M24 4 L44 40 H4z\" fill=\"#C2410C\"/><rect x=\"22\" y=\"15\" width=\"4\" height=\"14\" rx=\"2\" fill=\"#FFFFFF\"/><circle cx=\"24\" cy=\"34\" r=\"2.5\" fill=\"#FFFFFF\"/>", "retry": "<path d=\"M38 24 a14 14 0 1 1 -5 -10.7\" stroke=\"#2F6FD6\" stroke-width=\"5\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M28 6 L38 12 L30 20z\" fill=\"#2F6FD6\"/>", "turtle": "<ellipse cx=\"22\" cy=\"28\" rx=\"15\" ry=\"11\" fill=\"#3FA36B\"/><path d=\"M14 26 h16 M22 18 v20\" stroke=\"#2E7A4E\" stroke-width=\"2\"/><circle cx=\"40\" cy=\"26\" r=\"5\" fill=\"#9BD07A\"/><circle cx=\"41\" cy=\"25\" r=\"1.2\" fill=\"#23283A\"/><ellipse cx=\"12\" cy=\"38\" rx=\"4\" ry=\"3\" fill=\"#9BD07A\"/><ellipse cx=\"32\" cy=\"38\" rx=\"4\" ry=\"3\" fill=\"#9BD07A\"/>", "sprout": "<path d=\"M8 42 H40\" stroke=\"#A0663A\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M24 42 V20\" stroke=\"#3FA36B\" stroke-width=\"4\"/><path d=\"M24 26 q-14 0 -14 -12 q14 0 14 12z\" fill=\"#3FA36B\"/><path d=\"M24 22 q12 0 12 -12 q-12 0 -12 12z\" fill=\"#9BD07A\"/>", "breath": "<path d=\"M6 18 H30 a6 6 0 1 0 -6 -6\" stroke=\"#5AB0F0\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M6 28 H38 a6 6 0 1 1 -6 6\" stroke=\"#5AB0F0\" stroke-width=\"4\" fill=\"none\" stroke-linecap=\"round\"/>", "eraser": "<rect x=\"8\" y=\"18\" width=\"30\" height=\"14\" rx=\"3\" fill=\"#F48FB1\" transform=\"rotate(-25 23 25)\"/><rect x=\"8\" y=\"18\" width=\"12\" height=\"14\" rx=\"3\" fill=\"#4F7FE0\" transform=\"rotate(-25 23 25)\"/><path d=\"M10 42 H40\" stroke=\"#B9A79B\" stroke-width=\"3\" stroke-dasharray=\"4 4\"/>", "hand": "<path d=\"M14 26 V12 a3 3 0 0 1 6 0 V22 V8 a3 3 0 0 1 6 0 V22 V10 a3 3 0 0 1 6 0 V24 V16 a3 3 0 0 1 6 0 V30 q0 14 -14 14 q-8 0 -12 -6 l-6 -9 a3 3 0 0 1 5 -3z\" fill=\"#F2C9A0\" stroke=\"#B07A50\" stroke-width=\"2\"/>", "heart": "<path d=\"M24 42 Q6 30 6 18 a9 9 0 0 1 18 -3 a9 9 0 0 1 18 3 Q42 30 24 42z\" fill=\"#E85B8A\"/>", "tear": "<path d=\"M24 6 Q36 22 36 30 a12 12 0 0 1 -24 0 Q12 22 24 6z\" fill=\"#5AB0F0\"/><ellipse cx=\"20\" cy=\"30\" rx=\"3\" ry=\"5\" fill=\"#FFFFFF\" opacity=\"0.6\"/>", "rope": "<path d=\"M10 14 Q24 52 38 14\" stroke=\"#E85B8A\" stroke-width=\"3\" fill=\"none\"/><rect x=\"6\" y=\"6\" width=\"8\" height=\"12\" rx=\"3\" fill=\"#2F6FD6\"/><rect x=\"34\" y=\"6\" width=\"8\" height=\"12\" rx=\"3\" fill=\"#2F6FD6\"/>", "bulb": "<path d=\"M24 4 a14 14 0 0 1 8 25 V34 H16 V29 a14 14 0 0 1 8 -25z\" fill=\"#F2C230\"/><rect x=\"17\" y=\"36\" width=\"14\" height=\"4\" rx=\"2\" fill=\"#B9A79B\"/><rect x=\"19\" y=\"41\" width=\"10\" height=\"3\" rx=\"1.5\" fill=\"#B9A79B\"/>", "scale": "<path d=\"M24 8 V40 M14 42 H34\" stroke=\"#545B70\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M8 14 H40\" stroke=\"#545B70\" stroke-width=\"3\"/><path d=\"M4 26 L8 14 L12 26z\" fill=\"#2E8B57\"/><path d=\"M36 30 L40 14 L44 30z\" fill=\"#C2410C\"/><ellipse cx=\"8\" cy=\"27\" rx=\"6\" ry=\"2\" fill=\"#2E8B57\"/><ellipse cx=\"40\" cy=\"31\" rx=\"6\" ry=\"2\" fill=\"#C2410C\"/>", "star": "<path d=\"M24 4 l6 13 l14 1.5 l-10.5 9.5 l3 14 L24 35 l-12.5 7 l3 -14 L4 18.5 l14 -1.5z\" fill=\"#F2C230\"/>", "cheer": "<path d=\"M6 20 V30 H14 L32 40 V10 L14 20z\" fill=\"#E8771E\"/><path d=\"M36 18 q4 7 0 14 M40 14 q7 11 0 22\" stroke=\"#E8771E\" stroke-width=\"3\" fill=\"none\" stroke-linecap=\"round\"/>", "chat": "<path d=\"M6 8 H42 Q44 8 44 10 V30 Q44 32 42 32 H20 L10 41 V32 H6 Q4 32 4 30 V10 Q4 8 6 8z\" fill=\"#2F6FD6\"/><path d=\"M14 18 H34 M14 24 H28\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\"/>"};
+  const vi = (n, c) => '<i class="vi ' + (c || "") + '" aria-hidden="true"><svg viewBox="0 0 48 48">' + ICO[n] + '</svg></i>';
+  document.querySelectorAll(".vi[data-i]").forEach(e => { e.innerHTML = '<svg viewBox="0 0 48 48">' + ICO[e.dataset.i] + "</svg>"; });
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function shuffle(a) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
+
+  /* Simple original animal faces: rabbit (米米) and bear (大大) */
+  function face(animal, mood, color) {
+    const fur = animal === "bear" ? "#C98B55" : "#F4EDE4";
+    const inner = animal === "bear" ? "#E8B88A" : "#F6B6C3";
+    const ears = animal === "bear"
+      ? '<circle cx="30" cy="30" r="16" fill="' + fur + '"/><circle cx="90" cy="30" r="16" fill="' + fur + '"/><circle cx="30" cy="30" r="8" fill="' + inner + '"/><circle cx="90" cy="30" r="8" fill="' + inner + '"/>'
+      : '<ellipse cx="42" cy="22" rx="11" ry="26" fill="' + fur + '"/><ellipse cx="78" cy="22" rx="11" ry="26" fill="' + fur + '"/><ellipse cx="42" cy="24" rx="5" ry="18" fill="' + inner + '"/><ellipse cx="78" cy="24" rx="5" ry="18" fill="' + inner + '"/>';
+    let eyes = '<circle cx="45" cy="62" r="5" fill="#23283A"/><circle cx="75" cy="62" r="5" fill="#23283A"/>';
+    let mouth = '<path d="M50 82 Q60 92 70 82" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    let extra = "";
+    if (mood === "calm") mouth = '<path d="M52 84 Q60 89 68 84" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    if (mood === "pout") mouth = '<path d="M52 86 L68 86" stroke="#23283A" stroke-width="4" stroke-linecap="round"/>';
+    if (mood === "surprised") { eyes = '<circle cx="45" cy="62" r="7" fill="#23283A"/><circle cx="75" cy="62" r="7" fill="#23283A"/>'; mouth = '<ellipse cx="60" cy="86" rx="6" ry="8" fill="#23283A"/>'; }
+    if (mood === "sad" || mood === "cry" || mood === "storm") {
+      eyes = '<path d="M39 64 Q45 58 51 64" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M69 64 Q75 58 81 64" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      mouth = '<path d="M50 90 Q60 80 70 90" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    }
+    if (mood === "cry" || mood === "storm") extra += '<path d="M44 68 Q40 78 44 84 Q48 78 44 68z" fill="#5AB0F0"/><path d="M76 68 Q72 78 76 84 Q80 78 76 68z" fill="#5AB0F0"/>';
+    if (mood === "storm") { mouth = '<ellipse cx="60" cy="88" rx="10" ry="7" fill="#23283A"/>'; extra += '<path d="M30 46 L44 52 M90 46 L76 52" stroke="#23283A" stroke-width="4" stroke-linecap="round"/>'; }
+    const cheeks = '<circle cx="34" cy="78" r="6" fill="' + (color || "#F6B6C3") + '" opacity="0.6"/><circle cx="86" cy="78" r="6" fill="' + (color || "#F6B6C3") + '" opacity="0.6"/>';
+    return '<svg viewBox="0 -8 120 128" role="img" aria-hidden="true">' + ears + '<circle cx="60" cy="68" r="40" fill="' + fur + '"/>' + cheeks + eyes + mouth + extra + '</svg>';
+  }
+
+  document.getElementById("heroArt").innerHTML = face("rabbit", "happy");
+
+
+  /* Thermometer */
+  const LV = [
+    { l: 1, name: "平靜", mood: "calm", color: "#3FA36B", body: "身體輕鬆，可以專心玩", todo: "繼續開心地玩", ex: ["坐在位子上聽故事", "跟好朋友一起畫畫"] },
+    { l: 2, name: "有一點不開心", mood: "pout", color: "#9BC53D", body: "嘴巴嘟嘟的", todo: "深呼吸一次，說「沒關係」", ex: ["鉛筆斷掉了", "下雨不能去操場玩"] },
+    { l: 3, name: "難過", mood: "sad", color: "#F2C230", body: "眼睛酸酸的，有點想哭", todo: "用冷靜三步：停、冷靜、說", ex: ["最喜歡的杯子摔破了", "積木塔倒了"] },
+    { l: 4, name: "很難過", mood: "cry", color: "#F08A24", body: "眼淚掉下來，不想玩了", todo: "冷靜三步，可以跟老師說「我需要冷靜一下」", ex: ["畫好的圖被水弄濕了", "好朋友說不要跟我玩"] },
+    { l: 5, name: "心情爆炸", mood: "storm", color: "#D9442B", body: "大哭、大叫、想丟東西", todo: "先離開座位，去冷靜角，請老師幫忙", ex: ["被別人推倒，好痛", "心愛的東西被搶走還弄壞了"] }
+  ];
+  const levels = document.getElementById("levels"), lvinfo = document.getElementById("lvinfo");
+  function showLv(k) {
+    const L = LV[k];
+    [...levels.children].forEach((b, i) => b.classList.toggle("on", i === k));
+    lvinfo.innerHTML = face("rabbit", L.mood, L.color);
+    const d = el("div");
+    d.appendChild(el("h3", "", L.l + " 度：" + L.name));
+    const dl = el("dl");
+    dl.appendChild(el("dt", "", "身體")); dl.appendChild(el("dd", "", L.body));
+    const exd = el("dd", "exs"); L.ex.forEach(x => exd.appendChild(el("span", "ex", x)));
+    dl.appendChild(el("dt", "", "例如")); dl.appendChild(exd);
+    dl.appendChild(el("dt", "", "我可以")); dl.appendChild(el("dd", "", L.todo));
+    d.appendChild(dl);
+    lvinfo.appendChild(d);
+  }
+  LV.forEach((L, k) => {
+    const b = el("button", "lv"); b.dataset.l = L.l; b.type = "button";
+    const fc = el("i", "lvface"); fc.innerHTML = face("rabbit", L.mood, L.color); b.appendChild(fc);
+    b.appendChild(document.createTextNode(L.l + " 度"));
+    b.appendChild(el("span", "", L.name));
+    b.onclick = () => showLv(k);
+    levels.appendChild(b);
+  });
+  showLv(0);
+
+  /* Calm practice: cocoa breathing, lemon squeeze, colour hunt */
+  const ball = document.getElementById("ball"), bcount = document.getElementById("bcount"), bStart = document.getElementById("bStart");
+  const cmTitle = document.getElementById("cmTitle"), cmColors = document.getElementById("cmColors"), cmFound = document.getElementById("cmFound");
+  const CM = {
+    cocoa: { title: "一起練習熱可可呼吸法", tip: "雙手捧著假裝的熱可可：球變大時聞香味（吸氣），球變小時吹涼（吐氣）", btn: "開始 3 次熱可可呼吸" },
+    lemon: { title: "一起練習擠檸檬", tip: "假裝兩隻手各握著一顆檸檬：檸檬被壓扁時用力握緊，檸檬變圓時放開，手軟軟的。", btn: "開始擠 3 次檸檬" },
+    find: { title: "一起練習找顏色", tip: "先選一個顏色，再在教室裡找出 5 個那個顏色的東西。找到一個就按一下！", btn: "" }
+  };
+  const FC = [["藍色", "#2F6FD6"], ["紅色", "#D9442B"], ["黃色", "#D9A400"], ["綠色", "#3FA36B"], ["紫色", "#8E5CC4"]];
+  let timers = [], cm = "cocoa", found = 0, fcol = null;
+  function setCm(k) {
+    timers.forEach(clearTimeout); timers = []; cm = k;
+    document.querySelectorAll("[data-cm]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.cm === k)));
+    cmTitle.textContent = CM[k].title; bcount.textContent = CM[k].tip;
+    ball.className = "ball" + (k === "lemon" ? " lemon" : k === "find" ? " findc" : ""); ball.style.background = "";
+    ball.textContent = "準備"; bStart.disabled = false;
+    bStart.hidden = k === "find"; bStart.textContent = CM[k].btn;
+    cmColors.hidden = k !== "find"; cmFound.hidden = true; found = 0; fcol = null;
+    if (k === "find") {
+      ball.textContent = "選顏色";
+      cmColors.innerHTML = "";
+      FC.forEach(([n, c]) => {
+        const b = el("button", "", n); b.type = "button"; b.style.background = c; b.setAttribute("aria-pressed", "false");
+        b.onclick = () => {
+          [...cmColors.children].forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+          fcol = n; found = 0; ball.style.background = c; ball.textContent = "0 / 5";
+          bcount.textContent = "找一找，教室裡哪裡有" + n + "的東西？找到一個，就說出來、按一下！";
+          cmFound.hidden = false; cmFound.disabled = false;
+        };
+        cmColors.appendChild(b);
+      });
+    }
+  }
+  document.querySelectorAll("[data-cm]").forEach(b => b.onclick = () => setCm(b.dataset.cm));
+  cmFound.onclick = () => {
+    if (!fcol || found >= 5) return;
+    found++; ball.textContent = found + " / 5";
+    ball.classList.remove("pop"); void ball.offsetWidth; ball.classList.add("pop");
+    timers.push(setTimeout(() => ball.classList.remove("pop"), 300));
+    if (found >= 5) { ball.textContent = "很棒！"; bcount.textContent = "找到 5 個" + fcol + "的東西了！眼睛忙一忙，心情也降溫了。現在心情是幾度呢？"; cmFound.disabled = true; }
+    else bcount.textContent = "找到 " + found + " 個了，再找 " + (5 - found) + " 個" + fcol + "的東西！";
+  };
+  bStart.onclick = () => {
+    timers.forEach(clearTimeout); timers = [];
+    bStart.disabled = true;
+    if (cm === "cocoa") {
+      const IN = 4000, OUT = 4000;
+      for (let n = 0; n < 3; n++) {
+        const t0 = n * (IN + OUT);
+        timers.push(setTimeout(() => { ball.classList.add("big"); ball.textContent = "聞香味"; bcount.textContent = "第 " + (n + 1) + " 次：慢慢吸氣……"; }, t0));
+        timers.push(setTimeout(() => { ball.classList.remove("big"); ball.textContent = "吹涼"; bcount.textContent = "第 " + (n + 1) + " 次：慢慢吐氣……"; }, t0 + IN));
+      }
+      timers.push(setTimeout(() => { ball.textContent = "很棒！"; bcount.textContent = "做完 3 次了。現在心情是幾度呢？"; bStart.disabled = false; bStart.textContent = "再做一次"; }, 3 * (IN + OUT)));
+    } else {
+      const SQ = 4000, REL = 3000;
+      for (let n = 0; n < 3; n++) {
+        const t0 = n * (SQ + REL);
+        timers.push(setTimeout(() => { ball.classList.add("squeeze"); ball.textContent = "握緊"; bcount.textContent = "第 " + (n + 1) + " 次：雙手用力握緊，擠擠擠……"; }, t0));
+        timers.push(setTimeout(() => { ball.classList.remove("squeeze"); ball.textContent = "放開"; bcount.textContent = "第 " + (n + 1) + " 次：放開，手軟軟的，好輕鬆……"; }, t0 + SQ));
+      }
+      timers.push(setTimeout(() => { ball.textContent = "很棒！"; bcount.textContent = "擠完 3 次了，手和身體都放鬆了。現在心情是幾度呢？"; bStart.disabled = false; bStart.textContent = "再擠一次"; }, 3 * (SQ + REL)));
+    }
+  };
+
+  /* Problem size */
+  const SIZES = [
+    { t: "積木塔倒了", ic: "blocks", big: false, how: ["停一停，用冷靜小方法", "說「沒關係」", "慢慢再堆一次，或請朋友一起堆"] },
+    { t: "跌倒了，膝蓋流血", ic: "bandage", big: true, how: ["先坐下來，不要亂跑", "大聲說「老師，我受傷了」，或請同學去找老師", "讓老師幫忙擦藥"] },
+    { t: "畫畫時畫錯了一筆", ic: "pencil", big: false, how: ["說「沒關係，可以改」", "輕輕擦掉", "或把它畫成別的東西"] },
+    { t: "拼圖拼不起來", ic: "puzzle", big: false, how: ["先休息一下，用冷靜小方法", "從邊邊、角角開始拼", "還是不行，就說「可以幫我嗎？」"] },
+    { t: "有同學在打架", ic: "fight", big: true, how: ["不要靠近，也不要加入", "馬上去找老師", "說清楚：「老師，有人在打架，在＿＿＿」"] },
+    { t: "排隊沒有排到第一個", ic: "queue", big: false, how: ["對自己說「下次換我」", "站好，等一等", "可以想一想等一下要玩什麼"] }
+  ];
+  const sizes = document.getElementById("sizes");
+  SIZES.forEach((S) => {
+    const c = el("div", "ps");
+    const pp = el("p", "withic"); pp.innerHTML = vi(S.ic, "psic"); pp.appendChild(document.createTextNode(S.t)); c.appendChild(pp);
+    const pick = el("div", "pick");
+    const res = el("div", "res");
+    [["小問題", false], ["大問題", true]].forEach(([lab, val]) => {
+      const b = el("button", "", lab); b.type = "button";
+      b.onclick = () => {
+        const ok = val === S.big;
+        c.classList.toggle("right", ok); c.classList.toggle("wrong", !ok);
+        res.innerHTML = "";
+        if (ok) {
+          res.appendChild(el("b", "", S.big ? "對！這是大問題。可以這樣做：" : "對！這是小問題。可以這樣做："));
+          const ol = el("ol", "howto"); S.how.forEach(h => ol.appendChild(el("li", "", h))); res.appendChild(ol);
+        } else res.textContent = "再想一想：有人受傷嗎？危險嗎？自己可以處理嗎？";
+      };
+      pick.appendChild(b);
+    });
+    c.appendChild(pick); c.appendChild(res);
+    sizes.appendChild(c);
+  });
+
+  /* Scenario quiz */
+  const Q = [
+    { text: "米米的積木塔倒了。米米可以怎麼做？", ic: "blocks", mood: "sad", choices: ["停一停、冷靜一下，再說：「沒關係，再試一次！」", "把積木全部丟掉", "跑走，不玩了"], why: "用冷靜三步，心情降溫，就可以再試一次！" },
+    { text: "畫畫的時候畫錯了一筆，你可以怎麼做？", ic: "pencil", mood: "pout", choices: ["說「沒關係，我可以改一改」", "把紙撕掉", "大哭，不畫了"], why: "畫錯可以改，說不定會變成更特別的畫！" },
+    { text: "你好難過，眼淚掉下來了。可以怎麼做？", ic: "tear", mood: "cry", choices: ["跟老師說「我需要冷靜一下」，深呼吸", "把頭埋起來，誰都不理", "推旁邊的同學"], why: "想哭沒關係。說出來、深呼吸，老師會幫你。" },
+    { text: "跳繩一直跳不過去，你可以怎麼做？", ic: "rope", mood: "pout", choices: ["說「我再練習」，慢慢來", "說「跳繩好爛！」把繩子丟掉", "生氣打人"], why: "每個人學東西的速度不一樣，多練習就會進步！" },
+    { text: "排隊的時候，同學排到第一個，你沒有。", ic: "queue", mood: "calm", choices: ["說「好，下次換我」", "大叫「不公平！」", "把同學擠開"], why: "下次還有機會，等一等也沒關係！" },
+    { text: "同學的積木倒了，看起來很難過。你可以說什麼？", ic: "heart", mood: "sad", choices: ["「沒關係，我幫你！」", "「哈哈，倒了！」", "不理他，繼續玩"], why: "幫同學打氣，你是很棒的好朋友！" }
+  ];
+  const quiz = document.getElementById("quiz");
+  let qi = 0, stars = [], wrongOnce = false;
+  function starsRow() {
+    const s = el("div", "stars"); s.setAttribute("aria-label", "已得到 " + stars.filter(Boolean).length + " 顆星");
+    Q.forEach((_, i) => { const st = el("i"); if (stars[i]) st.className = "on"; else if (i === qi) st.className = "cur"; s.appendChild(st); });
+    return s;
+  }
+  function renderQ() {
+    quiz.innerHTML = "";
+    const top = el("div", "qtop"); top.appendChild(starsRow()); quiz.appendChild(top);
+    if (qi >= Q.length) {
+      const got = stars.filter(Boolean).length;
+      const d = el("div", "done");
+      const f = el("div", "qface"); f.innerHTML = face("rabbit", "happy"); d.appendChild(f);
+      d.appendChild(el("h3", "", "你都想好了！"));
+      d.appendChild(el("div", "big", got + " / " + Q.length));
+      d.appendChild(el("p", "", "記得：停、冷靜、說。沒關係，再試一次！"));
+      const again = el("button", "btn main", "再玩一次"); again.onclick = () => { qi = 0; stars = []; renderQ(); };
+      d.appendChild(again);
+      quiz.appendChild(d);
+      return;
+    }
+    const q = Q[qi]; wrongOnce = false;
+    quiz.appendChild(el("p", "qno", "第 " + (qi + 1) + " 題 / 共 " + Q.length + " 題"));
+    quiz.appendChild(el("h3", "qtext", q.text));
+    const f = el("div", "qface"); f.innerHTML = face("rabbit", q.mood) + vi(q.ic, "qic"); quiz.appendChild(f);
+    const ch = el("div", "choices"), fb = el("div", "feedback");
+    shuffle(q.choices).forEach((c) => {
+      const b = el("button", "choice", c); b.type = "button";
+      b.onclick = () => {
+        if (c === q.choices[0]) {
+          b.classList.add("right");
+          ch.querySelectorAll("button").forEach(x => x.disabled = true);
+          stars[qi] = !wrongOnce;
+          fb.className = "feedback good"; fb.textContent = (wrongOnce ? "答對了！" : "答對了！得到一顆星！") + q.why;
+          top.innerHTML = ""; top.appendChild(starsRow());
+          const n = el("button", "btn main", qi + 1 < Q.length ? "下一題" : "看成績");
+          n.style.marginTop = "16px";
+          n.onclick = () => { qi++; renderQ(); quiz.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); };
+          quiz.appendChild(n);
+        } else {
+          wrongOnce = true; b.classList.add("wrong"); b.disabled = true;
+          fb.className = "feedback try"; fb.textContent = "這樣做，心情會更好嗎？再選一次！";
+        }
+      };
+      ch.appendChild(b);
+    });
+    quiz.appendChild(ch); quiz.appendChild(fb);
+  }
+  renderQ();
+
+  /* Pep cards + speech */
+  let voice = null;
+  function pickVoice() { try { const vs = speechSynthesis.getVoices(); voice = vs.find(v => /zh[-_]TW/i.test(v.lang)) || vs.find(v => /^zh/i.test(v.lang)) || null; } catch (e) {} }
+  try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {}
+  function say(text, btn) {
+    try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = "zh-TW"; u.rate = 0.85; if (voice) u.voice = voice; speechSynthesis.speak(u); }
+    catch (e) { btn.textContent = "這裡不能播放"; }
+  }
+  const SHARE = [
+    { nm: "老師", c: "#E8771E", animal: "rabbit", glasses: true, line: "我最喜歡的杯子不小心摔破了。", feel: "有一點難過" },
+    { nm: "米米", c: "#D9608A", animal: "rabbit", line: "我畫畫的時候，蠟筆斷掉了。", feel: "好難過" },
+    { nm: "大大", c: "#A0663A", animal: "bear", line: "我跳繩一直跳不過去。", feel: "有一點生氣" },
+    { nm: "跳跳", c: "#2FA3A3", animal: "rabbit", line: "我在拼拼圖，最後一塊找不到。", feel: "好著急" }
+  ];
+  const shareBox = document.getElementById("shareBox");
+  SHARE.forEach((S) => {
+    const b = el("button", "sh"); b.type = "button";
+    let f = face(S.animal, "sad");
+    if (S.glasses) f = f.replace("</svg>", '<circle cx="45" cy="62" r="10" fill="none" stroke="#23283A" stroke-width="3"/><circle cx="75" cy="62" r="10" fill="none" stroke="#23283A" stroke-width="3"/><path d="M55 62 H65" stroke="#23283A" stroke-width="3"/></svg>');
+    b.innerHTML = f.replace("<svg ", '<svg class="f" ');
+    const n = el("span", "nm", S.nm); n.style.background = S.c; b.appendChild(n);
+    b.appendChild(el("span", "ln", "「" + S.line + "」"));
+    b.appendChild(el("span", "fl", "我覺得" + S.feel));
+    b.appendChild(el("span", "hint", "點一下聽一聽"));
+    b.onclick = () => { [...shareBox.children].forEach(x => x.classList.toggle("on", x === b)); say(S.nm + "說：" + S.line + "我覺得" + S.feel + "。", b.querySelector(".hint")); };
+    shareBox.appendChild(b);
+  });
+  const PEPS = ["沒關係，再試一次！", "我可以慢慢來。", "我有在進步！", "深呼吸，我可以的！", "做錯了，可以再改。", "我可以請別人幫忙。"];
+  const PEP_IC = ["retry", "turtle", "sprout", "breath", "eraser", "hand"];
+  const KIDS_N = 7, KEY = "pep-cards-class-v2";
+  const NAMES = ["", "", "", "", "", "", ""];
+  let kids = null;
+  try { kids = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
+  if (!Array.isArray(kids) || kids.length !== KIDS_N) kids = NAMES.map(n => ({ name: n, pep: null }));
+  let cur = 0, clearArm = false;
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(kids)); } catch (e) {} };
+  const label = (k) => kids[k].name.trim() || (k + 1) + " 號";
+  const peps = document.getElementById("peps"), mySay = document.getElementById("mySay"), myName = document.getElementById("myName");
+  const kidsBox = document.getElementById("kids"), gallery = document.getElementById("gallery");
+  PEPS.forEach((t, k) => {
+    const b = el("button", "pep"); b.type = "button"; b.innerHTML = vi(PEP_IC[k], "pepic"); b.appendChild(document.createTextNode(t));
+    b.onclick = () => { kids[cur].pep = k; save(); renderPep(); };
+    peps.appendChild(b);
+  });
+  function renderPep() {
+    kidsBox.innerHTML = "";
+    kids.forEach((K, k) => {
+      const b = el("button", "kid" + (k === cur ? " on" : "") + (K.pep != null ? " done" : "")); b.type = "button";
+      b.appendChild(el("span", "kn", String(k + 1)));
+      b.appendChild(el("span", "kl", K.name.trim() || "還沒寫名字"));
+      if (K.pep != null) b.insertAdjacentHTML("beforeend", '<i class="kc" aria-label="已完成">✓</i>');
+      b.onclick = () => { cur = k; renderPep(); myName.focus({ preventScroll: true }); };
+      kidsBox.appendChild(b);
+    });
+    const K = kids[cur];
+    [...peps.children].forEach((x, k) => x.classList.toggle("on", k === K.pep));
+    document.getElementById("myLab").textContent = label(cur) + "的打氣卡";
+    if (document.activeElement !== myName) myName.value = K.name;
+    mySay.textContent = K.pep != null ? "「" + PEPS[K.pep] + "」" : "先選一句打氣話";
+    gallery.innerHTML = "";
+    let n = 0;
+    kids.forEach((G, k) => {
+      const c = el("div", "gcard" + (G.pep != null ? "" : " empty") + (k === cur ? " cur" : ""));
+      if (G.pep != null) {
+        n++;
+        c.innerHTML = vi(PEP_IC[G.pep], "gic");
+        c.appendChild(el("b", "", label(k)));
+        c.appendChild(el("p", "", PEPS[G.pep]));
+        const sp = el("button", "gsp", "聽一聽"); sp.type = "button"; sp.onclick = (e) => { e.stopPropagation(); say(label(k) + "說：" + PEPS[G.pep], sp); };
+        c.appendChild(sp);
+        const del = el("button", "gdel", "✕"); del.type = "button"; del.setAttribute("aria-label", "刪掉" + label(k) + "的打氣卡");
+        del.onclick = (e) => { e.stopPropagation(); kids[k].pep = null; cur = k; save(); renderPep(); };
+        c.appendChild(del);
+      } else {
+        c.appendChild(el("b", "", label(k)));
+        c.appendChild(el("p", "", "還沒寫"));
+      }
+      c.onclick = () => { cur = k; renderPep(); };
+      gallery.appendChild(c);
+    });
+    document.getElementById("galCount").textContent = n + " / " + KIDS_N + (n === KIDS_N ? "　全班都寫好了！" : "");
+  }
+  myName.addEventListener("input", () => { kids[cur].name = myName.value; save(); renderPep(); });
+  const mySpeak = document.getElementById("mySpeak");
+  mySpeak.onclick = () => { const K = kids[cur]; if (K.pep != null) say(PEPS[K.pep], mySpeak); else mySay.textContent = "先選一句打氣話喔！"; };
+  document.getElementById("myNext").onclick = () => {
+    let k = cur;
+    for (let i = 1; i <= KIDS_N; i++) { const j = (cur + i) % KIDS_N; if (kids[j].pep == null) { k = j; break; } if (i === KIDS_N) k = (cur + 1) % KIDS_N; }
+    cur = k; renderPep(); document.getElementById("kids").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  };
+  const clr = document.getElementById("galClear");
+  clr.onclick = () => {
+    if (!clearArm) { clearArm = true; clr.textContent = "再按一次，確定刪掉"; setTimeout(() => { clearArm = false; clr.textContent = "全部刪掉"; }, 3000); return; }
+    clearArm = false; clr.textContent = "全部刪掉";
+    kids.forEach(K => { K.pep = null; }); cur = 0; save(); renderPep();
+  };
+  renderPep();
+  const PROM = ["先停一停，再用冷靜小方法", "說出我的打氣話", "需要時，跟老師說「我需要冷靜一下」", "看到同學難過，幫他打氣"];
+  const promise = document.getElementById("promise");
+  PROM.forEach((t, k) => {
+    const lab = el("label"); const c = el("input"); c.type = "checkbox"; c.id = "prom-" + k;
+    lab.appendChild(c); lab.insertAdjacentHTML("beforeend", vi(["stop", "say", "hand", "heart"][k], "prmic")); lab.appendChild(document.createTextNode(t));
+    promise.appendChild(lab);
+  });
+})();
+</script>
+<script>
+
+/* 3D story game: 米米的積木塔 */
+(function () {
+  const root = document.getElementById("g3d");
+  if (!root) return;
+  const vp = document.getElementById("g3vp"), scaler = document.getElementById("g3scaler"), world = document.getElementById("g3world");
+  const bub = document.getElementById("g3bub"), nm = document.getElementById("g3nm"), tx = document.getElementById("g3tx");
+  const acts = document.getElementById("g3acts"), chapEl = document.getElementById("g3chap");
+  const moodBox = document.getElementById("g3mood"), moodTx = document.getElementById("g3moodTx");
+  const cover = document.getElementById("g3cover"), hint = document.getElementById("g3hint");
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let RUN = 0;
+  const sleep = (ms) => { const cur = RUN; return new Promise(r => setTimeout(() => { if (cur === RUN) r(); }, ms)); };
+  function mk(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  /* ---------- sound + voice ---------- */
+  let actx = null, voiceOn = true, voice = null;
+  function tone(freqs, type, gap, vol) {
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      const t0 = actx.currentTime;
+      freqs.forEach((f, i) => {
+        const o = actx.createOscillator(), g = actx.createGain();
+        o.type = type || "triangle"; o.frequency.value = f;
+        const s = t0 + i * (gap || 0.1);
+        g.gain.setValueAtTime(0.0001, s);
+        g.gain.exponentialRampToValueAtTime(vol || 0.22, s + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, s + 0.3);
+        o.connect(g).connect(actx.destination); o.start(s); o.stop(s + 0.32);
+      });
+    } catch (e) {}
+  }
+  function pickVoice() { try { const vs = speechSynthesis.getVoices(); voice = vs.find(v => /zh[-_]TW/i.test(v.lang)) || vs.find(v => /^zh/i.test(v.lang)) || null; } catch (e) {} }
+  try { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; } catch (e) {}
+  function speak(t) {
+    if (!voiceOn) return;
+    try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/[「」]/g, "")); u.lang = "zh-TW"; u.rate = 0.9; if (voice) u.voice = voice; speechSynthesis.speak(u); } catch (e) {}
+  }
+  const vBtn = document.getElementById("g3voice");
+  vBtn.onclick = () => { voiceOn = !voiceOn; vBtn.textContent = voiceOn ? "朗讀：開" : "朗讀：關"; if (!voiceOn) try { speechSynthesis.cancel(); } catch (e) {} };
+  const fBtn = document.getElementById("g3full");
+  fBtn.onclick = () => {
+    try { if (document.fullscreenElement) document.exitFullscreen(); else root.requestFullscreen().catch(() => { fBtn.textContent = "不能全螢幕"; }); }
+    catch (e) { fBtn.textContent = "不能全螢幕"; }
+  };
+  document.addEventListener("fullscreenchange", () => { fBtn.textContent = document.fullscreenElement ? "離開全螢幕" : "全螢幕"; });
+
+  /* ---------- camera ---------- */
+  const CAMS = {
+    wide:  { yaw: 0,  tilt: 16, dist: -60, fx: 0,    fy: 150, fz: 0 },
+    tower: { yaw: -8, tilt: 12, dist: 80,  fx: 0,    fy: 180, fz: 0 },
+    high:  { yaw: -8, tilt: 12, dist: 40,  fx: 0,    fy: 230, fz: 0 },
+    mimi:  { yaw: 18, tilt: 10, dist: 300, fx: -150, fy: 140, fz: 60 }
+  };
+  let cam = Object.assign({}, CAMS.wide);
+  const bbs = [];
+  function applyCam() {
+    world.style.transform = "translateZ(" + cam.dist + "px) rotateX(" + (-cam.tilt) + "deg) rotateY(" + cam.yaw + "deg) translate3d(" + (-cam.fx) + "px," + cam.fy + "px," + (-cam.fz) + "px)";
+    bbs.forEach(b => b.set());
+  }
+  function setCam(name) { cam = Object.assign({}, CAMS[name]); applyCam(); }
+  function fit() {
+    const r = root.getBoundingClientRect();
+    const s = Math.min(r.width / 1000, r.height / 640) * (r.width < 600 ? 1.25 : 1);
+    scaler.style.transform = "scale3d(" + s + "," + s + "," + s + ")";
+  }
+  try { new ResizeObserver(fit).observe(root); } catch (e) { window.addEventListener("resize", fit); }
+  fit();
+
+  let drag = null;
+  vp.addEventListener("pointerdown", (e) => { if (e.target.closest && e.target.closest(".findme")) return; drag = { x: e.clientX, y: e.clientY }; world.classList.add("drag"); try { vp.setPointerCapture(e.pointerId); } catch (er) {} });
+  vp.addEventListener("pointermove", (e) => {
+    if (!drag) return;
+    cam.yaw = Math.max(-50, Math.min(50, cam.yaw + (e.clientX - drag.x) * 0.25));
+    cam.tilt = Math.max(4, Math.min(36, cam.tilt - (e.clientY - drag.y) * 0.12));
+    drag = { x: e.clientX, y: e.clientY };
+    hint.style.opacity = "0";
+    applyCam();
+  });
+  const endDrag = () => { drag = null; world.classList.remove("drag"); };
+  vp.addEventListener("pointerup", endDrag); vp.addEventListener("pointercancel", endDrag);
+
+  /* ---------- scene ---------- */
+  function pos(el, x, y, z, extra) { el.style.transform = "translate3d(" + x + "px," + (-y) + "px," + z + "px) translate(-50%,-50%) " + (extra || ""); }
+  function add(cls, x, y, z, extra, html) { const e = mk("div", "o " + cls); if (html) e.innerHTML = html; pos(e, x, y, z, extra); world.appendChild(e); return e; }
+  add("floor", 0, 0, 0, "rotateX(90deg)");
+  add("rug", 0, 1, 20, "rotateX(90deg)");
+  add("wall", 0, 280, -450);
+  add("wall side", -550, 280, 0, "rotateY(90deg)");
+  add("win", 230, 340, -447);
+  const SCHOOL_DECOR = [add("shelf", -250, 90, -446), add("poster", -547, 330, -60, "rotateY(90deg)", "加油！")];
+  /* shelf toys */
+  SCHOOL_DECOR.push(add("", -300, 150, -440, "", '<svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#F2C230"/></svg>'));
+  SCHOOL_DECOR.push(add("", -230, 155, -440, "", '<svg width="50" height="50" viewBox="0 0 50 50"><path d="M25 3 L47 47 H3z" fill="#2F6FD6"/></svg>'));
+
+  function shade(hex, amt) {
+    const n = parseInt(hex.slice(1), 16);
+    let r = (n >> 16) + amt, g = ((n >> 8) & 255) + amt, b = (n & 255) + amt;
+    r = Math.max(0, Math.min(255, r)); g = Math.max(0, Math.min(255, g)); b = Math.max(0, Math.min(255, b));
+    return "rgb(" + r + "," + g + "," + b + ")";
+  }
+  const BW = 70, BH = 42, BD = 70;
+  const COLORS = ["#E8771E", "#2F6FD6", "#3FA36B", "#F2C230", "#D9442B", "#8E5CC4", "#1FA3A3", "#F06EA0", "#E8771E"];
+  function cube(color, w, h, d, parent) {
+    w = w || BW; h = h || BH; d = d || BD;
+    const el = mk("div", "o cube");
+    const faces = [
+      [w, h, "translate(-50%,-50%) translateZ(" + d / 2 + "px)", color],
+      [w, h, "translate(-50%,-50%) rotateY(180deg) translateZ(" + d / 2 + "px)", shade(color, -30)],
+      [d, h, "translate(-50%,-50%) rotateY(90deg) translateZ(" + w / 2 + "px)", shade(color, -45)],
+      [d, h, "translate(-50%,-50%) rotateY(-90deg) translateZ(" + w / 2 + "px)", shade(color, -20)],
+      [w, d, "translate(-50%,-50%) rotateX(90deg) translateZ(" + h / 2 + "px)", shade(color, 40)],
+      [w, d, "translate(-50%,-50%) rotateX(-90deg) translateZ(" + h / 2 + "px)", shade(color, 40)]
+    ];
+    faces.forEach(f => {
+      const d = mk("div", "face");
+      d.style.width = f[0] + "px"; d.style.height = f[1] + "px"; d.style.transform = f[2]; d.style.background = f[3];
+      d.style.boxShadow = "inset 0 0 0 3px rgba(255,255,255,0.18)";
+      el.appendChild(d);
+    });
+    (parent || world).appendChild(el);
+    const c = { el, x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0,
+      set() { el.style.transform = "translate3d(" + c.x + "px," + (-c.y) + "px," + c.z + "px) rotateY(" + c.ry + "deg) rotateX(" + c.rx + "deg) rotateZ(" + c.rz + "deg)"; },
+      remove() { el.remove(); } };
+    return c;
+  }
+
+  /* characters */
+  function faceParts(animal, mood) {
+    const fur = animal === "bear" ? "#C98B55" : "#F7F1E8";
+    const inner = animal === "bear" ? "#E8B88A" : "#F6B6C3";
+    let s = animal === "bear"
+      ? '<circle cx="30" cy="30" r="16" fill="' + fur + '"/><circle cx="90" cy="30" r="16" fill="' + fur + '"/><circle cx="30" cy="30" r="8" fill="' + inner + '"/><circle cx="90" cy="30" r="8" fill="' + inner + '"/>'
+      : '<ellipse cx="42" cy="20" rx="11" ry="28" fill="' + fur + '" stroke="#E2D8CB" stroke-width="2"/><ellipse cx="78" cy="20" rx="11" ry="28" fill="' + fur + '" stroke="#E2D8CB" stroke-width="2"/><ellipse cx="42" cy="22" rx="5" ry="19" fill="' + inner + '"/><ellipse cx="78" cy="22" rx="5" ry="19" fill="' + inner + '"/><path d="M70 6 l10 -6 l2 10 z M90 6 l-10 -6 l-2 10z" fill="#E85B8A"/>';
+    s += '<circle cx="60" cy="68" r="40" fill="' + fur + '"' + (animal === "bear" ? "" : ' stroke="#E2D8CB" stroke-width="2"') + '/>';
+    if (animal === "bear") s += '<ellipse cx="60" cy="80" rx="16" ry="12" fill="#E8B88A"/><ellipse cx="60" cy="75" rx="6" ry="4" fill="#23283A"/>';
+    s += '<circle cx="32" cy="80" r="6" fill="#F6A0B4" opacity="0.6"/><circle cx="88" cy="80" r="6" fill="#F6A0B4" opacity="0.6"/>';
+    const my = animal === "bear" ? 6 : 0;
+    let eyes = '<circle cx="45" cy="62" r="5" fill="#23283A"/><circle cx="75" cy="62" r="5" fill="#23283A"/>';
+    let mouth = '<path d="M50 ' + (82 + my) + ' Q60 ' + (92 + my) + ' 70 ' + (82 + my) + '" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    let extra = "";
+    if (mood === "calm") mouth = '<path d="M52 ' + (85 + my) + ' Q60 ' + (90 + my) + ' 68 ' + (85 + my) + '" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    if (mood === "surprised") { eyes = '<circle cx="45" cy="62" r="7" fill="#23283A"/><circle cx="75" cy="62" r="7" fill="#23283A"/>'; mouth = '<ellipse cx="60" cy="' + (88 + my) + '" rx="6" ry="8" fill="#23283A"/>'; }
+    if (mood === "sad" || mood === "cry" || mood === "storm") {
+      eyes = '<path d="M39 64 Q45 58 51 64" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M69 64 Q75 58 81 64" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      mouth = '<path d="M50 ' + (92 + my) + ' Q60 ' + (82 + my) + ' 70 ' + (92 + my) + '" stroke="#23283A" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    }
+    if (mood === "cry" || mood === "storm") extra += '<path d="M44 68 Q40 78 44 84 Q48 78 44 68z" fill="#5AB0F0"/><path d="M76 68 Q72 78 76 84 Q80 78 76 68z" fill="#5AB0F0"/>';
+    if (mood === "storm") { mouth = '<ellipse cx="60" cy="' + (90 + my) + '" rx="10" ry="7" fill="#23283A"/>'; extra += '<path d="M32 48 L46 54 M88 48 L74 54" stroke="#23283A" stroke-width="4" stroke-linecap="round"/>'; }
+    return s + eyes + mouth + extra;
+  }
+  function charSvg(animal, mood) {
+    const fur = animal === "bear" ? "#C98B55" : "#F7F1E8";
+    const shirt = animal === "bear" ? "#4F7FE0" : animal === "bro" ? "#2FA3A3" : animal === "mom" ? "#8E5CC4" : animal === "teacher" ? "#E8771E" : "#F48FB1";
+    let head = faceParts(animal === "bear" ? "bear" : "rabbit", mood);
+    if (animal === "teacher") head += '<circle cx="45" cy="62" r="10" fill="none" stroke="#23283A" stroke-width="3"/><circle cx="75" cy="62" r="10" fill="none" stroke="#23283A" stroke-width="3"/><path d="M55 62 H65" stroke="#23283A" stroke-width="3"/>';
+    if (animal === "bro" || animal === "mom" || animal === "teacher") head = head.replace('<path d="M70 6 l10 -6 l2 10 z M90 6 l-10 -6 l-2 10z" fill="#E85B8A"/>', "");
+    const apron = animal === "mom" ? '<rect x="54" y="160" width="52" height="56" rx="12" fill="#FFFFFF" opacity="0.9"/>' : "";
+    const arms = mood === "storm" ? '<ellipse cx="30" cy="148" rx="13" ry="26" fill="' + fur + '" transform="rotate(30 30 148)"/><ellipse cx="130" cy="148" rx="13" ry="26" fill="' + fur + '" transform="rotate(-30 130 148)"/>'
+      : mood === "happy" ? '<ellipse cx="28" cy="160" rx="13" ry="26" fill="' + fur + '" transform="rotate(40 28 160)"/><ellipse cx="132" cy="160" rx="13" ry="26" fill="' + fur + '" transform="rotate(-40 132 160)"/>'
+      : '<ellipse cx="36" cy="180" rx="13" ry="26" fill="' + fur + '" transform="rotate(12 36 180)"/><ellipse cx="124" cy="180" rx="13" ry="26" fill="' + fur + '" transform="rotate(-12 124 180)"/>';
+    return '<svg viewBox="0 -24 160 264" aria-hidden="true">' + arms +
+      '<ellipse cx="56" cy="228" rx="22" ry="11" fill="' + fur + '"/><ellipse cx="104" cy="228" rx="22" ry="11" fill="' + fur + '"/>' +
+      '<ellipse cx="80" cy="182" rx="50" ry="46" fill="' + shirt + '"/><ellipse cx="80" cy="190" rx="26" ry="24" fill="rgba(255,255,255,0.35)"/>' +
+      apron + '<g transform="translate(2,-10) scale(1.3)">' + head + '</g></svg>';
+  }
+  function character(animal, x, z) {
+    const el = mk("div", "o bb char"); const inner = mk("div", "inner"); el.appendChild(inner); world.appendChild(el);
+    const sh = add("shadow", x, 1, z, "rotateX(90deg)");
+    const c = { el, inner, sh, animal, x, y: 0, z, h: 244, mood: "",
+      set() { el.style.transform = "translate3d(" + c.x + "px," + (-(c.y + c.h / 2)) + "px," + c.z + "px) translate(-50%,-50%) rotateY(" + (-cam.yaw) + "deg)"; pos(sh, c.x, 1, c.z, "rotateX(90deg)"); },
+      face(m) { if (m && m !== c.mood) { c.mood = m; inner.innerHTML = charSvg(animal, m); } },
+      talk() { el.classList.remove("talk"); void el.offsetWidth; el.classList.add("talk"); },
+      move(nx, nz) { c.x = nx; c.z = nz; c.set(); } };
+    el.style.width = "150px"; el.style.height = "244px";
+    sh.style.transition = "transform 1.2s cubic-bezier(.3,.7,.3,1)";
+    bbs.push(c); c.face("happy"); c.set();
+    return c;
+  }
+  const mimi = character("rabbit", -190, 70);
+  const dada = character("bear", 190, 70);
+
+  /* hot cocoa mug for breathing */
+  const balloon = mk("div", "o bb mug"); const bIn = mk("div", "inner");
+  bIn.innerHTML = '<svg viewBox="0 0 120 150" width="100%" height="100%" aria-hidden="true"><g class="steam"><path d="M42 50 Q34 36 42 24 Q50 12 42 0" /><path d="M60 50 Q52 34 60 20 Q68 8 60 -6" /><path d="M78 50 Q70 36 78 24 Q86 12 78 0" /></g><path d="M96 78 Q118 80 116 100 Q114 120 92 118" stroke="#E8771E" stroke-width="9" fill="none"/><path d="M20 62 H100 L94 136 Q93 146 82 146 H38 Q27 146 26 136z" fill="#E8771E"/><ellipse cx="60" cy="62" rx="40" ry="9" fill="#7A4A2A"/><ellipse cx="50" cy="60" rx="9" ry="4" fill="#FFFFFF" opacity="0.85"/><ellipse cx="68" cy="62" rx="7" ry="3" fill="#FFFFFF" opacity="0.85"/><path d="M40 100 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 q0 10 -16 20 q-16 -10 -16 -20z" fill="#FFFFFF" opacity="0.8"/></svg><div class="temp" id="g3temp">好燙</div>';
+  balloon.appendChild(bIn); world.appendChild(balloon);
+  const bal = { x: -50, y: 120, z: 150, h: 150, set() { balloon.style.transform = "translate3d(" + bal.x + "px," + (-(bal.y + bal.h / 2)) + "px," + bal.z + "px) translate(-50%,-50%) rotateY(" + (-cam.yaw) + "deg)"; } };
+  bbs.push(bal); balloon.style.opacity = "0";
+  let tempEl = bIn.querySelector(".temp");
+  const MUG_HTML = bIn.innerHTML.replace(/<div class="temp"[^>]*>.*?<\/div>/, "");
+
+  applyCam();
+
+  /* mood meter */
+  const MC = ["#3FA36B", "#9BC53D", "#E2B21C", "#F08A24", "#D9442B"];
+  const bars = MC.map(c => { const i = mk("i"); i.style.background = c; moodBox.appendChild(i); return i; });
+  function setMood(n) { bars.forEach((b, k) => b.classList.toggle("on", k === n - 1)); moodTx.textContent = "米米的心情 " + n + " 度"; moodBox.setAttribute("aria-label", "米米的心情 " + n + " 度"); }
+  setMood(1);
+
+  /* ---------- dialogue helpers ---------- */
+  const NAMES = { mimi: "米米", dada: "大大", nar: "旁白" };
+  function show(who, text) {
+    bub.hidden = false;
+    nm.textContent = NAMES[who]; nm.className = "nm " + (who === "nar" ? "" : who);
+    tx.textContent = text;
+    if (who === "mimi") mimi.talk(); if (who === "dada") dada.talk();
+    if (who === "teacher" && typeof teacher !== "undefined") teacher.talk();
+    if (who === "bro" && typeof bro !== "undefined") bro.talk(); if (who === "mom" && typeof mom !== "undefined") mom.talk();
+    speak(text);
+  }
+  function buttons(list) {
+    acts.innerHTML = "";
+    const cur = RUN;
+    return new Promise(res => {
+      list.forEach((b, k) => {
+        const e = mk("button", b.cls || "", b.label); e.type = "button";
+        if (b.bg) e.style.background = b.bg;
+        e.onclick = () => { if (cur !== RUN) return; tone([660], "triangle", 0.1, 0.12); acts.innerHTML = ""; res(k); };
+        acts.appendChild(e);
+      });
+      const f = acts.querySelector("button"); if (f) f.focus({ preventScroll: true });
+    });
+  }
+  async function say(who, text, o) {
+    o = o || {};
+    if (o.m) mimi.face(o.m); if (o.b) dada.face(o.b);
+    show(who, text);
+    await buttons([{ label: "下一句 ▶" }]);
+  }
+  const chapter = (t) => { chapEl.textContent = t; };
+
+  /* ---------- tower ---------- */
+  let tower = [], fallen = [];
+  function topY() { return tower.length * BH; }
+  async function dropTo(c, x, z, jitterRy) {
+    c.x = x; c.z = z; c.y = topY() + BH / 2 + 260; c.ry = jitterRy || 0; c.el.classList.add("instant"); c.set();
+    void c.el.offsetWidth; c.el.classList.remove("instant");
+    await sleep(30);
+    c.y = topY() + BH / 2; c.set(); tower.push(c);
+    await sleep(420); tone([300 + tower.length * 40], "sine", 0.1, 0.25);
+  }
+  async function wobble() {
+    for (let k = 0; k < 6; k++) {
+      const a = (k % 2 ? -1 : 1) * (2 + k);
+      tower.forEach((c, i) => { c.el.classList.add("instant"); c.rz = a * (i / tower.length); c.x += a * i * 0.15; c.set(); });
+      tone([180 + k * 10], "sine", 0.1, 0.08);
+      await sleep(160);
+    }
+    tower.forEach(c => c.el.classList.remove("instant"));
+  }
+  const SPOTS = [[-60, 0, 120], [80, 90, 140], [-120, 0, -60], [140, 90, -20], [10, 0, 170], [-20, 90, -140], [110, 0, 60], [-150, 90, 150]];
+  async function collapse() {
+    tone([140, 110, 90, 70], "sawtooth", 0.08, 0.15);
+    const list = tower.slice().reverse();
+    list.forEach((c, k) => {
+      const s = SPOTS[k % SPOTS.length];
+      c.el.classList.add("fall");
+      setTimeout(() => { c.x = s[0]; c.z = s[2]; c.rz = s[1]; c.rx = 0; c.ry = (k * 37) % 90; c.y = s[1] ? BW / 2 : BH / 2; c.set(); }, k * 70);
+    });
+    fallen = tower; tower = [];
+    await sleep(1300);
+    tone([90, 70], "sine", 0.12, 0.2);
+  }
+  async function clearFallen() {
+    fallen.forEach((c, k) => { setTimeout(() => { c.el.classList.remove("fall"); c.y += 40; c.el.style.opacity = "0"; c.set(); tone([500 + k * 50], "triangle", 0.1, 0.08); }, k * 120); });
+    await sleep(fallen.length * 120 + 700);
+    fallen.forEach(c => c.remove()); fallen = [];
+  }
+
+  /* slider stacking with gentle difficulty */
+  function slider(goal) {
+    return new Promise(res => {
+      let omega = 2.0, tol = 24, t0 = performance.now(), mover = null, raf = 0, busy = false, prevX = 0;
+      const btnRow = () => {
+        acts.innerHTML = "";
+        const b = mk("button", "", "放下（" + tower.length + " / " + goal + "）"); b.type = "button"; b.id = "g3drop";
+        b.onclick = press; acts.appendChild(b); b.focus({ preventScroll: true });
+      };
+      function spawn() {
+        mover = cube(COLORS[tower.length % COLORS.length]);
+        mover.el.classList.add("instant");
+        mover.y = topY() + BH / 2 + 70; mover.z = 0; t0 = performance.now();
+        const cur = RUN;
+        const step = (now) => {
+          if (cur !== RUN) return;
+          mover.x = Math.sin((now - t0) / 1000 * omega) * 130 + prevX * 0.2;
+          mover.set(); raf = requestAnimationFrame(step);
+        };
+        raf = requestAnimationFrame(step);
+        btnRow(); busy = false;
+      }
+      async function press() {
+        if (busy || !mover) return; busy = true;
+        cancelAnimationFrame(raf);
+        const c = mover; mover = null;
+        const off = c.x - prevX;
+        c.el.classList.remove("instant");
+        if (Math.abs(off) <= tol) {
+          const nx = prevX + off * 0.35;
+          c.x = nx; c.y = topY() + BH / 2; c.set(); tower.push(c); prevX = nx;
+          tone([360 + tower.length * 45, 520 + tower.length * 45], "triangle", 0.08, 0.22);
+          await sleep(500);
+          if (tower.length === 4) show("mimi", "比剛剛穩多了！");
+          if (tower.length >= goal) { acts.innerHTML = ""; res(); return; }
+          if (tower.length !== 4) bub.hidden = true;
+          spawn();
+        } else {
+          const side = off > 0 ? 1 : -1;
+          c.el.classList.add("fall"); c.x = prevX + side * 150; c.y = BW / 2; c.z = 60; c.rz = 90 * side; c.set();
+          tone([300, 240], "sine", 0.12, 0.18);
+          dada.face("happy"); show("dada", "沒關係，再試一次！慢慢來。");
+          omega = Math.max(0.9, omega * 0.7); tol += 10;
+          setTimeout(() => { c.el.style.opacity = "0"; setTimeout(() => c.remove(), 700); }, 900);
+          await sleep(900);
+          spawn();
+        }
+      }
+      spawn();
+    });
+  }
+
+  /* hot cocoa breathing */
+  const TEMPS = ["好燙", "還是燙燙的", "溫溫的", "溫溫的，可以喝了！"];
+  function breath(n, total) {
+    return new Promise(res => {
+      acts.innerHTML = "";
+      const b = mk("button", "hold", "按住：聞熱可可（第 " + n + " / " + total + " 次）"); b.type = "button"; b.id = "g3hold";
+      let t = 0, holding = false, timer = 0;
+      const down = (e) => {
+        e.preventDefault(); if (holding || b.disabled) return; holding = true; t = performance.now();
+        b.classList.add("on"); b.textContent = "聞一聞……好香喔……慢慢吸……";
+        balloon.classList.remove("out"); balloon.classList.add("in");
+        timer = setTimeout(() => { b.textContent = "好，放開，把熱可可吹涼"; }, 2000);
+      };
+      const up = async () => {
+        if (!holding) return; holding = false; clearTimeout(timer); b.classList.remove("on");
+        const held = performance.now() - t;
+        balloon.classList.remove("in");
+        if (held < 1500) { b.textContent = "聞久一點點，再按住一次（第 " + n + " / " + total + " 次）"; return; }
+        b.disabled = true; b.textContent = "呼～慢慢吹，把熱可可吹涼……";
+        balloon.classList.add("out");
+        tone([392, 330], "sine", 0.4, 0.12);
+        await sleep(3000);
+        balloon.classList.remove("out");
+        tempEl.textContent = TEMPS[Math.min(TEMPS.length - 1, Math.round(n / total * (TEMPS.length - 1)))];
+        res();
+      };
+      b.addEventListener("pointerdown", down);
+      b.addEventListener("pointerup", up);
+      b.addEventListener("pointerleave", up);
+      b.addEventListener("pointercancel", up);
+      b.addEventListener("keydown", (e) => { if ((e.key === " " || e.key === "Enter") && !e.repeat) down(e); });
+      b.addEventListener("keyup", (e) => { if (e.key === " " || e.key === "Enter") up(); });
+      acts.appendChild(b); b.focus({ preventScroll: true });
+    });
+  }
+
+  function confetti() {
+    if (reduce) return;
+    const r = root.getBoundingClientRect();
+    for (let i = 0; i < 60; i++) {
+      const c = mk("i", "conf");
+      c.style.left = (Math.random() * r.width) + "px"; c.style.top = (-20 - Math.random() * 60) + "px";
+      c.style.background = COLORS[i % COLORS.length];
+      c.style.setProperty("--dx", (Math.random() * 160 - 80) + "px");
+      c.style.animationDelay = (Math.random() * 0.6) + "s";
+      root.appendChild(c); setTimeout(() => c.remove(), 2600);
+    }
+  }
+
+  /* ---------- three levels ---------- */
+  CAMS.easel = { yaw: 0, tilt: 8, dist: 160, fx: 0, fy: 170, fz: -40 };
+  CAMS.car = { yaw: 0, tilt: 20, dist: 40, fx: 0, fy: 130, fz: 40 };
+  let props = [];
+  function prop(el) { props.push(el); return el; }
+  function clearLevel() {
+    props.forEach(e => e.remove()); props = [];
+    tower.concat(fallen).forEach(c => c.remove()); tower = []; fallen = [];
+    world.querySelectorAll(".cube").forEach(e => { if (!e.closest(".car") && !e.classList.contains("decor")) e.remove(); });
+    mimi.move(-190, 70); dada.move(190, 70); mimi.face("happy"); dada.face("happy");
+    if (typeof setPlace === "function") { setPlace("school"); bro.move(190, 70); bro.face("happy"); mom.face("happy"); }
+    if (typeof scoreEl !== "undefined") scoreEl.hidden = true;
+    root.classList.remove("finding");
+    mimi.el.classList.remove("jump"); dada.el.classList.remove("jump");
+    balloon.style.opacity = "0"; tempEl.textContent = "好燙";
+    setMood(1); setCam("wide"); bub.hidden = true; acts.innerHTML = "";
+  }
+
+  async function moodQuiz(q) {
+    show("nar", q);
+    const lv = await buttons([1, 2, 3, 4, 5].map(n => ({ label: n + " 度", cls: "lv", bg: MC[n - 1] })));
+    await say("nar", lv >= 2 ? "對，米米的心情變得很高。難過、生氣都是可以的，我們來幫米米降溫。" : "米米看起來很不開心，心情應該比較高喔，大概是 4 度。難過、生氣都是可以的。");
+  }
+  async function pickLoop(q, opts) {
+    for (;;) {
+      show("nar", q);
+      const k = await buttons(opts.map(o => ({ label: o.label, cls: o.ok ? "" : "alt" })));
+      if (opts[k].ok) return;
+      await opts[k].run();
+    }
+  }
+  async function calm(method, peps) {
+    setCam("mimi");
+    await say("nar", "第一步：停。按「停」，幫米米停下來。");
+    await buttons([{ label: "停" }]);
+    mimi.face("sad");
+    await say("nar", "米米把手放在腿上，嘴巴先不說話。");
+    show("nar", "第二步：冷靜一下。你想幫米米用哪一個冷靜小方法？");
+    const CHOICES = ["lemon", "cocoa", "find"];
+    const pick = await buttons(CHOICES.map(k => ({ label: METHODS[k].name })));
+    const M = METHODS[CHOICES[pick]];
+    await say("nar", "好，我們用「" + M.name + "」。" + M.how);
+    bub.hidden = true;
+    await M.run();
+    await say("nar", M.after);
+    show("nar", "第三步：說。幫米米選一句打氣的話。");
+    const pk = await buttons(peps.map(p => ({ label: "「" + p + "」" })));
+    setMood(1);
+    await say("mimi", peps[pk], { m: "calm" });
+  }
+
+  function useTool(html, label) {
+    bIn.innerHTML = html + '<div class="temp">' + label + '</div>';
+    tempEl = bIn.querySelector(".temp");
+    balloon.className = "o bb mug";
+    balloon.style.opacity = "1";
+  }
+  function holdRounds(n, moods, txt) {
+    return (async () => {
+      for (let i = 1; i <= n; i++) {
+        await new Promise(res => {
+          acts.innerHTML = "";
+          const b = mk("button", "hold", txt.idle + "（第 " + i + " / " + n + " 次）"); b.type = "button"; b.id = "g3hold";
+          let t = 0, holding = false, timer = 0;
+          const down = (e) => {
+            e.preventDefault(); if (holding || b.disabled) return; holding = true; t = performance.now();
+            b.classList.add("on"); b.textContent = txt.hold; balloon.classList.remove("out"); balloon.classList.add("in");
+            timer = setTimeout(() => { b.textContent = txt.ready; }, txt.min);
+          };
+          const up = async () => {
+            if (!holding) return; holding = false; clearTimeout(timer); b.classList.remove("on"); balloon.classList.remove("in");
+            if (performance.now() - t < txt.min * 0.75) { b.textContent = txt.short + "（第 " + i + " / " + n + " 次）"; return; }
+            b.disabled = true; b.textContent = txt.release; balloon.classList.add("out");
+            tone([392, 330], "sine", 0.4, 0.12);
+            await sleep(txt.relax);
+            balloon.classList.remove("out");
+            tempEl.textContent = txt.labels[Math.min(txt.labels.length - 1, Math.round(i / n * (txt.labels.length - 1)))];
+            res();
+          };
+          b.addEventListener("pointerdown", down); b.addEventListener("pointerup", up);
+          b.addEventListener("pointerleave", up); b.addEventListener("pointercancel", up);
+          b.addEventListener("keydown", (e) => { if ((e.key === " " || e.key === "Enter") && !e.repeat) down(e); });
+          b.addEventListener("keyup", (e) => { if (e.key === " " || e.key === "Enter") up(); });
+          acts.appendChild(b); b.focus({ preventScroll: true });
+        });
+        setMood(moods[i - 1]);
+      }
+      balloon.style.opacity = "0";
+    })();
+  }
+
+  const LEMON = '<svg viewBox="0 0 120 150" width="100%" height="100%" aria-hidden="true"><g class="drops"><path d="M30 112 q-4 10 0 14 q4 -4 0 -14z" fill="#F2C230"/><path d="M90 112 q-4 10 0 14 q4 -4 0 -14z" fill="#F2C230"/><path d="M60 118 q-4 10 0 14 q4 -4 0 -14z" fill="#F2C230"/></g><g class="lemon"><ellipse cx="34" cy="80" rx="26" ry="20" fill="#F7D33C"/><ellipse cx="86" cy="80" rx="26" ry="20" fill="#F7D33C"/><path d="M8 80 l-6 -3 v6z M112 80 l6 -3 v6z" fill="#E2B21C"/><ellipse cx="26" cy="73" rx="8" ry="4" fill="#FFFFFF" opacity="0.6"/><ellipse cx="78" cy="73" rx="8" ry="4" fill="#FFFFFF" opacity="0.6"/></g></svg>';
+  const BUTTERFLY = '<svg viewBox="0 0 120 150" width="100%" height="100%" aria-hidden="true"><g class="wl"><ellipse cx="38" cy="62" rx="30" ry="24" fill="#F48FB1"/><ellipse cx="42" cy="98" rx="20" ry="16" fill="#8E5CC4"/><circle cx="36" cy="60" r="7" fill="#FFFFFF" opacity="0.7"/></g><g class="wr"><ellipse cx="82" cy="62" rx="30" ry="24" fill="#F48FB1"/><ellipse cx="78" cy="98" rx="20" ry="16" fill="#8E5CC4"/><circle cx="84" cy="60" r="7" fill="#FFFFFF" opacity="0.7"/></g><rect x="56" y="50" width="8" height="64" rx="4" fill="#23283A"/><path d="M58 50 q-8 -16 -16 -18 M62 50 q8 -16 16 -18" stroke="#23283A" stroke-width="3" fill="none"/></svg>';
+  const HOME_POS = [[-290, 60, -415], [230, 250, -440], [200, 46, -380], [-400, 0, -150], [80, 0, -230]];
+  const FINDS = [
+    { x: -300, y: 150, z: -430, svg: '<circle cx="35" cy="35" r="26" fill="#2F6FD6"/><path d="M15 30 q20 -14 40 0" stroke="#FFFFFF" stroke-width="4" fill="none"/>', name: "藍色的球" },
+    { x: 230, y: 250, z: -440, svg: '<ellipse cx="35" cy="28" rx="20" ry="24" fill="#2F6FD6"/><path d="M35 52 q-6 10 2 18" stroke="#545B70" stroke-width="2" fill="none"/>', name: "藍色的氣球" },
+    { x: -40, y: 0, z: -420, svg: '<rect x="10" y="18" width="50" height="36" rx="4" fill="#2F6FD6"/><rect x="14" y="22" width="20" height="28" fill="#FFFFFF"/><rect x="36" y="22" width="20" height="28" fill="#FFFFFF"/>', name: "藍色的書" },
+    { x: -410, y: 0, z: -240, svg: '<path d="M10 50 q25 -44 50 0z" fill="#2F6FD6"/><rect x="4" y="48" width="62" height="8" rx="4" fill="#1E4FA8"/>', name: "藍色的帽子" },
+    { x: 80, y: 0, z: -230, svg: '<path d="M18 20 h34 l-4 40 h-26z" fill="#2F6FD6"/><path d="M52 28 q12 2 10 14 q-2 10 -12 8" stroke="#2F6FD6" stroke-width="5" fill="none"/>', name: "藍色的杯子" }
+  ];
+
+  const METHODS = {
+    cocoa: { name: "熱可可呼吸", how: "假裝手裡捧著一杯熱可可：按住按鈕，慢慢聞熱可可的香味（吸氣）；放開，慢慢把熱可可吹涼（吐氣）。做 3 次！", after: "熱可可變溫溫的，米米的心情也降溫了。",
+      run: async () => {
+        useTool(MUG_HTML, "好燙");
+        await holdRounds(3, [3, 3, 2], { idle: "按住：聞熱可可", hold: "聞一聞……好香喔……慢慢吸……", ready: "好，放開，把熱可可吹涼", short: "聞久一點點，再按住一次", release: "呼～慢慢吹，把熱可可吹涼……", min: 2000, relax: 3000, labels: ["好燙", "還是燙燙的", "溫溫的", "溫溫的，可以喝了！"] });
+      } },
+    lemon: { name: "擠檸檬", how: "假裝兩隻手各握著一顆檸檬：按住按鈕，雙手用力握緊，把檸檬汁擠出來；放開，雙手放鬆，軟軟的。做 3 次！", after: "手放鬆了，米米的心情也跟著放鬆了。",
+      run: async () => {
+        useTool(LEMON, "手緊緊的");
+        await holdRounds(3, [3, 3, 2], { idle: "按住：用力擠檸檬", hold: "用力握緊……擠擠擠……", ready: "好，放開，手放鬆", short: "再用力擠久一點", release: "放鬆～手軟軟的……", min: 1600, relax: 2200, labels: ["手緊緊的", "比較鬆了", "手軟軟的", "全身都放鬆了！"] });
+      } },
+    find: { name: "找顏色", how: "心情很急的時候，先讓眼睛去找別的東西。先選一個顏色，再幫米米在房間裡找出 5 個那個顏色的東西！", after: "找到了！眼睛忙著找東西，米米的心情慢慢降溫了。",
+      run: async () => {
+        const FC = [["藍色", "#2F6FD6", "#1E4FA8"], ["紅色", "#D9442B", "#A8321E"], ["黃色", "#F2C230", "#B8900F"], ["綠色", "#3FA36B", "#2A7049"], ["紫色", "#8E5CC4", "#64398F"]];
+        show("nar", "你想找什麼顏色的東西？");
+        const ck = await buttons(FC.map(c => ({ label: c[0], bg: c[1], cls: "lv" })));
+        const [cName, cMain, cDark] = FC[ck];
+        setCam("wide");
+        await new Promise(res => {
+          let got = 0; const els = [];
+          acts.innerHTML = ""; const tip = mk("button", "alt", "已經找到 0 / 5 個"); tip.disabled = true; acts.appendChild(tip);
+          show("nar", cName + "的東西在哪裡？點一點！可以拖一拖畫面，轉過去找找看。");
+          const atHome = root.classList.contains("home"); root.classList.add("finding");
+          FINDS.forEach((f, fi) => {
+            const P = atHome ? HOME_POS[fi] : [f.x, f.y, f.z];
+            const el = mk("div", "o bb findme"); el.innerHTML = '<svg viewBox="0 0 70 70" width="100%" height="100%">' + f.svg.split("#2F6FD6").join(cMain).split("#1E4FA8").join(cDark) + '</svg>';
+            const fname = f.name.replace("藍色", cName);
+            el.setAttribute("role", "button"); el.setAttribute("aria-label", fname); el.tabIndex = 0;
+            world.appendChild(el); props.push(el);
+            const o = { x: P[0], y: P[1], z: P[2], h: 70, set() { el.style.transform = "translate3d(" + o.x + "px," + (-(o.y + o.h / 2)) + "px," + o.z + "px) translate(-50%,-50%) rotateY(" + (-cam.yaw) + "deg)"; } };
+            bbs.push(o); o.set();
+            const hit = () => {
+              if (el.classList.contains("got")) return;
+              el.classList.add("got"); got++;
+              tone([523 + got * 60], "triangle", 0.1, 0.2);
+              tip.textContent = "已經找到 " + got + " / 5 個";
+              show("nar", "找到" + fname + "了！");
+              if (got === 2) setMood(3); if (got === 4) setMood(2);
+              if (got === 5) sleep(900).then(() => { root.classList.remove("finding"); els.forEach(e => e.remove()); acts.innerHTML = ""; setCam("mimi"); res(); });
+            };
+            el.addEventListener("click", hit);
+            el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hit(); } });
+            els.push(el);
+          });
+        });
+      } },
+    butterfly: { name: "蝴蝶抱抱", how: "雙手交叉放在肩膀上，像蝴蝶拍翅膀一樣，左邊、右邊輪流輕輕拍。大家一起做，拍 8 下！", after: "抱抱自己，米米覺得心裡暖暖的，心情也降溫了。",
+      run: async () => {
+        useTool(BUTTERFLY, "0 / 8 下");
+        await new Promise(res => {
+          let n = 0;
+          const draw = () => {
+            acts.innerHTML = "";
+            const side = n % 2 === 0 ? "左" : "右";
+            [["拍左邊肩膀", "左"], ["拍右邊肩膀", "右"]].forEach(([lab, s]) => {
+              const b = mk("button", s === side ? "" : "alt", lab); b.type = "button"; b.disabled = s !== side;
+              if (s === "左") b.id = "g3left"; else b.id = "g3right";
+              b.onclick = () => {
+                n++; tempEl.textContent = n + " / 8 下";
+                balloon.classList.remove("flap"); void balloon.offsetWidth; balloon.classList.add("flap");
+                tone([s === "左" ? 440 : 523], "sine", 0.1, 0.14);
+                if (n === 3) setMood(3); if (n === 6) setMood(2);
+                if (n >= 8) { acts.innerHTML = ""; sleep(700).then(() => { balloon.style.opacity = "0"; res(); }); } else draw();
+              };
+              acts.appendChild(b);
+            });
+            const f = acts.querySelector("button:not([disabled])"); if (f) f.focus({ preventScroll: true });
+          };
+          draw();
+        });
+      } }
+  };
+
+  /* level map */
+  const LEVELS = [
+    { name: "積木塔倒了", icon: '<svg viewBox="0 0 40 40"><rect x="12" y="26" width="16" height="10" fill="#E8771E"/><rect x="10" y="15" width="16" height="10" fill="#2F6FD6"/><rect x="14" y="4" width="16" height="10" fill="#3FA36B"/></svg>' },
+    { name: "打翻的水彩", icon: '<svg viewBox="0 0 40 40"><rect x="6" y="6" width="28" height="24" fill="#FFFFFF" stroke="#C98B55" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#F2C230"/><ellipse cx="25" cy="24" rx="8" ry="5" fill="#5AB0F0"/></svg>' },
+    { name: "等一等，輪到我", icon: '<svg viewBox="0 0 40 40"><rect x="5" y="18" width="30" height="10" rx="3" fill="#D9442B"/><rect x="12" y="10" width="14" height="9" rx="2" fill="#F2C230"/><circle cx="12" cy="30" r="4" fill="#23283A"/><circle cx="28" cy="30" r="4" fill="#23283A"/></svg>' },
+    { name: "寫功課寫錯了", home: true, icon: '<svg viewBox="0 0 40 40"><rect x="7" y="5" width="26" height="30" rx="3" fill="#FFFFFF" stroke="#C9B8AE" stroke-width="2"/><path d="M12 13 H28 M12 19 H28 M12 25 H22" stroke="#C9B8AE" stroke-width="2"/><circle cx="26" cy="27" r="4" fill="#F2C9A0"/></svg>' },
+    { name: "平板時間到了", home: true, icon: '<svg viewBox="0 0 40 40"><rect x="6" y="8" width="28" height="22" rx="4" fill="#23283A"/><rect x="9" y="11" width="22" height="16" fill="#9FD4FF"/><circle cx="30" cy="32" r="6" fill="#FFFFFF" stroke="#E8771E" stroke-width="2"/><path d="M30 29 v3 h2" stroke="#E8771E" stroke-width="1.5" fill="none"/></svg>' },
+    { name: "猜拳選點心", home: true, icon: '<svg viewBox="0 0 40 40"><path d="M10 34 L13 14 H27 L30 34z" fill="#F6C38B"/><path d="M13 14 H27 L26 19 H14z" fill="#A0663A"/><circle cx="20" cy="10" r="4" fill="#D9442B"/></svg>' }
+  ];
+  function levelMap(done, just) {
+    return new Promise(res => {
+      const all = done.size === LEVELS.length;
+      cover.innerHTML = "";
+      cover.appendChild(mk("h3", "", just < 0 ? "米米的闖關冒險" : all ? "全部過關！" : "「" + LEVELS[just].name + "」過關！"));
+      cover.appendChild(mk("p", "", all ? "你陪米米闖過學校和家裡的全部關卡，是冷靜小勇士！" : "想先玩哪一關？點一點關卡就可以開始。"));
+      const next = LEVELS.findIndex((_, k) => !done.has(k));
+      const go = (k) => { cover.hidden = true; tone([523, 784], "triangle", 0.1, 0.18); res(k); };
+      const rows = [mk("div", "map"), mk("div", "map")];
+      LEVELS.forEach((L, k) => {
+        const row = rows[L.home ? 1 : 0];
+        const s = mk("button", "stop" + (done.has(k) ? " done" : k === next ? " now" : "")); s.type = "button"; s.id = "g3lv" + k;
+        s.setAttribute("aria-label", (L.home ? "在家裡：" : "在學校：") + L.name + (done.has(k) ? "，已過關" : ""));
+        const ic = mk("div", "ic"); ic.innerHTML = L.icon; s.appendChild(ic);
+        s.appendChild(mk("b", "", L.home ? "家裡 " + (k - 2) : "學校 " + (k + 1)));
+        s.appendChild(mk("span", "", L.name));
+        s.appendChild(mk("i", "star", done.has(k) ? "★" : "☆"));
+        s.onclick = () => go(k);
+        row.appendChild(s);
+      });
+      ["在學校", "在家裡"].forEach((h, g) => { const w = mk("div", "maprow"); w.appendChild(mk("h4", "", h)); w.appendChild(rows[g]); cover.appendChild(w); });
+      if (all) {
+        cover.appendChild(mk("p", "", "一起想一想："));
+        const ol = mk("ol");
+        ["在學校和在家裡，米米遇到了哪些不順利的事？", "米米用了哪些冷靜小方法？你最喜歡哪一個？", "哪一句打氣的話，你最想學起來？", "你什麼時候也可以用「停、冷靜、說」？"].forEach(q => ol.appendChild(mk("li", "", q)));
+        cover.appendChild(ol);
+        const b = mk("button", "", "全部重新玩"); b.type = "button"; b.id = "g3again";
+        b.onclick = () => go(-1);
+        cover.appendChild(b);
+      } else {
+        const b = mk("button", "", "開始「" + LEVELS[next].name + "」"); b.type = "button"; b.id = "g3go";
+        b.onclick = () => go(next);
+        cover.appendChild(b);
+      }
+      cover.hidden = false;
+    });
+  }
+
+  /* ----- level 1: block tower ----- */
+  async function level1() {
+    clearLevel();
+    chapter("在學校｜積木塔倒了");
+    await say("nar", "星期一早上，米米和大大來到教室的遊戲角。");
+    await say("mimi", "今天，我想堆一座全世界最高的積木塔！", { m: "happy" });
+    await say("nar", "幫米米堆積木。按「放積木」，一塊一塊放上去。");
+    setCam("tower"); bub.hidden = true;
+    for (let i = 0; i < 6; i++) {
+      await buttons([{ label: "放積木（" + (i + 1) + " / 6）" }]);
+      if (i === 3) bub.hidden = true;
+      await dropTo(cube(COLORS[i]), (i % 2 ? 3 : -3), 0, (i % 3) * 3 - 3);
+      if (i === 2) show("dada", "哇，愈來愈高了！");
+      if (i === 4) setCam("high");
+    }
+    await say("mimi", "再一塊，就是最高的塔了！", { m: "happy" });
+    await buttons([{ label: "放最後一塊" }]);
+    bub.hidden = true;
+    await dropTo(cube(COLORS[6]), 16, 0, 8);
+    await wobble();
+    mimi.face("surprised"); dada.face("surprised");
+    await collapse();
+    setCam("wide");
+    await say("nar", "塔搖了搖……嘩啦！積木塔倒了。");
+    setMood(4); setCam("mimi");
+    await say("mimi", "我的塔……我那麼努力堆的……", { m: "cry" });
+    await moodQuiz("你覺得米米現在的心情是幾度？");
+    setCam("wide");
+    await pickLoop("米米可以怎麼做？幫米米選一選。", [
+      { label: "把積木丟出去", run: async () => {
+        mimi.face("storm"); setMood(5);
+        const c = fallen[0];
+        if (c) { c.el.classList.add("fall"); c.x = 150; c.y = 120; c.z = 110; c.rz += 180; c.set(); await sleep(500); c.y = BW / 2; c.x = 120; c.set(); }
+        await say("dada", "哇！好危險，差點打到我！", { b: "surprised" });
+        await say("nar", "丟積木會打到人，米米的心情也沒有變好。我們再選一次。");
+        mimi.face("cry"); dada.face("sad"); setMood(4);
+      } },
+      { label: "大叫「我不玩了！」然後跑走", run: async () => {
+        await say("mimi", "我再也不玩了！", { m: "storm" });
+        mimi.move(-420, -300); mimi.face("cry"); await sleep(900);
+        await say("nar", "米米一個人坐在角落，還是好難過，積木塔也沒有回來。我們再選一次。");
+        mimi.move(-190, 70); await sleep(900);
+      } },
+      { label: "用冷靜三步：停一停、冷靜、說", ok: true }
+    ]);
+    await calm("cocoa", ["沒關係，再試一次！", "我可以慢慢來。", "做錯了，可以重來。"]);
+    setCam("wide");
+    await say("dada", "米米，我可以幫你一起堆嗎？", { b: "happy" });
+    await say("mimi", "好，謝謝你！", { m: "happy" });
+    show("nar", "米米和大大先一起把積木撿起來。"); acts.innerHTML = "";
+    await clearFallen();
+    await say("nar", "積木會左右移動。等它到塔的正上方，就按「放下」！");
+    setCam("tower"); bub.hidden = true;
+    const camTimer = setInterval(() => { if (tower.length >= 5 && cam.fy < 260) { cam.fy = 260; cam.dist = 0; applyCam(); } }, 400);
+    await slider(8);
+    clearInterval(camTimer);
+    setCam("wide"); mimi.el.classList.add("jump"); dada.el.classList.add("jump");
+    confetti(); tone([523, 659, 784, 1047], "triangle", 0.12, 0.22);
+    await say("mimi", "我們做到了！比上一次還要高！", { m: "happy" });
+    mimi.el.classList.remove("jump"); dada.el.classList.remove("jump");
+  }
+
+  /* ----- level 2: spilled paint ----- */
+  const DRAW = '<svg viewBox="0 0 240 180" aria-hidden="true"><rect width="240" height="180" fill="#EAF6FF"/><circle cx="190" cy="40" r="22" fill="#F2C230"/><rect y="130" width="240" height="50" fill="#9BD07A"/><rect x="40" y="80" width="80" height="60" fill="#F6A0B4"/><path d="M30 82 L80 40 L130 82z" fill="#D9442B"/><rect x="70" y="105" width="20" height="35" fill="#8E5CC4"/>' +
+    '<g class="sea"><rect x="0" y="118" width="240" height="62" fill="#3B8FD0"/><path d="M0 128 q15 -10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" stroke="#FFFFFF" stroke-width="4" fill="none"/><path d="M150 150 q12 -10 24 0 q-12 10 -24 0z M174 150 l10 -7 v14z" fill="#F2C230"/><path d="M60 160 q10 -8 20 0 q-10 8 -20 0z M80 160 l8 -6 v12z" fill="#E8771E"/></g>' +
+    '<ellipse class="blob" cx="150" cy="140" rx="80" ry="40" fill="#5AB0F0" opacity="0.85"/></svg>';
+  async function level2() {
+    clearLevel();
+    chapter("在學校｜打翻的水彩");
+    const board = prop(add("board", 0, 190, -60, "", DRAW));
+    [-100, 100].forEach(x => { const l = cube("#B67844", 12, 210, 12); l.x = x; l.y = 105; l.z = -70; l.set(); props.push(l.el); });
+    const tray = cube("#C98B55", 250, 10, 34); tray.x = 0; tray.y = 95; tray.z = -50; tray.set(); props.push(tray.el);
+    const cup = cube("#9FD4FF", 26, 32, 26); cup.x = 80; cup.y = 116; cup.z = -45; cup.set(); props.push(cup.el);
+    setCam("easel");
+    await say("nar", "美勞課到了，米米畫了一張好漂亮的畫。");
+    await say("mimi", "我畫了我的家，還有大太陽！", { m: "happy" });
+    setCam("wide");
+    await say("nar", "大大走過來看，不小心撞到了水杯……");
+    dada.move(110, 0); await sleep(1000);
+    cup.el.classList.add("fall"); cup.rz = -90; cup.x = 120; cup.y = 13; cup.set();
+    board.classList.add("spill"); tone([500, 300, 200], "sine", 0.1, 0.18);
+    await sleep(700);
+    await say("dada", "哎呀！", { b: "surprised" });
+    setCam("easel");
+    await say("nar", "水彩水打翻了，米米的畫被弄濕了一大塊。", { m: "surprised" });
+    setMood(4); setCam("mimi");
+    await say("mimi", "我的畫……都毀掉了！", { m: "cry" });
+    await moodQuiz("米米的畫被弄濕了，心情是幾度？");
+    setCam("wide");
+    await pickLoop("米米可以怎麼做？", [
+      { label: "推大大，大叫「你是故意的！」", run: async () => {
+        mimi.face("storm"); setMood(5); mimi.move(30, 20); await sleep(700); dada.move(220, 40); await sleep(500);
+        await say("dada", "好痛……我不是故意的……", { b: "cry" });
+        await say("nar", "推人會讓人受傷，而且大大不是故意的。我們再選一次。");
+        mimi.move(-190, 70); dada.move(110, 0); mimi.face("cry"); dada.face("sad"); setMood(4); await sleep(700);
+      } },
+      { label: "把畫撕掉", run: async () => {
+        mimi.face("storm"); board.classList.add("torn"); tone([200, 160], "sawtooth", 0.08, 0.1);
+        await sleep(600);
+        await say("nar", "畫撕破了，就真的不能改了，米米還是好難過。我們再選一次。", { m: "cry" });
+        board.classList.remove("torn");
+      } },
+      { label: "用冷靜三步：停一停、冷靜、說", ok: true }
+    ]);
+    await calm("lemon", ["沒關係，可以改一改。", "我可以想辦法。", "大大不是故意的。"]);
+    setCam("wide");
+    await say("dada", "米米，對不起，我不是故意的。", { b: "sad" });
+    await pickLoop("米米可以怎麼回答？", [
+      { label: "「沒關係，我們一起想辦法。」", ok: true },
+      { label: "「我再也不跟你好了！」", run: async () => {
+        dada.face("cry");
+        await say("nar", "大大已經道歉了，這樣說他會更難過。我們再選一次。");
+        dada.face("sad");
+      } }
+    ]);
+    await say("mimi", "沒關係，我們一起想辦法。", { m: "calm" });
+    dada.move(190, 70); await sleep(800);
+    await say("dada", "我知道了！我們可以把藍色的水漬，畫成大海！", { b: "happy" });
+    setCam("easel");
+    await buttons([{ label: "把水漬畫成大海" }]);
+    board.classList.add("fixed"); tone([523, 659, 784], "triangle", 0.12, 0.2);
+    await sleep(900);
+    mimi.el.classList.add("jump"); confetti();
+    await say("mimi", "哇！有大海還有小魚，比原本更漂亮！", { m: "happy", b: "happy" });
+    mimi.el.classList.remove("jump");
+    await say("nar", "東西弄壞了，也可以想辦法改一改。");
+  }
+
+  /* ----- level 3: waiting for a turn ----- */
+  function makeCar() {
+    const car = prop(mk("div", "o car")); world.appendChild(car);
+    const parts = [["#D9442B", 120, 34, 64, 0, 30, 0], ["#F2C230", 62, 30, 56, -10, 62, 0], ["#23283A", 28, 28, 10, -38, 14, 34], ["#23283A", 28, 28, 10, 38, 14, 34], ["#23283A", 28, 28, 10, -38, 14, -34], ["#23283A", 28, 28, 10, 38, 14, -34]];
+    parts.forEach(p => { const c = cube(p[0], p[1], p[2], p[3], car); c.x = p[4]; c.y = p[5]; c.z = p[6]; c.set(); });
+    const st = { x: 0, z: 40, ry: 0, set() { car.style.transform = "translate3d(" + st.x + "px,0px," + st.z + "px) rotateY(" + st.ry + "deg)"; } };
+    st.set();
+    return st;
+  }
+  async function drive(car, pts) {
+    for (const p of pts) { car.ry = p[2]; car.x = p[0]; car.z = p[1]; car.set(); tone([220, 260], "square", 0.08, 0.05); await sleep(1100); }
+  }
+  async function level3() {
+    clearLevel();
+    chapter("在學校｜等一等，輪到我");
+    const car = makeCar(); car.x = 0; car.z = 180; car.set();
+    setCam("car");
+    await say("nar", "下課時間，老師拿來一台新的玩具車，大家都好想玩！");
+    await say("mimi", "哇！我想第一個玩！", { m: "happy" });
+    await say("nar", "可是，大大先拿到玩具車了。");
+    await drive(car, [[110, 30, -30]]);
+    await say("dada", "我先玩一下喔！", { b: "happy" });
+    bub.hidden = true;
+    await drive(car, [[60, -170, -90], [-60, -150, -160], [-20, 30, -260], [110, 30, -330]]);
+    setMood(4); setCam("mimi");
+    await say("mimi", "我也想玩……我現在就要玩！", { m: "storm" });
+    await moodQuiz("米米等不到玩具車，心情是幾度？");
+    setCam("car");
+    await pickLoop("米米可以怎麼做？", [
+      { label: "衝過去把玩具車搶走", run: async () => {
+        setMood(5); mimi.move(40, 40); await sleep(800);
+        await say("dada", "你搶我的車！我還沒玩完！", { b: "cry" });
+        await say("nar", "搶玩具會讓大大難過，大家也不能好好玩。我們再選一次。");
+        mimi.move(-190, 70); mimi.face("storm"); dada.face("happy"); setMood(4); await sleep(800);
+      } },
+      { label: "躺在地上大哭大鬧", run: async () => {
+        setMood(5);
+        await say("mimi", "哇——我要玩！我要玩！", { m: "cry" });
+        await say("nar", "大哭大鬧，玩具車也不會馬上輪到米米。我們再選一次。");
+        setMood(4); mimi.face("storm");
+      } },
+      { label: "用冷靜三步：停一停、冷靜、說", ok: true }
+    ]);
+    await calm("find", ["等一等，就會輪到我。", "我可以先玩別的。", "我可以好好問。"]);
+    setCam("car");
+    await say("mimi", "大大，等你玩完，可以換我玩嗎？", { m: "calm" });
+    await say("dada", "好啊！再等我一下下。", { b: "happy" });
+    await say("nar", "幫米米一起數到 10，等一等。大家一起大聲數！");
+    bub.hidden = true;
+    const numbers = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+    let k = 0;
+    const loop = (async () => { while (k < 10) await drive(car, [[60, -170, -90], [-60, -150, -160], [-20, 30, -260], [110, 30, -330]].slice(0, 1 + (k % 4))); })();
+    for (k = 0; k < 10;) {
+      await buttons([{ label: "數「" + numbers[k] + "」" }]);
+      k++; show("mimi", numbers.slice(0, k).join("、") + (k < 10 ? "……" : "！"));
+      tone([392 + k * 30], "triangle", 0.1, 0.15);
+    }
+    await loop;
+    await drive(car, [[-90, 60, -270]]);
+    await say("dada", "好了，換你玩！", { b: "happy" });
+    await pickLoop("米米可以說什麼？", [
+      { label: "「謝謝你！」", ok: true },
+      { label: "「哼，你好慢！」", run: async () => {
+        dada.face("sad");
+        await say("nar", "大大有遵守約定，這樣說他會難過。我們再選一次。");
+        dada.face("happy");
+      } }
+    ]);
+    await say("mimi", "謝謝你！", { m: "happy" });
+    await say("nar", "換米米開車囉！按「開車」，帶玩具車繞一圈。");
+    const route = [[-120, -150, -200], [80, -190, -110], [120, 30, 0]];
+    for (let i = 0; i < route.length; i++) {
+      await buttons([{ label: "開車（" + (i + 1) + " / 3）" }]);
+      bub.hidden = true;
+      await drive(car, [route[i]]);
+    }
+    mimi.el.classList.add("jump"); dada.el.classList.add("jump"); confetti();
+    tone([523, 659, 784, 1047], "triangle", 0.12, 0.22);
+    await say("mimi", "等一等，真的輪到我了！", { m: "happy", b: "happy" });
+    mimi.el.classList.remove("jump"); dada.el.classList.remove("jump");
+    await say("dada", "我們一起輪流玩！");
+  }
+
+  /* ---------- home scenes ---------- */
+  let scoreOpp = "跳跳";
+  const scoreEl = mk("div", "score3"); scoreEl.hidden = true; root.appendChild(scoreEl);
+  function setScore(m, d, unit) { scoreEl.hidden = false; scoreEl.innerHTML = '<span class="sm">米米 ' + m + (unit || "") + '</span><span class="sv">：</span><span class="sd">' + d + (unit || "") + ' ' + scoreOpp + '</span>'; }
+  const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+  function bbProp(cls, x, y, z, h, html) {
+    const el = prop(mk("div", "o bb " + cls)); el.innerHTML = html || ""; world.appendChild(el);
+    const o = { el, x, y, z, h, set() { el.style.transform = "translate3d(" + o.x + "px," + (-(o.y + o.h / 2)) + "px," + o.z + "px) translate(-50%,-50%) rotateY(" + (-cam.yaw) + "deg)"; } };
+    bbs.push(o); o.set(); return o;
+  }
+  function hop(c) { c.el.classList.add("jump"); return sleep(900).then(() => c.el.classList.remove("jump")); }
+
+  const DOTS = { 1: [[50, 50]], 2: [[28, 28], [72, 72]], 3: [[25, 25], [50, 50], [75, 75]], 4: [[28, 28], [72, 28], [28, 72], [72, 72]], 5: [[25, 25], [75, 25], [50, 50], [25, 75], [75, 75]], 6: [[28, 22], [72, 22], [28, 50], [72, 50], [28, 78], [72, 78]] };
+  const FACE_ROT = { 1: [0, 0], 6: [0, 180], 3: [0, -90], 4: [0, 90], 2: [-90, 0], 5: [90, 0] };
+  let die = null, tokM = null, tokD = null, posM = 0, posD = 0, spin = 0;
+  const TILE_X = (i) => -280 + i * 70;
+  function makeDie() {
+    const el = prop(mk("div", "o cube die")); const S = 54;
+    const faces = [[1, "translateZ(27px)"], [6, "rotateY(180deg) translateZ(27px)"], [3, "rotateY(90deg) translateZ(27px)"], [4, "rotateY(-90deg) translateZ(27px)"], [2, "rotateX(90deg) translateZ(27px)"], [5, "rotateX(-90deg) translateZ(27px)"]];
+    faces.forEach(([n, tr]) => {
+      const f = mk("div", "face"); f.style.width = S + "px"; f.style.height = S + "px"; f.style.transform = "translate(-50%,-50%) " + tr;
+      f.style.background = "#FFFFFF"; f.style.boxShadow = "inset 0 0 0 2px #DCE1D8";
+      f.innerHTML = '<svg viewBox="0 0 100 100" width="100%" height="100%">' + DOTS[n].map(p => '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="' + (n === 1 ? "#D9442B" : "#23283A") + '"/>').join("") + '</svg>';
+      el.appendChild(f);
+    });
+    world.appendChild(el);
+    const o = { el, x: 0, y: 60, z: 130, rx: 0, ry: 0, set() { el.style.transform = "translate3d(" + o.x + "px," + (-o.y) + "px," + o.z + "px) rotateX(" + o.rx + "deg) rotateY(" + o.ry + "deg)"; } };
+    el.style.transition = "transform 1s cubic-bezier(.2,.8,.3,1)"; o.set(); return o;
+  }
+  async function rollDie(v) {
+    spin += 2;
+    const fr = FACE_ROT[v];
+    die.y = 140; die.rx = fr[0] + 360 * spin; die.ry = fr[1] + 360 * spin; die.set();
+    tone([300, 360, 420, 480], "square", 0.08, 0.05);
+    await sleep(500); die.y = 60; die.set(); await sleep(600);
+    tone([660], "triangle", 0.1, 0.2);
+  }
+  async function stepTok(tok, from, n) {
+    let p = from;
+    for (let i = 0; i < n && p < 8; i++) { p++; tok.x = TILE_X(p); tok.set(); tone([440 + p * 40], "sine", 0.1, 0.1); await sleep(320); }
+    return p;
+  }
+  const HANDS = [["石頭", "✊"], ["剪刀", "✌️"], ["布", "✋"]];
+  const BEATS = { 0: 1, 1: 2, 2: 0 };
+
+  CAMS.dice = { yaw: 0, tilt: 30, dist: 80, fx: 0, fy: 90, fz: 0 };
+  CAMS.hw = { yaw: 0, tilt: 8, dist: 170, fx: -10, fy: 160, fz: -60 };
+  /* home decor */
+  const homeDecor = [];
+  function hd(el) { el.classList.add("decor"); homeDecor.push(el); el.style.display = "none"; return el; }
+  function decoCube(color, w, h, d, x, y, z) { const c = cube(color, w, h, d); c.x = x; c.y = y; c.z = z; c.set(); hd(c.el); return c; }
+  decoCube("#E07A5F", 260, 46, 100, 250, 23, -390);
+  decoCube("#D0694F", 260, 80, 26, 250, 86, -430);
+  decoCube("#D0694F", 26, 70, 100, 133, 35, -390);
+  decoCube("#D0694F", 26, 70, 100, 367, 35, -390);
+  decoCube("#B67844", 200, 60, 60, -290, 30, -415);
+  hd(add("tv", -290, 160, -446, "", ""));
+  hd(add("", -470, 0 + 50, -300, "", '<svg width="80" height="110" viewBox="0 0 80 110"><rect x="22" y="70" width="36" height="38" rx="6" fill="#C2410C"/><path d="M40 72 Q10 50 18 20 Q36 36 40 72z M40 72 Q70 50 62 18 Q44 36 40 72z M40 72 Q40 40 40 6" fill="#3FA36B" stroke="#2E7A4E" stroke-width="2"/></svg>'));
+  hd(add("frame", 20, 360, -447, "", '<svg viewBox="0 0 120 80" width="100%" height="100%"><rect width="120" height="80" fill="#FFF7E0"/><circle cx="35" cy="45" r="14" fill="#F7F1E8" stroke="#C9B8AE"/><circle cx="60" cy="42" r="17" fill="#F7F1E8" stroke="#C9B8AE"/><circle cx="85" cy="47" r="12" fill="#F7F1E8" stroke="#C9B8AE"/></svg>'));
+  const schoolDecor = SCHOOL_DECOR;
+
+  const bro = character("bro", 190, 70);
+  const mom = character("mom", 330, -120);
+  const teacher = character("teacher", 0, -60);
+  NAMES.bro = "跳跳"; NAMES.mom = "媽媽"; NAMES.teacher = "老師";
+  function setPlace(p) {
+    const home = p === "home";
+    root.classList.toggle("home", home);
+    homeDecor.forEach(e => { e.style.display = home ? "" : "none"; });
+    schoolDecor.forEach(e => { e.style.display = home ? "none" : ""; });
+    [dada].forEach(c => { c.el.style.display = home ? "none" : ""; c.sh.style.display = home ? "none" : ""; });
+    [bro, mom, teacher].forEach(c => { c.el.style.display = "none"; c.sh.style.display = "none"; });
+  }
+  function showChar(c, on) { c.el.style.display = on ? "" : "none"; c.sh.style.display = on ? "" : "none"; }
+
+  setPlace("school");
+  async function homePick(q, opts) { return pickLoop(q, opts); }
+  function wrongRun(c, line, why, act) {
+    return async () => {
+      mimi.face("storm"); setMood(5);
+      if (act) await act();
+      if (c) { c.face("sad"); show(c === mom ? "mom" : "bro", line); await buttons([{ label: "下一句 ▶" }]); }
+      else await say("nar", line);
+      await say("nar", why + "我們再選一次。");
+      mimi.face("cry"); if (c) c.face("happy"); setMood(4);
+    };
+  }
+
+  /* ----- home 1: homework ----- */
+  async function home1() {
+    clearLevel(); setPlace("home"); showChar(mom, true);
+    chapter("在家裡｜寫功課寫錯了");
+    mimi.move(-270, 70); mom.move(270, 60); mom.face("happy");
+    const desk = cube("#B67844", 200, 70, 90); desk.x = -10; desk.y = 35; desk.z = -40; desk.set(); props.push(desk.el);
+    const book = prop(add("hw", -10, 160, -60, "", '<div class="hw-row"><span>大</span><span>小</span><span>山</span><span class="hw-last"><i class="hw-bad">水</i><i class="hw-good">水</i></span></div><div class="hw-hole"></div><div class="hw-tape"></div>'));
+    setCam("hw");
+    await say("nar", "放學回家，米米在客廳寫生字作業。");
+    await say("mimi", "大、小、山……最後一個是「水」！", { m: "happy" });
+    await say("nar", "糟糕，「水」寫歪了。幫米米用橡皮擦擦掉，按 3 次「擦一擦」。");
+    for (let i = 0; i < 3; i++) {
+      await buttons([{ label: "擦一擦（" + (i + 1) + " / 3）" }]);
+      book.classList.add("rub" + (i + 1)); tone([300 + i * 40], "square", 0.06, 0.05);
+    }
+    book.classList.add("torn"); tone([200, 150], "sawtooth", 0.08, 0.1);
+    await say("nar", "擦太用力了……紙破了一個洞！", { m: "surprised" });
+    setMood(4); setCam("mimi");
+    show("mimi", "我的作業破掉了！我寫得好爛！"); mimi.face("cry"); await buttons([{ label: "下一句 ▶" }]);
+    await moodQuiz("作業簿破掉了，米米的心情是幾度？");
+    setCam("hw");
+    await homePick("米米可以怎麼做？", [
+      { label: "把作業簿撕掉", run: wrongRun(null, "作業簿撕破了，整本都要重寫，米米更難過了。", "撕掉作業，事情會變得更糟。", async () => { book.classList.add("ripped"); await sleep(600); }) },
+      { label: "丟鉛筆，大叫「我不要寫了！」", run: wrongRun(mom, "哎呀！鉛筆差點打到媽媽。", "丟東西會打到人。") },
+      { label: "用冷靜三步：停一停、冷靜、說", ok: true }
+    ]);
+    book.classList.remove("ripped");
+    await calm("lemon", ["寫錯了，可以再改。", "我可以慢慢寫。", "我可以請媽媽幫忙。"]);
+    setCam("hw");
+    show("mom", "破掉沒關係，我們用膠帶黏起來，再寫一次。"); mom.talk(); await buttons([{ label: "下一句 ▶" }]);
+    await homePick("米米可以怎麼回答？", [
+      { label: "「謝謝媽媽，我再寫一次。」", ok: true },
+      { label: "「都是橡皮擦太爛了！」", run: async () => { mom.face("sad"); await say("nar", "怪東西，作業也不會變好。我們再選一次。"); mom.face("happy"); } }
+    ]);
+    await say("mimi", "謝謝媽媽，我再寫一次。", { m: "calm" });
+    await buttons([{ label: "貼膠帶" }]);
+    book.classList.add("taped"); tone([520, 660], "triangle", 0.1, 0.15);
+    await say("nar", "現在幫米米慢慢寫「水」，按 4 次，一筆一筆寫。");
+    for (let i = 0; i < 4; i++) { await buttons([{ label: "寫一筆（" + (i + 1) + " / 4）" }]); book.style.setProperty("--w", (i + 1) / 4); book.classList.add("writing"); tone([440 + i * 60], "sine", 0.1, 0.12); }
+    book.classList.add("fixed");
+    confetti(); hop(mimi);
+    show("mom", "這次寫得好漂亮！你沒有放棄，好棒！"); mom.face("happy"); mom.talk(); await buttons([{ label: "下一句 ▶" }]);
+    await say("mimi", "寫錯了，可以再改！", { m: "happy" });
+  }
+
+  /* ----- home 2: tablet time is up ----- */
+  async function home2() {
+    clearLevel(); setPlace("home"); showChar(mom, true);
+    chapter("在家裡｜平板時間到了");
+    mimi.move(-60, 40); mom.move(260, 60); mom.face("happy");
+    const tab = bbProp("tab3", 40, 150, 120, 110, '<div class="tab-screen"><svg viewBox="0 0 120 80" width="100%" height="100%"><rect width="120" height="80" fill="#9FD4FF"/><rect y="60" width="120" height="20" fill="#9BD07A"/><circle cx="30" cy="54" r="8" fill="#F48FB1"/><rect x="70" y="40" width="16" height="20" fill="#E8771E"/><path d="M95 20 l4 8 l8 1 l-6 5 l2 8 l-8 -4 l-8 4 l2 -8 l-6 -5 l8 -1z" fill="#F2C230"/></svg></div>');
+    const clock = bbProp("clock3", 260, 300, -200, 80, '<span id="g3clock">5</span>');
+    setCam("wide");
+    await say("nar", "晚上，米米在玩平板遊戲。媽媽說好可以玩 15 分鐘。");
+    await say("mimi", "耶！我快要破關了！", { m: "happy" });
+    await say("nar", "看一看計時器……時間快到了！");
+    bub.hidden = true;
+    for (let n = 5; n >= 0; n--) { clock.el.querySelector("span").textContent = n; tone([n ? 600 : 900], "sine", 0.1, 0.12); await sleep(800); }
+    show("mom", "米米，時間到了，要關掉平板囉。"); mom.talk(); await buttons([{ label: "下一句 ▶" }]);
+    setMood(4); setCam("mimi");
+    show("mimi", "可是我快要破關了！我還要玩！"); mimi.face("storm"); await buttons([{ label: "下一句 ▶" }]);
+    await moodQuiz("平板要關掉了，米米的心情是幾度？");
+    setCam("wide");
+    await homePick("米米可以怎麼做？", [
+      { label: "大哭大叫：「我還要玩！」", run: wrongRun(mom, "米米，這樣大叫，媽媽聽了好難過。", "大哭大叫，平板時間也不會變多。") },
+      { label: "把平板藏起來，假裝沒聽到", run: wrongRun(mom, "米米，我們說好的約定呢？", "假裝沒聽到，就是沒有守約定。", async () => { tab.x = -260; tab.set(); await sleep(800); tab.x = 40; tab.set(); }) },
+      { label: "用冷靜三步：停一停、冷靜、說", ok: true }
+    ]);
+    await calm("cocoa", ["時間到了，明天還可以玩。", "我可以守約定。", "我可以先存檔。"]);
+    setCam("wide");
+    await homePick("米米可以跟媽媽說什麼？", [
+      { label: "「好，我先存檔再關掉。」", ok: true },
+      { label: "「媽媽最討厭了！」", run: async () => { mom.face("sad"); await say("nar", "這樣說，媽媽會很傷心。我們再選一次。"); mom.face("happy"); } }
+    ]);
+    await say("mimi", "好，我先存檔再關掉。", { m: "calm" });
+    await buttons([{ label: "按存檔" }]); tone([660, 880], "triangle", 0.1, 0.15);
+    show("nar", "存檔成功！明天可以從這裡繼續玩。");
+    await buttons([{ label: "關掉平板" }]); tab.el.classList.add("off"); tone([300], "sine", 0.1, 0.12);
+    show("mom", "謝謝你守約定！接下來想做什麼呢？"); mom.face("happy"); mom.talk();
+    const k = await buttons([{ label: "一起畫畫" }, { label: "一起看故事書" }, { label: "一起堆積木" }]);
+    confetti(); hop(mimi); hop(mom);
+    await say("mimi", ["我們一起畫畫！", "我們一起看故事書！", "我們一起堆積木！"][k], { m: "happy" });
+    await say("nar", "時間到了有點捨不得，可是守約定，還能找到別的好玩的事！");
+  }
+
+  /* ----- home game helpers ----- */
+  async function homeGameLevel(G) {
+    clearLevel(); setPlace("home"); showChar(bro, true); scoreOpp = "跳跳";
+    chapter(G.title);
+    await G.setup(); setCam(G.cam);
+    for (const [w, t] of G.intro) { if (w === "bro") { show("bro", t); bro.talk(); await buttons([{ label: "下一句 ▶" }]); } else await say(w, t); }
+    const r1 = await G.play(1);
+    await say("nar", G.lost(r1), { m: "surprised" });
+    setMood(4); setCam("mimi");
+    show("mimi", G.cry); mimi.face("cry"); await buttons([{ label: "下一句 ▶" }]);
+    await moodQuiz("米米" + G.short + "，心情是幾度？");
+    setCam(G.cam);
+    await pickLoop("米米可以怎麼做？", G.wrong.map(w => ({ label: w.label, run: wrongRun(bro, w.line, w.why, w.act) })).concat([{ label: "用冷靜三步：停一停、冷靜、說", ok: true }]));
+    await calm(G.method, G.peps);
+    setCam(G.cam);
+    await say("nar", "輸了的時候，還可以跟跳跳說一句好聽的話。");
+    await pickLoop("米米可以跟跳跳說什麼？", [
+      { label: "「" + G.praise + "」", ok: true },
+      { label: "「" + G.bad + "」", run: async () => { bro.face("sad"); await say("nar", "這樣說，跳跳會不開心。我們再選一次。"); bro.face("happy"); } }
+    ]);
+    await say("mimi", G.praise, { m: "calm" });
+    show("bro", "謝謝你！我們再玩一次好不好？"); bro.face("happy"); bro.talk(); await buttons([{ label: "下一句 ▶" }]);
+    await say("mimi", "好！再玩一次！", { m: "happy" });
+    const r2 = await G.play(2);
+    if (r2.m > r2.d) {
+      confetti(); hop(mimi);
+      await say("mimi", "我贏了！", { m: "happy" });
+      show("bro", "恭喜你！你好厲害！"); bro.talk(); await buttons([{ label: "下一句 ▶" }]);
+      await say("mimi", "謝謝跳跳陪我玩！", { m: "happy" });
+    } else if (r2.m === r2.d) {
+      await say("nar", "平手！兩個人一樣厲害！", { m: "happy" });
+    } else {
+      await say("nar", "這次米米又輸了，可是米米沒有生氣……", { m: "calm" });
+      await say("mimi", "沒關係，好玩最重要！恭喜跳跳！", { m: "happy" });
+      show("bro", "你好有風度喔！我最喜歡跟你玩了！"); bro.face("happy"); bro.talk(); await buttons([{ label: "下一句 ▶" }]);
+    }
+    await say("nar", "在家裡跟家人玩，不管輸還是贏，玩得開心最重要！");
+    scoreEl.hidden = true;
+  }
+
+  /* ----- home 3: dice race with big brother ----- */
+  const HDICE = {
+    title: "在家裡｜跟跳跳擲骰子", cam: "dice", short: "擲骰子輸給跳跳",
+    setup: async () => {
+      mimi.move(-330, -190); bro.move(330, -190);
+      for (let i = 0; i <= 8; i++) { const tl = add("tile3" + (i === 8 ? " goal" : i === 0 ? " start" : ""), TILE_X(i), 1, -30, "rotateX(90deg)", i === 8 ? "終點" : i === 0 ? "起點" : String(i)); props.push(tl); }
+      tokM = cube("#F06EA0", 28, 28, 28); tokD = cube("#2FA3A3", 28, 28, 28);
+      tokM.x = TILE_X(0); tokM.y = 14; tokM.z = -5; tokD.x = TILE_X(0); tokD.y = 14; tokD.z = -55; tokM.set(); tokD.set(); props.push(tokM.el, tokD.el);
+      die = makeDie();
+    },
+    intro: [["nar", "星期六下午，米米和跳跳在客廳玩擲骰子走格子，先走到終點的人贏。"], ["nar", "粉紅色是米米的棋子，綠色是跳跳的。換你幫米米擲骰子！"]],
+    play: async (r) => {
+      posM = 0; posD = 0; tokM.x = TILE_X(0); tokD.x = TILE_X(0); tokM.set(); tokD.set();
+      setScore(0, 0, " 格");
+      const seqM = [1, 2, 1], seqD = [3, 3, 2]; let t = 0;
+      while (posM < 8 && posD < 8) {
+        bub.hidden = true;
+        await buttons([{ label: "幫米米擲骰子" }]);
+        let v = r === 1 ? seqM[t] : rnd(1, 6);
+        await rollDie(v); show("nar", "米米擲到 " + v + "！");
+        posM = await stepTok(tokM, posM, v); setScore(posM, posD, " 格");
+        if (posM >= 8) break;
+        await sleep(400);
+        show("bro", "換我擲！"); bro.talk(); await sleep(700);
+        v = r === 1 ? seqD[t] : rnd(1, 6);
+        await rollDie(v); show("nar", "跳跳擲到 " + v + "！");
+        posD = await stepTok(tokD, posD, v); setScore(posM, posD, " 格");
+        t++; await sleep(400);
+      }
+      if (posM >= 8) hop(mimi); else hop(bro);
+      return { m: posM >= 8 ? 1 : 0, d: posD >= 8 ? 1 : 0 };
+    },
+    lost: () => "跳跳先走到終點了！這一局，跳跳贏了。",
+    cry: "我一直擲到 1 和 2……不公平！",
+    wrong: [{ label: "把骰子丟到沙發底下", line: "骰子不見了，我們要怎麼玩？", why: "把骰子丟掉，遊戲就玩不下去了。" },
+            { label: "哭著說「跳跳最壞了！」", line: "我又沒有做壞事……", why: "骰子是靠運氣的，不是跳跳的錯。" }],
+    method: "butterfly", peps: ["擲骰子靠運氣，輸了不是我不好。", "下一局，說不定換我運氣好。", "沒關係，再玩一次！"],
+    praise: "跳跳好厲害，恭喜你！", bad: "哼，下次我一定要贏你！"
+  };
+
+  /* ----- home 4: rock paper scissors for the last pudding ----- */
+  let handM = null, handD = null;
+  const HRPS = {
+    title: "在家裡｜猜拳選點心", cam: "wide", short: "猜拳輸給跳跳",
+    setup: async () => {
+      bbProp("pudding3", 0, 80, 40, 70, '<svg viewBox="0 0 70 70" width="100%" height="100%" aria-hidden="true"><ellipse cx="35" cy="62" rx="30" ry="6" fill="#FFFFFF" stroke="#DCE1D8"/><path d="M14 60 L20 22 H50 L56 60z" fill="#F6C38B"/><path d="M20 22 H50 L48 32 H22z" fill="#A0663A"/><circle cx="35" cy="16" r="7" fill="#D9442B"/></svg>');
+      const tb = cube("#B67844", 120, 60, 80); tb.x = 0; tb.y = 30; tb.z = 40; tb.set(); props.push(tb.el);
+      handM = bbProp("hand3", -190, 270, 70, 80, ""); handD = bbProp("hand3", 190, 270, 70, 80, "");
+      handM.el.style.opacity = "0"; handD.el.style.opacity = "0";
+    },
+    intro: [["nar", "晚餐後的點心時間，冰箱裡只剩一個草莓布丁！"], ["bro", "我們猜拳決定，三戰兩勝，贏的人吃布丁！"], ["nar", "換你幫米米出拳！"]],
+    play: async (r) => {
+      let m = 0, d = 0; setScore(0, 0, " 勝");
+      while (m < 2 && d < 2) {
+        handM.el.style.opacity = "0"; handD.el.style.opacity = "0";
+        show("nar", "米米要出什麼？");
+        const k = await buttons(HANDS.map(h => ({ label: h[1] + " " + h[0] })));
+        show("nar", "剪刀、石頭、布！"); await sleep(900);
+        let dk;
+        if (r === 1) dk = [1, 2, 0].find(x => BEATS[x] === k); else dk = rnd(0, 2);
+        handM.el.textContent = HANDS[k][1]; handD.el.textContent = HANDS[dk][1];
+        handM.el.style.opacity = "1"; handD.el.style.opacity = "1";
+        tone([520], "triangle", 0.1, 0.18);
+        if (k === dk) { show("nar", "平手！再一次！"); await sleep(1200); continue; }
+        if (BEATS[k] === dk) { m++; show("nar", "米米贏了這一回！"); hop(mimi); } else { d++; show("nar", "跳跳贏了這一回！"); hop(bro); }
+        setScore(m, d, " 勝"); await sleep(1400);
+      }
+      handM.el.style.opacity = "0"; handD.el.style.opacity = "0";
+      return { m, d };
+    },
+    lost: (r) => "跳跳贏了 " + r.d + " 次，草莓布丁給跳跳吃。",
+    cry: "我也想吃布丁……我一直猜輸！",
+    wrong: [{ label: "搶走布丁，跑回房間", line: "說好猜拳的，你怎麼搶走了？", why: "說好的規則要遵守，搶東西不公平。" },
+            { label: "大叫「再一次！」一直要重猜", line: "可是我們說好三戰兩勝的……", why: "說好的規則要遵守，不能一直耍賴。" }],
+    method: "cocoa", peps: ["說好的規則要遵守。", "下次換我先選。", "猜拳有輸也有贏。"],
+    praise: "好，布丁給你，下次換我！", bad: "跳跳最小氣了！"
+  };
+  HRPS.play2note = true;
+  async function home3() { await homeGameLevel(HDICE); }
+  async function home4() {
+    const orig = HRPS.play;
+    HRPS.play = async (r) => {
+      if (r === 2) { show("bro", "那我們再猜一次，決定明天誰先選點心！"); bro.talk(); await buttons([{ label: "下一句 ▶" }]); }
+      return orig(r);
+    };
+    try { await homeGameLevel(HRPS); } finally { HRPS.play = orig; }
+  }
+
+  const backBtn = document.getElementById("g3back");
+  let backRes = null;
+  backBtn.onclick = () => {
+    RUN++;
+    try { speechSynthesis.cancel(); } catch (e) {}
+    clearLevel();
+    if (backRes) { const r = backRes; backRes = null; r("back"); }
+  };
+  async function intro() {
+    clearLevel();
+    chapter("開場｜每個人都會遇到不順利");
+    showChar(teacher, true); showChar(bro, true);
+    teacher.move(-330, 30); mimi.move(-110, 30); dada.move(110, 30); bro.move(330, 30);
+    [teacher, mimi, dada, bro].forEach(c => c.face("happy"));
+    setCam("intro");
+    await say("nar", "開始闖關之前，先聽聽大家說一件自己不順利的小事。");
+    const LINES = [
+      [teacher, "teacher", "我昨天煮麵煮太久，麵變得爛爛的，我有一點失望。"],
+      [mimi, "mimi", "我畫畫的時候，蠟筆斷掉了，我好難過。"],
+      [dada, "dada", "我跳繩一直跳不過去，我有一點生氣。"],
+      [bro, "bro", "我在拼拼圖，最後一塊找不到，我好著急。"]
+    ];
+    for (const [c, who, line] of LINES) {
+      c.face("sad"); show(who, line);
+      await buttons([{ label: "下一句 ▶" }]);
+      c.face("calm");
+    }
+    [teacher, mimi, dada, bro].forEach(c => c.face("happy"));
+    await say("nar", "原來，每個人都會遇到不順利。難過、生氣、著急，都是可以的。");
+    await say("teacher", "不順利的時候，我們可以學一些方法，讓心情好起來。");
+    await say("nar", "現在，我們一起陪米米去闖關吧！");
+    showChar(teacher, false); showChar(bro, false);
+  }
+  CAMS.intro = { yaw: 0, tilt: 12, dist: 40, fx: 0, fy: 140, fz: 20 };
+  async function story() {
+    setTimeout(() => { hint.style.opacity = "0"; }, 7000);
+    const FN = [level1, level2, level3, home1, home2, home4];
+    const done = new Set(); let just = -1;
+    const runIntro = async () => {
+      backBtn.hidden = false;
+      const r = await Promise.race([intro().then(() => "done"), new Promise(res => { backRes = res; })]);
+      backBtn.hidden = true; bub.hidden = true; acts.innerHTML = "";
+    };
+    await new Promise(res => {
+      cover.innerHTML = "";
+      cover.appendChild(mk("h3", "", "米米的闖關冒險"));
+      cover.appendChild(mk("p", "", "陪米米和大家一起，學會讓心情好起來的方法。"));
+      const b = mk("button", "", "開始"); b.type = "button"; b.id = "g3start";
+      b.onclick = () => { cover.hidden = true; tone([523, 784], "triangle", 0.1, 0.18); res(); };
+      cover.appendChild(b); cover.hidden = false;
+    });
+    for (;;) {
+      const k = await levelMap(done, just);
+      if (k === -2) { await runIntro(); clearLevel(); just = -1; continue; }
+      if (k < 0) { done.clear(); just = -1; continue; }
+      backBtn.hidden = false;
+      const r = await Promise.race([FN[k]().then(() => "done"), new Promise(res => { backRes = res; })]);
+      backBtn.hidden = true;
+      if (r === "back") { just = -1; continue; }
+      bub.hidden = true; acts.innerHTML = "";
+      done.add(k); just = k;
+    }
+  }
+
+  story();
+
+})();
+
+</script>
+<script src="three.min.js"></script>
+<script>
+/* 3D sports day: three moments of losing */
+(function () {
+/* ---------- 3D game: three moments of losing ---------- */
+const zh = s => s;
+const G = { renderer: null, scene: null, camera: null, raf: 0, ro: null, t: 0, last: 0, tick: null, level: null, stars: {}, audio: null, keyH: null };
+const LEVELS3D = {
+  race: { name: '賽跑比賽', icon: '跑', ds: '體育課賽跑，快按按鈕往前跑！', col: '#F08A5D' },
+  chairs: { name: '搶椅子', icon: '椅', ds: '音樂停了，要最快坐到椅子上！', col: '#237A80' },
+  hoop: { name: '投籃比賽', icon: '球', ds: '看準力氣條，投進越多球越好！', col: '#7A5197' },
+};
+const LOSE_CHOICES = {
+  race: [
+    { t: '坐在地上大哭，說「我不跑了！」', good: false, why: '難過可以哭，哭完用冷靜三步，再繼續和大家玩。' },
+    { t: '說「恭喜米米！我有跑完，下次再加油！」', good: true, why: '你有跑完全程，還恭喜朋友，好有風度！' },
+    { t: '大喊「不公平！他們偷跑！」', good: false, why: '沒有證據就說別人偷跑，朋友會難過。' },
+  ],
+  chairs: [
+    { t: '把椅子推倒', good: false, why: '推椅子很危險，也會讓大家不想跟你玩。' },
+    { t: '說「沒關係」，去幫忙放音樂', good: true, why: '出局了還能幫忙，你是好風度的好朋友！' },
+    { t: '大叫「我不要玩了！」跑走', good: false, why: '跑走了，心情還是不好，也不能和大家一起玩。' },
+  ],
+  hoop: [
+    { t: '把球用力丟出去', good: false, why: '丟球會打到別人，也很危險。' },
+    { t: '說「你好厲害！可以教我嗎？」', good: true, why: '稱讚別人、向別人學習，你會越來越厲害！' },
+    { t: '說「我最爛了」，一直哭', good: false, why: '你不爛！只是這次沒投進，多練習就會進步。' },
+  ],
+};
+const WIN_CHOICES = [
+  { t: '說「謝謝大家，再玩一次！」', good: true, why: '贏了不驕傲，還邀請大家再玩，大家都喜歡你！' },
+  { t: '大喊「耶！你們好爛！」', good: false, why: '這樣說朋友會很難過，贏了也要有好風度。' },
+  { t: '一直說「我最厲害！」', good: false, why: '一直炫耀，別人會不想跟你玩。說謝謝就好。' },
+];
+
+function g3dStop() {
+  cancelAnimationFrame(G.raf); G.raf = 0; G.tick = null;
+  if (G.ro) { G.ro.disconnect(); G.ro = null; }
+  if (G.keyH) { document.removeEventListener('keydown', G.keyH); G.keyH = null; }
+  stopMusic();
+  if (G.renderer) { G.renderer.dispose(); G.renderer = null; }
+  G.scene = null;
+}
+function g3dInit(host) {
+  g3dStop();
+  if (!window.THREE) { host.innerHTML = `<div class="g3d-fallback">${zh('3D 畫面載入失敗，請確認網路連線後重新整理。')}</div>`; return false; }
+  const r = new THREE.WebGLRenderer({ antialias: true });
+  r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  r.shadowMap.enabled = true;
+  host.appendChild(r.domElement);
+  G.renderer = r;
+  G.scene = new THREE.Scene();
+  G.camera = new THREE.PerspectiveCamera(50, 16 / 9, 0.1, 200);
+  const fit = () => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h || !G.renderer) return; G.renderer.setSize(w, h, false); G.camera.aspect = w / h; G.camera.updateProjectionMatrix(); };
+  G.ro = new ResizeObserver(fit); G.ro.observe(host); fit();
+  G.scene.add(new THREE.HemisphereLight(0xffffff, 0x8a7a60, 0.75));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.75); sun.position.set(6, 12, 8); sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024); Object.assign(sun.shadow.camera, { left: -25, right: 25, top: 25, bottom: -25 });
+  G.scene.add(sun);
+  G.last = performance.now();
+  const loop = now => {
+    if (!G.renderer) return;
+    const dt = Math.min(0.05, (now - G.last) / 1000); G.last = now; G.t += dt;
+    if (G.tick) G.tick(dt);
+    G.renderer.render(G.scene, G.camera);
+    G.raf = requestAnimationFrame(loop);
+  };
+  G.raf = requestAnimationFrame(loop);
+  return true;
+}
+const mat = c => new THREE.MeshLambertMaterial({ color: c });
+function mesh(geo, c, shadow = true) { const m = new THREE.Mesh(geo, mat(c)); m.castShadow = shadow; m.receiveShadow = true; return m; }
+function label(text, col = '#33302B') {
+  const cv = document.createElement('canvas'); cv.width = 256; cv.height = 96;
+  const x = cv.getContext('2d');
+  x.fillStyle = 'rgba(255,255,255,.92)'; x.beginPath(); x.roundRect ? x.roundRect(8, 14, 240, 68, 30) : x.rect(8, 14, 240, 68); x.fill();
+  x.fillStyle = col; x.font = '700 44px "Noto Sans TC", sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(text, 128, 50);
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), depthTest: false }));
+  s.scale.set(1.3, 0.49, 1); s.renderOrder = 10; return s;
+}
+function person(col, hair, name, isYou) {
+  const g = new THREE.Group();
+  const limb = (w, h, c, y, x) => { const piv = new THREE.Group(); piv.position.set(x, y, 0); const m = mesh(new THREE.BoxGeometry(w, h, w), c); m.position.y = -h / 2; piv.add(m); g.add(piv); return piv; };
+  const legL = limb(0.16, 0.6, 0x3B4A6B, 0.6, -0.13), legR = limb(0.16, 0.6, 0x3B4A6B, 0.6, 0.13);
+  const body = mesh(new THREE.CylinderGeometry(0.3, 0.36, 0.8, 16), col); body.position.y = 0.98; g.add(body);
+  const armL = limb(0.13, 0.55, col, 1.32, -0.43), armR = limb(0.13, 0.55, col, 1.32, 0.43);
+  const head = mesh(new THREE.SphereGeometry(0.34, 24, 16), 0xFFD9B8); head.position.y = 1.72; g.add(head);
+  const hairM = mesh(new THREE.SphereGeometry(0.36, 24, 16, 0, Math.PI * 2, 0, Math.PI / 2.1), hair); hairM.position.y = 1.76; g.add(hairM);
+  const hairB = mesh(new THREE.SphereGeometry(0.36, 24, 16, Math.PI, Math.PI, 0, Math.PI * 0.78), hair); hairB.position.y = 1.73; g.add(hairB);
+  [-0.12, 0.12].forEach(x => { const e = mesh(new THREE.SphereGeometry(0.045, 10, 8), 0x33302B, false); e.position.set(x, 1.74, 0.31); g.add(e); });
+  const lb = label(name, isYou ? '#C4552A' : '#33302B'); lb.position.y = 2.45; g.add(lb);
+  g.userData = { legL, legR, armL, armR, sit: 0 };
+  return g;
+}
+function animWalk(p, phase, amt = 0.7) {
+  const s = Math.sin(phase) * amt, u = p.userData;
+  u.legL.rotation.x = s; u.legR.rotation.x = -s; u.armL.rotation.x = -s; u.armR.rotation.x = s;
+}
+function animStand(p) { animWalk(p, 0, 0); }
+function animSit(p) { const u = p.userData; u.legL.rotation.x = u.legR.rotation.x = -1.45; u.armL.rotation.x = u.armR.rotation.x = -0.3; }
+function confetti(at) {
+  const cols = [0xF08A5D, 0xF4C24B, 0x6CC08B, 0x237A80, 0xD9534F, 0x7A5197];
+  const bits = [];
+  for (let i = 0; i < 80; i++) {
+    const m = mesh(new THREE.BoxGeometry(0.08, 0.08, 0.02), cols[i % cols.length], false);
+    m.position.copy(at); m.userData.v = new THREE.Vector3((Math.random() - .5) * 5, 4 + Math.random() * 4, (Math.random() - .5) * 5);
+    G.scene.add(m); bits.push(m);
+  }
+  return dt => bits.forEach(b => { b.userData.v.y -= 9 * dt; b.position.addScaledVector(b.userData.v, dt); b.rotation.x += 6 * dt; b.rotation.y += 4 * dt; if (b.position.y < 0) b.visible = false; });
+}
+
+/* music for musical chairs (starts only after a click) */
+function startMusic() {
+  try {
+    const ac = G.audio || (G.audio = new (window.AudioContext || window.webkitAudioContext)());
+    const notes = [523, 659, 784, 659, 587, 698, 880, 698];
+    let i = 0;
+    G.musicT = setInterval(() => {
+      const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime;
+      o.type = 'triangle'; o.frequency.value = notes[i++ % notes.length];
+      g.gain.setValueAtTime(0.16, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.24);
+      o.connect(g).connect(ac.destination); o.start(t); o.stop(t + 0.26);
+    }, 260);
+  } catch (e) {}
+}
+function stopMusic() { clearInterval(G.musicT); G.musicT = 0; }
+function beep(f = 880, d = 0.15) { try { const ac = G.audio || (G.audio = new (window.AudioContext || window.webkitAudioContext)()); const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime; o.frequency.value = f; g.gain.setValueAtTime(0.2, t); g.gain.exponentialRampToValueAtTime(0.001, t + d); o.connect(g).connect(ac.destination); o.start(t); o.stop(t + d); } catch (e) {} }
+
+/* ---- level: race ---- */
+function setupRace(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xBFE3F2); S.fog = new THREE.Fog(0xBFE3F2, 30, 80);
+  const ground = mesh(new THREE.PlaneGeometry(120, 160), 0x8CC56E); ground.rotation.x = -Math.PI / 2; ground.position.z = -40; S.add(ground);
+  const track = mesh(new THREE.PlaneGeometry(8, 70), 0xD9845A); track.rotation.x = -Math.PI / 2; track.position.set(0, 0.01, -28); S.add(track);
+  [-3.3, -1.1, 1.1, 3.3].forEach(x => { const l = mesh(new THREE.BoxGeometry(0.08, 0.02, 70), 0xffffff, false); l.position.set(x, 0.02, -28); S.add(l); });
+  const cv = document.createElement('canvas'); cv.width = 64; cv.height = 8; const cx = cv.getContext('2d');
+  for (let i = 0; i < 16; i++) for (let j = 0; j < 2; j++) { cx.fillStyle = (i + j) % 2 ? '#222' : '#fff'; cx.fillRect(i * 4, j * 4, 4, 4); }
+  const fin = new THREE.Mesh(new THREE.PlaneGeometry(6.6, 0.8), new THREE.MeshLambertMaterial({ map: new THREE.CanvasTexture(cv) })); fin.rotation.x = -Math.PI / 2; fin.position.set(0, 0.03, -40); S.add(fin);
+  [-3.6, 3.6].forEach(x => { const p = mesh(new THREE.CylinderGeometry(0.08, 0.08, 3), 0xffffff); p.position.set(x, 1.5, -40); S.add(p); });
+  const ban = mesh(new THREE.BoxGeometry(7.4, 0.6, 0.1), 0xF4C24B); ban.position.set(0, 3, -40); S.add(ban);
+  for (let i = 0; i < 14; i++) { const tr = new THREE.Group(); const tk = mesh(new THREE.CylinderGeometry(0.15, 0.2, 1.2), 0x8A6239); tk.position.y = 0.6; const lf = mesh(new THREE.SphereGeometry(0.8, 12, 10), 0x4E8B3A); lf.position.y = 1.6; tr.add(tk, lf); tr.position.set(i % 2 ? 7 : -7, 0, -i * 5); S.add(tr); }
+  const you = person(0xF4C24B, 0x3B2A20, '你', true), mei = person(0xE87FA4, 0x5A3A2A, '米米'), hua = person(0x6FA8DC, 0x2A2A2A, '大大');
+  const runners = [{ p: mei, x: -2.2, v: 4.6 + Math.random() * 0.3 }, { p: you, x: 0, v: 0, you: true }, { p: hua, x: 2.2, v: 4.0 + Math.random() * 0.3 }];
+  runners.forEach(r => { r.p.position.set(r.x, 0, 0); r.p.rotation.y = Math.PI; r.z = 0; r.done = false; r.ph = 0; S.add(r.p); });
+  G.camera.position.set(0, 3.2, 6); G.camera.lookAt(0, 1, -4);
+  let state = 'count', cd = 3.2, order = [], taps = 0, elapsed = 0, endT = 0, fx = null;
+  ui.hud(zh('準備……'));
+  ui.action('快按！跑跑跑！', () => { if (state === 'run') { const me = runners[1]; me.v = Math.min(6.4, me.v + 1.1); taps++; } }, true);
+  G.tick = dt => {
+    if (state === 'count') {
+      const before = Math.ceil(cd); cd -= dt; const now = Math.ceil(cd);
+      if (now !== before && now > 0) { ui.hud(`<span class="cd">${now}</span>`); beep(660); }
+      if (cd <= 0) { state = 'run'; ui.hud(`<span class="cd">${zh('跑！')}</span>`); beep(990, 0.3); ui.enable(true); }
+      return;
+    }
+    if (state === 'run' || state === 'end') {
+      elapsed += dt;
+      runners.forEach(r => {
+        if (r.done) { animStand(r.p); return; }
+        if (r.you) { r.v *= Math.exp(-1.5 * dt); if (elapsed > 14) r.v = Math.max(r.v, 3); }
+        r.z -= r.v * dt; r.ph += r.v * dt * 3.2; animWalk(r.p, r.ph, Math.min(0.9, r.v / 5));
+        r.p.position.z = r.z;
+        if (r.z <= -40) { r.done = true; order.push(r); if (r.you) { endT = 0; } }
+      });
+      const me = runners[1];
+      G.camera.position.z += ((me.z + 6) - G.camera.position.z) * Math.min(1, dt * 3);
+      G.camera.lookAt(0, 1, G.camera.position.z - 10);
+      if (state === 'run') ui.hud(zh(`距離終點 ${Math.max(0, Math.ceil(40 + me.z))} 公尺`));
+      if (me.done && state === 'run') {
+        state = 'end'; ui.enable(false);
+        const rank = order.indexOf(me) + 1;
+        ui.hud(`<span class="cd">${zh(`你是第 ${rank} 名`)}</span>`);
+        if (rank === 1) fx = confetti(new THREE.Vector3(0, 2, me.z));
+      }
+      if (state === 'end') { endT += dt; if (fx) fx(dt); if (endT > 2.2 && order.length === 3) { state = 'over'; const rank = order.indexOf(me) + 1; ui.finish(rank === 1, rank === 1 ? '你跑第一名！' : `你跑第 ${rank} 名，米米跑第一名。`, [mei, hua]); } }
+    }
+    if (state === 'over' && G.react) G.react(dt);
+  };
+}
+
+/* ---- level: musical chairs ---- */
+function setupChairs(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xF6EBD9); S.fog = null;
+  const floor = mesh(new THREE.PlaneGeometry(40, 40), 0xD9B98C); floor.rotation.x = -Math.PI / 2; S.add(floor);
+  const rug = mesh(new THREE.CylinderGeometry(3.4, 3.4, 0.02, 48), 0xE8C9A0); rug.position.y = 0.01; S.add(rug);
+  const wall = mesh(new THREE.BoxGeometry(40, 8, 0.2), 0xFBF6EE); wall.position.set(0, 4, -8); S.add(wall);
+  const board = mesh(new THREE.BoxGeometry(6, 2.4, 0.1), 0x2F5D4A); board.position.set(0, 3.6, -7.85); S.add(board);
+  const chairs = [0, 1, 2].map(i => {
+    const a = i * Math.PI * 2 / 3 + Math.PI / 2, c = new THREE.Group();
+    const seat = mesh(new THREE.BoxGeometry(0.7, 0.08, 0.7), 0xC4552A); seat.position.y = 0.55;
+    const back = mesh(new THREE.BoxGeometry(0.7, 0.7, 0.08), 0xC4552A); back.position.set(0, 0.95, -0.31);
+    c.add(seat, back);
+    [[-.3, -.3], [.3, -.3], [-.3, .3], [.3, .3]].forEach(([x, z]) => { const l = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55), 0x6B4A2B); l.position.set(x, 0.27, z); c.add(l); });
+    c.position.set(Math.cos(a) * 1.3, 0, Math.sin(a) * 1.3); c.rotation.y = Math.PI / 2 - a;
+    S.add(c); return { g: c, a, taken: null };
+  });
+  const ppl = [
+    { p: person(0xF4C24B, 0x3B2A20, '你', true), you: true, name: '你' },
+    { p: person(0xE87FA4, 0x5A3A2A, '米米'), delay: 0.42, name: '米米' },
+    { p: person(0x6FA8DC, 0x2A2A2A, '大大'), delay: 0.5, name: '大大' },
+    { p: person(0x8FCB6B, 0x6B3A1A, '跳跳'), delay: 0.58, name: '跳跳' },
+  ];
+  ppl.forEach((o, i) => { o.ang = i * Math.PI / 2; o.seat = null; S.add(o.p); });
+  G.camera.position.set(0, 6.5, 7.5); G.camera.lookAt(0, 0.8, 0);
+  let state = 'ready', stopAt = 0, tStop = 0, pressed = -1, ph = 0, endT = 0, fx = null, outGuy = null;
+  const place = () => ppl.forEach(o => { if (o.seat) return; o.p.position.set(Math.cos(o.ang) * 2.5, 0, Math.sin(o.ang) * 2.5); o.p.rotation.y = -o.ang; });
+  place();
+  ui.hud(zh('按「開始放音樂」，大家繞著椅子走'));
+  ui.action('開始放音樂', () => {
+    if (state === 'ready') { state = 'walk'; stopAt = 3.5 + Math.random() * 3.5; startMusic(); ui.label('坐下！'); ui.hud(zh('音樂在放……準備好！')); return; }
+    if (state === 'walk') { ui.hud(zh('音樂還沒停，再等一下！')); return; }
+    if (state === 'stop' && pressed < 0) { pressed = tStop; }
+  }, true);
+  ui.enable(true);
+  G.tick = dt => {
+    if (state === 'walk') {
+      stopAt -= dt; ph += dt * 7;
+      ppl.forEach(o => { o.ang += dt * 0.7; animWalk(o.p, ph); });
+      place();
+      if (stopAt <= 0) { state = 'stop'; tStop = 0; stopMusic(); beep(300, 0.25); ui.hud(`<span class="cd">${zh('音樂停了！快坐下！')}</span>`); }
+      return;
+    }
+    if (state === 'stop') {
+      tStop += dt;
+      const free = () => chairs.filter(c => !c.taken);
+      const grab = o => {
+        const c = free().sort((a, b) => Math.abs(((a.a - o.ang) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI) - Math.abs(((b.a - o.ang) % (2 * Math.PI) + 3 * Math.PI) % (2 * Math.PI) - Math.PI))[0];
+        c.taken = o; o.seat = c; o.from = o.p.position.clone(); o.k = 0;
+      };
+      ppl.forEach(o => {
+        if (o.seat || !free().length) return;
+        const t = o.you ? (pressed >= 0 ? pressed : Infinity) : o.delay;
+        if (tStop >= t) grab(o);
+      });
+      ppl.forEach(o => {
+        if (!o.seat || o.k >= 1) return;
+        o.k = Math.min(1, o.k + dt * 2.5);
+        const c = o.seat.g.position;
+        o.p.position.lerpVectors(o.from, new THREE.Vector3(c.x, 0, c.z), o.k);
+        o.p.rotation.y = o.seat.g.rotation.y;
+        if (o.k >= 1) animSit(o.p);
+        else animWalk(o.p, tStop * 12);
+      });
+      if (!free().length || tStop > 3) {
+        endT += dt;
+        if (endT > 1.4) {
+          state = 'over'; ui.enable(false);
+          outGuy = ppl.find(o => !o.seat);
+          if (outGuy) animStand(outGuy.p);
+          const won = !!ppl[0].seat;
+          if (won) fx = confetti(new THREE.Vector3(ppl[0].p.position.x, 2, ppl[0].p.position.z));
+          ui.hud(`<span class="cd">${zh(won ? '你搶到椅子了！' : '你沒有搶到椅子……')}</span>`);
+          ui.finish(won, won ? `你搶到椅子了！${outGuy ? outGuy.name + '這次出局了。' : ''}` : '你沒有搶到椅子，這次出局了。', ppl.slice(1).map(o => o.p));
+        }
+      }
+      return;
+    }
+    if (state === 'over') { if (fx) fx(dt); if (G.react) G.react(dt); }
+  };
+}
+
+/* ---- level: basketball ---- */
+function setupHoop(ui) {
+  const S = G.scene; S.background = new THREE.Color(0xCDE6F5); S.fog = null;
+  const court = mesh(new THREE.PlaneGeometry(30, 30), 0xD89B5B); court.rotation.x = -Math.PI / 2; S.add(court);
+  const key = mesh(new THREE.PlaneGeometry(3.6, 5.4), 0xC9874A); key.rotation.x = -Math.PI / 2; key.position.set(0, 0.01, -4.6); S.add(key);
+  const pole = mesh(new THREE.CylinderGeometry(0.12, 0.12, 3.4), 0x7A7064); pole.position.set(0, 1.7, -7.5); S.add(pole);
+  const bb = mesh(new THREE.BoxGeometry(1.8, 1.1, 0.08), 0xffffff); bb.position.set(0, 3.45, -7.2); S.add(bb);
+  const sq = mesh(new THREE.BoxGeometry(0.6, 0.45, 0.02), 0xD9534F, false); sq.position.set(0, 3.3, -7.15); S.add(sq);
+  const rim = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.03, 8, 24), mat(0xF08A5D)); rim.rotation.x = Math.PI / 2; rim.position.set(0, 3.05, -6.8); S.add(rim);
+  const net = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.2, 0.45, 16, 1, true), new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true })); net.position.set(0, 2.8, -6.8); S.add(net);
+  const you = person(0xF4C24B, 0x3B2A20, '你', true); you.rotation.y = Math.PI; you.position.set(-0.6, 0, 0); you.children.find(c => c.isSprite).visible = false; S.add(you);
+  const hua = person(0x6FA8DC, 0x2A2A2A, '大大'); hua.position.set(2.3, 0, -2.6); hua.rotation.y = -0.7; S.add(hua);
+  const ball = mesh(new THREE.SphereGeometry(0.16, 20, 14), 0xE8762B); S.add(ball);
+  G.camera.position.set(0.9, 2.5, 2.4); G.camera.lookAt(-0.2, 2.7, -6);
+  const HUAS = 3, SHOTS = 5;
+  let state = 'aim', made = 0, shots = 0, pow = 0, dir = 1, fly = null, endT = 0, fx = null;
+  const start = new THREE.Vector3(-0.35, 1.7, -0.35);
+  ball.position.copy(start);
+  you.userData.armL.rotation.x = you.userData.armR.rotation.x = -2.6;
+  ui.meter(true);
+  const hud = () => ui.hud(zh(`你：投進 ${made} 球　｜　大大：投進 ${HUAS} 球　｜　還有 ${SHOTS - shots} 球`));
+  hud();
+  ui.action('投籃！', () => {
+    if (state !== 'aim') return;
+    state = 'fly'; shots++;
+    const good = Math.abs(pow - 0.62) <= 0.08;
+    const D = 6.45 * (pow / 0.62);
+    fly = { u: 0, D, good, phase: 'arc', v: new THREE.Vector3() };
+  }, true);
+  ui.enable(true);
+  G.tick = dt => {
+    if (state === 'aim') { pow += dir * dt / 1.1; if (pow > 1) { pow = 1; dir = -1; } if (pow < 0) { pow = 0; dir = 1; } ui.setMeter(pow); }
+    if (state === 'fly' && fly) {
+      if (fly.phase === 'arc') {
+        fly.u = Math.min(1, fly.u + dt / 1.05);
+        const u = fly.u, z = start.z - fly.D * u, y = start.y + (3.15 - start.y) * u + 4 * 1.6 * u * (1 - u);
+        ball.position.set(start.x * (1 - u), y, z);
+        if (u >= 1) {
+          if (fly.good) { fly.phase = 'in'; beep(990, 0.25); made++; }
+          else if (fly.D > 6.45) { fly.phase = 'bounce'; fly.v.set(0, 1.2, 2.4); beep(220, 0.12); }
+          else { fly.phase = 'bounce'; fly.v.set(0, -0.5, 1.2); beep(220, 0.12); }
+        }
+      } else if (fly.phase === 'in') {
+        ball.position.y -= dt * 3; ball.position.z += (-6.8 - ball.position.z) * Math.min(1, dt * 8);
+        if (ball.position.y < 0.2) fly.phase = 'done';
+      } else if (fly.phase === 'bounce') {
+        fly.v.y -= 9.8 * dt; ball.position.addScaledVector(fly.v, dt);
+        if (ball.position.y < 0.16) { ball.position.y = 0.16; fly.v.y *= -0.45; fly.v.z *= 0.7; if (Math.abs(fly.v.y) < 0.6) fly.phase = 'done'; }
+      } else if (fly.phase === 'done') {
+        endT += dt;
+        if (endT > 0.6) {
+          endT = 0; fly = null; hud();
+          if (shots >= SHOTS) {
+            state = 'over'; ui.enable(false); ui.meter(false);
+            const won = made > HUAS;
+            if (won) fx = confetti(new THREE.Vector3(0, 2.5, -2));
+            ui.hud(`<span class="cd">${zh(won ? `你投進 ${made} 球，贏了！` : `你投進 ${made} 球，大大投進 ${HUAS} 球`)}</span>`);
+            ui.finish(won, won ? `你投進 ${made} 球，比大大多！` : `你投進 ${made} 球，大大投進 ${HUAS} 球，這次大大贏了。`, [hua]);
+          } else { state = 'aim'; ball.position.copy(start); }
+        }
+      }
+      return;
+    }
+    if (state === 'over') { if (fx) fx(dt); if (G.react) G.react(dt); }
+  };
+}
+
+
+  /* ---------- page flow ---------- */
+  const $ = id => document.getElementById(id);
+  let voice = null;
+  function pickVoice() { try { const vs = speechSynthesis.getVoices(); voice = vs.find(v => /zh[-_]TW/i.test(v.lang)) || vs.find(v => /^zh/i.test(v.lang)) || null; } catch (e) {} }
+  try { pickVoice(); speechSynthesis.addEventListener('voiceschanged', pickVoice); } catch (e) {}
+  function say(t) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.replace(/[「」]/g, '')); u.lang = 'zh-TW'; u.rate = 0.9; if (voice) u.voice = voice; speechSynthesis.speak(u); } catch (e) {} }
+  let timers = [];
+  const later = (f, ms) => { const t = setTimeout(f, ms); timers.push(t); return t; };
+  const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+  const STAR_KEY = 'sports3d-stars';
+  try { G.stars = JSON.parse(localStorage.getItem(STAR_KEY) || '{}') || {}; } catch (e) { G.stars = {}; }
+  const saveStars = () => { try { localStorage.setItem(STAR_KEY, JSON.stringify(G.stars)); } catch (e) {} };
+  const MC = ['#3FA36B', '#9BC53D', '#E2B21C', '#F08A24', '#D9442B'];
+  const FEELS = [['難過', '#5AB0F0'], ['生氣', '#D9442B'], ['失望', '#8E5CC4'], ['開心', '#3FA36B']];
+  const PEPS = ['沒關係，再試一次！', '輸了也沒關係，好玩最重要。', '我有在進步！', '下一次再加油！'];
+
+  function renderPick() {
+    g3dStop(); clearTimers();
+    $('spWrap').hidden = true; $('spCtl').hidden = true; $('spPanel').innerHTML = '';
+    const pick = $('spPick'); pick.hidden = false;
+    const n = Object.keys(LEVELS3D).filter(k => G.stars[k]).length;
+    pick.innerHTML = `<div class="sp-cards">${Object.entries(LEVELS3D).map(([k, L], i) => `<button class="sp-card" type="button" data-sp="${k}" style="--c:${L.col}">
+      <span class="sp-ic">${L.icon}</span><b>第 ${i + 1} 關　${L.name}</b><span class="sp-ds">${L.ds}</span>
+      <i class="sp-st" aria-label="${G.stars[k] ? '已拿到星星' : '還沒有星星'}">${G.stars[k] ? '★' : '☆'}</i></button>`).join('')}</div>
+      ${n === 3 ? '<p class="sp-fb ok">三關都拿到好風度星星了！輸了也沒關係，輸了以後怎麼做，才是最厲害的！</p>' : ''}
+      ${n ? '<button class="sp-reset" type="button" id="spReset">星星全部歸零</button>' : ''}`;
+    pick.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => startLevel(b.dataset.sp));
+    const r = $('spReset'); if (r) r.onclick = () => { if (r.dataset.arm) { G.stars = {}; saveStars(); renderPick(); } else { r.dataset.arm = 1; r.textContent = '再按一次，確定歸零'; } };
+  }
+  function startLevel(key) {
+    clearTimers();
+    const wrap = $('spWrap'), host = $('spHost'), ctl = $('spCtl'), act = $('spAct'), hudEl = $('spHud'), meter = $('spMeter');
+    G.level = key; G.react = null;
+    $('spPick').hidden = true;
+    wrap.hidden = false; ctl.hidden = false; act.hidden = false; $('spPanel').innerHTML = ''; meter.hidden = true; host.innerHTML = '';
+    $('spBack').onclick = () => { renderPick(); $('sports').scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+    if (!g3dInit(host)) return;
+    let fn = null;
+    const fire = () => { if (!act.disabled && fn) fn(); };
+    act.onpointerdown = e => { e.preventDefault(); fire(); };
+    act.onclick = e => { if (e.detail === 0) fire(); };
+    G.keyH = e => { if (e.code === 'Space' && !e.target.closest('input,textarea') && !wrap.hidden) { const r = wrap.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) { e.preventDefault(); fire(); } } };
+    document.addEventListener('keydown', G.keyH);
+    const ui = {
+      hud: h => { hudEl.innerHTML = h; },
+      action(lbl, f) { act.textContent = lbl; fn = f; act.disabled = true; },
+      enable(b) { act.disabled = !b; },
+      label(t) { act.textContent = t; },
+      meter(b) { meter.hidden = !b; },
+      setMeter(v) { meter.querySelector('i').style.width = (v * 100).toFixed(1) + '%'; },
+      finish(won, msg, npcs) { act.hidden = true; G.won = won; G.npcs = npcs; say(msg); later(() => showFeel(won, msg), 300); },
+    };
+    ({ race: setupRace, chairs: setupChairs, hoop: setupHoop })[key](ui);
+    wrap.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+  function panelSet(html) { const p = $('spPanel'); if (!p) return null; p.innerHTML = html; p.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); return p; }
+  function fbHtml(cls, a, b) { return `<div class="sp-fb ${cls}"><div>${a}</div>${b ? `<div class="sp-ex">${b}</div>` : ''}</div>`; }
+  function showFeel(won, msg) {
+    const p = panelSet(`${fbHtml(won ? 'ok' : 'info', msg)}<h3 class="sp-q">你現在是什麼心情？</h3>
+      <div class="sp-opts">${FEELS.map(([n, c], i) => `<button class="sp-opt" type="button" data-feel="${i}" style="--c:${c}">${n}</button>`).join('')}</div><div id="spFb"></div>`);
+    if (!p) return;
+    say('你現在是什麼心情？');
+    p.querySelectorAll('[data-feel]').forEach(b => b.onclick = () => {
+      p.querySelectorAll('[data-feel]').forEach(x => { x.classList.toggle('on', x === b); x.disabled = true; });
+      const nm = FEELS[+b.dataset.feel][0], happy = nm === '開心';
+      const t = won ? (happy ? '贏了好開心！開心的時候，也要想想朋友的心情。' : nm + '也沒關係，每個人的感覺都不一樣。')
+        : (happy ? '輸了還能開心玩，你好厲害！' : '覺得' + nm + '是可以的，每個人輸了都會不舒服。');
+      $('spFb').innerHTML = fbHtml('ok', t); say(t);
+      later(() => won ? showChoices() : showThermo(), 2200);
+    });
+  }
+  function showThermo() {
+    const p = panelSet(`<h3 class="sp-q">用心情溫度計量一量：你現在是幾度？</h3>
+      <div class="sp-thermo">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-t5="${i}" style="background:${MC[i - 1]}">${i} 度</button>`).join('')}</div><div id="spFb"></div>`);
+    if (!p) return;
+    say('用心情溫度計量一量：你現在是幾度？');
+    p.querySelectorAll('[data-t5]').forEach(b => b.onclick = () => {
+      p.querySelectorAll('[data-t5]').forEach(x => { x.classList.toggle('on', x === b); x.disabled = true; });
+      const n = +b.dataset.t5;
+      if (n >= 3) { const t = n + ' 度，溫度有點高。我們用冷靜三步：停、冷靜、說！'; $('spFb').innerHTML = fbHtml('info', t); say(t); later(calmStop, 2600); }
+      else { const t = n + ' 度，你很冷靜，好棒！'; $('spFb').innerHTML = fbHtml('ok', t); say(t); later(showChoices, 2000); }
+    });
+  }
+  function calmStop() {
+    const p = panelSet(`<div class="sp-step"><span class="sp-n">1</span><div><h3>停</h3><p>手放在腿上，嘴巴先不說話。</p></div></div>
+      <div class="btns"><button class="btn main" type="button" id="spStop">我停下來了</button></div>`);
+    if (!p) return;
+    say('第一步：停。手放在腿上，嘴巴先不說話。');
+    $('spStop').onclick = calmPick;
+  }
+  function calmPick() {
+    const M = [['cocoa', '熱可可呼吸'], ['lemon', '擠檸檬'], ['find', '找顏色']];
+    const p = panelSet(`<div class="sp-step"><span class="sp-n">2</span><div><h3>冷靜</h3><p>選一個冷靜小方法，大家一起做。</p></div></div>
+      <div class="sp-opts">${M.map(([k, n]) => `<button class="sp-opt" type="button" data-m="${k}" style="--c:#E8771E">${n}</button>`).join('')}</div>`);
+    if (!p) return;
+    say('第二步：冷靜。選一個冷靜小方法。');
+    p.querySelectorAll('[data-m]').forEach(b => b.onclick = () => runMethod(b.dataset.m));
+  }
+  function runMethod(k) {
+    const box = (big, txt, cls) => panelSet(`<div class="sp-guide"><div class="sp-orb ${cls || ''}">${big}</div><p>${txt}</p></div>`);
+    if (k === 'find') {
+      let n = 0;
+      const draw = () => {
+        const p = panelSet(`<div class="sp-guide"><div class="sp-orb">${n} / 5</div><p>選一個顏色，在教室裡找出 5 個那個顏色的東西。找到一個就按一下！</p>
+          <div class="btns"><button class="btn main" type="button" id="spFound">找到一個了！</button></div></div>`);
+        if (!p) return;
+        $('spFound').onclick = () => { n++; if (n >= 5) { say('找到 5 個了！'); later(calmSay, 900); box('5 / 5', '找到 5 個了！眼睛忙一忙，心情慢慢降溫了。'); } else draw(); };
+      };
+      say('選一個顏色，在教室裡找出 5 個那個顏色的東西。'); draw(); return;
+    }
+    const C = k === 'cocoa'
+      ? { a: '聞香味', at: '捧著熱可可，用鼻子慢慢聞香味（吸氣）……', b: '吹涼', bt: '嘴巴慢慢把熱可可吹涼（吐氣）……', end: '熱可可變溫溫的，心情也降溫了。' }
+      : { a: '握緊', at: '雙手用力握緊，像在擠檸檬汁……', b: '放開', bt: '放開，手軟軟的，好輕鬆……', end: '手放鬆了，心情也跟著放鬆了。' };
+    let r = 0;
+    const round = () => {
+      r++;
+      box(C.a, `第 ${r} / 3 次：${C.at}`, 'big'); say(C.a);
+      later(() => { box(C.b, `第 ${r} / 3 次：${C.bt}`, ''); say(C.b); }, 3500);
+      later(() => { if (r < 3) round(); else { box('很棒！', C.end); say(C.end); later(calmSay, 2200); } }, 7000);
+    };
+    round();
+  }
+  function calmSay() {
+    const p = panelSet(`<div class="sp-step"><span class="sp-n">3</span><div><h3>說</h3><p>選一句打氣的話，大聲對自己說。</p></div></div>
+      <div class="sp-opts">${PEPS.map((t, i) => `<button class="sp-opt" type="button" data-pep="${i}" style="--c:#3FA36B">「${t}」</button>`).join('')}</div>`);
+    if (!p) return;
+    say('第三步：說。選一句打氣的話。');
+    p.querySelectorAll('[data-pep]').forEach(b => b.onclick = () => {
+      p.querySelectorAll('[data-pep]').forEach(x => { x.classList.toggle('on', x === b); x.disabled = true; });
+      say(PEPS[+b.dataset.pep]); later(showChoices, 1800);
+    });
+  }
+  function showChoices() {
+    const list = G.won ? WIN_CHOICES : LOSE_CHOICES[G.level];
+    const order = list.map((_, i) => i).sort(() => Math.random() - .5);
+    const q = G.won ? '你贏了，接下來要怎麼做？' : '心情降溫了。接下來要怎麼做？';
+    const p = panelSet(`<h3 class="sp-q">${q}</h3><div class="sp-opts col">${order.map(i => `<button class="sp-opt" type="button" data-ch="${i}" style="--c:#2F6FD6">${list[i].t}</button>`).join('')}</div><div id="spFb"></div>`);
+    if (!p) return;
+    say(q);
+    p.querySelectorAll('[data-ch]').forEach(b => b.onclick = () => {
+      const c = list[+b.dataset.ch];
+      b.classList.add(c.good ? 'right' : 'wrong');
+      const fb = $('spFb');
+      if (c.good) {
+        p.querySelectorAll('[data-ch]').forEach(x => x.disabled = true);
+        reactGood();
+        const first = !G.stars[G.level];
+        G.stars[G.level] = true; saveStars();
+        const nx = Object.keys(LEVELS3D).find(k => !G.stars[k]);
+        fb.innerHTML = fbHtml('ok', first ? '好風度！拿到一顆星星！' : '好風度！', c.why) +
+          `<div class="btns"><button class="btn" type="button" id="spAgain">再玩一次</button>${nx ? `<button class="btn main" type="button" id="spNext">下一關：${LEVELS3D[nx].name}</button>` : '<button class="btn main" type="button" id="spDone">看我的星星</button>'}</div>`;
+        say((first ? '好風度！拿到一顆星星！' : '好風度！') + c.why);
+        $('spAgain').onclick = () => startLevel(G.level);
+        const nb = $('spNext'); if (nb) nb.onclick = () => startLevel(nx);
+        const db = $('spDone'); if (db) db.onclick = () => { renderPick(); $('sports').scrollIntoView({ block: 'start', behavior: 'smooth' }); };
+      } else {
+        b.disabled = true; reactBad();
+        fb.innerHTML = fbHtml('no', '朋友們不開心了……再選一次！', c.why);
+        say('朋友們不開心了，再選一次！' + c.why);
+      }
+    });
+  }
+  function faceCam(p) { const w = new THREE.Vector3(); p.getWorldPosition(w); return Math.atan2(G.camera.position.x - w.x, G.camera.position.z - w.z); }
+  function reactGood() {
+    if (!G.scene) return;
+    const npcs = G.npcs || [];
+    npcs.forEach(p => { p.userData.baseY = p.userData.baseY ?? p.position.y; p.userData.rotTo = faceCam(p); });
+    const look = new THREE.Vector3(); G.camera.getWorldDirection(look);
+    const fx = confetti(G.camera.position.clone().addScaledVector(look, 6).add(new THREE.Vector3(0, 1, 0)));
+    beep(784, .15); setTimeout(() => beep(1046, .25), 160);
+    let t = 0;
+    G.react = dt => {
+      t += dt; fx(dt);
+      npcs.forEach((p, i) => {
+        p.rotation.y += (p.userData.rotTo - p.rotation.y) * Math.min(1, dt * 6);
+        p.position.y = p.userData.baseY + Math.abs(Math.sin(t * 6 + i)) * 0.35;
+        const u = p.userData; u.armL.rotation.x = u.armR.rotation.x = -2.8 + Math.sin(t * 10 + i) * 0.3;
+      });
+    };
+  }
+  function reactBad() {
+    if (!G.scene) return;
+    const npcs = G.npcs || [];
+    npcs.forEach(p => { p.userData.baseY = p.userData.baseY ?? p.position.y; p.userData.rotTo = faceCam(p) + Math.PI; p.position.y = p.userData.baseY; });
+    beep(260, .3);
+    G.react = dt => {
+      npcs.forEach(p => {
+        p.rotation.y += (p.userData.rotTo - p.rotation.y) * Math.min(1, dt * 3);
+        const u = p.userData; u.armL.rotation.x += (0 - u.armL.rotation.x) * dt * 5; u.armR.rotation.x = u.armL.rotation.x;
+      });
+    };
+  }
+  renderPick();
+
+})();
+</script>
+<a href="../index.html#lesson" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body>
+</html>
