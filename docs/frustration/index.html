@@ -1,0 +1,648 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>輸了也沒關係</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@700;900&display=swap">
+<style>
+/* Layout: classroom slideshow for a 40-minute frustration-tolerance lesson; one step per screen, step chips + timer on top, big prev/next below. Calm teal-and-peach classroom look, deliberately light-only with every colour explicit. */
+:root {
+  color-scheme: light;
+  --paper: #FBF6EE;
+  --card: #FFFFFF;
+  --line: #EBE2D3;
+  --ink: #33302B;
+  --muted: #7A7064;
+  --teal: #237A80;
+  --teal-deep: #185A5F;
+  --teal-soft: #DDF0EF;
+  --peach: #F08A5D;
+  --peach-soft: #FDEADF;
+  --good: #2E8B57;
+  --good-soft: #E2F3E8;
+  --bad: #C64B3B;
+  --bad-soft: #FBE5E1;
+  --sun: #F4C24B;
+  --t1: #6CC08B; --t2: #A9D46B; --t3: #F4C24B; --t4: #F08A5D; --t5: #D9534F;
+  --f-kid: "LXGW WenKai TC", "Kaiti TC", "DFKai-SB", "BiauKai", "Noto Sans TC", serif;
+  --f-head: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--f-kid); font-size: 20px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 40px;
+}
+.wrap { max-width: 1100px; margin: 0 auto; display: grid; gap: 18px; }
+button { font: inherit; color: inherit; }
+button:focus-visible, input:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
+
+.z { display: inline-flex; align-items: center; vertical-align: middle; margin-right: .08em; }
+.z .h { line-height: 1.15; }
+.z .b { display: inline-grid; grid-template-columns: auto .42em; align-items: center; font-size: .42em; line-height: 1; margin-left: .1em; font-weight: 400; }
+.z .b i { grid-column: 1; font-style: normal; display: block; text-align: center; height: .9em; line-height: .9em; }
+.z .b i.nt { height: .6em; line-height: .3em; }
+.z .t { grid-column: 2; align-self: start; font-size: .8em; line-height: 1; transform: translateY(-.25em); }
+.p { display: inline-block; }
+.zt { display: inline; line-height: 1.8; }
+body.nozy .z .b { display: none; }
+body.nozy .zt { line-height: 1.5; }
+.hd .z .b i, .hd .z .t { font-family: var(--f-head); }
+
+header { padding-block: 18px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+header h1 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--teal); font-size: clamp(28px, 5vw, 42px); }
+.tools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pillbtn { cursor: pointer; border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 14px; font-family: var(--f-head); font-weight: 700; font-size: 15px; color: var(--muted); }
+.timer { display: flex; align-items: center; gap: 6px; background: var(--card); border: 2px solid var(--line); border-radius: 999px; padding: 3px 6px 3px 12px; font-family: var(--f-head); font-weight: 900; }
+.timer output { font-size: 18px; min-width: 3.2em; font-variant-numeric: tabular-nums; color: var(--teal); }
+.timer output.over { color: var(--bad); }
+.timer button { border: 0; cursor: pointer; border-radius: 999px; padding: 3px 10px; font-family: var(--f-head); font-weight: 700; font-size: 13px; background: var(--teal-soft); color: var(--teal); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { cursor: pointer; font-family: var(--f-head); font-weight: 700; font-size: 14px; border: 2px solid var(--line); background: var(--card); color: var(--muted); border-radius: 999px; padding: 3px 11px 5px; }
+.chip[aria-current="step"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+.step { background: var(--card); border: 3px solid var(--line); border-radius: 28px; padding: clamp(16px, 3.4vw, 32px); display: grid; gap: 18px; min-width: 0; }
+.step-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.num { flex: none; width: 60px; height: 60px; border-radius: 50%; background: var(--teal); color: #fff; font-family: var(--f-head); font-weight: 900; font-size: 32px; display: grid; place-items: center; box-shadow: 0 5px 0 var(--teal-deep); }
+.step h2 { margin: 0; font-family: var(--f-head); font-weight: 900; color: var(--teal); font-size: clamp(28px, 4.6vw, 42px); text-wrap: balance; }
+.mins { font-family: var(--f-head); font-weight: 700; font-size: 15px; color: var(--muted); background: var(--paper); border-radius: 999px; padding: 3px 12px; }
+.lead { margin: 0; font-size: clamp(24px, 3.6vw, 32px); color: var(--peach); font-weight: 700; }
+.big { margin: 0; font-size: clamp(24px, 3.8vw, 34px); font-weight: 700; }
+.teacher { font-family: var(--f-head); font-size: 15px; color: var(--muted); background: var(--paper); border-radius: 12px; padding: 10px 14px; margin: 0; line-height: 1.6; }
+.teacher b { color: var(--teal); }
+.speak { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 17px; font-weight: 700; color: var(--teal); background: var(--card); border: 2px solid #B9DCDA; border-radius: 999px; padding: 3px 12px 3px 8px; vertical-align: middle; }
+.speak svg { width: 20px; height: 20px; }
+.nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.btn { cursor: pointer; font-family: var(--f-head); font-weight: 900; font-size: 21px; color: #fff; background: var(--teal); border: 0; border-radius: 999px; padding: 10px 26px 12px; box-shadow: 0 5px 0 var(--teal-deep); }
+.btn:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--teal-deep); }
+.btn.ghost { background: var(--card); color: var(--teal); border: 2px solid #B9DCDA; box-shadow: 0 5px 0 #B9DCDA; }
+.btn.peach { background: var(--peach); box-shadow: 0 5px 0 #C46A42; }
+.btn:disabled { opacity: .35; cursor: default; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* short clip */
+.player { background: #22333A; border-radius: 22px; padding: 10px; display: grid; gap: 8px; }
+.screen { position: relative; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 14px; overflow: hidden; background: #F3EBDD; container-type: inline-size; }
+.screen svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cap { position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%); background: rgba(20,24,28,.82); color: #fff; border-radius: 1.4cqw; padding: .6cqw 2cqw 1cqw; font-size: 3.4cqw; font-weight: 700; max-width: 94%; text-align: center; }
+.cap:empty { display: none; }
+.cover { position: absolute; inset: 0; background: rgba(20,32,36,.72); display: grid; place-items: center; text-align: center; color: #fff; gap: 2cqw; }
+.cover .ttl { font-family: var(--f-head); font-size: 4.6cqw; font-weight: 900; }
+.cover button { width: 13cqw; height: 13cqw; min-width: 64px; min-height: 64px; border-radius: 50%; border: 0; background: var(--sun); cursor: pointer; display: grid; place-items: center; }
+.cover button svg { width: 45%; height: 45%; margin-left: 8%; }
+.ctrl { display: flex; align-items: center; gap: 10px; color: #fff; padding: 0 4px 2px; }
+.ctrl button { border: 0; background: rgba(255,255,255,.14); color: #fff; border-radius: 10px; padding: 4px 12px; cursor: pointer; font-family: var(--f-head); font-weight: 700; font-size: 14px; }
+.prog { flex: 1; height: 8px; background: rgba(255,255,255,.2); border-radius: 4px; overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0; background: var(--sun); }
+
+/* choices */
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.opt { cursor: pointer; background: var(--card); border: 3px solid var(--line); border-radius: 20px; padding: 14px; font-size: clamp(21px, 3.2vw, 27px); font-weight: 700; display: grid; justify-items: center; gap: 6px; text-align: center; box-shadow: 0 4px 0 var(--line); }
+.opt svg { width: 72px; height: 72px; }
+.opt.right { border-color: var(--good); background: var(--good-soft); box-shadow: 0 4px 0 var(--good); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); box-shadow: 0 4px 0 var(--bad); }
+.opt.on { border-color: var(--teal); background: var(--teal-soft); box-shadow: 0 4px 0 var(--teal); }
+.opt:disabled { cursor: default; }
+.fb { border-radius: 18px; padding: 12px 16px; font-size: clamp(21px, 3.2vw, 26px); font-weight: 700; display: grid; gap: 4px; }
+.fb.ok { background: var(--good-soft); color: var(--good); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb.info { background: var(--teal-soft); color: var(--teal); }
+.fb .ex { color: var(--ink); font-weight: 400; }
+
+/* thermometer */
+.thermo { display: grid; grid-template-columns: 96px 1fr; gap: 18px; align-items: stretch; }
+@media (max-width: 640px) { .thermo { grid-template-columns: 70px 1fr; } }
+.tube { position: relative; border-radius: 48px; background: #F1ECE3; border: 4px solid var(--line); display: flex; flex-direction: column-reverse; overflow: hidden; min-height: 420px; }
+.tube button { flex: 1; border: 0; cursor: pointer; font-family: var(--f-head); font-weight: 900; font-size: 28px; color: #fff; opacity: .35; }
+.tube button.on { opacity: 1; }
+.levels { display: grid; gap: 10px; }
+.lv { cursor: pointer; display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center; background: var(--card); border: 3px solid var(--line); border-radius: 18px; padding: 10px 14px; text-align: left; }
+.lv svg { width: 60px; height: 60px; }
+.lv .nm { font-size: clamp(21px, 3.2vw, 26px); font-weight: 700; }
+.lv .ds { font-size: clamp(17px, 2.4vw, 20px); color: var(--muted); }
+.lv .todo { font-size: clamp(17px, 2.4vw, 20px); color: var(--teal); font-weight: 700; }
+.lv.on { border-color: var(--teal); background: var(--teal-soft); }
+
+/* calm tools */
+.tools4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.tool { cursor: pointer; border: 3px solid var(--line); background: var(--card); border-radius: 22px; padding: 14px; display: grid; gap: 6px; justify-items: center; text-align: center; box-shadow: 0 4px 0 var(--line); }
+.tool svg { width: 80px; height: 80px; }
+.tool .nm { font-size: clamp(22px, 3.2vw, 27px); font-weight: 700; color: var(--teal); }
+.tool .ds { font-size: 18px; color: var(--muted); }
+.tool.on { border-color: var(--teal); background: var(--teal-soft); box-shadow: 0 4px 0 var(--teal); }
+.guide { background: var(--teal-soft); border-radius: 24px; padding: 20px; display: grid; justify-items: center; gap: 12px; text-align: center; min-height: 260px; align-content: center; }
+.guide .gbig { font-family: var(--f-head); font-weight: 900; font-size: clamp(40px, 8vw, 72px); color: var(--teal); line-height: 1.1; }
+.guide .gtxt { font-size: clamp(24px, 4vw, 34px); font-weight: 700; }
+.guide svg.anim { width: 160px; height: 160px; transition: transform 3s ease-in-out; }
+
+/* thoughts */
+.flips { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.flip { cursor: pointer; border: 0; padding: 0; background: none; perspective: 900px; min-height: 170px; }
+.flip .in { position: relative; width: 100%; height: 100%; min-height: 170px; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3,1.3,.5,1); }
+.flip.on .in { transform: rotateY(180deg); }
+.flip .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 22px; padding: 16px; display: grid; place-items: center; text-align: center; gap: 6px; }
+.flip .bad { background: #EDE7F1; border: 3px solid #CDBEDB; color: #5C4A70; }
+.flip .good { background: var(--good-soft); border: 3px solid #A8D8B9; color: var(--good); transform: rotateY(180deg); }
+.flip .face b { font-size: clamp(23px, 3.4vw, 29px); }
+.flip .face small { font-family: var(--f-head); font-size: 14px; opacity: .8; }
+
+/* spinner practice */
+.practice { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+@media (max-width: 760px) { .practice { grid-template-columns: 1fr; } }
+.wheel-wrap { position: relative; width: min(340px, 100%); margin: 0 auto; aspect-ratio: 1; }
+.wheel-wrap svg { width: 100%; height: 100%; }
+#wheel { transition: transform 3.2s cubic-bezier(.15,.85,.2,1); transform-origin: 50% 50%; }
+.pointer { position: absolute; left: 50%; top: -6px; transform: translateX(-50%); width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-top: 34px solid var(--ink); }
+.who { display: flex; gap: 6px; flex-wrap: wrap; }
+.who button { cursor: pointer; border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 12px; font-family: var(--f-head); font-weight: 700; font-size: 16px; }
+.who button[aria-pressed="true"] { background: var(--teal); color: #fff; border-color: var(--teal); }
+.checks { display: grid; gap: 8px; }
+.ck { cursor: pointer; display: flex; gap: 12px; align-items: center; background: var(--card); border: 3px solid var(--line); border-radius: 16px; padding: 10px 14px; font-size: clamp(20px, 3vw, 24px); font-weight: 700; text-align: left; }
+.ck .box { width: 30px; height: 30px; border-radius: 8px; border: 3px solid var(--line); flex: none; display: grid; place-items: center; color: #fff; font-size: 20px; font-family: var(--f-head); }
+.ck.on { border-color: var(--good); background: var(--good-soft); }
+.ck.on .box { background: var(--good); border-color: var(--good); }
+.board { display: grid; gap: 6px; }
+.brow { display: grid; grid-template-columns: minmax(0, 6em) 1fr auto; gap: 10px; align-items: center; background: var(--paper); border-radius: 12px; padding: 6px 12px; }
+.brow .nm { font-family: var(--f-head); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.brow .st { color: var(--sun); letter-spacing: 1px; overflow: hidden; white-space: nowrap; font-size: 22px; }
+.brow b { font-family: var(--f-head); font-variant-numeric: tabular-nums; }
+.names input { font: inherit; font-size: 16px; border: 2px solid var(--line); border-radius: 10px; padding: 4px 8px; width: 100%; min-width: 0; }
+.names { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 120px), 1fr)); gap: 6px; }
+details summary { cursor: pointer; font-family: var(--f-head); font-weight: 700; color: var(--muted); font-size: 15px; }
+
+/* plan card */
+.plan { border: 6px double var(--teal); border-radius: 24px; padding: 18px 20px; display: grid; gap: 12px; background: #FFFDF8; }
+.plan h3 { margin: 0; font-family: var(--f-head); color: var(--teal); font-size: 28px; }
+.prow { display: grid; grid-template-columns: 8.5em 1fr; gap: 10px; align-items: start; border-top: 2px dashed var(--line); padding-top: 10px; }
+@media (max-width: 560px) { .prow { grid-template-columns: 1fr; } }
+.prow > b { color: var(--peach); font-size: 22px; }
+.picks { display: flex; gap: 8px; flex-wrap: wrap; }
+.picks button { cursor: pointer; border: 2px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 14px; font-size: 20px; font-weight: 700; }
+.picks button[aria-pressed="true"] { background: var(--teal); color: #fff; border-color: var(--teal); }
+.motto { text-align: center; font-family: var(--f-head); font-weight: 900; font-size: clamp(26px, 4.6vw, 40px); color: var(--peach); margin: 0; }
+footer { text-align: center; color: var(--muted); font-size: 14px; font-family: var(--f-head); }
+@keyframes pop { 0% { transform: scale(.7); opacity: .4 } 70% { transform: scale(1.05) } 100% { transform: scale(1); opacity: 1 } }
+.pop { animation: pop .3s ease-out; }
+@media (prefers-reduced-motion: reduce) { .pop { animation: none; } #wheel, .flip .in, .guide svg.anim { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 class="hd" data-zh="輸了也沒關係"></h1>
+    <div class="tools">
+      <div class="timer" aria-label="計時器"><output id="clock">0:00</output><button type="button" id="tgo">開始</button><button type="button" id="treset">重來</button></div>
+      <button class="pillbtn" type="button" id="zyBtn">注音：開</button>
+    </div>
+  </header>
+  <nav class="chips" id="chips" aria-label="上課步驟"></nav>
+  <main id="main"></main>
+  <div class="nav">
+    <button class="btn ghost" type="button" id="prev"></button>
+    <button class="btn" type="button" id="next"></button>
+  </div>
+  <footer>二年級資源班社會技巧課｜挫折容忍｜約 40 分鐘｜鍵盤左右鍵可以換頁</footer>
+</div>
+
+<script>
+const ZY = {"行": "ㄒㄧㄥˊ", "動": "ㄉㄨㄥˋ", "牌": "ㄆㄞˊ", "登": "ㄉㄥ", "場": "ㄔㄤˇ", "學": "ㄒㄩㄝˊ", "會": "ㄏㄨㄟˋ", "基": "ㄐㄧ", "本": "ㄅㄣˇ", "玩": "ㄨㄢˊ", "法": "ㄈㄚˇ", "後": "ㄏㄡˋ", "再": "ㄗㄞˋ", "加": "ㄐㄧㄚ", "入": "ㄖㄨˋ", "特": "ㄊㄜˋ", "殊": "ㄕㄨ", "能": "ㄋㄥˊ", "力": "ㄌㄧˋ", "交": "ㄐㄧㄠ", "換": "ㄏㄨㄢˋ", "任": "ㄖㄣˋ", "務": "ㄨˋ", "大": "ㄉㄚˋ", "風": "ㄈㄥ", "吹": "ㄔㄨㄟ", "重": "ㄔㄨㄥˊ", "洗": "ㄒㄧˇ", "手": "ㄕㄡˇ", "移": "ㄧˊ", "一": "ㄧ", "張": "ㄓㄤ", "拿": "ㄋㄚˊ", "回": "ㄏㄨㄟˊ", "元": "ㄩㄢˊ", "素": "ㄙㄨˋ", "你": "ㄋㄧˇ", "和": "ㄏㄜˊ", "位": "ㄨㄟˋ", "家": "ㄐㄧㄚ", "所": "ㄙㄨㄛˇ", "有": "ㄧㄡˇ", "的": "˙ㄉㄜ", "起": "ㄑㄧˇ", "往": "ㄨㄤˇ", "同": "ㄊㄨㄥˊ", "個": "ㄍㄜˋ", "方": "ㄈㄤ", "向": "ㄒㄧㄤˋ", "傳": "ㄔㄨㄢˊ", "把": "ㄅㄚˇ", "收": "ㄕㄡ", "來": "ㄌㄞˊ", "發": "ㄈㄚ", "去": "ㄑㄩˋ", "桌": "ㄓㄨㄛ", "上": "ㄕㄤˋ", "到": "ㄉㄠˋ", "別": "ㄅㄧㄝˊ", "地": "ㄉㄧˋ", "也": "ㄧㄝˇ", "可": "ㄎㄜˇ", "以": "ㄧˇ", "轉": "ㄓㄨㄢˇ", "全": "ㄑㄩㄢˊ", "部": "ㄅㄨˋ", "自": "ㄗˋ", "己": "ㄐㄧˇ", "選": "ㄒㄩㄢˇ", "兩": "ㄌㄧㄤˇ", "人": "ㄖㄣˊ", "互": "ㄏㄨˋ", "左": "ㄗㄨㄛˇ", "或": "ㄏㄨㄛˋ", "右": "ㄧㄡˋ", "都": "ㄉㄡ", "從": "ㄘㄨㄥˊ", "出": "ㄔㄨ", "開": "ㄎㄞ", "始": "ㄕˇ", "在": "ㄗㄞˋ", "原": "ㄩㄢˊ", "半": "ㄅㄢˋ", "圈": "ㄑㄩㄢ", "比": "ㄅㄧˇ", "較": "ㄐㄧㄠˋ", "多": "ㄉㄨㄛ", "過": "ㄍㄨㄛˋ", "就": "ㄐㄧㄡˋ", "賺": "ㄓㄨㄢˋ", "了": "˙ㄌㄜ", "些": "ㄒㄧㄝ", "變": "ㄅㄧㄢˋ", "記": "ㄐㄧˋ", "住": "ㄓㄨˋ", "這": "ㄓㄜˋ", "六": "ㄌㄧㄡˋ", "吧": "˙ㄅㄚ", "給": "ㄍㄟˇ", "另": "ㄌㄧㄥˋ", "接": "ㄐㄧㄝ", "得": "ㄉㄜˊ", "下": "ㄒㄧㄚˋ", "不": "ㄅㄨˋ", "五": "ㄨˇ", "什": "ㄕㄣˊ", "係": "˙ㄒㄧ", "候": "˙ㄏㄡ", "做": "ㄗㄨㄛˋ", "先": "ㄒㄧㄢ", "只": "ㄓˇ", "叫": "ㄐㄧㄠˋ", "名": "ㄇㄧㄥˊ", "哪": "ㄋㄚˇ", "喔": "ㄛ", "嗎": "˙ㄇㄚ", "堂": "ㄊㄤˊ", "好": "ㄏㄠˇ", "字": "ㄗˋ", "完": "ㄨㄢˊ", "對": "ㄉㄨㄟˋ", "小": "ㄒㄧㄠˇ", "年": "ㄋㄧㄢˊ", "影": "ㄧㄥˇ", "很": "ㄏㄣˇ", "怎": "ㄗㄣˇ", "想": "ㄒㄧㄤˇ", "成": "ㄔㄥˊ", "才": "ㄘㄞˊ", "放": "ㄈㄤˋ", "是": "ㄕˋ", "時": "ㄕˊ", "最": "ㄗㄨㄟˋ", "案": "ㄢˋ", "棒": "ㄅㄤˋ", "楚": "˙ㄔㄨ", "樣": "ㄧㄤˋ", "次": "ㄘˋ", "正": "ㄓㄥˋ", "沒": "ㄇㄟˊ", "清": "ㄑㄧㄥ", "測": "ㄘㄜˋ", "片": "ㄆㄧㄢˋ", "用": "ㄩㄥˋ", "目": "ㄇㄨˋ", "看": "ㄎㄢˋ", "確": "ㄑㄩㄝˋ", "答": "ㄉㄚˊ", "紀": "ㄐㄧˋ", "績": "ㄐㄧ", "習": "ㄒㄧˊ", "考": "ㄎㄠˇ", "聽": "ㄊㄧㄥ", "裡": "ㄌㄧˇ", "複": "ㄈㄨˋ", "要": "ㄧㄠˋ", "誰": "ㄕㄟˊ", "送": "ㄙㄨㄥˋ", "還": "ㄏㄞˊ", "關": "ㄍㄨㄢ", "面": "ㄇㄧㄢˋ", "題": "ㄊㄧˊ", "驗": "ㄧㄢˋ", "高": "ㄍㄠ", "麼": "˙ㄇㄜ", "水": "ㄕㄨㄟˇ", "瓶": "ㄆㄧㄥˊ", "座": "ㄗㄨㄛˋ", "認": "ㄖㄣˋ", "識": "ㄕˊ", "準": "ㄓㄨㄣˇ", "備": "ㄅㄟˋ", "輪": "ㄌㄨㄣˊ", "贏": "ㄧㄥˊ", "種": "ㄓㄨㄥˇ", "顏": "ㄧㄢˊ", "色": "ㄙㄜˋ", "格": "ㄍㄜˊ", "四": "ㄙˋ", "子": "˙ㄗ", "中": "ㄓㄨㄥ", "間": "ㄐㄧㄢ", "每": "ㄇㄟˇ", "偷": "ㄊㄡ", "三": "ㄙㄢ", "堆": "ㄉㄨㄟ", "連": "ㄌㄧㄢˊ", "那": "ㄋㄚˋ", "保": "ㄅㄠˇ", "密": "ㄇㄧˋ", "綠": "ㄌㄩˋ", "抽": "ㄔㄡ", "碰": "ㄆㄥˋ", "七": "ㄑㄧ", "算": "ㄙㄨㄢˋ", "樂": "ㄌㄜˋ", "機": "ㄐㄧ", "天": "ㄊㄧㄢ", "空": "ㄎㄨㄥ", "草": "ㄘㄠˇ", "火": "ㄏㄨㄛˇ", "焰": "ㄧㄢˋ", "太": "ㄊㄞˋ", "卡": "ㄎㄚˇ", "秘": "ㄇㄧˋ", "標": "ㄅㄧㄠ", "讓": "ㄖㄤˋ", "萬": "ㄨㄢˋ", "當": "ㄉㄤ", "作": "ㄗㄨㄛˋ", "何": "ㄏㄜˊ", "遊": "ㄧㄡˊ", "戲": "ㄒㄧˋ", "翻": "ㄈㄢ", "前": "ㄑㄧㄢˊ", "件": "ㄐㄧㄢˋ", "事": "ㄕˋ", "我": "ㄨㄛˇ", "跳": "ㄊㄧㄠˋ", "至": "ㄓˋ", "少": "ㄕㄠˇ", "相": "ㄒㄧㄤ", "新": "ㄒㄧㄣ", "直": "ㄓˊ", "齊": "ㄑㄧˊ", "之": "ㄓ", "邊": "ㄅㄧㄢ", "橫": "ㄏㄥˊ", "整": "ㄓㄥˇ", "角": "ㄐㄧㄠˇ", "獲": "ㄏㄨㄛˋ", "勝": "ㄕㄥˋ", "立": "ㄌㄧˋ", "刻": "ㄎㄜˋ", "錯": "ㄘㄨㄛˋ", "誤": "ㄨˋ", "妙": "ㄇㄧㄠˋ", "招": "ㄓㄠ", "二": "ㄦˋ", "級": "ㄐㄧˊ", "資": "ㄗ", "源": "ㄩㄢˊ", "班": "ㄅㄢ", "總": "ㄗㄨㄥˇ", "結": "ㄐㄧㄝˊ", "課": "ㄎㄜˋ", "步": "ㄅㄨˋ", "驟": "ㄓㄡˋ", "教": "ㄐㄧㄠˋ", "鍵": "ㄐㄧㄢˋ", "盤": "ㄆㄢˊ", "頁": "ㄧㄝˋ", "快": "ㄎㄨㄞˋ", "走": "ㄗㄡˇ", "他": "ㄊㄚ", "幫": "ㄅㄤ", "難": "ㄋㄢˊ", "容": "ㄖㄨㄥˊ", "易": "ㄧˋ", "找": "ㄓㄠˇ", "美": "ㄇㄟˇ", "已": "ㄧˇ", "經": "ㄐㄧㄥ", "剩": "ㄕㄥˋ", "華": "ㄏㄨㄚˊ", "她": "ㄊㄚ", "留": "ㄌㄧㄡˊ", "著": "˙ㄓㄜ", "幾": "ㄐㄧˇ", "乎": "ㄏㄨ", "明": "ㄇㄧㄥˊ", "流": "ㄌㄧㄡˊ", "程": "ㄔㄥˊ", "圖": "ㄊㄨˊ", "練": "ㄌㄧㄢˋ", "實": "ㄕˊ", "戰": "ㄓㄢˋ", "豆": "ㄉㄡˋ", "今": "ㄐㄧㄣ", "厲": "ㄌㄧˋ", "害": "ㄏㄞˋ", "問": "ㄨㄣˋ", "知": "ㄓ", "道": "ㄉㄠˋ", "卻": "ㄑㄩㄝˋ", "老": "ㄌㄠˇ", "師": "ㄕ", "提": "ㄊㄧˊ", "示": "ㄕˋ", "投": "ㄊㄡˊ", "圓": "ㄩㄢˊ", "點": "ㄉㄧㄢˇ", "生": "ㄕㄥ", "請": "ㄑㄧㄥˇ", "句": "ㄐㄩˋ", "說": "ㄕㄨㄛ", "理": "ㄌㄧˇ", "由": "ㄧㄡˊ", "紅": "ㄏㄨㄥˊ", "框": "ㄎㄨㄤ", "項": "ㄒㄧㄤˋ", "零": "ㄌㄧㄥˊ", "其": "ㄑㄧˊ", "應": "ㄧㄥ", "該": "ㄍㄞ", "等": "ㄉㄥˇ", "們": "˙ㄇㄣ", "它": "ㄊㄚ", "指": "ㄓˇ", "適": "ㄕˋ", "合": "ㄏㄜˊ", "照": "ㄓㄠˋ", "順": "ㄕㄨㄣˋ", "序": "ㄒㄩˋ", "範": "ㄈㄢˋ", "亮": "ㄌㄧㄤˋ", "例": "ㄌㄧˋ", "如": "ㄖㄨˊ", "虛": "ㄒㄩ", "線": "ㄒㄧㄢˋ", "按": "ㄢˋ", "試": "ㄕˋ", "八": "ㄅㄚ", "九": "ㄐㄧㄡˇ", "十": "ㄕˊ", "更": "ㄍㄥˋ", "糟": "ㄗㄠ", "糕": "ㄍㄠ", "進": "ㄐㄧㄣˋ", "階": "ㄐㄧㄝ", "現": "ㄒㄧㄢˋ", "建": "ㄐㄧㄢˋ", "議": "ㄧˋ", "黃": "ㄏㄨㄤˊ", "度": "ㄉㄨˋ", "醫": "ㄧ", "因": "ㄧㄣ", "為": "ㄨㄟˋ", "第": "ㄉㄧˋ", "話": "ㄏㄨㄚˋ", "忙": "ㄇㄤˊ", "顆": "ㄎㄜ", "錄": "ㄌㄨˋ", "號": "ㄏㄠˋ", "減": "ㄐㄧㄢˇ", "定": "ㄉㄧㄥˋ", "歸": "ㄍㄨㄟ", "取": "ㄑㄩˇ", "消": "ㄒㄧㄠ", "存": "ㄘㄨㄣˊ", "台": "ㄊㄞˊ", "電": "ㄉㄧㄢˋ", "腦": "ㄋㄠˇ", "瀏": "ㄌㄧㄡˊ", "覽": "ㄌㄢˇ", "器": "ㄑㄧˋ", "數": "ㄕㄨˇ", "冠": "ㄍㄨㄢˋ", "囉": "˙ㄌㄨㄛ", "輸": "ㄕㄨ", "計": "ㄐㄧˋ", "注": "ㄓㄨˋ", "音": "ㄧㄣ", "社": "ㄕㄜˋ", "技": "ㄐㄧˋ", "巧": "ㄑㄧㄠˇ", "挫": "ㄘㄨㄛˋ", "折": "ㄓㄜˊ", "忍": "ㄖㄣˇ", "約": "ㄩㄝ", "分": "ㄈㄣ", "鐘": "ㄓㄨㄥ", "氣": "ㄑㄧˋ", "失": "ㄕ", "望": "ㄨㄤˋ", "心": "ㄒㄧㄣ", "星": "ㄒㄧㄥ", "故": "ㄍㄨˋ", "朋": "ㄆㄥˊ", "友": "ㄧㄡˇ", "符": "ㄈㄨˊ", "搶": "ㄑㄧㄤˇ", "槌": "ㄔㄨㄟˊ", "雨": "ㄩˇ", "傘": "ㄙㄢˇ", "又": "ㄧㄡˋ", "熱": "ㄖㄜˋ", "狗": "ㄍㄡˇ", "堡": "ㄅㄠˇ", "慢": "ㄇㄢˋ", "眼": "ㄧㄢˇ", "淚": "ㄌㄟˋ", "掉": "ㄉㄧㄠˋ", "哭": "ㄎㄨ", "吸": "ㄒㄧ", "呼": "ㄏㄨ", "降": "ㄐㄧㄤˋ", "溫": "ㄨㄣ", "魔": "ㄇㄛˊ", "聞": "ㄨㄣˊ", "花": "ㄏㄨㄚ", "蠟": "ㄌㄚˋ", "燭": "ㄓㄨˊ", "深": "ㄕㄣ", "恭": "ㄍㄨㄥ", "喜": "ㄒㄧˇ", "繼": "ㄐㄧˋ", "續": "ㄒㄩˋ", "局": "ㄐㄩˊ", "跟": "ㄍㄣ", "播": "ㄅㄛ", "短": "ㄉㄨㄢˇ", "情": "ㄑㄧㄥˊ", "身": "ㄕㄣ", "冷": "ㄌㄥˇ", "靜": "ㄐㄧㄥˋ", "構": "ㄍㄡˋ", "帶": "ㄉㄞˋ", "境": "ㄐㄧㄥˋ", "感": "ㄍㄢˇ", "覺": "ㄐㄩㄝˊ", "願": "ㄩㄢˋ", "意": "ㄧˋ", "享": "ㄒㄧㄤˇ", "勉": "ㄇㄧㄢˇ", "強": "ㄑㄧㄤˊ", "臉": "ㄌㄧㄢˇ", "常": "ㄔㄤˊ", "舒": "ㄕㄨ", "服": "ㄈㄨˊ", "平": "ㄆㄧㄥˊ", "悶": "ㄇㄣˋ", "嘴": "ㄗㄨㄟˇ", "巴": "ㄅㄚ", "嘟": "ㄉㄨ", "體": "ㄊㄧˇ", "告": "ㄍㄠˋ", "訴": "ㄙㄨˋ", "爆": "ㄅㄠˋ", "炸": "ㄓㄚˋ", "丟": "ㄉㄧㄡ", "東": "ㄉㄨㄥ", "西": "ㄒㄧ", "休": "ㄒㄧㄡ", "息": "ㄒㄧ", "越": "ㄩㄝˋ", "辦": "ㄅㄢˋ", "概": "ㄍㄞˋ", "升": "ㄕㄥ", "假": "ㄐㄧㄚˇ", "裝": "ㄓㄨㄤ", "鼻": "ㄅㄧˊ", "握": "ㄨㄛˋ", "拳": "ㄑㄩㄢˊ", "緊": "ㄐㄧㄣˇ", "秒": "ㄇㄧㄠˇ", "需": "ㄒㄩ", "舉": "ㄐㄩˇ", "歡": "ㄏㄨㄢ", "室": "ㄕˋ", "布": "ㄅㄨˋ", "置": "ㄓˋ", "被": "ㄅㄟˋ", "允": "ㄩㄣˇ", "許": "ㄒㄩˇ", "稱": "ㄔㄥ", "讚": "ㄗㄢˋ", "涼": "ㄌㄧㄤˊ", "香": "ㄒㄧㄤ", "雙": "ㄕㄨㄤ", "頭": "ㄊㄡˊ", "輕": "ㄑㄧㄥ", "鬆": "ㄙㄨㄥ", "坐": "ㄗㄨㄛˋ", "勇": "ㄩㄥˇ", "敢": "ㄍㄢˇ", "爛": "ㄌㄢˋ", "公": "ㄍㄨㄥ", "笑": "ㄒㄧㄠˋ", "袋": "ㄉㄞˋ", "跑": "ㄆㄠˇ", "助": "ㄓㄨˋ", "貼": "ㄊㄧㄝ", "近": "ㄐㄧㄣˋ", "狀": "ㄓㄨㄤˋ", "況": "ㄎㄨㄤˋ", "停": "ㄊㄧㄥˊ", "擅": "ㄕㄢˋ", "長": "ㄓㄤˇ", "觀": "ㄍㄨㄢ", "察": "ㄔㄚˊ", "仔": "ㄗㄞˇ", "細": "ㄒㄧˋ", "耐": "ㄋㄞˋ", "聲": "ㄕㄥ", "念": "ㄋㄧㄢˋ", "安": "ㄢ", "慰": "ㄨㄟˋ", "束": "ㄕㄨˋ", "謝": "ㄒㄧㄝˋ", "陪": "ㄆㄟˊ", "耶": "ㄧㄝ", "禮": "ㄌㄧˇ", "貌": "ㄇㄠˋ", "演": "ㄧㄢˇ", "邀": "ㄧㄠ", "管": "ㄍㄨㄢˇ", "修": "ㄒㄧㄡ", "改": "ㄍㄞˇ", "除": "ㄔㄨˊ", "低": "ㄉㄧ", "險": "ㄒㄧㄢˇ", "並": "ㄅㄧㄥˋ", "馬": "ㄇㄚˇ", "具": "ㄐㄩˋ", "剛": "ㄍㄤ", "但": "ㄉㄢˋ", "抄": "ㄔㄠ", "醒": "ㄒㄧㄥˇ", "處": "ㄔㄨˋ", "效": "ㄒㄧㄠˋ", "挑": "ㄊㄧㄠ", "穿": "ㄔㄨㄢ", "插": "ㄔㄚ", "靠": "ㄎㄠˋ", "運": "ㄩㄣˋ", "速": "ㄙㄨˋ", "反": "ㄈㄢˇ", "擔": "ㄉㄢ", "員": "ㄩㄢˊ", "增": "ㄗㄥ", "功": "ㄍㄨㄥ", "暫": "ㄗㄢˋ"};
+const PUNCT = /[，。！？、：；「」（）\s0-9A-Za-z\/+①②③④⑤＿…→～]/;
+function zh(text) {
+  let out = '';
+  for (const ch of text) {
+    const z = ZY[ch];
+    if (!z || PUNCT.test(ch)) { out += `<span class="p">${ch}</span>`; continue; }
+    const neutral = z.startsWith('˙');
+    let sy = [...z.replace('˙', '')];
+    let tone = '';
+    if ('ˊˇˋ'.includes(sy.at(-1))) tone = sy.pop();
+    const n = sy.length + (neutral ? 1 : 0);
+    const col = (neutral ? '<i class="nt">˙</i>' : '') + sy.map(c => `<i>${c}</i>`).join('');
+    out += `<span class="z"><span class="h">${ch}</span><span class="b" aria-hidden="true">${col}` +
+      (tone ? `<span class="t" style="grid-row:${n}">${tone}</span>` : '') + `</span></span>`;
+  }
+  return `<span class="zt" aria-label="${text}">${out}</span>`;
+}
+const SPEAKER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.3 5.7a9 9 0 0 1 0 12.6"/></svg>';
+function say(text) {
+  try {
+    const s = window.speechSynthesis; if (!s) return;
+    s.cancel();
+    const u = new SpeechSynthesisUtterance(text.replace(/[「」＿]/g, ''));
+    u.lang = 'zh-TW'; u.rate = 0.85;
+    const v = s.getVoices().find(v => /zh[-_]TW/i.test(v.lang)) || s.getVoices().find(v => /^zh/i.test(v.lang));
+    if (v) u.voice = v;
+    s.speak(u);
+  } catch (e) {}
+}
+const sp = t => `<button class="speak" type="button" data-say="${t}">${SPEAKER}${zh('聽')}</button>`;
+const store = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem('frust-' + k)); return v ?? d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('frust-' + k, JSON.stringify(v)); } catch (e) {} },
+};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let timers = [];
+const later = (f, ms) => { const t = setTimeout(f, ms); timers.push(t); return t; };
+const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+
+/* ---------- faces ---------- */
+const LV_COL = ['', '#6CC08B', '#A9D46B', '#F4C24B', '#F08A5D', '#D9534F'];
+function face(level, size = 60) {
+  const mouth = { 1: 'M20 38 Q30 47 40 38', 2: 'M21 40 Q30 44 39 40', 3: 'M21 42 L39 42', 4: 'M21 45 Q30 37 39 45', 5: 'M20 46 Q30 34 40 46' }[level];
+  const brow = level >= 4 ? '<path d="M17 18 L25 21 M43 18 L35 21" stroke="#33302B" stroke-width="2.6" stroke-linecap="round"/>' : '';
+  const tears = level >= 4 ? `<path d="M20 30 q-3 6 0 9 q3 -3 0 -9" fill="#5AB4F0"/>${level === 5 ? '<path d="M40 30 q-3 6 0 9 q3 -3 0 -9" fill="#5AB4F0"/>' : ''}` : '';
+  return `<svg viewBox="0 0 60 60" width="${size}" height="${size}" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="${LV_COL[level]}" stroke="rgba(0,0,0,.12)" stroke-width="2"/>${brow}<circle cx="21" cy="26" r="3.4" fill="#33302B"/><circle cx="39" cy="26" r="3.4" fill="#33302B"/><path d="${mouth}" stroke="#33302B" stroke-width="3.4" fill="none" stroke-linecap="round"/>${tears}</svg>`;
+}
+const EMO = {
+  sad: { name: '難過', svg: face(4, 72) },
+  angry: { name: '生氣', svg: `<svg viewBox="0 0 60 60" width="72" height="72" aria-hidden="true"><circle cx="30" cy="30" r="27" fill="#E8735A"/><path d="M15 19 L26 24 M45 19 L34 24" stroke="#33302B" stroke-width="3" stroke-linecap="round"/><circle cx="21" cy="28" r="3.4" fill="#33302B"/><circle cx="39" cy="28" r="3.4" fill="#33302B"/><path d="M20 45 Q30 37 40 45" stroke="#33302B" stroke-width="3.4" fill="none" stroke-linecap="round"/></svg>` },
+  down: { name: '失望', svg: face(3, 72) },
+  happy: { name: '開心', svg: face(1, 72) },
+};
+
+/* ---------- the two short clips ---------- */
+function kid(x, y, col, mood, label, hair = '#3B2A20', star = false) {
+  const m = mood === 'cry' ? 'M-9 14 Q0 6 9 14' : mood === 'sad' ? 'M-9 13 Q0 8 9 13' : mood === 'calm' ? 'M-8 10 L8 10' : 'M-9 8 Q0 17 9 8';
+  const tears = mood === 'cry' ? '<path class="tear" d="M-12 2 q-4 8 0 12 q4 -4 0 -12" fill="#5AB4F0"/><path class="tear" d="M12 2 q-4 8 0 12 q4 -4 0 -12" fill="#5AB4F0"/>' : '';
+  return `<g transform="translate(${x} ${y})">
+    <path d="M-34 90 Q0 52 34 90 Z" fill="${col}"/>
+    <circle cx="0" cy="0" r="30" fill="#FFD9B8"/>
+    <path d="M-30 -4 Q-28 -34 0 -34 Q28 -34 30 -4 Q18 -20 0 -18 Q-18 -20 -30 -4 Z" fill="${hair}"/>
+    ${star ? '<path d="M18 -30 l4 8 9 1 -7 6 2 9 -8 -5 -8 5 2 -9 -7 -6 9 -1z" fill="#F4C24B" stroke="#C9971A" stroke-width="1.5"/>' : ''}
+    <circle cx="-10" cy="-2" r="3.4" fill="#33302B"/><circle cx="10" cy="-2" r="3.4" fill="#33302B"/>
+    <path d="${m}" stroke="#B5463C" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    ${tears}
+    <text x="0" y="112" text-anchor="middle" font-size="20" font-weight="700" fill="#33302B" font-family="Noto Sans TC, sans-serif">${label}</text>
+  </g>`;
+}
+function bubble(x, y, text, col = '#237A80') {
+  const w = text.length * 22 + 30;
+  return `<g transform="translate(${x} ${y})"><rect x="${-w / 2}" y="-26" width="${w}" height="44" rx="16" fill="#fff" stroke="${col}" stroke-width="3"/><path d="M-6 18 L0 30 L6 18 Z" fill="#fff" stroke="${col}" stroke-width="3"/><rect x="-8" y="14" width="16" height="6" fill="#fff"/><text x="0" y="5" text-anchor="middle" font-size="22" font-weight="900" fill="${col}" font-family="Noto Sans TC, sans-serif">${text}</text></g>`;
+}
+function cardSvg(x, y, sym, flash) {
+  const shape = { star: '<path d="M0 -14 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1z" fill="#2F6FD6"/>', heart: '<path d="M0 12 C-16 0 -12 -14 0 -6 C12 -14 16 0 0 12Z" fill="#D9534F"/>', bolt: '<path d="M3 -14 L-8 2 H0 L-3 14 L8 -2 H0 Z" fill="#F4C24B"/>' }[sym];
+  return `<g transform="translate(${x} ${y})"><rect x="-26" y="-36" width="52" height="72" rx="8" fill="#fff" stroke="${flash ? '#F4C24B' : '#BFB4A2'}" stroke-width="${flash ? 6 : 3}"/>${shape}</g>`;
+}
+function score(x, y, names, pts) {
+  return `<g transform="translate(${x} ${y})"><rect x="0" y="0" width="210" height="${30 + names.length * 30}" rx="12" fill="#fff" stroke="#EBE2D3" stroke-width="3"/>
+    <text x="105" y="22" text-anchor="middle" font-size="16" font-weight="700" fill="#7A7064" font-family="Noto Sans TC, sans-serif">分數</text>
+    ${names.map((n, i) => `<text x="18" y="${50 + i * 30}" font-size="19" font-weight="700" fill="#33302B" font-family="Noto Sans TC, sans-serif">${n}</text><text x="190" y="${50 + i * 30}" text-anchor="end" font-size="22" font-weight="900" fill="${pts[i] ? '#237A80' : '#D9534F'}" font-family="Noto Sans TC, sans-serif">${pts[i]}</text>`).join('')}</g>`;
+}
+function sceneFrame(st) {
+  // st: { moods:{mei,hua,star}, cards:[sym,sym,sym], flash:[bool..], bub:{who,text}, pts:[mei,hua,star], extra }
+  const pos = { mei: 230, hua: 640, star: 435 };
+  let s = `<rect width="1000" height="562" fill="#F3EBDD"/><rect y="390" width="1000" height="172" fill="#D9B98C"/><ellipse cx="435" cy="420" rx="330" ry="60" fill="#C9A372"/>`;
+  s += kid(pos.mei, 230, '#E87FA4', st.moods.mei, '小美', '#5A3A2A');
+  s += kid(pos.hua, 230, '#6FA8DC', st.moods.hua, '小華');
+  s += kid(pos.star, 250, '#F4C24B', st.moods.star, '小星', '#3B2A20', true);
+  st.cards.forEach((c, i) => { if (c) s += cardSvg([300, 435, 570][i], 420, c, st.flash && st.flash[i]); });
+  if (st.bub) s += bubble(pos[st.bub.who], st.bub.who === 'star' ? 150 : 132, st.bub.text, st.bub.col);
+  s += score(770, 24, ['小美', '小華', '小星'], st.pts);
+  if (st.extra) s += st.extra;
+  return `<svg class="scene" viewBox="0 0 1000 562" aria-hidden="true">${s}</svg>`;
+}
+const CLIPS = {
+  lose: {
+    title: '小星的故事',
+    steps: [
+      [0, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['heart', 'bolt', 'star'], pts: [0, 0, 0] }, '小星和朋友在玩字字轉機，大家都很開心。'],
+      [3500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'bolt', 'star'], flash: [1, 0, 1], pts: [0, 0, 0] }, '兩張牌的符號一樣！要搶著說出別人的圖案。'],
+      [6500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['star', 'bolt', 'star'], flash: [1, 0, 1], bub: { who: 'mei', text: '槌子！' }, pts: [1, 0, 0] }, '小美最快說出來，小美得一分。'],
+      [9500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['bolt', 'bolt', 'heart'], flash: [1, 1, 0], bub: { who: 'hua', text: '雨傘！' }, pts: [1, 1, 0] }, '又一次……小華先說了，小華也得一分。'],
+      [12500, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['heart', 'bolt', 'heart'], flash: [1, 0, 1], bub: { who: 'mei', text: '熱狗堡！' }, pts: [2, 1, 0] }, '小星每次都慢一步，一分都沒有。'],
+      [15500, { moods: { mei: 'happy', hua: 'happy', star: 'cry' }, cards: ['heart', 'bolt', 'heart'], pts: [2, 1, 0] }, '小星的眼淚掉下來了，一直哭，不想玩了……'],
+      [19000, null, ''],
+    ],
+  },
+  better: {
+    title: '小星換個做法',
+    steps: [
+      [0, { moods: { mei: 'happy', hua: 'happy', star: 'sad' }, cards: ['heart', 'bolt', 'heart'], flash: [1, 0, 1], bub: { who: 'mei', text: '熱狗堡！' }, pts: [2, 1, 0] }, '小星又慢了一步，心裡好難過。'],
+      [3500, { moods: { mei: 'happy', hua: 'happy', star: 'calm' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '吸～　呼～', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星先用降溫魔法：聞花、吹蠟燭，深呼吸三次。'],
+      [7500, { moods: { mei: 'happy', hua: 'happy', star: 'calm' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '下次我再試試！', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星換一個想法：「我只是這次沒拿到，下次再試試。」'],
+      [11500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['heart', 'bolt', 'heart'], bub: { who: 'star', text: '恭喜你！', col: '#2E8B57' }, pts: [2, 1, 0] }, '小星對小美說：「恭喜你！」'],
+      [14500, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'heart', 'star'], flash: [1, 0, 1], bub: { who: 'star', text: '槌子！', col: '#F08A5D' }, pts: [2, 1, 1] }, '大家繼續玩。這一次，小星也拿到一分了！'],
+      [18000, { moods: { mei: 'happy', hua: 'happy', star: 'happy' }, cards: ['star', 'heart', 'star'], pts: [2, 1, 1], extra: '<text x="435" y="90" text-anchor="middle" font-size="40" font-weight="900" fill="#237A80" font-family="Noto Sans TC, sans-serif">輸了也沒關係，再玩一局！</text>' }, '輸了也沒關係，跟朋友一起玩最開心！'],
+      [22000, null, ''],
+    ],
+  },
+};
+const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z" fill="#33302B"/></svg>';
+function playerHTML(id, question) {
+  const c = CLIPS[id];
+  return `<div class="player" data-clip="${id}" data-q="${esc(question || '')}"><div class="screen">${sceneFrame(c.steps[0][1])}<div class="cap"></div>
+    <div class="cover"><div class="ttl">${zh(c.title)}</div><button type="button" data-play="${id}" aria-label="播放">${PLAY}</button></div></div>
+    <div class="ctrl"><button type="button" data-replay="${id}">↻ 重播</button><div class="prog"><i></i></div><span style="font-family:var(--f-head);font-size:14px">${zh('小短片')}</span></div></div>`;
+}
+function playClip(id, onEnd) {
+  const host = main.querySelector(`.player[data-clip="${id}"]`); if (!host) return;
+  clearTimers();
+  const c = CLIPS[id], scr = host.querySelector('.screen'), cap = host.querySelector('.cap'), bar = host.querySelector('.prog i');
+  host.querySelector('.cover').hidden = true;
+  const dur = c.steps[c.steps.length - 1][0];
+  bar.style.transition = 'none'; bar.style.width = '0';
+  requestAnimationFrame(() => { bar.style.transition = `width ${dur}ms linear`; bar.style.width = '100%'; });
+  c.steps.forEach(([t, st, text]) => later(() => {
+    if (!st) { const q = host.dataset.q; const cv = host.querySelector('.cover'); cv.hidden = false; cv.innerHTML = `<div class="ttl">${zh(q || '看完了！')}</div><button type="button" data-replay="${id}" aria-label="重播">${PLAY}</button>`; cv.querySelector('button').onclick = () => playClip(id, onEnd); onEnd && onEnd(); return; }
+    scr.querySelector('svg.scene').outerHTML = sceneFrame(st);
+    cap.innerHTML = zh(text); say(text);
+  }, t));
+}
+
+/* ---------- steps ---------- */
+const STEPS = [
+  { id: 'story', label: '小星的故事', mins: 5, render: sStory },
+  { id: 'thermo', label: '心情溫度計', mins: 6, render: sThermo },
+  { id: 'calm', label: '降溫魔法', mins: 8, render: sCalm },
+  { id: 'think', label: '想法變身', mins: 6, render: sThink },
+  { id: 'say', label: '輸了怎麼說', mins: 5, render: sSay },
+  { id: 'spin', label: '輸贏練習', mins: 8, render: sSpin },
+  { id: 'plan', label: '我的冷靜卡', mins: 2, render: sPlan },
+];
+let cur = 0;
+const main = document.getElementById('main');
+const head = (n, title, mins) => `<div class="step-top"><div class="num">${n}</div><h2 class="hd">${zh(title)}</h2><span class="mins">約 ${mins} 分鐘</span></div>`;
+
+/* 1 story */
+let storyPick = null;
+function sStory() {
+  const opts = ['sad', 'angry', 'down', 'happy'];
+  return `<section class="step">${head(1, '小星的故事', 5)}
+    <p class="lead">${zh('先看小短片：小星玩桌遊的時候發生了什麼事？')}</p>
+    ${playerHTML('lose', '小星現在是什麼心情？')}
+    <p class="big">${zh('小星現在是什麼心情？可以選很多個！')} ${sp('小星現在是什麼心情？可以選很多個！')}</p>
+    <div class="opts">${opts.map(k => `<button class="opt ${storyPick && storyPick.includes(k) ? 'on' : ''}" type="button" data-emo="${k}">${EMO[k].svg}${zh(EMO[k].name)}</button>`).join('')}</div>
+    <div id="storyFb">${storyPick && storyPick.length ? storyFb() : ''}</div>
+    <p class="teacher"><b>老師提示</b>：用虛構的小星帶出情境，不點名班上的同學。看完請學生說說：「你有沒有過跟小星一樣的感覺？」願意分享的人再分享，不勉強。</p>
+  </section>`;
+}
+function storyFb() {
+  if (storyPick.includes('happy') && storyPick.length === 1) return `<div class="fb no pop"><div>${zh('再看看小星的臉和眼淚喔！')}</div></div>`;
+  return `<div class="fb ok pop"><div>${zh('難過、生氣、失望，這些心情都很正常！')}</div><div class="ex">${zh('每個人輸的時候都會不舒服。輸了以後怎麼做，才是最厲害的！')}</div></div>`;
+}
+function mStory() {
+  main.querySelectorAll('[data-emo]').forEach(b => b.onclick = () => {
+    storyPick = storyPick || [];
+    const k = b.dataset.emo; storyPick = storyPick.includes(k) ? storyPick.filter(x => x !== k) : [...storyPick, k];
+    render();
+    if (storyPick.length && !(storyPick.includes('happy') && storyPick.length === 1)) say('難過、生氣、失望，這些心情都很正常！');
+  });
+}
+
+/* 2 thermometer */
+const LEVELS = [
+  null,
+  { nm: '1 平靜', ds: '心情很好，可以繼續玩。', todo: '繼續玩！' },
+  { nm: '2 有一點點不舒服', ds: '心裡悶悶的，嘴巴嘟起來。', todo: '跟自己說：沒關係。' },
+  { nm: '3 難過、失望', ds: '好想哭，不想說話。', todo: '用降溫魔法！' },
+  { nm: '4 很難過、很生氣', ds: '眼淚掉下來，身體熱熱的。', todo: '降溫魔法，再告訴老師。' },
+  { nm: '5 爆炸了', ds: '大哭、大叫、想丟東西。', todo: '先到冷靜角休息。' },
+];
+let lvOn = 4;
+function sThermo() {
+  return `<section class="step">${head(2, '心情溫度計', 6)}
+    <p class="lead">${zh('輸了的時候，你的心情是幾度？')} ${sp('輸了的時候，你的心情是幾度？')}</p>
+    <div class="thermo">
+      <div class="tube" role="group" aria-label="溫度">${[1, 2, 3, 4, 5].map(i => `<button type="button" data-lv="${i}" class="${i <= lvOn ? 'on' : ''}" style="background:${LV_COL[i]}" aria-label="${i} 度">${i}</button>`).join('')}</div>
+      <div class="levels">${[5, 4, 3, 2, 1].map(i => `<button class="lv ${i === lvOn ? 'on' : ''}" type="button" data-lv="${i}">${face(i)}<span><div class="nm">${zh(LEVELS[i].nm)}</div><div class="ds">${zh(LEVELS[i].ds)}</div><div class="todo">${zh('要做：' + LEVELS[i].todo)}</div></span></button>`).join('')}</div>
+    </div>
+    <div class="fb info"><div>${zh('溫度越高，越要先讓自己冷靜下來，才能想辦法。')}</div></div>
+    <p class="teacher"><b>老師提示</b>：先問「小星哭的時候是幾度？」（4 度），再請每位學生用手指比出「自己輸了的時候大概幾度」。重點是學會「發現自己升溫了」，不是要學生假裝不難過。</p>
+  </section>`;
+}
+function mThermo() { main.querySelectorAll('[data-lv]').forEach(b => b.onclick = () => { lvOn = +b.dataset.lv; render(); say(LEVELS[lvOn].nm + '。' + LEVELS[lvOn].ds + '要做：' + LEVELS[lvOn].todo); }); }
+
+/* 3 calm tools */
+const FLOWER = '<svg viewBox="0 0 80 80" aria-hidden="true"><g fill="#F08AB0"><circle cx="40" cy="22" r="11"/><circle cx="55" cy="33" r="11"/><circle cx="49" cy="50" r="11"/><circle cx="31" cy="50" r="11"/><circle cx="25" cy="33" r="11"/></g><circle cx="40" cy="38" r="9" fill="#F4C24B"/><path d="M40 58 V78" stroke="#4E9A2B" stroke-width="5"/></svg>';
+const CANDLE = '<svg viewBox="0 0 80 80" aria-hidden="true"><rect x="30" y="34" width="20" height="40" rx="4" fill="#F7E1C2" stroke="#D9B98C" stroke-width="3"/><path class="flame" d="M40 8 C47 18 48 24 40 30 C32 24 33 18 40 8 Z" fill="#F4A13B"/></svg>';
+const TOOLS = [
+  { id: 'breath', nm: '聞花吹蠟燭', ds: '鼻子聞花，嘴巴吹蠟燭，做三次。', svg: FLOWER },
+  { id: 'count', nm: '慢慢數到十', ds: '心裡一個一個慢慢數。', svg: '<svg viewBox="0 0 80 80" aria-hidden="true"><rect x="8" y="14" width="64" height="52" rx="12" fill="#DDF0EF" stroke="#237A80" stroke-width="3"/><text x="40" y="52" text-anchor="middle" font-size="30" font-weight="900" fill="#237A80" font-family="Noto Sans TC, sans-serif">10</text></svg>' },
+  { id: 'fist', nm: '握拳再放開', ds: '用力握緊五秒，再放開。', svg: '<svg viewBox="0 0 80 80" aria-hidden="true"><rect x="20" y="24" width="40" height="38" rx="14" fill="#FFD9B8" stroke="#D9A57C" stroke-width="3"/><path d="M28 30 v-8 M36 28 v-10 M44 28 v-10 M52 30 v-8" stroke="#D9A57C" stroke-width="5" stroke-linecap="round"/></svg>' },
+  { id: 'rest', nm: '說「我需要休息」', ds: '舉手跟老師說，去冷靜角。', svg: '<svg viewBox="0 0 80 80" aria-hidden="true"><path d="M10 14 h60 a6 6 0 0 1 6 6 v30 a6 6 0 0 1 -6 6 H34 l-12 12 v-12 H10 a6 6 0 0 1 -6 -6 V20 a6 6 0 0 1 6 -6z" fill="#F08A5D"/><text x="40" y="44" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="Noto Sans TC, sans-serif">休息</text></svg>' },
+];
+let toolOn = null;
+function sCalm() {
+  return `<section class="step">${head(3, '降溫魔法', 8)}
+    <p class="lead">${zh('心情溫度升高了，用降溫魔法讓自己冷靜下來！')} ${sp('心情溫度升高了，用降溫魔法讓自己冷靜下來！')}</p>
+    <div class="tools4">${TOOLS.map(t => `<button class="tool ${toolOn === t.id ? 'on' : ''}" type="button" data-tool="${t.id}">${t.svg}<span class="nm">${zh(t.nm)}</span><span class="ds">${zh(t.ds)}</span></button>`).join('')}</div>
+    <div class="guide" id="guide"><div class="gtxt">${zh('點一個降溫魔法，大家一起練習！')}</div></div>
+    <p class="teacher"><b>老師提示</b>：四個都帶全班練一次，最後請每個人選一個「我最喜歡的降溫魔法」。可以在教室布置冷靜角，讓「說我需要休息」是被允許、被稱讚的做法。</p>
+  </section>`;
+}
+function mCalm() {
+  main.querySelectorAll('[data-tool]').forEach(b => b.onclick = () => { toolOn = b.dataset.tool; main.querySelectorAll('[data-tool]').forEach(x => x.classList.toggle('on', x === b)); runTool(toolOn); });
+}
+function runTool(id) {
+  clearTimers();
+  const g = document.getElementById('guide');
+  const set = (big, txt, svg) => { g.innerHTML = `${svg || ''}${big !== '' ? `<div class="gbig">${big}</div>` : ''}<div class="gtxt">${zh(txt)}</div>`; };
+  if (id === 'breath') {
+    let k = 0; const seq = [];
+    for (let r = 1; r <= 3; r++) { seq.push(['in', r]); seq.push(['out', r]); }
+    const step = () => {
+      if (k >= seq.length) { set('', '好棒！身體慢慢涼下來了。', FLOWER.replace('<svg', '<svg class="anim"')); say('好棒！身體慢慢涼下來了。'); return; }
+      const [ph, r] = seq[k++];
+      if (ph === 'in') { set(`${r} / 3`, '鼻子聞一聞花，好香～', FLOWER.replace('<svg', '<svg class="anim"')); say('鼻子聞一聞花，好香'); requestAnimationFrame(() => { const a = g.querySelector('.anim'); if (a) { a.style.transform = 'scale(1)'; requestAnimationFrame(() => a.style.transform = 'scale(1.3)'); } }); later(step, 3500); }
+      else { set(`${r} / 3`, '嘴巴吹一吹蠟燭，呼～', CANDLE.replace('<svg', '<svg class="anim"')); say('嘴巴吹一吹蠟燭'); requestAnimationFrame(() => { const a = g.querySelector('.anim'); if (a) { a.style.transform = 'scale(1.2)'; requestAnimationFrame(() => a.style.transform = 'scale(.9)'); } }); later(step, 4000); }
+    };
+    step();
+  } else if (id === 'count') {
+    let n = 0; const step = () => { n++; if (n > 10) { set('', '數完了，心情慢慢平靜了。'); say('數完了，心情慢慢平靜了。'); return; } set(n, '慢慢數……'); say(String(n)); later(step, 1200); }; step();
+  } else if (id === 'fist') {
+    let n = 0; set('', '雙手用力握緊拳頭！'); say('雙手用力握緊拳頭');
+    const step = () => { n++; if (n > 5) { set('', '放開～手和身體都輕鬆了。'); say('放開，手和身體都輕鬆了'); return; } set(n, '握緊、握緊……'); later(step, 1000); }; later(step, 1500);
+  } else {
+    set('', '舉手說：「老師，我需要休息一下。」', TOOLS[3].svg.replace('<svg', '<svg class="anim"')); say('舉手說，老師，我需要休息一下。');
+    later(() => { set('', '到冷靜角坐一下，好了再回來玩。這樣做很勇敢！'); say('到冷靜角坐一下，好了再回來玩。這樣做很勇敢！'); }, 4500);
+  }
+}
+
+/* 4 thoughts */
+const THOUGHTS = [
+  ['我最爛了！', '我只是這次沒拿到，下次再試試。'],
+  ['我都比別人慢！', '每個人快慢不一樣，我會越來越快。'],
+  ['不公平！我不要玩了！', '有輸有贏才好玩，再玩一局吧！'],
+  ['大家都會笑我。', '好朋友不會笑我，我也不笑別人。'],
+  ['沒得分就不好玩。', '跟朋友一起玩，本來就很開心！'],
+];
+let flipped = [];
+function sThink() {
+  return `<section class="step">${head(4, '想法變身', 6)}
+    <p class="lead">${zh('輸了的時候，腦袋裡會跑出「難過的想法」。點一下，把它變成「幫助自己的想法」！')}</p>
+    <div class="flips">${THOUGHTS.map(([a, b], i) => `<button class="flip ${flipped.includes(i) ? 'on' : ''}" type="button" data-th="${i}" aria-label="${a}"><div class="in"><div class="face bad"><small>${zh('難過的想法')}</small><b>${zh(a)}</b><small>${zh('點我變身')}</small></div><div class="face good"><small>${zh('幫助自己的想法')}</small><b>${zh(b)}</b></div></div></button>`).join('')}</div>
+    <p class="teacher"><b>老師提示</b>：第二張「我都比別人慢」最貼近這次的狀況，可以多停留，讓學生說說自己擅長什麼（例如觀察很仔細、很有耐心）。翻完後全班一起大聲念好想法。</p>
+  </section>`;
+}
+function mThink() { main.querySelectorAll('[data-th]').forEach(b => b.onclick = () => { const i = +b.dataset.th; if (!flipped.includes(i)) { flipped.push(i); b.classList.add('on'); say(THOUGHTS[i][1]); } else { flipped = flipped.filter(x => x !== i); b.classList.remove('on'); } }); }
+
+/* 5 what to say */
+const SAYQ = [
+  { q: '小星輸了，可以怎麼說？', o: ['恭喜你！', '不公平！', '把牌丟掉'], a: 0, ex: '說「恭喜你」，大家都會想再跟你玩。' },
+  { q: '你一直沒拿到分，好想哭，第一步先做什麼？', o: ['用降溫魔法', '大哭跑走', '搶別人的牌'], a: 0, ex: '先讓自己冷靜下來，再繼續玩。' },
+  { q: '朋友輸了在哭，你可以怎麼做？', o: ['說「沒關係，我們再玩一次」', '笑他', '不理他'], a: 0, ex: '安慰朋友，大家都會更開心。' },
+  { q: '遊戲結束，你贏了，可以怎麼說？', o: ['謝謝大家陪我玩！', '耶！你們都輸了！', '我最厲害！'], a: 0, ex: '贏了不笑別人，說謝謝最有禮貌。' },
+];
+let sq = { i: 0, picked: null, order: null };
+function sSay() {
+  const Q = SAYQ[sq.i];
+  if (!sq.order) sq.order = Q.o.map((_, i) => i).sort(() => Math.random() - .5);
+  const done = sq.picked !== null;
+  return `<section class="step">${head(5, '輸了怎麼說', 5)}
+    ${playerHTML('better', '小星做了哪些事？')}
+    <p class="big">${zh(Q.q)} ${sp(Q.q)}<span class="mins" style="margin-left:8px">${sq.i + 1} / ${SAYQ.length}</span></p>
+    <div class="opts">${sq.order.map(k => `<button class="opt ${done ? (k === Q.a ? 'right pop' : k === sq.picked ? 'wrong' : '') : ''}" type="button" data-sq="${k}" ${done ? 'disabled' : ''}>${zh(Q.o[k])}</button>`).join('')}</div>
+    ${done ? `<div class="fb ${sq.picked === Q.a ? 'ok' : 'no'} pop"><div>${zh(sq.picked === Q.a ? '答對了！' : '再想想！')}</div><div class="ex">${zh(Q.ex)}</div></div>
+      <div class="row" style="justify-content:flex-end"><button class="btn" type="button" id="sqNext">${zh(sq.i < SAYQ.length - 1 ? '下一題' : '再做一次')}</button></div>` : ''}
+    <p class="teacher"><b>老師提示</b>：先播「小星換個做法」，請學生找出小星做了哪三件事（深呼吸、換想法、說恭喜你），再做題目。可以請學生兩兩演一次：一人當贏的、一人當輸的，再交換。</p>
+  </section>`;
+}
+function mSay() {
+  main.querySelectorAll('[data-sq]').forEach(b => b.onclick = () => { const Q = SAYQ[sq.i]; sq.picked = +b.dataset.sq; render(); say((sq.picked === Q.a ? '答對了！' : '再想想！') + Q.ex); });
+  const n = document.getElementById('sqNext'); if (n) n.onclick = () => { sq = { i: (sq.i + 1) % SAYQ.length, picked: null, order: null }; render(); };
+}
+
+/* 6 spinner practice */
+let names = store.get('names', ['1號', '2號', '3號', '4號', '5號', '6號', '7號']);
+let stars = store.get('stars', names.map(() => 0));
+let spin = { who: null, result: null, deg: 0, checks: [] };
+const LOSE_STEPS = ['用一個降溫魔法', '說一個幫助自己的想法', '跟贏的人說「恭喜你」'];
+const WIN_STEPS = ['說「謝謝大家陪我玩」', '不笑別人，邀請大家再玩一局'];
+function wheelSVG() {
+  const seg = ['贏', '輸', '贏', '輸', '輸', '贏', '輸', '輸'];
+  const cols = { '贏': '#6CC08B', '輸': '#F08A5D' };
+  let s = '';
+  seg.forEach((t, i) => {
+    const a0 = (i / seg.length) * 2 * Math.PI - Math.PI / 2, a1 = ((i + 1) / seg.length) * 2 * Math.PI - Math.PI / 2;
+    const x0 = 150 + 140 * Math.cos(a0), y0 = 150 + 140 * Math.sin(a0), x1 = 150 + 140 * Math.cos(a1), y1 = 150 + 140 * Math.sin(a1);
+    const am = (a0 + a1) / 2;
+    s += `<path d="M150 150 L${x0} ${y0} A140 140 0 0 1 ${x1} ${y1} Z" fill="${cols[t]}" stroke="#fff" stroke-width="4"/>`;
+    s += `<text x="${150 + 95 * Math.cos(am)}" y="${150 + 95 * Math.sin(am) + 12}" text-anchor="middle" font-size="34" font-weight="900" fill="#fff" font-family="Noto Sans TC, sans-serif">${t}</text>`;
+  });
+  return `<svg viewBox="0 0 300 300" aria-hidden="true"><g id="wheel" style="transform:rotate(${spin.deg}deg)">${s}</g><circle cx="150" cy="150" r="22" fill="#fff" stroke="#EBE2D3" stroke-width="4"/></svg>`;
+}
+function sSpin() {
+  const steps = spin.result === '輸' ? LOSE_STEPS : WIN_STEPS;
+  const allDone = spin.result && spin.checks.length === steps.length;
+  return `<section class="step">${head(6, '輸贏練習', 8)}
+    <p class="lead">${zh('轉轉盤，看看這次是贏還是輸。不管輸贏，做到好風度就拿星星！')}</p>
+    <div class="practice">
+      <div style="display:grid;gap:12px">
+        <div class="who" role="group" aria-label="選一位同學">${names.map((n, i) => `<button type="button" data-who="${i}" aria-pressed="${spin.who === i}">${esc(n)}</button>`).join('')}</div>
+        <div class="wheel-wrap"><span class="pointer" aria-hidden="true"></span>${wheelSVG()}</div>
+        <div class="row" style="justify-content:center"><button class="btn peach" type="button" id="spinBtn" ${spin.who === null ? 'disabled' : ''}>${zh(spin.who === null ? '先點一位同學' : '轉轉盤！')}</button></div>
+      </div>
+      <div style="display:grid;gap:12px;align-content:start">
+        ${spin.result ? `<div class="fb ${spin.result === '贏' ? 'ok' : 'info'} pop"><div>${zh(spin.result === '贏' ? esc(names[spin.who]) + '贏了！' : esc(names[spin.who]) + '這次輸了，沒關係！')}</div><div class="ex">${zh(spin.result === '贏' ? '贏的時候，要這樣做：' : '輸的時候，試試看這三件事：')}</div></div>
+          <div class="checks">${steps.map((t, i) => `<button class="ck ${spin.checks.includes(i) ? 'on' : ''}" type="button" data-ck="${i}"><span class="box">${spin.checks.includes(i) ? '✓' : ''}</span>${zh(t)}</button>`).join('')}</div>
+          ${allDone ? `<div class="fb ok pop"><div>${zh('好風度！拿到一顆星星！')}</div></div>` : ''}` : `<div class="fb info"><div>${zh('點一位同學，再按「轉轉盤」。')}</div><div class="ex">${zh('轉盤上「輸」比較多，因為我們要練習輸的時候怎麼做！')}</div></div>`}
+        <h3 style="margin:6px 0 0;font-family:var(--f-head);color:var(--teal)">${zh('好風度星星')}</h3>
+        <div class="board">${names.map((n, i) => `<div class="brow"><span class="nm">${esc(n)}</span><span class="st">${stars[i] ? '★'.repeat(Math.min(stars[i], 12)) : ''}</span><b>${stars[i]}</b></div>`).join('')}</div>
+        <details><summary>修改學生名字、清除星星</summary>
+          <div class="names" style="margin-top:8px">${names.map((n, i) => `<input id="nm${i}" data-nm="${i}" value="${esc(n)}" aria-label="第 ${i + 1} 位學生名字">`).join('')}</div>
+          <div class="row" style="margin-top:8px"><button class="pillbtn" type="button" id="clearStars">星星全部歸零</button></div>
+        </details>
+      </div>
+    </div>
+    <p class="teacher"><b>老師提示</b>：這個練習讓學生在「低風險」的情況下體驗輸，並馬上練習降溫和好風度。星星只看好風度，不看輸贏。容易難過的學生可以先看別人練一兩輪，再自願上台；做到時具體稱讚，例如「你剛剛很難過，但你有深呼吸，還說恭喜你，好勇敢！」</p>
+  </section>`;
+}
+function mSpin() {
+  main.querySelectorAll('[data-who]').forEach(b => b.onclick = () => { spin = { ...spin, who: +b.dataset.who, result: null, checks: [] }; render(); });
+  const sb = document.getElementById('spinBtn');
+  if (sb) sb.onclick = () => {
+    if (spin.who === null) return;
+    const seg = ['贏', '輸', '贏', '輸', '輸', '贏', '輸', '輸'];
+    const k = Math.floor(Math.random() * seg.length);
+    const target = 360 - (k + .5) * (360 / seg.length);
+    spin.deg = spin.deg - (spin.deg % 360) + 360 * 5 + target;
+    spin.result = null; spin.checks = [];
+    const w = document.getElementById('wheel'); w.style.transform = `rotate(${spin.deg}deg)`; sb.disabled = true;
+    setTimeout(() => { spin.result = seg[k]; render(); say(spin.result === '贏' ? names[spin.who] + '贏了！' : names[spin.who] + '這次輸了，沒關係！'); }, 3300);
+  };
+  main.querySelectorAll('[data-ck]').forEach(b => b.onclick = () => {
+    const i = +b.dataset.ck; if (spin.checks.includes(i)) return;
+    spin.checks.push(i);
+    const steps = spin.result === '輸' ? LOSE_STEPS : WIN_STEPS;
+    if (spin.checks.length === steps.length) { stars[spin.who]++; store.set('stars', stars); say('好風度！拿到一顆星星！'); }
+    render();
+  });
+  main.querySelectorAll('[data-nm]').forEach(inp => inp.onchange = () => { names[+inp.dataset.nm] = inp.value.trim() || `${+inp.dataset.nm + 1}號`; store.set('names', names); render(); main.querySelector('details').open = true; });
+  const cs = document.getElementById('clearStars');
+  if (cs) cs.onclick = () => { if (cs.dataset.arm) { stars = names.map(() => 0); store.set('stars', stars); render(); } else { cs.dataset.arm = 1; cs.textContent = '再按一次確定歸零'; } };
+}
+
+/* 7 plan card */
+let plan = store.get('plan', { tool: null, thought: null });
+function sPlan() {
+  return `<section class="step">${head(7, '我的冷靜卡', 2)}
+    <p class="lead">${zh('下次輸了，我要這樣做：')}</p>
+    <div class="plan">
+      <h3>${zh('我的冷靜卡')}</h3>
+      <div class="prow"><b>${zh('我發現')}</b><div class="big" style="font-size:24px">${zh('心情溫度升高了（想哭、身體熱熱的）')}</div></div>
+      <div class="prow"><b>${zh('我會用')}</b><div class="picks">${TOOLS.map(t => `<button type="button" data-pt="${t.id}" aria-pressed="${plan.tool === t.id}">${zh(t.nm)}</button>`).join('')}</div></div>
+      <div class="prow"><b>${zh('我跟自己說')}</b><div class="picks">${THOUGHTS.map(([, b], i) => `<button type="button" data-pth="${i}" aria-pressed="${plan.thought === i}">${zh(b)}</button>`).join('')}</div></div>
+      <div class="prow"><b>${zh('我會說')}</b><div class="big" style="font-size:24px">${zh('「恭喜你！」「再玩一局！」')}</div></div>
+    </div>
+    <p class="motto">${zh('輸了也沒關係，跟朋友一起玩最開心！')}</p>
+    <p class="teacher"><b>老師提示</b>：每位學生選好後，可以抄在小卡片上，下次玩桌遊前放在桌上提醒自己（事前提醒比事後處理有效）。之後挑選桌遊時，也可以穿插靠運氣、不比速度的遊戲，或讓反應比較慢的學生擔任計分員，增加成功經驗。</p>
+  </section>`;
+}
+function mPlan() {
+  main.querySelectorAll('[data-pt]').forEach(b => b.onclick = () => { plan.tool = b.dataset.pt; store.set('plan', plan); render(); });
+  main.querySelectorAll('[data-pth]').forEach(b => b.onclick = () => { plan.thought = +b.dataset.pth; store.set('plan', plan); render(); say(THOUGHTS[plan.thought][1]); });
+}
+
+/* ---------- shell ---------- */
+const MOUNT = { story: mStory, thermo: mThermo, calm: mCalm, think: mThink, say: mSay, spin: mSpin, plan: mPlan };
+const chips = document.getElementById('chips');
+function render() {
+  clearTimers();
+  chips.innerHTML = STEPS.map((s, i) => `<button class="chip" type="button" data-step="${i}" ${i === cur ? 'aria-current="step"' : ''}>${i + 1} ${s.label}</button>`).join('');
+  chips.querySelectorAll('[data-step]').forEach(b => b.onclick = () => go(+b.dataset.step));
+  const y = window.scrollY;
+  main.innerHTML = STEPS[cur].render();
+  main.querySelectorAll('[data-say]').forEach(b => b.onclick = () => say(b.dataset.say));
+  main.querySelectorAll('[data-play],[data-replay]').forEach(b => b.onclick = () => playClip(b.dataset.play || b.dataset.replay));
+  (MOUNT[STEPS[cur].id] || (() => {}))();
+  document.getElementById('prev').innerHTML = zh('上一步');
+  document.getElementById('next').innerHTML = zh(cur === STEPS.length - 1 ? '回到開始' : '下一步');
+  document.getElementById('prev').disabled = cur === 0;
+  window.scrollTo(0, y);
+}
+function go(i) {
+  cur = (i + STEPS.length) % STEPS.length;
+  if (location.hash !== '#' + STEPS[cur].id) history.replaceState(null, '', '#' + STEPS[cur].id);
+  resetClock(); render();
+  document.querySelector('.wrap').scrollIntoView({ block: 'start' });
+}
+document.getElementById('prev').onclick = () => go(cur - 1);
+document.getElementById('next').onclick = () => go(cur + 1);
+document.addEventListener('keydown', e => {
+  if (e.target.closest('input')) return;
+  if (e.key === 'ArrowRight' && cur < STEPS.length - 1) go(cur + 1);
+  if (e.key === 'ArrowLeft' && cur > 0) go(cur - 1);
+});
+window.addEventListener('hashchange', () => { const i = STEPS.findIndex(s => '#' + s.id === location.hash); if (i >= 0 && i !== cur) go(i); });
+
+let left = 0, running = false, tickT = 0;
+const clock = document.getElementById('clock'), tgo = document.getElementById('tgo');
+function showClock() { const a = Math.abs(left); clock.textContent = `${left < 0 ? '+' : ''}${Math.floor(a / 60)}:${String(a % 60).padStart(2, '0')}`; clock.classList.toggle('over', left < 0); tgo.textContent = running ? '暫停' : '開始'; }
+function resetClock() { running = false; clearInterval(tickT); left = STEPS[cur].mins * 60; showClock(); }
+tgo.onclick = () => { running = !running; clearInterval(tickT); if (running) tickT = setInterval(() => { left--; showClock(); }, 1000); showClock(); };
+document.getElementById('treset').onclick = resetClock;
+
+let zyOn = store.get('zy', true);
+const zyBtn = document.getElementById('zyBtn');
+const applyZy = () => { document.body.classList.toggle('nozy', !zyOn); zyBtn.textContent = '注音：' + (zyOn ? '開' : '關'); };
+zyBtn.onclick = () => { zyOn = !zyOn; store.set('zy', zyOn); applyZy(); };
+applyZy();
+
+document.querySelectorAll('[data-zh]').forEach(el => el.innerHTML = zh(el.dataset.zh));
+const startAt = STEPS.findIndex(s => '#' + s.id === location.hash);
+cur = startAt >= 0 ? startAt : 0;
+resetClock(); render();
+</script>
+
+<a href="../index.html#lesson" style="position:fixed;z-index:9999;left:max(12px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:#23383F;color:#fff;text-decoration:none;font:700 15px 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;padding:8px 16px;border-radius:999px;box-shadow:0 3px 10px rgba(0,0,0,.25)">← 回社會技巧島</a>
+</body></html>
